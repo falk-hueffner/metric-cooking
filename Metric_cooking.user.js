@@ -136,6 +136,9 @@ function scale(amount, unit) {
     if (unit == 'mm' && amount >= 10) {
         unit = 'cm';
         amount /= 10;
+    } else if (unit == 'ml' && amount >= 1000) {
+        unit = 'l';
+        amount /= 1000;
     }
     return {amount: amount, unit: unit};
 }
@@ -168,7 +171,7 @@ var tests = [
     ['1 stick, plus 1 tb, unsalted butter', '1 stick [110 g], plus 1 tb [15 ml], unsalted butter'],
     ['8 ounces spaghetti (or other) pasta', '8 ounces [230 g] spaghetti (or other) pasta'],
     ['2 Tbsp olive oil', '2 Tbsp [30 ml] olive oil'],
-    ['at least 4 quarts of water', 'at least 4 quarts [3800 ml] of water']
+    ['at least 4 quarts of water', 'at least 4 quarts [3.8 l] of water']
 ];
 
 if (test) {
