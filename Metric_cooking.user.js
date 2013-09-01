@@ -36,6 +36,7 @@ var tsp_ml = tbsp_ml/3;
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
     'baking soda': [/(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
+    'baking powder': [/baking powder/, 4.6/tsp_ml], // ~18369~
     'brown sugar': [/(dark )?brown sugar/, 220/cup_ml], // ~19334~ (packed)
     'butter': [/(unsalted )?butter/, 113/cup_ml], // ~01145~
     'cocoa': [/(unsweetened )?cocoa( powder)?/, 86/cup_ml], // ~19165~
@@ -235,7 +236,8 @@ var tests = [
     ['1 cup dulce de leche', '1 cup dulce de leche [300 g]'],
     ['2 teaspoons light corn syrup', '2 teaspoons light corn syrup [14 g]'],
     ['preheat oven to 325°F.', 'preheat oven to 325°F [160 °C].'],
-    ['1 tsp bicarbonate of soda', '1 tsp bicarbonate of soda [5 g]']
+    ['1 tsp bicarbonate of soda', '1 tsp bicarbonate of soda [5 g]'],
+    ['2 tsp baking powder', '2 tsp baking powder [9 g]']
 ];
 
 if (test) {
