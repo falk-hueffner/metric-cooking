@@ -35,16 +35,16 @@ var tbsp_ml = 14.8;
 var tsp_ml = tbsp_ml/3;
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
-    'parmesan': [/(finely |grated )*parmesan/, 100/cup_ml], // ~01032~
     'baking powder': [/baking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
     'brown sugar': [/(light |dark |packed )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
-    'butter': [/(unsalted )?butter/, 113/cup_ml], // ~01145~
+    'butter': [/(unsalted |chilled )*butter/, 113/cup_ml], // ~01145~
     'cocoa': [/(unsweetened )?cocoa( powder)?/, 86/cup_ml], // ~19165~
     'dulce de leche': [/dulce de leche/, 19/tbsp_ml], // ~01225~
     'flour': [/(all[- ]purpose |sifted |cake )*flour/, 125/cup_ml], // ~20081~
     'light corn syrup': [/light corn syrup/, 341/cup_ml], // ~19350~
     'mustard': [/(Dijon )?mustard/, 249/cup_ml], // ~02046~
+    'parmesan': [/(finely |grated )*parmesan/, 100/cup_ml], // ~01032~
     'peanut butter': [/(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'pine nuts': [/pine nuts/, 135/cup_ml], // ~12147~
     'powdered sugar': [/(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
@@ -115,7 +115,7 @@ var units = {
     'ounce':      [/\b(oz|ounces?)\b/, 'g',   28.349523125],
     'pound':      [/\b(lb|pounds?)\b/, 'g',  453.59237    ],
     'quart':      [/\bquarts\b/,      'ml', 946.352946   ],
-    'stick':      [/\bstick\b/,       'g', 4*28.349523125],
+    'stick':      [/\bsticks?\b/,      'g', 4*28.349523125],
     'tablespoon': [/\b(T|tb|[Tt]bsp?|tablespoons?)\b\.?/, 'ml',  14.8        ],
     'teaspoon':   [/\b(t|tsp|teaspoons?)\b\.?/,       'ml',  14.8/3      ]
 };
@@ -272,7 +272,8 @@ var tests = [
     ['Preheat the oven to 350 degrees Fahrenheit.', 'Preheat the oven to 350 degrees Fahrenheit [175 °C].'],
     ['2 cups all purpose flour', '2 cups all purpose flour [250 g]'],
     ['1/4 teaspoon black pepper', '1/4 teaspoon black pepper'],
-    [' 2 tablespoons finely grated parmesan', ' 2 tablespoons finely grated parmesan [13 g]']
+    ['2 tablespoons finely grated parmesan', '2 tablespoons finely grated parmesan [13 g]'],
+    ['1 1/2sticks chilled unsalted butter', '1 1/2sticks chilled unsalted butter [175 g]']
 ];
 
 if (test) {
