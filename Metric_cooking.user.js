@@ -115,7 +115,7 @@ var units = {
     'pound':      [/\b(lb|pounds?)\b/, 'g',  453.59237    ],
     'quart':      [/\bquarts\b/,      'ml', 946.352946   ],
     'stick':      [/\bstick\b/,       'g', 4*28.349523125],
-    'tablespoon': [/\b(T|tb|[Tt]bsp|tablespoons?)\b\.?/, 'ml',  14.8        ],
+    'tablespoon': [/\b(T|tb|[Tt]bsp?|tablespoons?)\b\.?/, 'ml',  14.8        ],
     'teaspoon':   [/\b(t|tsp|teaspoons?)\b\.?/,       'ml',  14.8/3      ]
 };
 
@@ -259,7 +259,8 @@ var tests = [
     ['Preheat oven to 350 degrees F with rack in middle.', 'Preheat oven to 350 degrees F [175 °C] with rack in middle.'],
     ['2 cups all-purpose flour', '2 cups all-purpose flour [250 g]'],
     ['1 3/4 cups sugar', '1 3/4 cups sugar [350 g]'],
-    ['2 cups sifted cake flour', '2 cups sifted cake flour [250 g]']
+    ['2 cups sifted cake flour', '2 cups sifted cake flour [250 g]'],
+    ['10 Tbs unsalted butter, at room temperature' ,'10 Tbs unsalted butter [70 g], at room temperature']
 ];
 
 if (test) {
