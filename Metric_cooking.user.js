@@ -41,7 +41,7 @@ var ingredients = {
     'brown sugar': [/(\blight |\bdark |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
     'butter': [/\b((un)?salted |chilled |cold )*butter/, 113/cup_ml], // ~01145~
     'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
-    'cocoa': [/\b(unsweetened )?cocoa( powder)?/, 86/cup_ml], // ~19165~
+    'cocoa': [/\b(unsweetened |Dutch-processed )*cocoa( powder)?/, 86/cup_ml], // ~19165~
     'cornstarch': [/\bcornstarch/, 128/cup_ml], // ~20027~
     'cottage cheese': [/\b(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
     'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
@@ -386,7 +386,8 @@ var tests = [
     ['2 tablespoons tomato paste', '2 tablespoons tomato paste [33 g]'],
     ['3 cups short-grain brown rice', '3 cups short-grain brown rice [600 g]'],
     ['make certain your freezer is set to 0°F.', 'make certain your freezer is set to 0°F [-18 °C].'],
-    ['3/4 cup granulated sugar', '3/4 cup granulated sugar [150 g]']
+    ['3/4 cup granulated sugar', '3/4 cup granulated sugar [150 g]'],
+    ['2 Tbs. Dutch-processed cocoa powder', '2 Tbs. Dutch-processed cocoa powder [11 g]']
 ];
 
 if (test) {
