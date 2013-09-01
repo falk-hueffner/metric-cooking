@@ -35,6 +35,7 @@ var tbsp_ml = 14.8;
 var tsp_ml = tbsp_ml/3;
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
+    'parmesan': [/(finely |grated )*parmesan/, 100/cup_ml], // ~01032~
     'baking powder': [/baking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
     'brown sugar': [/(light |dark |packed )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
@@ -270,7 +271,8 @@ var tests = [
     ['2 cups confectioners sugar, must be sifted!', '2 cups confectioners sugar [240 g], must be sifted!'],
     ['Preheat the oven to 350 degrees Fahrenheit.', 'Preheat the oven to 350 degrees Fahrenheit [175 °C].'],
     ['2 cups all purpose flour', '2 cups all purpose flour [250 g]'],
-    ['1/4 teaspoon black pepper', '1/4 teaspoon black pepper']
+    ['1/4 teaspoon black pepper', '1/4 teaspoon black pepper'],
+    [' 2 tablespoons finely grated parmesan', ' 2 tablespoons finely grated parmesan [13 g]']
 ];
 
 if (test) {
