@@ -92,11 +92,22 @@ for (var unit in units) {
 reUnit += ')';
 
 var reReal   = /(<real>\d+(\.\d+)?)/.source;
-var reNumber = '(<number>' + reReal + ')';
+var reFraction  = /(<fraction>(<fracWhole>\d+\s+)?(<fracNum>\d+)[/](<fracDen>\d+))/.source;
+var reNumber = '(<number>' + reReal + '|' + reFraction + ')';
 
 function parseNumber(match) {
     var real = match.group('real');
-    return parseFloat(real);
+    if (real)
+        return parseFloat(real);
+
+    var amount = 0;
+    var fracWhole = match.group('fracWhole');
+    if (fracWhole)
+        amount += parseInt(fracWhole);
+    var fracNum = match.group('fracNum');
+    var fracDen = match.group('fracDen');
+    amount += parseInt(fracNum) / parseInt(fracDen);
+    return amount;
 }
 
 function parseUnit(match) {
@@ -130,7 +141,9 @@ function replaceUnits(match) {
 }
 
 var tests = [
-    ['1 cup Guinness', '1 cup [240 ml] Guinness']
+    ['1 cup Guinness', '1 cup [240 ml] Guinness'],
+    ['3/4 cup unsweetened cocoa', '3/4 cup [180 ml] unsweetened cocoa'],
+    ['1 1/4 cups confectioners’ sugar', '1 1/4 cups [300 ml] confectioners’ sugar'],
 ];
 
 if (test) {
