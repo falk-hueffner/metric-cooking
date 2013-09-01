@@ -99,7 +99,7 @@ function namedGroupRegExp(regexp, modifiers) {
 }
 
 var units = {
-    'cup':        [/\bcups?\b/,       'ml', 236.5882365  ],
+    'cup':        [/\b(cups?|C)\b/,   'ml', 236.5882365  ],
     'inch':       [/\binch\b/,        'mm',  25.6        ],
     'ounce':      [/\b(oz|ounces)\b/, 'g',   28.349523125],
     'pound':      [/\blb\b/,          'g',  453.59237    ],
@@ -211,7 +211,8 @@ var tests = [
     ['2 cups flour', '2 cups flour [250 g]'],
     ['2 cups dark brown sugar', '2 cups dark brown sugar [450 g]'],
     ['1/4 cup pine nuts', '1/4 cup pine nuts [34 g]'],
-    ['1 lb semi-sweet chocolate chips', '1 lb [450 g] semi-sweet chocolate chips']
+    ['1 lb semi-sweet chocolate chips', '1 lb [450 g] semi-sweet chocolate chips'],
+    ['1/2 C butter', '1/2 C [120 ml] butter']
 ];
 
 if (test) {
