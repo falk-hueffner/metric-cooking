@@ -45,7 +45,7 @@ var ingredients = {
     'flour': [/\b(all[- ]purpose |sifted |cake )*flour/, 125/cup_ml], // ~20081~
     'light corn syrup': [/\blight corn syrup/, 341/cup_ml], // ~19350~
     'mustard': [/\b(Dijon )?mustard/, 249/cup_ml], // ~02046~
-    'parmesan': [/\b(finely |grated |shredded )*[Pp]armesan(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
+    'parmesan': [/\b(finely |freshly |grated |shredded )*[Pp]armesan(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'peanut butter': [/\b(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'pine nuts': [/\bpine nuts/, 135/cup_ml], // ~12147~
     'powdered sugar': [/\b(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
@@ -294,7 +294,8 @@ var tests = [
     ['Heat oil in a 5- to 6-quart heavy pot', 'Heat oil in a 5- to 6-quart [5.75 l] heavy pot'],
     ['1 3/4 cups (packed) brown sugar', '1 3/4 cups (packed) brown sugar [375 g]'],
     ['1 cup plain yogurt', '1 cup plain yogurt [250 g]'],
-    ['1 1/2 cups Arborio rice', '1 1/2 cups Arborio rice [300 g]']
+    ['1 1/2 cups Arborio rice', '1 1/2 cups Arborio rice [300 g]'],
+    ['1 cup freshly grated Parmesan', '1 cup freshly grated Parmesan [100 g]']
 ];
 
 if (test) {
