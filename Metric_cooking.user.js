@@ -47,7 +47,8 @@ var ingredients = {
     'peanut butter': [/(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'pine nuts': [/pine nuts/, 135/cup_ml], // ~12147~
     'powdered sugar': [/(powdered|confectioners['’]) sugar/, 120/cup_ml], // ~19336~ (unsifted)
-    'salt': [/salt/, 292/cup_ml] // ~02047~
+    'salt': [/salt/, 292/cup_ml], // ~02047~
+    'sugar': [/sugar/, 200/cup_ml] // ~19335~
 };
 var reIngredient = '';
 for (var ingredient in ingredients) {
@@ -256,7 +257,8 @@ var tests = [
     ['4 tbsp. Dijon mustard', '4 tbsp. Dijon mustard [62 g]'],
     ['3/4 pound pasta', '3/4 pound [350 g] pasta'],
     ['Preheat oven to 350 degrees F with rack in middle.', 'Preheat oven to 350 degrees F [175 °C] with rack in middle.'],
-    ['2 cups all-purpose flour', '2 cups all-purpose flour [250 g]']
+    ['2 cups all-purpose flour', '2 cups all-purpose flour [250 g]'],
+    ['1 3/4 cups sugar', '1 3/4 cups sugar [350 g]']
 ];
 
 if (test) {
