@@ -41,7 +41,7 @@ var ingredients = {
     'butter': [/(unsalted )?butter/, 113/cup_ml], // ~01145~
     'cocoa': [/(unsweetened )?cocoa( powder)?/, 86/cup_ml], // ~19165~
     'dulce de leche': [/dulce de leche/, 19/tbsp_ml], // ~01225~
-    'flour': [/(all-purpose |sifted |cake )*flour/, 125/cup_ml], // ~20081~
+    'flour': [/(all[- ]purpose |sifted |cake )*flour/, 125/cup_ml], // ~20081~
     'light corn syrup': [/light corn syrup/, 341/cup_ml], // ~19350~
     'mustard': [/(Dijon )?mustard/, 249/cup_ml], // ~02046~
     'peanut butter': [/(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
@@ -265,7 +265,8 @@ var tests = [
     ['1/2 cup packed light brown sugar', '1/2 cup packed light brown sugar [110 g]'],
     ['1/2 cup packed dark brown sugar', '1/2 cup packed dark brown sugar [110 g]'],
     ['2 cups confectioners sugar, must be sifted!', '2 cups confectioners sugar [240 g], must be sifted!'],
-    ['Preheat the oven to 350 degrees Fahrenheit.', 'Preheat the oven to 350 degrees Fahrenheit [175 °C].']
+    ['Preheat the oven to 350 degrees Fahrenheit.', 'Preheat the oven to 350 degrees Fahrenheit [175 °C].'],
+    ['2 cups all purpose flour', '2 cups all purpose flour [250 g]']
 ];
 
 if (test) {
