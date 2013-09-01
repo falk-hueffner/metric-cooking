@@ -55,6 +55,7 @@ var ingredients = {
     'ricotta': [/\b(fresh )?ricotta/, 246/cup_ml], // ~01036~
     'salt': [/\bsalt/, 292/cup_ml], // ~02047~
     'short-grain rice': [/\b(short-grain |Arborio )*rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
+    'spinach': [/\bspinach/, 30/cup_ml], // ~11457~ (raw)
     'sugar': [/\bsugar/, 200/cup_ml], // ~19335~
     'yogurt': [/\b(plain |low-fat )*yogurt/, 245/cup_ml] // ~01116~
 };
@@ -365,7 +366,8 @@ var tests = [
     ['1/2 cup low-fat yogurt (preferably Greek)', '1/2 cup low-fat yogurt [125 g] (preferably Greek)'],
     ['6 Tablespoons rice vinegar', '6 Tablespoons [90 ml] rice vinegar'],
     ['1/4 cup parmigiano reggiano (grated)', '1/4 cup parmigiano reggiano [25 g] (grated)'],
-    ['1 cup asparagus (cleaned)', '1 cup asparagus [130 g] (cleaned)']
+    ['1 cup asparagus (cleaned)', '1 cup asparagus [130 g] (cleaned)'],
+    ['1/4 cup spinach (optional)', '1/4 cup spinach [8 g] (optional)']
 ];
 
 if (test) {
