@@ -31,14 +31,17 @@ var numUnitSpace = '\u202F';    // thin space
 var test         = true;
 
 var cup_ml = 236.5882365;
-var tsp_ml = 14.8/3;
+var tbsp_ml = 14.8;
+var tsp_ml = tbsp_ml/3;
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
     'baking soda': [/baking soda/, 4.6/tsp_ml], // ~18372~
     'brown sugar': [/(dark )?brown sugar/, 220/cup_ml], // ~19334~ (packed)
     'butter': [/(unsalted )?butter/, 113/cup_ml], // ~01145~
     'cocoa': [/(unsweetened )?cocoa( powder)?/, 86/cup_ml], // ~19165~
+    'dulce de leche': [/dulce de leche/, 19/tbsp_ml], // ~01225~
     'flour': [/flour/, 125/cup_ml], // ~20081~
+    'light corn syrup': [/light corn syrup/, 341/cup_ml], // ~19350~
     'peanut butter': [/(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'pine nuts': [/pine nuts/, 135/cup_ml], // ~12147~
     'powdered sugar': [/(powdered|confectioners['’]) sugar/, 120/cup_ml], // ~19336~ (unsifted)
@@ -223,7 +226,9 @@ var tests = [
     ['3 tablespoons unsalted butter, melted', '3 tablespoons unsalted butter [21 g], melted'],
     ['1 teaspoon unflavored gelatin', '1 teaspoon [5 ml] unflavored gelatin'],
     ['from a 1/4-ounce envelope', 'from a 1/4-ounce [7 g] envelope'],
-    ['3/8 teaspoon salt', '3/8 teaspoon salt [2 g]']
+    ['3/8 teaspoon salt', '3/8 teaspoon salt [2 g]'],
+    ['1 cup dulce de leche', '1 cup dulce de leche [300 g]'],
+    ['2 teaspoons light corn syrup', '2 teaspoons light corn syrup [14 g]']
 ];
 
 if (test) {
