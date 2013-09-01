@@ -30,9 +30,11 @@ var maxError     = 0.03;
 var numUnitSpace = '\u202F';    // thin space
 var test         = true;
 
+var cup_ml = 236.5882365;
+// source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
-    'flour':       [/flour/, 0.58],
-    'brown sugar': [/(dark )?brown sugar/,  0.81],
+    'flour':       [/flour/, 125/cup_ml],              // ~20081~
+    'brown sugar': [/(dark )?brown sugar/, 220/cup_ml] // ~19334~ (packed)
 };
 var reIngredient = '';
 for (var ingredient in ingredients) {
@@ -200,8 +202,8 @@ var tests = [
     ['8 ounces spaghetti (or other) pasta', '8 ounces [225 g] spaghetti (or other) pasta'],
     ['2 Tbsp olive oil', '2 Tbsp [30 ml] olive oil'],
     ['at least 4 quarts of water', 'at least 4 quarts [3.75 l] of water'],
-    ['2 cups flour', '2 cups flour [275 g]'],
-    ['2 cups dark brown sugar', '2 cups dark brown sugar [375 g]']
+    ['2 cups flour', '2 cups flour [250 g]'],
+    ['2 cups dark brown sugar', '2 cups dark brown sugar [450 g]']
 ];
 
 if (test) {
