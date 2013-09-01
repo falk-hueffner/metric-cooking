@@ -116,7 +116,7 @@ var units = {
     'inch':       [/inch(es)?\b/,   'mm',  25.6        ],
     'ounce':      [/ounces?\b|oz\b\.?/, 'g',   28.349523125],
     'pound':      [/(lb|pounds?)\b/, 'g',  453.59237    ],
-    'quart':      [/quarts\b/,      'ml', 946.352946   ],
+    'quart':      [/quarts?\b/,      'ml', 946.352946   ],
     'stick':      [/sticks?\b/,      'g', 4*28.349523125],
     'tablespoon': [/tablespoons?\b|(T|tb|[Tt]bsp?)\b\.?/, 'ml',  14.8        ],
     'teaspoon':   [/teaspoons?\b|(t|tsp)\b\.?/,       'ml',  14.8/3      ]
@@ -288,7 +288,8 @@ var tests = [
     ['64 ounces chicken broth', '64 ounces [1.8 kg] chicken broth'],
     ['2 cups low-fat cottage cheese', '2 cups low-fat cottage cheese [450 g]'],
     ['8 3/4 oz. sugar', '8 3/4 oz. sugar [250 g]'],
-    ['2 tablespoons cold butter', '2 tablespoons cold butter [14 g]']
+    ['2 tablespoons cold butter', '2 tablespoons cold butter [14 g]'],
+    ['Heat oil in a 5- to 6-quart heavy pot', 'Heat oil in a 5- to 6-quart [5.75 l] heavy pot']
 ];
 
 if (test) {
