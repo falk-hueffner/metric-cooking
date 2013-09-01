@@ -40,6 +40,7 @@ var ingredients = {
     'brown sugar': [/(light |dark |packed )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
     'butter': [/((un)?salted |chilled )*butter/, 113/cup_ml], // ~01145~
     'cocoa': [/(unsweetened )?cocoa( powder)?/, 86/cup_ml], // ~19165~
+    'cottage cheese': [/(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
     'dulce de leche': [/dulce de leche/, 19/tbsp_ml], // ~01225~
     'flour': [/(all[- ]purpose |sifted |cake )*flour/, 125/cup_ml], // ~20081~
     'light corn syrup': [/light corn syrup/, 341/cup_ml], // ~19350~
@@ -284,7 +285,8 @@ var tests = [
     ['2 tablespoons of the butter', '2 tablespoons of the butter [14 g]'],
     ['1/4 cup shredded Parmesan cheese', '1/4 cup shredded Parmesan cheese [25 g]'],
     ['1/2 pound fresh ricotta', '1/2 pound fresh ricotta [225 g]'],
-    ['64 ounces chicken broth', '64 ounces [1.8 kg] chicken broth']
+    ['64 ounces chicken broth', '64 ounces [1.8 kg] chicken broth'],
+    ['2 cups low-fat cottage cheese', '2 cups low-fat cottage cheese [450 g]']
 ];
 
 if (test) {
