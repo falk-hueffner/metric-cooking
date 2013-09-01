@@ -127,8 +127,8 @@ var units = {
     'pound':      [/(lb|pounds?)\b/, 'g',  453.59237    ],
     'quart':      [/quarts?\b/,      'ml', 946.352946   ],
     'stick':      [/sticks?\b/,      'g', 4*28.349523125],
-    'tablespoon': [/tablespoons?\b|(T|tb|[Tt]bsp?)\b\.?/, 'ml',  14.8        ],
-    'teaspoon':   [/teaspoons?\b|(t|tsp)\b\.?/,       'ml',  14.8/3      ]
+    'tablespoon': [/[Tt]ablespoons?\b|(T|tb|[Tt]bsp?)\b\.?/, 'ml',  14.8        ],
+    'teaspoon':   [/[Tt]easpoons?\b|(t|tsp)\b\.?/,       'ml',  14.8/3      ]
 };
 
 var reUnit = '';
