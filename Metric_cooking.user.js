@@ -47,7 +47,7 @@ var ingredients = {
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
     'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
     'mustard': [/\b(Dijon )?mustard/, 249/cup_ml], // ~02046~
-    'parmesan': [/\b(finely |freshly |grated |shredded )*[Pp]armesan(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
+    'parmesan': [/\b(finely |freshly |grated |shredded )*([Pp]armesan|[Pp]armigiano [Rr]eggiano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'peanut butter': [/\b(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'pine nuts': [/\bpine nuts/, 135/cup_ml], // ~12147~
     'powdered sugar': [/\b(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
@@ -362,7 +362,8 @@ var tests = [
     // TODO: fix
     // ['28 1/3-inch-thick diagonal bread slices', '28 1/3-inch [9 mm]-thick diagonal bread slices']
     ['1/2 cup low-fat yogurt (preferably Greek)', '1/2 cup low-fat yogurt [125 g] (preferably Greek)'],
-    ['6 Tablespoons rice vinegar', '6 Tablespoons [90 ml] rice vinegar']
+    ['6 Tablespoons rice vinegar', '6 Tablespoons [90 ml] rice vinegar'],
+    ['1/4 cup parmigiano reggiano (grated)', '1/4 cup parmigiano reggiano [25 g] (grated)']
 ];
 
 if (test) {
