@@ -112,6 +112,10 @@ function namedGroupRegExp(regexp, modifiers) {
     return re;
 }
 
+function prefixGroups (regexp, prefix) {
+    return regexp.replace(/\(<([^>]+)>/g, '(<' + prefix + ':$1' + '>');
+}
+
 var units = {
     'cup':        [/(cups?|C)\b/,   'ml', 236.5882365  ],
     'fahrenheit': [/(°|degrees )F(ahrenheit)?/,   '°C', undefined    ],
@@ -139,16 +143,17 @@ var reFracChar  = /(<fracChar>[¼½¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/.sou
 var reFraction  = '(<fraction>(<fracWhole>\\d+\\s+)?(((<fracNum>\\d+)/(<fracDen>\\d+))|' + reFracChar +'))';
 var reNumber = '(<number>' + reReal + '|' + reFraction + ')';
 
-function parseNumber(match) {
-    var real = match.group('real');
+function parseNumber(match, prefix) {
+    prefix = prefix || '';
+    var real = match.group(prefix + 'real');
     if (real)
         return parseFloat(real);
 
     var amount = 0;
-    var fracWhole = match.group('fracWhole');
+    var fracWhole = match.group(prefix + 'fracWhole');
     if (fracWhole)
         amount += parseInt(fracWhole);
-    var fracChar = match.group('fracChar');
+    var fracChar = match.group(prefix + 'fracChar');
     if (fracChar) {
         amount += {'½': 1/2,
                    '⅓': 1/3, '⅔': 2/3,
@@ -158,8 +163,8 @@ function parseNumber(match) {
                    '⅛': 1/8, '⅜': 3/8, '⅝': 5/8, '⅞': 7/8
                   }[fracChar];
     } else {
-        var fracNum = match.group('fracNum');
-        var fracDen = match.group('fracDen');
+        var fracNum = match.group(prefix + 'fracNum');
+        var fracDen = match.group(prefix + 'fracDen');
         amount += parseInt(fracNum) / parseInt(fracDen);
     }
     return amount;
@@ -178,7 +183,16 @@ function parseIngredient(match) {
             return i;
 }
 
-var reAll = reNumber + '(\\s*|-)' + reUnit + '(\\s+(of(\\s+the)?\\s+)?' + reIngredient + ')?';
+var reFrom = '(<from>'
+        + prefixGroups(reNumber, 'from') + '-?'
+        + prefixGroups(reUnit,   'from') + '?'
+        + '\\s*(-|to|or)\\s*)';
+
+var reAll =
+        reFrom + '?'
+        + reNumber + '(\\s*|-)'
+        + reUnit + '(\\s+(of(\\s+the)?\\s+)?'
+        + reIngredient + ')?';
 var re = namedGroupRegExp(reAll, 'g');
 
 function convert(amount, unit) {
@@ -212,11 +226,27 @@ function replaceUnits(match) {
     var newAmount = converted.amount;
     var newUnit = converted.unit;
 
+    var fromAmount;
+    if (match.group('from')) {
+        converted = convert(parseNumber(match, 'from:'), unit);
+        if (converted.unit == newUnit) {
+            fromAmount = converted.amount;
+            if (fromAmount >= newAmount) { // "1-1/2"
+                newAmount += fromAmount;
+            fromAmount = undefined;
+            }
+        } else {
+            // TODO: convert seperately
+        }
+    }
+
     if (match.group('ingredient')) {
         var ingredient = parseIngredient(match);
         if (newUnit == 'ml') {
             newAmount = newAmount * ingredients[ingredient][1];
             newUnit = 'g';
+            if (fromAmount)
+                fromAmount = fromAmount * ingredients[ingredient][1];
         }
     }
 
@@ -224,11 +254,26 @@ function replaceUnits(match) {
         return newText;
 
     newAmount = round(newAmount);
-    var scaled = scale(newAmount, newUnit);
-    newAmount = scaled.amount;
-    newUnit   = scaled.unit;
 
-    newText += ' [' + newAmount + numUnitSpace + newUnit + ']';
+    if (fromAmount) {
+        fromAmount = round(fromAmount);
+        var scaled = scale(fromAmount, newUnit);
+        if (scaled.unit != newUnit) {
+            fromAmount = scaled.amount;
+            scaled = scale(newAmount, newUnit);
+            newAmount = scaled.amount;
+            newUnit   = scaled.unit;
+        }
+    } else {
+        scaled = scale(newAmount, newUnit);
+        newAmount = scaled.amount;
+        newUnit   = scaled.unit;
+    }
+
+    newText += ' [';
+    if (fromAmount)
+        newText += fromAmount + '–';
+    newText += newAmount + numUnitSpace + newUnit + ']';
     
     return newText;
 }
@@ -291,11 +336,22 @@ var tests = [
     ['2 cups low-fat cottage cheese', '2 cups low-fat cottage cheese [450 g]'],
     ['8 3/4 oz. sugar', '8 3/4 oz. sugar [250 g]'],
     ['2 tablespoons cold butter', '2 tablespoons cold butter [14 g]'],
-    ['Heat oil in a 5- to 6-quart heavy pot', 'Heat oil in a 5- to 6-quart [5.75 l] heavy pot'],
+    ['Heat oil in a 5- to 6-quart heavy pot', 'Heat oil in a 5- to 6-quart [4.75–5.75 l] heavy pot'],
     ['1 3/4 cups (packed) brown sugar', '1 3/4 cups (packed) brown sugar [375 g]'],
     ['1 cup plain yogurt', '1 cup plain yogurt [250 g]'],
     ['1 1/2 cups Arborio rice', '1 1/2 cups Arborio rice [300 g]'],
-    ['1 cup freshly grated Parmesan', '1 cup freshly grated Parmesan [100 g]']
+    ['1 cup freshly grated Parmesan', '1 cup freshly grated Parmesan [100 g]'],
+    ['2 or 3 cups broccoli florets', '2 or 3 cups [475–700 ml] broccoli florets'],
+    ['add 3-4 tablespoons flour', 'add 3-4 tablespoons flour [23–31 g]'],
+    ['1-2 Tbs white distilled vinegar', '1-2 Tbs [15–30 ml] white distilled vinegar'],
+    ['1 chicken (2 1/2 to 3 pounds), cut into 8 pieces', '1 chicken (2 1/2 to 3 pounds [1.1–1.4 kg]), cut into 8 pieces'],
+    ['with sides about 2 1/2 to 3 inches high', 'with sides about 2 1/2 to 3 inches [6.5–7.5 cm] high'],
+    ['in a 10- to 12-inch ovenproof heavy skillet', 'in a 10- to 12-inch [25–30 cm] ovenproof heavy skillet'],
+    ['Makes about twelve 3- to 4-inch pancakes', 'Makes about twelve 3- to 4-inch [7.5–10 cm] pancakes'],
+    ['boil in a 1- to 1 1/2-quart heavy saucepan', 'boil in a 1- to 1 1/2-quart [950–1400 ml] heavy saucepan'],
+    ['1 (14- to 19-ounce) can chickpeas', '1 (14- to 19-ounce [400–550 g]) can chickpeas'],
+    ['torn into 1/4- to 1/2-inch pieces', 'torn into 1/4- to 1/2-inch [6–13 mm] pieces'],
+    ['scrubbed and cut into 1/2-inch to 3/4-inch cubes', 'scrubbed and cut into 1/2-inch to 3/4-inch [1.3–1.9 cm] cubes']
 ];
 
 if (test) {
