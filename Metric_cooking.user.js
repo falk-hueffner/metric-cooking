@@ -129,7 +129,7 @@ var units = {
     'inch':       [/inch(es)?\b/,   'mm',  25.6        ],
     'ounce':      [/ounces?\b|oz\b\.?/, 'g',   28.349523125],
     'pint':       [/pints?\b/,       'g',  236.5882365*2],
-    'pound':      [/(lb|pounds?)\b/, 'g',  453.59237    ],
+    'pound':      [/pounds?\b|lbs?\b\.?/, 'g',  453.59237    ],
     'quart':      [/quarts?\b/,      'ml', 946.352946   ],
     'stick':      [/sticks?\b/,      'g', 4*28.349523125],
     'tablespoon': [/[Tt]ablespoons?\b|(T|tb|[Tt]bsp?|TBL)\b\.?/, 'ml',  14.8        ],
@@ -376,7 +376,8 @@ var tests = [
     ['2 TBL unsweetened cocoa powder', '2 TBL unsweetened cocoa powder [11 g]'],
     ['1 TSP lemon juice', '1 TSP [5 ml] lemon juice'],
     ['1/3 cup cornstarch', '1/3 cup cornstarch [43 g]'],
-    ['½ cup orange marmalade', '½ cup orange marmalade [160 g]']
+    ['½ cup orange marmalade', '½ cup orange marmalade [160 g]'],
+    ['1 lb. lentils – regular or De Puy variety', '1 lb. [450 g] lentils – regular or De Puy variety']
 ];
 
 if (test) {
