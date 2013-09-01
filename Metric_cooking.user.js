@@ -173,7 +173,7 @@ function parseIngredient(match) {
             return i;
 }
 
-var reAll = reNumber + '(\\s*|-)' + reUnit + '(\\s+' + reIngredient + ')?';
+var reAll = reNumber + '(\\s*|-)' + reUnit + '(\\s+(of\\s+)?' + reIngredient + ')?';
 var re = namedGroupRegExp(reAll, 'g');
 
 function convert(amount, unit) {
@@ -260,7 +260,8 @@ var tests = [
     ['2 cups all-purpose flour', '2 cups all-purpose flour [250 g]'],
     ['1 3/4 cups sugar', '1 3/4 cups sugar [350 g]'],
     ['2 cups sifted cake flour', '2 cups sifted cake flour [250 g]'],
-    ['10 Tbs unsalted butter, at room temperature' ,'10 Tbs unsalted butter [70 g], at room temperature']
+    ['10 Tbs unsalted butter, at room temperature' ,'10 Tbs unsalted butter [70 g], at room temperature'],
+    ['if using unsalted, add 1/2 tsp of salt', 'if using unsalted, add 1/2 tsp of salt [3 g]']
 ];
 
 if (test) {
