@@ -41,7 +41,8 @@ var ingredients = {
     'flour': [/flour/, 125/cup_ml], // ~20081~
     'peanut butter': [/(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'pine nuts': [/pine nuts/, 135/cup_ml], // ~12147~
-    'powdered sugar': [/(powdered|confectioners['’]) sugar/, 120/cup_ml] // ~19336~ (unsifted)
+    'powdered sugar': [/(powdered|confectioners['’]) sugar/, 120/cup_ml], // ~19336~ (unsifted)
+    'salt': [/salt/, 292/cup_ml] // ~02047~
 };
 var reIngredient = '';
 for (var ingredient in ingredients) {
@@ -221,7 +222,8 @@ var tests = [
     ['2/3 C smooth peanut butter', '2/3 C smooth peanut butter [175 g]'],
     ['3 tablespoons unsalted butter, melted', '3 tablespoons unsalted butter [21 g], melted'],
     ['1 teaspoon unflavored gelatin', '1 teaspoon [5 ml] unflavored gelatin'],
-    ['from a 1/4-ounce envelope', 'from a 1/4-ounce [7 g] envelope']
+    ['from a 1/4-ounce envelope', 'from a 1/4-ounce [7 g] envelope'],
+    ['3/8 teaspoon salt', '3/8 teaspoon salt [2 g]']
 ];
 
 if (test) {
