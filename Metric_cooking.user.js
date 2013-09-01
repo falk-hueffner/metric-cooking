@@ -114,12 +114,12 @@ var units = {
     'cup':        [/(cups?|C)\b/,   'ml', 236.5882365  ],
     'fahrenheit': [/(°|degrees )F(ahrenheit)?/,   '°C', undefined    ],
     'inch':       [/inch(es)?\b/,   'mm',  25.6        ],
-    'ounce':      [/(oz|ounces?)\b/, 'g',   28.349523125],
+    'ounce':      [/ounces?\b|oz\b\.?/, 'g',   28.349523125],
     'pound':      [/(lb|pounds?)\b/, 'g',  453.59237    ],
     'quart':      [/quarts\b/,      'ml', 946.352946   ],
     'stick':      [/sticks?\b/,      'g', 4*28.349523125],
-    'tablespoon': [/(T|tb|[Tt]bsp?|tablespoons?)\b\.?/, 'ml',  14.8        ],
-    'teaspoon':   [/(t|tsp|teaspoons?)\b\.?/,       'ml',  14.8/3      ]
+    'tablespoon': [/tablespoons?\b|(T|tb|[Tt]bsp?)\b\.?/, 'ml',  14.8        ],
+    'teaspoon':   [/teaspoons?\b|(t|tsp)\b\.?/,       'ml',  14.8/3      ]
 };
 
 var reUnit = '';
@@ -286,7 +286,8 @@ var tests = [
     ['1/4 cup shredded Parmesan cheese', '1/4 cup shredded Parmesan cheese [25 g]'],
     ['1/2 pound fresh ricotta', '1/2 pound fresh ricotta [225 g]'],
     ['64 ounces chicken broth', '64 ounces [1.8 kg] chicken broth'],
-    ['2 cups low-fat cottage cheese', '2 cups low-fat cottage cheese [450 g]']
+    ['2 cups low-fat cottage cheese', '2 cups low-fat cottage cheese [450 g]'],
+    ['8 3/4 oz. sugar', '8 3/4 oz. sugar [250 g]']
 ];
 
 if (test) {
