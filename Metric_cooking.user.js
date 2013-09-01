@@ -83,7 +83,8 @@ var units = {
     'ounce':      [/\b(oz|ounces)\b/, 'g',   28.349523125],
     'stick':      [/\bstick\b/,       'g', 4*28.349523125],
     'tablespoon': [/\b(tb|Tbsp)\b/,   'ml',  14.8        ],
-    'teaspoon':   [/\btsp\b/,         'ml',  14.8/3      ]
+    'teaspoon':   [/\btsp\b/,         'ml',  14.8/3      ],
+    'quart':      [/\bquarts\b/,      'ml', 946.352946   ]
 };
 
 var reUnit = '';
@@ -167,6 +168,7 @@ var tests = [
     ['1 stick, plus 1 tb, unsalted butter', '1 stick [110 g], plus 1 tb [15 ml], unsalted butter'],
     ['8 ounces spaghetti (or other) pasta', '8 ounces [230 g] spaghetti (or other) pasta'],
     ['2 Tbsp olive oil', '2 Tbsp [30 ml] olive oil'],
+    ['at least 4 quarts of water', 'at least 4 quarts [3800 ml] of water']
 ];
 
 if (test) {
