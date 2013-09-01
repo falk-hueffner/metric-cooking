@@ -80,7 +80,8 @@ function namedGroupRegExp(regexp, modifiers) {
 var units = {
     'cup':        [/\bcups?\b/, 'ml', 236.5882365],
     'inch':       [/\binch\b/,  'mm',  25.6      ],
-    'tablespoon': [/\btb\b/,    'ml',  14.8      ]
+    'tablespoon': [/\btb\b/,    'ml',  14.8      ],
+    'teaspoon':   [/\btsp\b/,   'ml',  14.8/3    ]
 };
 
 var reUnit = '';
@@ -147,7 +148,8 @@ var tests = [
     ['3/4 cup unsweetened cocoa', '3/4 cup [180 ml] unsweetened cocoa'],
     ['1 1/4 cups confectioners’ sugar', '1 1/4 cups [300 ml] confectioners’ sugar'],
     ['1 tb vanilla extract', '1 tb [15 ml] vanilla extract'],
-    ['chopped into 1-inch chunks', 'chopped into 1-inch [25 mm] chunks']
+    ['chopped into 1-inch chunks', 'chopped into 1-inch [25 mm] chunks'],
+    ['2 1/2 tsp baking soda', '2 1/2 tsp [12 ml] baking soda']
 ];
 
 if (test) {
