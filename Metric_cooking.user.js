@@ -173,6 +173,7 @@ if (test) {
         if (result != tests[i][1])
             console.log('test failed: "%s" -> "%s" (not "%s")', tests[i][0], result, tests[i][1]);
     }
+    console.log('done testing');
 }
 
 var textNodes = document.evaluate('//body//text()', document, null,
