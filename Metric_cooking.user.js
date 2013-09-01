@@ -82,7 +82,7 @@ var units = {
     'inch':       [/\binch\b/,        'mm',  25.6        ],
     'ounce':      [/\b(oz|ounces)\b/, 'g',   28.349523125],
     'stick':      [/\bstick\b/,       'g', 4*28.349523125],
-    'tablespoon': [/\btb\b/,          'ml',  14.8        ],
+    'tablespoon': [/\b(tb|Tbsp)\b/,   'ml',  14.8        ],
     'teaspoon':   [/\btsp\b/,         'ml',  14.8/3      ]
 };
 
@@ -165,7 +165,8 @@ var tests = [
     ['2 1/2 tsp baking soda', '2 1/2 tsp [12 ml] baking soda'],
     ['8 oz cream cheese', '8 oz [230 g] cream cheese'],
     ['1 stick, plus 1 tb, unsalted butter', '1 stick [110 g], plus 1 tb [15 ml], unsalted butter'],
-    ['8 ounces spaghetti (or other) pasta', '8 ounces [230 g] spaghetti (or other) pasta']
+    ['8 ounces spaghetti (or other) pasta', '8 ounces [230 g] spaghetti (or other) pasta'],
+    ['2 Tbsp olive oil', '2 Tbsp [30 ml] olive oil'],
 ];
 
 if (test) {
