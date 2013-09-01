@@ -129,6 +129,14 @@ function convert(amount, unit) {
     return {amount: newAmount, unit: newUnit};
 }
 
+function scale(amount, unit) {
+    if (unit == 'mm' && amount >= 10) {
+	unit = 'cm';
+	amount /= 10;
+    }
+    return {amount: amount, unit: unit};
+}
+
 function replaceUnits(match) {
     var newText = match[0];
     var unit = parseUnit(match);
@@ -137,6 +145,9 @@ function replaceUnits(match) {
     var newUnit = converted.unit;
 
     newAmount = round(newAmount);
+    var scaled = scale(newAmount, newUnit);
+    newAmount = scaled.amount;
+    newUnit   = scaled.unit;
 
     newText += ' [' + newAmount + numUnitSpace + newUnit + ']';
     
@@ -148,7 +159,7 @@ var tests = [
     ['3/4 cup unsweetened cocoa', '3/4 cup [180 ml] unsweetened cocoa'],
     ['1 1/4 cups confectioners’ sugar', '1 1/4 cups [300 ml] confectioners’ sugar'],
     ['1 tb vanilla extract', '1 tb [15 ml] vanilla extract'],
-    ['chopped into 1-inch chunks', 'chopped into 1-inch [25 mm] chunks'],
+    ['chopped into 1-inch chunks', 'chopped into 1-inch [2.5 cm] chunks'],
     ['2 1/2 tsp baking soda', '2 1/2 tsp [12 ml] baking soda']
 ];
 
