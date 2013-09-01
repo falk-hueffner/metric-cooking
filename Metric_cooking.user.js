@@ -55,7 +55,7 @@ var ingredients = {
     'salt': [/\bsalt/, 292/cup_ml], // ~02047~
     'short-grain rice': [/\b(short-grain |Arborio )*rice/, 200/cup_ml], // ~20052~
     'sugar': [/\bsugar/, 200/cup_ml], // ~19335~
-    'yogurt': [/\b(plain )?yogurt/, 245/cup_ml] // ~01116~
+    'yogurt': [/\b(plain |low-fat )*yogurt/, 245/cup_ml] // ~01116~
 };
 var reIngredient = '';
 for (var ingredient in ingredients) {
@@ -358,7 +358,10 @@ var tests = [
     ['1/4 cup corn syrup', '1/4 cup corn syrup [85 g]'],
     ['1 pint cherry tomatoes', '1 pint [475 g] cherry tomatoes'],
     ['Preheat oven to 450° F.', 'Preheat oven to 450° F [230 °C].'],
-    ['1 cup mayonnaise', '1 cup mayonnaise [225 g]']
+    ['1 cup mayonnaise', '1 cup mayonnaise [225 g]'],
+    // TODO: fix
+    // ['28 1/3-inch-thick diagonal bread slices', '28 1/3-inch [9 mm]-thick diagonal bread slices']
+    ['1/2 cup low-fat yogurt (preferably Greek)', '1/2 cup low-fat yogurt [125 g] (preferably Greek)']
 ];
 
 if (test) {
