@@ -109,15 +109,15 @@ function namedGroupRegExp(regexp, modifiers) {
 }
 
 var units = {
-    'cup':        [/\b(cups?|C)\b/,   'ml', 236.5882365  ],
+    'cup':        [/(cups?|C)\b/,   'ml', 236.5882365  ],
     'fahrenheit': [/(°|degrees )F(ahrenheit)?/,   '°C', undefined    ],
-    'inch':       [/\binch\b/,        'mm',  25.6        ],
-    'ounce':      [/\b(oz|ounces?)\b/, 'g',   28.349523125],
-    'pound':      [/\b(lb|pounds?)\b/, 'g',  453.59237    ],
-    'quart':      [/\bquarts\b/,      'ml', 946.352946   ],
-    'stick':      [/\bsticks?\b/,      'g', 4*28.349523125],
-    'tablespoon': [/\b(T|tb|[Tt]bsp?|tablespoons?)\b\.?/, 'ml',  14.8        ],
-    'teaspoon':   [/\b(t|tsp|teaspoons?)\b\.?/,       'ml',  14.8/3      ]
+    'inch':       [/inch\b/,        'mm',  25.6        ],
+    'ounce':      [/(oz|ounces?)\b/, 'g',   28.349523125],
+    'pound':      [/(lb|pounds?)\b/, 'g',  453.59237    ],
+    'quart':      [/quarts\b/,      'ml', 946.352946   ],
+    'stick':      [/sticks?\b/,      'g', 4*28.349523125],
+    'tablespoon': [/(T|tb|[Tt]bsp?|tablespoons?)\b\.?/, 'ml',  14.8        ],
+    'teaspoon':   [/(t|tsp|teaspoons?)\b\.?/,       'ml',  14.8/3      ]
 };
 
 var reUnit = '';
