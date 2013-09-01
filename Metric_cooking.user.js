@@ -74,16 +74,18 @@ for (var ingredient in ingredients) {
 }
 reIngredient += ')';
 
-function round(x){
+function round(x) {
+    var sign = x < 0 ? -1 : 1;
+    x = Math.abs(x);
     var fs = [100000, 50000, 25000, 10000, 5000, 2500, 1000, 500, 250, 100, 50, 25, 10, 5, 1];
     var newx;
     for (var f in fs) {
         newx = Math.round(x / fs[f]) * fs[f];
         var error = Math.abs(x - newx);
         if (error / x < maxError)
-            return newx;
+            return sign * newx;
     }
-    return newx;
+    return sign * newx;
 }
 
 // Python-like named groups: (<name>...)
@@ -382,7 +384,8 @@ var tests = [
     ['1 lb. lentils – regular or De Puy variety', '1 lb. [450 g] lentils – regular or De Puy variety'],
     ['3 cups canned chickpeas, divided', '3 cups canned chickpeas [450 g], divided'],
     ['2 tablespoons tomato paste', '2 tablespoons tomato paste [33 g]'],
-    ['3 cups short-grain brown rice', '3 cups short-grain brown rice [600 g]']
+    ['3 cups short-grain brown rice', '3 cups short-grain brown rice [600 g]'],
+    ['make certain your freezer is set to 0°F.', 'make certain your freezer is set to 0°F [-18 °C].']
 ];
 
 if (test) {
