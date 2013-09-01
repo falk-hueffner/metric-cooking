@@ -109,7 +109,7 @@ function namedGroupRegExp(regexp, modifiers) {
 
 var units = {
     'cup':        [/\b(cups?|C)\b/,   'ml', 236.5882365  ],
-    'fahrenheit': [/(°|degrees )F/,   '°C', undefined    ],
+    'fahrenheit': [/(°|degrees )F(ahrenheit)?/,   '°C', undefined    ],
     'inch':       [/\binch\b/,        'mm',  25.6        ],
     'ounce':      [/\b(oz|ounces?)\b/, 'g',   28.349523125],
     'pound':      [/\b(lb|pounds?)\b/, 'g',  453.59237    ],
@@ -264,7 +264,8 @@ var tests = [
     ['if using unsalted, add 1/2 tsp of salt', 'if using unsalted, add 1/2 tsp of salt [3 g]'],
     ['1/2 cup packed light brown sugar', '1/2 cup packed light brown sugar [110 g]'],
     ['1/2 cup packed dark brown sugar', '1/2 cup packed dark brown sugar [110 g]'],
-    ['2 cups confectioners sugar, must be sifted!', '2 cups confectioners sugar [240 g], must be sifted!']
+    ['2 cups confectioners sugar, must be sifted!', '2 cups confectioners sugar [240 g], must be sifted!'],
+    ['Preheat the oven to 350 degrees Fahrenheit.', 'Preheat the oven to 350 degrees Fahrenheit [175 °C].']
 ];
 
 if (test) {
