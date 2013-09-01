@@ -106,6 +106,7 @@ function namedGroupRegExp(regexp, modifiers) {
 
 var units = {
     'cup':        [/\b(cups?|C)\b/,   'ml', 236.5882365  ],
+    'fahrenheit': [/°F/,              '°C', undefined    ],
     'inch':       [/\binch\b/,        'mm',  25.6        ],
     'ounce':      [/\b(oz|ounces?)\b/, 'g',   28.349523125],
     'pound':      [/\blb\b/,          'g',  453.59237    ],
@@ -162,7 +163,11 @@ var re = namedGroupRegExp(reAll, 'g');
 
 function convert(amount, unit) {
     var newUnit = units[unit][1];
-    var newAmount = amount * units[unit][2];
+    var newAmount;
+    if (unit == 'fahrenheit')
+        newAmount = (amount - 32) * (5/9);
+    else
+        newAmount = amount * units[unit][2];
     return {amount: newAmount, unit: newUnit};
 }
 
@@ -228,7 +233,8 @@ var tests = [
     ['from a 1/4-ounce envelope', 'from a 1/4-ounce [7 g] envelope'],
     ['3/8 teaspoon salt', '3/8 teaspoon salt [2 g]'],
     ['1 cup dulce de leche', '1 cup dulce de leche [300 g]'],
-    ['2 teaspoons light corn syrup', '2 teaspoons light corn syrup [14 g]']
+    ['2 teaspoons light corn syrup', '2 teaspoons light corn syrup [14 g]'],
+    ['preheat oven to 325°F.', 'preheat oven to 325°F [160 °C].']
 ];
 
 if (test) {
