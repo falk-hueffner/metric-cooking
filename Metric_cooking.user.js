@@ -46,7 +46,7 @@ var ingredients = {
     'mustard': [/(Dijon )?mustard/, 249/cup_ml], // ~02046~
     'peanut butter': [/(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'pine nuts': [/pine nuts/, 135/cup_ml], // ~12147~
-    'powdered sugar': [/(powdered|confectioners['’]) sugar/, 120/cup_ml], // ~19336~ (unsifted)
+    'powdered sugar': [/(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
     'salt': [/salt/, 292/cup_ml], // ~02047~
     'sugar': [/sugar/, 200/cup_ml] // ~19335~
 };
@@ -263,7 +263,8 @@ var tests = [
     ['10 Tbs unsalted butter, at room temperature' ,'10 Tbs unsalted butter [70 g], at room temperature'],
     ['if using unsalted, add 1/2 tsp of salt', 'if using unsalted, add 1/2 tsp of salt [3 g]'],
     ['1/2 cup packed light brown sugar', '1/2 cup packed light brown sugar [110 g]'],
-    ['1/2 cup packed dark brown sugar', '1/2 cup packed dark brown sugar [110 g]']
+    ['1/2 cup packed dark brown sugar', '1/2 cup packed dark brown sugar [110 g]'],
+    ['2 cups confectioners sugar, must be sifted!', '2 cups confectioners sugar [240 g], must be sifted!']
 ];
 
 if (test) {
