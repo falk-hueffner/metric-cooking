@@ -38,7 +38,7 @@ var ingredients = {
     'baking powder': [/baking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
     'brown sugar': [/(light |dark |packed )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
-    'butter': [/(unsalted |chilled )*butter/, 113/cup_ml], // ~01145~
+    'butter': [/((un)?salted |chilled )*butter/, 113/cup_ml], // ~01145~
     'cocoa': [/(unsweetened )?cocoa( powder)?/, 86/cup_ml], // ~19165~
     'dulce de leche': [/dulce de leche/, 19/tbsp_ml], // ~01225~
     'flour': [/(all[- ]purpose |sifted |cake )*flour/, 125/cup_ml], // ~20081~
@@ -274,7 +274,8 @@ var tests = [
     ['1/4 teaspoon black pepper', '1/4 teaspoon black pepper'],
     ['2 tablespoons finely grated parmesan', '2 tablespoons finely grated parmesan [13 g]'],
     ['1 1/2sticks chilled unsalted butter', '1 1/2sticks chilled unsalted butter [175 g]'],
-    ['spacing 2 inches apart', 'spacing 2 inches [5 cm] apart']
+    ['spacing 2 inches apart', 'spacing 2 inches [5 cm] apart'],
+    ['4 tablespoons salted butter', '4 tablespoons salted butter [28 g]']
 ];
 
 if (test) {
