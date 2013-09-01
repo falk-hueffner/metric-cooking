@@ -122,6 +122,7 @@ var units = {
     'fahrenheit': [/(°|degrees )F(ahrenheit)?/,   '°C', undefined    ],
     'inch':       [/inch(es)?\b/,   'mm',  25.6        ],
     'ounce':      [/ounces?\b|oz\b\.?/, 'g',   28.349523125],
+    'pint':       [/pints?\b/,       'g',  236.5882365*2],
     'pound':      [/(lb|pounds?)\b/, 'g',  453.59237    ],
     'quart':      [/quarts?\b/,      'ml', 946.352946   ],
     'stick':      [/sticks?\b/,      'g', 4*28.349523125],
@@ -353,7 +354,8 @@ var tests = [
     ['1 (14- to 19-ounce) can chickpeas', '1 (14- to 19-ounce [400–550 g]) can chickpeas'],
     ['torn into 1/4- to 1/2-inch pieces', 'torn into 1/4- to 1/2-inch [6–13 mm] pieces'],
     ['scrubbed and cut into 1/2-inch to 3/4-inch cubes', 'scrubbed and cut into 1/2-inch to 3/4-inch [1.3–1.9 cm] cubes'],
-    ['1/4 cup corn syrup', '1/4 cup corn syrup [85 g]']
+    ['1/4 cup corn syrup', '1/4 cup corn syrup [85 g]'],
+    ['1 pint cherry tomatoes', '1 pint [475 g] cherry tomatoes']
 ];
 
 if (test) {
