@@ -44,7 +44,7 @@ var ingredients = {
     'flour': [/(all[- ]purpose |sifted |cake )*flour/, 125/cup_ml], // ~20081~
     'light corn syrup': [/light corn syrup/, 341/cup_ml], // ~19350~
     'mustard': [/(Dijon )?mustard/, 249/cup_ml], // ~02046~
-    'parmesan': [/(finely |grated )*parmesan/, 100/cup_ml], // ~01032~
+    'parmesan': [/(finely |grated |shredded )*[Pp]armesan(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'peanut butter': [/(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'pine nuts': [/pine nuts/, 135/cup_ml], // ~12147~
     'powdered sugar': [/(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
@@ -278,7 +278,8 @@ var tests = [
     ['spacing 2 inches apart', 'spacing 2 inches [5 cm] apart'],
     ['4 tablespoons salted butter', '4 tablespoons salted butter [28 g]'],
     ['1 1/3 cups ricotta', '1 1/3 cups ricotta [325 g]'],
-    ['2 tablespoons of the butter', '2 tablespoons of the butter [14 g]']
+    ['2 tablespoons of the butter', '2 tablespoons of the butter [14 g]'],
+    ['1/4 cup shredded Parmesan cheese', '1/4 cup shredded Parmesan cheese [25 g]']
 ];
 
 if (test) {
