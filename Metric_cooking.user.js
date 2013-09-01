@@ -31,10 +31,15 @@ var numUnitSpace = '\u202F';    // thin space
 var test         = true;
 
 var cup_ml = 236.5882365;
+var tsp_ml = 14.8/3;
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
     'flour':       [/flour/, 125/cup_ml],              // ~20081~
-    'brown sugar': [/(dark )?brown sugar/, 220/cup_ml] // ~19334~ (packed)
+    'brown sugar': [/(dark )?brown sugar/, 220/cup_ml], // ~19334~ (packed)
+    'cocoa':       [/(unsweetened )?cocoa/, 86/cup_ml], // ~19165~
+    'baking soda': [/baking soda/, 4.6/tsp_ml],         // ~18372~
+    'powdered sugar': [/(powdered|confectioners['’]) sugar/, 120/cup_ml], // ~19336~ (unsifted)
+    'pine nuts': [/pine nuts/, 135/cup_ml] // ~12147~
 };
 var reIngredient = '';
 for (var ingredient in ingredients) {
@@ -192,18 +197,19 @@ function replaceUnits(match) {
 
 var tests = [
     ['1 cup Guinness', '1 cup [240 ml] Guinness'],
-    ['3/4 cup unsweetened cocoa', '3/4 cup [175 ml] unsweetened cocoa'],
-    ['1 1/4 cups confectioners’ sugar', '1 1/4 cups [300 ml] confectioners’ sugar'],
+    ['3/4 cup unsweetened cocoa', '3/4 cup unsweetened cocoa [65 g]'],
+    ['1 1/4 cups confectioners’ sugar', '1 1/4 cups confectioners’ sugar [150 g]'],
     ['1 tb vanilla extract', '1 tb [15 ml] vanilla extract'],
     ['chopped into 1-inch chunks', 'chopped into 1-inch [2.5 cm] chunks'],
-    ['2 1/2 tsp baking soda', '2 1/2 tsp [12 ml] baking soda'],
+    ['2 1/2 tsp baking soda', '2 1/2 tsp baking soda [12 g]'],
     ['8 oz cream cheese', '8 oz [225 g] cream cheese'],
     ['1 stick, plus 1 tb, unsalted butter', '1 stick [110 g], plus 1 tb [15 ml], unsalted butter'],
     ['8 ounces spaghetti (or other) pasta', '8 ounces [225 g] spaghetti (or other) pasta'],
     ['2 Tbsp olive oil', '2 Tbsp [30 ml] olive oil'],
     ['at least 4 quarts of water', 'at least 4 quarts [3.75 l] of water'],
     ['2 cups flour', '2 cups flour [250 g]'],
-    ['2 cups dark brown sugar', '2 cups dark brown sugar [450 g]']
+    ['2 cups dark brown sugar', '2 cups dark brown sugar [450 g]'],
+    ['1/4 cup pine nuts', '1/4 cup pine nuts [34 g]']
 ];
 
 if (test) {
