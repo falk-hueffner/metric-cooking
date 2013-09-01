@@ -127,8 +127,9 @@ for (var unit in units) {
 }
 reUnit += ')';
 
-var reReal   = /(<real>\d+(\.\d+)?)/.source;
-var reFraction  = /(<fraction>(<fracWhole>\d+\s+)?(<fracNum>\d+)[/](<fracDen>\d+))/.source;
+var reReal      = /(<real>\d+(\.\d+)?)/.source;
+var reFracChar  = /(<fracChar>[¼½¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/.source;
+var reFraction  = '(<fraction>(<fracWhole>\\d+\\s+)?(((<fracNum>\\d+)/(<fracDen>\\d+))|' + reFracChar +'))';
 var reNumber = '(<number>' + reReal + '|' + reFraction + ')';
 
 function parseNumber(match) {
@@ -140,9 +141,20 @@ function parseNumber(match) {
     var fracWhole = match.group('fracWhole');
     if (fracWhole)
         amount += parseInt(fracWhole);
-    var fracNum = match.group('fracNum');
-    var fracDen = match.group('fracDen');
-    amount += parseInt(fracNum) / parseInt(fracDen);
+    var fracChar = match.group('fracChar');
+    if (fracChar) {
+        amount += {'½': 1/2,
+                   '⅓': 1/3, '⅔': 2/3,
+                   '¼': 1/4, '¾': 3/4,
+                   '⅕': 1/5, '⅖': 2/5, '⅗': 3/5, '⅘': 4/5,
+                   '⅙': 1/6, '⅚': 5/6,
+                   '⅛': 1/8, '⅜': 3/8, '⅝': 5/8, '⅞': 7/8
+                  }[fracChar];
+    } else {
+        var fracNum = match.group('fracNum');
+        var fracDen = match.group('fracDen');
+        amount += parseInt(fracNum) / parseInt(fracDen);
+    }
     return amount;
 }
 
@@ -237,7 +249,8 @@ var tests = [
     ['2 teaspoons light corn syrup', '2 teaspoons light corn syrup [14 g]'],
     ['preheat oven to 325°F.', 'preheat oven to 325°F [160 °C].'],
     ['1 tsp bicarbonate of soda', '1 tsp bicarbonate of soda [5 g]'],
-    ['2 tsp baking powder', '2 tsp baking powder [9 g]']
+    ['2 tsp baking powder', '2 tsp baking powder [9 g]'],
+    ['½ tsp salt', '½ tsp salt [3 g]']
 ];
 
 if (test) {
