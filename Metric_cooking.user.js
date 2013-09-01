@@ -46,7 +46,7 @@ var ingredients = {
     'cottage cheese': [/\b(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
     'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
-    'flour': [/\b(all[- ]purpose |sifted |cake )*flour/, 125/cup_ml], // ~20081~
+    'flour': [/\b(all[- ]purpose |sifted |cake |unbleached )*flour/, 125/cup_ml], // ~20081~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
     'long-grain rice': [/\b(long-grain(ed)? |[Bb]asmati )+(brown )?rice(?! vinegar| crispies| flour)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
     'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
@@ -389,7 +389,8 @@ var tests = [
     ['make certain your freezer is set to 0°F.', 'make certain your freezer is set to 0°F [-18 °C].'],
     ['3/4 cup granulated sugar', '3/4 cup granulated sugar [150 g]'],
     ['2 Tbs. Dutch-processed cocoa powder', '2 Tbs. Dutch-processed cocoa powder [11 g]'],
-    ['1 cup basmati rice', '1 cup basmati rice [190 g]']
+    ['1 cup basmati rice', '1 cup basmati rice [190 g]'],
+    ['1 1/2 cups unbleached all-purpose flour', '1 1/2 cups unbleached all-purpose flour [190 g]']
 ];
 
 if (test) {
