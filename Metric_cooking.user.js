@@ -51,7 +51,8 @@ var ingredients = {
     'powdered sugar': [/\b(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
     'ricotta': [/\b(fresh )?ricotta/, 246/cup_ml], // ~01036~
     'salt': [/\bsalt/, 292/cup_ml], // ~02047~
-    'sugar': [/\bsugar/, 200/cup_ml] // ~19335~
+    'sugar': [/\bsugar/, 200/cup_ml], // ~19335~
+    'yogurt': [/\b(plain )?yogurt/, 245/cup_ml] // ~01116~
 };
 var reIngredient = '';
 for (var ingredient in ingredients) {
@@ -290,7 +291,8 @@ var tests = [
     ['8 3/4 oz. sugar', '8 3/4 oz. sugar [250 g]'],
     ['2 tablespoons cold butter', '2 tablespoons cold butter [14 g]'],
     ['Heat oil in a 5- to 6-quart heavy pot', 'Heat oil in a 5- to 6-quart [5.75 l] heavy pot'],
-    ['1 3/4 cups (packed) brown sugar', '1 3/4 cups (packed) brown sugar [375 g]']
+    ['1 3/4 cups (packed) brown sugar', '1 3/4 cups (packed) brown sugar [375 g]'],
+    ['1 cup plain yogurt', '1 cup plain yogurt [250 g]']
 ];
 
 if (test) {
