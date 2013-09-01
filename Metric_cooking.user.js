@@ -40,6 +40,7 @@ var ingredients = {
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
     'brown sugar': [/(\blight |\bdark |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
     'butter': [/\b((un)?salted |chilled |cold )*butter/, 113/cup_ml], // ~01145~
+    'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
     'cocoa': [/\b(unsweetened )?cocoa( powder)?/, 86/cup_ml], // ~19165~
     'cornstarch': [/\bcornstarch/, 128/cup_ml], // ~20027~
     'cottage cheese': [/\b(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
@@ -377,7 +378,8 @@ var tests = [
     ['1 TSP lemon juice', '1 TSP [5 ml] lemon juice'],
     ['1/3 cup cornstarch', '1/3 cup cornstarch [43 g]'],
     ['½ cup orange marmalade', '½ cup orange marmalade [160 g]'],
-    ['1 lb. lentils – regular or De Puy variety', '1 lb. [450 g] lentils – regular or De Puy variety']
+    ['1 lb. lentils – regular or De Puy variety', '1 lb. [450 g] lentils – regular or De Puy variety'],
+    ['3 cups canned chickpeas, divided', '3 cups canned chickpeas [450 g], divided']
 ];
 
 if (test) {
