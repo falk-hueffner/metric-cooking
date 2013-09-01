@@ -111,7 +111,7 @@ var units = {
     'fahrenheit': [/°F/,              '°C', undefined    ],
     'inch':       [/\binch\b/,        'mm',  25.6        ],
     'ounce':      [/\b(oz|ounces?)\b/, 'g',   28.349523125],
-    'pound':      [/\blb\b/,          'g',  453.59237    ],
+    'pound':      [/\b(lb|pounds?)\b/, 'g',  453.59237    ],
     'quart':      [/\bquarts\b/,      'ml', 946.352946   ],
     'stick':      [/\bstick\b/,       'g', 4*28.349523125],
     'tablespoon': [/\b(T|tb|[Tt]bsp|tablespoons?)\b\.?/, 'ml',  14.8        ],
@@ -253,7 +253,8 @@ var tests = [
     ['2 tsp baking powder', '2 tsp baking powder [9 g]'],
     ['½ tsp salt', '½ tsp salt [3 g]'],
     ['1 tbsp vanilla extract', '1 tbsp [15 ml] vanilla extract'],
-    ['4 tbsp. Dijon mustard', '4 tbsp. Dijon mustard [62 g]']
+    ['4 tbsp. Dijon mustard', '4 tbsp. Dijon mustard [62 g]'],
+    ['3/4 pound pasta', '3/4 pound [350 g] pasta']
 ];
 
 if (test) {
