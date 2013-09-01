@@ -48,6 +48,7 @@ var ingredients = {
     'peanut butter': [/(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'pine nuts': [/pine nuts/, 135/cup_ml], // ~12147~
     'powdered sugar': [/(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
+    'ricotta': [/ricotta/, 246/cup_ml], // ~01036~
     'salt': [/salt/, 292/cup_ml], // ~02047~
     'sugar': [/sugar/, 200/cup_ml] // ~19335~
 };
@@ -275,7 +276,8 @@ var tests = [
     ['2 tablespoons finely grated parmesan', '2 tablespoons finely grated parmesan [13 g]'],
     ['1 1/2sticks chilled unsalted butter', '1 1/2sticks chilled unsalted butter [175 g]'],
     ['spacing 2 inches apart', 'spacing 2 inches [5 cm] apart'],
-    ['4 tablespoons salted butter', '4 tablespoons salted butter [28 g]']
+    ['4 tablespoons salted butter', '4 tablespoons salted butter [28 g]'],
+    ['1 1/3 cups ricotta', '1 1/3 cups ricotta [325 g]']
 ];
 
 if (test) {
