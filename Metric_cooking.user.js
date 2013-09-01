@@ -61,6 +61,7 @@ var ingredients = {
     'short-grain rice': [/\b(short-grain |Arborio )*rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'spinach': [/\bspinach/, 30/cup_ml], // ~11457~ (raw)
     'sugar': [/\bsugar/, 200/cup_ml], // ~19335~
+    'tomato paste': [/\btomato paste/, 262/cup_ml], // ~11546~
     'yogurt': [/\b(plain |low-fat )*yogurt/, 245/cup_ml] // ~01116~
 };
 var reIngredient = '';
@@ -379,7 +380,8 @@ var tests = [
     ['1/3 cup cornstarch', '1/3 cup cornstarch [43 g]'],
     ['½ cup orange marmalade', '½ cup orange marmalade [160 g]'],
     ['1 lb. lentils – regular or De Puy variety', '1 lb. [450 g] lentils – regular or De Puy variety'],
-    ['3 cups canned chickpeas, divided', '3 cups canned chickpeas [450 g], divided']
+    ['3 cups canned chickpeas, divided', '3 cups canned chickpeas [450 g], divided'],
+    ['2 tablespoons tomato paste', '2 tablespoons tomato paste [33 g]']
 ];
 
 if (test) {
