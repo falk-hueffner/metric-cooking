@@ -41,7 +41,7 @@ var ingredients = {
     'butter': [/(unsalted )?butter/, 113/cup_ml], // ~01145~
     'cocoa': [/(unsweetened )?cocoa( powder)?/, 86/cup_ml], // ~19165~
     'dulce de leche': [/dulce de leche/, 19/tbsp_ml], // ~01225~
-    'flour': [/flour/, 125/cup_ml], // ~20081~
+    'flour': [/(all-purpose )?flour/, 125/cup_ml], // ~20081~
     'light corn syrup': [/light corn syrup/, 341/cup_ml], // ~19350~
     'mustard': [/(Dijon )?mustard/, 249/cup_ml], // ~02046~
     'peanut butter': [/(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
@@ -255,7 +255,8 @@ var tests = [
     ['1 tbsp vanilla extract', '1 tbsp [15 ml] vanilla extract'],
     ['4 tbsp. Dijon mustard', '4 tbsp. Dijon mustard [62 g]'],
     ['3/4 pound pasta', '3/4 pound [350 g] pasta'],
-    ['Preheat oven to 350 degrees F with rack in middle.', 'Preheat oven to 350 degrees F [175 °C] with rack in middle.']
+    ['Preheat oven to 350 degrees F with rack in middle.', 'Preheat oven to 350 degrees F [175 °C] with rack in middle.'],
+    ['2 cups all-purpose flour', '2 cups all-purpose flour [250 g]']
 ];
 
 if (test) {
