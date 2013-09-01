@@ -119,7 +119,7 @@ function parseUnit(match) {
     return undefined;
 }
 
-var reAll = reNumber + '\\s+' + reUnit;
+var reAll = reNumber + '(\\s+|-)' + reUnit;
 var re = namedGroupRegExp(reAll, 'g');
 
 function convert(amount, unit) {
