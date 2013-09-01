@@ -53,7 +53,7 @@ var ingredients = {
     'powdered sugar': [/\b(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
     'ricotta': [/\b(fresh )?ricotta/, 246/cup_ml], // ~01036~
     'salt': [/\bsalt/, 292/cup_ml], // ~02047~
-    'short-grain rice': [/\b(short-grain |Arborio )*rice/, 200/cup_ml], // ~20052~
+    'short-grain rice': [/\b(short-grain |Arborio )*rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'sugar': [/\bsugar/, 200/cup_ml], // ~19335~
     'yogurt': [/\b(plain |low-fat )*yogurt/, 245/cup_ml] // ~01116~
 };
@@ -361,7 +361,8 @@ var tests = [
     ['1 cup mayonnaise', '1 cup mayonnaise [225 g]'],
     // TODO: fix
     // ['28 1/3-inch-thick diagonal bread slices', '28 1/3-inch [9 mm]-thick diagonal bread slices']
-    ['1/2 cup low-fat yogurt (preferably Greek)', '1/2 cup low-fat yogurt [125 g] (preferably Greek)']
+    ['1/2 cup low-fat yogurt (preferably Greek)', '1/2 cup low-fat yogurt [125 g] (preferably Greek)'],
+    ['6 Tablespoons rice vinegar', '6 Tablespoons [90 ml] rice vinegar']
 ];
 
 if (test) {
