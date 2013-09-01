@@ -35,13 +35,13 @@ var tbsp_ml = 14.8;
 var tsp_ml = tbsp_ml/3;
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
-    'pistachio': [/\bpistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
     'brown sugar': [/(\blight |\bdark |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
     'butter': [/\b((un)?salted |chilled |cold )*butter/, 113/cup_ml], // ~01145~
     'cocoa': [/\b(unsweetened )?cocoa( powder)?/, 86/cup_ml], // ~19165~
+    'cornstarch': [/\bcornstarch/, 128/cup_ml], // ~20027~
     'cottage cheese': [/\b(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
     'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
@@ -52,6 +52,7 @@ var ingredients = {
     'parmesan': [/\b(finely |freshly |grated |shredded )*([Pp]armesan|[Pp]armigiano [Rr]eggiano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'peanut butter': [/\b(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'pine nuts': [/\bpine nuts/, 135/cup_ml], // ~12147~
+    'pistachio': [/\bpistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
     'powdered sugar': [/\b(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
     'ricotta': [/\b(fresh )?ricotta/, 246/cup_ml], // ~01036~
     'salt': [/\bsalt/, 292/cup_ml], // ~02047~
@@ -371,7 +372,8 @@ var tests = [
     ['1/4 cup spinach (optional)', '1/4 cup spinach [8 g] (optional)'],
     ['2 tablespoons pistachios (toasted)', '2 tablespoons pistachios [15 g] (toasted)'],
     ['2 TBL unsweetened cocoa powder', '2 TBL unsweetened cocoa powder [11 g]'],
-    ['1 TSP lemon juice', '1 TSP [5 ml] lemon juice']
+    ['1 TSP lemon juice', '1 TSP [5 ml] lemon juice'],
+    ['1/3 cup cornstarch', '1/3 cup cornstarch [43 g]']
 ];
 
 if (test) {
