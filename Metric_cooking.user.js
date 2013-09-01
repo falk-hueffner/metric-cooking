@@ -35,6 +35,7 @@ var tbsp_ml = 14.8;
 var tsp_ml = tbsp_ml/3;
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
+    'pistachio': [/\bpistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
@@ -367,7 +368,8 @@ var tests = [
     ['6 Tablespoons rice vinegar', '6 Tablespoons [90 ml] rice vinegar'],
     ['1/4 cup parmigiano reggiano (grated)', '1/4 cup parmigiano reggiano [25 g] (grated)'],
     ['1 cup asparagus (cleaned)', '1 cup asparagus [130 g] (cleaned)'],
-    ['1/4 cup spinach (optional)', '1/4 cup spinach [8 g] (optional)']
+    ['1/4 cup spinach (optional)', '1/4 cup spinach [8 g] (optional)'],
+    ['2 tablespoons pistachios (toasted)', '2 tablespoons pistachios [15 g] (toasted)']
 ];
 
 if (test) {
