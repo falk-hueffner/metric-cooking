@@ -157,7 +157,7 @@ function parseIngredient(match) {
             return i;
 }
 
-var reAll = reNumber + '(\\s+|-)' + reUnit + '(\\s+' + reIngredient + ')?';
+var reAll = reNumber + '(\\s*|-)' + reUnit + '(\\s+' + reIngredient + ')?';
 var re = namedGroupRegExp(reAll, 'g');
 
 function convert(amount, unit) {
