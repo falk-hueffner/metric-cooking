@@ -38,6 +38,7 @@ var ingredients = {
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
+    'blackberries': [/\bblackberries/, 144/cup_ml], // ~09042~
     'brown sugar': [/(\blight[ -]|\bdark |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
     'butter': [/\b((un)?salted |chilled |cold )*butter/, 113/cup_ml], // ~01145~
     'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
@@ -391,7 +392,8 @@ var tests = [
     ['2 Tbs. Dutch-processed cocoa powder', '2 Tbs. Dutch-processed cocoa powder [11 g]'],
     ['1 cup basmati rice', '1 cup basmati rice [190 g]'],
     ['1 1/2 cups unbleached all-purpose flour', '1 1/2 cups unbleached all-purpose flour [190 g]'],
-    ['3/4 cup plus 2 tablespoons packed light-brown sugar', '3/4 cup [175 ml] plus 2 tablespoons packed light-brown sugar [28 g]']
+    ['3/4 cup plus 2 tablespoons packed light-brown sugar', '3/4 cup [175 ml] plus 2 tablespoons packed light-brown sugar [28 g]'],
+    ['1 cup blackberries', '1 cup blackberries [140 g]']
 ];
 
 if (test) {
