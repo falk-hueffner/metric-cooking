@@ -113,8 +113,8 @@ var units = {
     'pound':      [/\blb\b/,          'g',  453.59237    ],
     'quart':      [/\bquarts\b/,      'ml', 946.352946   ],
     'stick':      [/\bstick\b/,       'g', 4*28.349523125],
-    'tablespoon': [/\b(T|tb|[Tt]bsp|tablespoons?)\b/, 'ml',  14.8        ],
-    'teaspoon':   [/\b(t|tsp|teaspoons?)\b/,       'ml',  14.8/3      ]
+    'tablespoon': [/\b(T|tb|[Tt]bsp|tablespoons?)\b\.?/, 'ml',  14.8        ],
+    'teaspoon':   [/\b(t|tsp|teaspoons?)\b\.?/,       'ml',  14.8/3      ]
 };
 
 var reUnit = '';
@@ -251,7 +251,8 @@ var tests = [
     ['1 tsp bicarbonate of soda', '1 tsp bicarbonate of soda [5 g]'],
     ['2 tsp baking powder', '2 tsp baking powder [9 g]'],
     ['½ tsp salt', '½ tsp salt [3 g]'],
-    ['1 tbsp vanilla extract', '1 tbsp [15 ml] vanilla extract']
+    ['1 tbsp vanilla extract', '1 tbsp [15 ml] vanilla extract'],
+    ['4 tbsp. Dijon mustard', '4 tbsp. [60 ml] Dijon mustard']
 ];
 
 if (test) {
