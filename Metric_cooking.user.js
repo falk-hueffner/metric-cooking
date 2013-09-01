@@ -26,8 +26,21 @@
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.  */
 
 
+var maxError     = 0.03;
 var numUnitSpace = '\u202F';    // thin space
-var test = true;
+var test         = true;
+
+function round(x){
+    var fs = [100000, 50000, 10000, 5000, 1000, 500, 100, 50, 10, 5, 1];
+    var newx;
+    for (var f in fs) {
+	newx = Math.round(x / fs[f]) * fs[f];
+	var error = Math.abs(x - newx);
+	if (error / x < maxError)
+	    return newx;
+    }
+    return newx;
+}
 
 // Python-like named groups: (<name>...)
 function namedGroupRegExp(regexp, modifiers) {
@@ -108,6 +121,8 @@ function replaceUnits(match) {
     var converted = convert(parseNumber(match), unit);
     var newAmount = converted.amount;
     var newUnit = converted.unit;
+
+    newAmount = round(newAmount);
 
     newText += ' [' + newAmount + numUnitSpace + newUnit + ']';
     
