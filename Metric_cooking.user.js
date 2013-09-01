@@ -130,8 +130,8 @@ var units = {
     'pound':      [/(lb|pounds?)\b/, 'g',  453.59237    ],
     'quart':      [/quarts?\b/,      'ml', 946.352946   ],
     'stick':      [/sticks?\b/,      'g', 4*28.349523125],
-    'tablespoon': [/[Tt]ablespoons?\b|(T|tb|[Tt]bsp?)\b\.?/, 'ml',  14.8        ],
-    'teaspoon':   [/[Tt]easpoons?\b|(t|tsp)\b\.?/,       'ml',  14.8/3      ]
+    'tablespoon': [/[Tt]ablespoons?\b|(T|tb|[Tt]bsp?|TBL)\b\.?/, 'ml',  14.8        ],
+    'teaspoon':   [/[Tt]easpoons?\b|(t|tsp|TSP)\b\.?/,       'ml',  14.8/3      ]
 };
 
 var reUnit = '';
@@ -369,7 +369,9 @@ var tests = [
     ['1/4 cup parmigiano reggiano (grated)', '1/4 cup parmigiano reggiano [25 g] (grated)'],
     ['1 cup asparagus (cleaned)', '1 cup asparagus [130 g] (cleaned)'],
     ['1/4 cup spinach (optional)', '1/4 cup spinach [8 g] (optional)'],
-    ['2 tablespoons pistachios (toasted)', '2 tablespoons pistachios [15 g] (toasted)']
+    ['2 tablespoons pistachios (toasted)', '2 tablespoons pistachios [15 g] (toasted)'],
+    ['2 TBL unsweetened cocoa powder', '2 TBL unsweetened cocoa powder [11 g]'],
+    ['1 TSP lemon juice', '1 TSP [5 ml] lemon juice']
 ];
 
 if (test) {
