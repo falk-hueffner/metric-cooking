@@ -58,7 +58,7 @@ var ingredients = {
     'powdered sugar': [/\b(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
     'ricotta': [/\b(fresh )?ricotta/, 246/cup_ml], // ~01036~
     'salt': [/\bsalt/, 292/cup_ml], // ~02047~
-    'short-grain rice': [/\b(short-grain |Arborio )*rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
+    'short-grain rice': [/\b(short-grain |Arborio )+rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'spinach': [/\bspinach/, 30/cup_ml], // ~11457~ (raw)
     'sugar': [/\bsugar/, 200/cup_ml], // ~19335~
     'tomato paste': [/\btomato paste/, 262/cup_ml], // ~11546~
