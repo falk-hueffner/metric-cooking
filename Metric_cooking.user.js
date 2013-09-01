@@ -195,6 +195,9 @@ function scale(amount, unit) {
     } else if (unit == 'ml' && amount >= 1000) {
         unit = 'l';
         amount /= 1000;
+    } else if (unit == 'g' && amount >= 1000) {
+        unit = 'kg';
+        amount /= 1000;
     }
     return {amount: amount, unit: unit};
 }
@@ -280,7 +283,8 @@ var tests = [
     ['1 1/3 cups ricotta', '1 1/3 cups ricotta [325 g]'],
     ['2 tablespoons of the butter', '2 tablespoons of the butter [14 g]'],
     ['1/4 cup shredded Parmesan cheese', '1/4 cup shredded Parmesan cheese [25 g]'],
-    ['1/2 pound fresh ricotta', '1/2 pound fresh ricotta [225 g]']
+    ['1/2 pound fresh ricotta', '1/2 pound fresh ricotta [225 g]'],
+    ['64 ounces chicken broth', '64 ounces [1.8 kg] chicken broth']
 ];
 
 if (test) {
