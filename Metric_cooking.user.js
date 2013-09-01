@@ -106,7 +106,7 @@ var units = {
     'pound':      [/\blb\b/,          'g',  453.59237    ],
     'quart':      [/\bquarts\b/,      'ml', 946.352946   ],
     'stick':      [/\bstick\b/,       'g', 4*28.349523125],
-    'tablespoon': [/\b(tb|Tbsp)\b/,   'ml',  14.8        ],
+    'tablespoon': [/\b(T|tb|Tbsp)\b/, 'ml',  14.8        ],
     'teaspoon':   [/\b(t|tsp)\b/,     'ml',  14.8/3      ]
 };
 
@@ -214,7 +214,8 @@ var tests = [
     ['1/4 cup pine nuts', '1/4 cup pine nuts [34 g]'],
     ['1 lb semi-sweet chocolate chips', '1 lb [450 g] semi-sweet chocolate chips'],
     ['1/2 C butter', '1/2 C butter [55 g]'],
-    ['1 t vanilla, almond, coconut, or orange extract', '1 t [5 ml] vanilla, almond, coconut, or orange extract']
+    ['1 t vanilla, almond, coconut, or orange extract', '1 t [5 ml] vanilla, almond, coconut, or orange extract'],
+    ['about 6 T unpopped', 'about 6 T [90 ml] unpopped']
 ];
 
 if (test) {
