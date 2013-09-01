@@ -102,10 +102,10 @@ var units = {
     'cup':        [/\bcups?\b/,       'ml', 236.5882365  ],
     'inch':       [/\binch\b/,        'mm',  25.6        ],
     'ounce':      [/\b(oz|ounces)\b/, 'g',   28.349523125],
+    'quart':      [/\bquarts\b/,      'ml', 946.352946   ],
     'stick':      [/\bstick\b/,       'g', 4*28.349523125],
     'tablespoon': [/\b(tb|Tbsp)\b/,   'ml',  14.8        ],
-    'teaspoon':   [/\btsp\b/,         'ml',  14.8/3      ],
-    'quart':      [/\bquarts\b/,      'ml', 946.352946   ]
+    'teaspoon':   [/\btsp\b/,         'ml',  14.8/3      ]
 };
 
 var reUnit = '';
