@@ -124,7 +124,7 @@ function prefixGroups (regexp, prefix) {
 }
 
 var units = {
-    'cup':        [/(cups?|C)\b/,   'ml', 236.5882365  ],
+    'cup':        [/(cups?)\b/   ,   'ml', 236.5882365  ],
     'fahrenheit': [/(°\s*?|degrees )F(ahrenheit)?/,   '°C', undefined    ],
     'inch':       [/inch(es)?\b/,   'mm',  25.6        ],
     'ounce':      [/ounces?\b|oz\b\.?/, 'g',   28.349523125],
@@ -302,11 +302,12 @@ var tests = [
     ['2 cups dark brown sugar', '2 cups dark brown sugar [450 g]'],
     ['1/4 cup pine nuts', '1/4 cup pine nuts [34 g]'],
     ['1 lb semi-sweet chocolate chips', '1 lb [450 g] semi-sweet chocolate chips'],
-    ['1/2 C butter', '1/2 C butter [55 g]'],
+    // false positives with C meaning °C
+    // ['1/2 C butter', '1/2 C butter [55 g]'],
     ['1 t vanilla, almond, coconut, or orange extract', '1 t [5 ml] vanilla, almond, coconut, or orange extract'],
     ['about 6 T unpopped', 'about 6 T [90 ml] unpopped'],
     ['2 T cocoa powder', '2 T cocoa powder [11 g]'],
-    ['2/3 C smooth peanut butter', '2/3 C smooth peanut butter [175 g]'],
+    ['2/3 cup smooth peanut butter', '2/3 cup smooth peanut butter [175 g]'],
     ['3 tablespoons unsalted butter, melted', '3 tablespoons unsalted butter [21 g], melted'],
     ['1 teaspoon unflavored gelatin', '1 teaspoon [5 ml] unflavored gelatin'],
     ['from a 1/4-ounce envelope', 'from a 1/4-ounce [7 g] envelope'],
