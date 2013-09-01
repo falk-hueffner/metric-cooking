@@ -107,8 +107,8 @@ var units = {
     'pound':      [/\blb\b/,          'g',  453.59237    ],
     'quart':      [/\bquarts\b/,      'ml', 946.352946   ],
     'stick':      [/\bstick\b/,       'g', 4*28.349523125],
-    'tablespoon': [/\b(T|tb|Tbsp|tablespoons)\b/, 'ml',  14.8        ],
-    'teaspoon':   [/\b(t|tsp)\b/,     'ml',  14.8/3      ]
+    'tablespoon': [/\b(T|tb|Tbsp|tablespoons?)\b/, 'ml',  14.8        ],
+    'teaspoon':   [/\b(t|tsp|teaspoons?)\b/,       'ml',  14.8/3      ]
 };
 
 var reUnit = '';
@@ -219,7 +219,8 @@ var tests = [
     ['about 6 T unpopped', 'about 6 T [90 ml] unpopped'],
     ['2 T cocoa powder', '2 T cocoa powder [11 g]'],
     ['2/3 C smooth peanut butter', '2/3 C smooth peanut butter [175 g]'],
-    ['3 tablespoons unsalted butter, melted', '3 tablespoons unsalted butter [21 g], melted']
+    ['3 tablespoons unsalted butter, melted', '3 tablespoons unsalted butter [21 g], melted'],
+    ['1 teaspoon unflavored gelatin', '1 teaspoon [5 ml] unflavored gelatin']
 ];
 
 if (test) {
