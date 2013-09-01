@@ -111,7 +111,7 @@ function namedGroupRegExp(regexp, modifiers) {
 var units = {
     'cup':        [/(cups?|C)\b/,   'ml', 236.5882365  ],
     'fahrenheit': [/(°|degrees )F(ahrenheit)?/,   '°C', undefined    ],
-    'inch':       [/inch\b/,        'mm',  25.6        ],
+    'inch':       [/inch(es)?\b/,   'mm',  25.6        ],
     'ounce':      [/(oz|ounces?)\b/, 'g',   28.349523125],
     'pound':      [/(lb|pounds?)\b/, 'g',  453.59237    ],
     'quart':      [/quarts\b/,      'ml', 946.352946   ],
@@ -273,7 +273,8 @@ var tests = [
     ['2 cups all purpose flour', '2 cups all purpose flour [250 g]'],
     ['1/4 teaspoon black pepper', '1/4 teaspoon black pepper'],
     ['2 tablespoons finely grated parmesan', '2 tablespoons finely grated parmesan [13 g]'],
-    ['1 1/2sticks chilled unsalted butter', '1 1/2sticks chilled unsalted butter [175 g]']
+    ['1 1/2sticks chilled unsalted butter', '1 1/2sticks chilled unsalted butter [175 g]'],
+    ['spacing 2 inches apart', 'spacing 2 inches [5 cm] apart']
 ];
 
 if (test) {
