@@ -212,6 +212,9 @@ function replaceUnits(match) {
         }
     }
 
+    if ((newUnit == 'ml' || newUnit == 'g') && newAmount < 4)
+        return newText;
+
     newAmount = round(newAmount);
     var scaled = scale(newAmount, newUnit);
     newAmount = scaled.amount;
@@ -246,13 +249,13 @@ var tests = [
     ['3 tablespoons unsalted butter, melted', '3 tablespoons unsalted butter [21 g], melted'],
     ['1 teaspoon unflavored gelatin', '1 teaspoon [5 ml] unflavored gelatin'],
     ['from a 1/4-ounce envelope', 'from a 1/4-ounce [7 g] envelope'],
-    ['3/8 teaspoon salt', '3/8 teaspoon salt [2 g]'],
+    ['3/8 tablespoon salt', '3/8 tablespoon salt [7 g]'],
     ['1 cup dulce de leche', '1 cup dulce de leche [300 g]'],
     ['2 teaspoons light corn syrup', '2 teaspoons light corn syrup [14 g]'],
     ['preheat oven to 325°F.', 'preheat oven to 325°F [160 °C].'],
     ['1 tsp bicarbonate of soda', '1 tsp bicarbonate of soda [5 g]'],
     ['2 tsp baking powder', '2 tsp baking powder [9 g]'],
-    ['½ tsp salt', '½ tsp salt [3 g]'],
+    ['½ tbsp salt', '½ tbsp salt [9 g]'],
     ['1 tbsp vanilla extract', '1 tbsp [15 ml] vanilla extract'],
     ['4 tbsp. Dijon mustard', '4 tbsp. Dijon mustard [62 g]'],
     ['3/4 pound pasta', '3/4 pound [350 g] pasta'],
@@ -261,12 +264,13 @@ var tests = [
     ['1 3/4 cups sugar', '1 3/4 cups sugar [350 g]'],
     ['2 cups sifted cake flour', '2 cups sifted cake flour [250 g]'],
     ['10 Tbs unsalted butter, at room temperature' ,'10 Tbs unsalted butter [70 g], at room temperature'],
-    ['if using unsalted, add 1/2 tsp of salt', 'if using unsalted, add 1/2 tsp of salt [3 g]'],
+    ['if using unsalted, add 1/2 tbsp of salt', 'if using unsalted, add 1/2 tbsp of salt [9 g]'],
     ['1/2 cup packed light brown sugar', '1/2 cup packed light brown sugar [110 g]'],
     ['1/2 cup packed dark brown sugar', '1/2 cup packed dark brown sugar [110 g]'],
     ['2 cups confectioners sugar, must be sifted!', '2 cups confectioners sugar [240 g], must be sifted!'],
     ['Preheat the oven to 350 degrees Fahrenheit.', 'Preheat the oven to 350 degrees Fahrenheit [175 °C].'],
-    ['2 cups all purpose flour', '2 cups all purpose flour [250 g]']
+    ['2 cups all purpose flour', '2 cups all purpose flour [250 g]'],
+    ['1/4 teaspoon black pepper', '1/4 teaspoon black pepper']
 ];
 
 if (test) {
