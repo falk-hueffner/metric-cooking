@@ -41,17 +41,18 @@ var ingredients = {
     'butter': [/\b((un)?salted |chilled |cold )*butter/, 113/cup_ml], // ~01145~
     'cocoa': [/\b(unsweetened )?cocoa( powder)?/, 86/cup_ml], // ~19165~
     'cottage cheese': [/\b(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
+    'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
     'flour': [/\b(all[- ]purpose |sifted |cake )*flour/, 125/cup_ml], // ~20081~
-    'light corn syrup': [/\blight corn syrup/, 341/cup_ml], // ~19350~
+    'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
     'mustard': [/\b(Dijon )?mustard/, 249/cup_ml], // ~02046~
     'parmesan': [/\b(finely |freshly |grated |shredded )*[Pp]armesan(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'peanut butter': [/\b(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'pine nuts': [/\bpine nuts/, 135/cup_ml], // ~12147~
     'powdered sugar': [/\b(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
-    'short-grain rice': [/\b(short-grain |Arborio )*rice/, 200/cup_ml], // ~20052~
     'ricotta': [/\b(fresh )?ricotta/, 246/cup_ml], // ~01036~
     'salt': [/\bsalt/, 292/cup_ml], // ~02047~
+    'short-grain rice': [/\b(short-grain |Arborio )*rice/, 200/cup_ml], // ~20052~
     'sugar': [/\bsugar/, 200/cup_ml], // ~19335~
     'yogurt': [/\b(plain )?yogurt/, 245/cup_ml] // ~01116~
 };
@@ -351,7 +352,8 @@ var tests = [
     ['boil in a 1- to 1 1/2-quart heavy saucepan', 'boil in a 1- to 1 1/2-quart [950–1400 ml] heavy saucepan'],
     ['1 (14- to 19-ounce) can chickpeas', '1 (14- to 19-ounce [400–550 g]) can chickpeas'],
     ['torn into 1/4- to 1/2-inch pieces', 'torn into 1/4- to 1/2-inch [6–13 mm] pieces'],
-    ['scrubbed and cut into 1/2-inch to 3/4-inch cubes', 'scrubbed and cut into 1/2-inch to 3/4-inch [1.3–1.9 cm] cubes']
+    ['scrubbed and cut into 1/2-inch to 3/4-inch cubes', 'scrubbed and cut into 1/2-inch to 3/4-inch [1.3–1.9 cm] cubes'],
+    ['1/4 cup corn syrup', '1/4 cup corn syrup [85 g]']
 ];
 
 if (test) {
