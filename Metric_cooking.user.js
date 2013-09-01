@@ -122,7 +122,7 @@ if (test) {
     for (var i in tests) {
         var result = re.replace(tests[i][0], replaceUnits);
         if (!result || !result.match(tests[i][1]))
-            dump('test failed: "%s" -> "%s" (not %s)', tests[i][0], result, tests[i][1]);
+            console.log('test failed: "%s" -> "%s" (not %s)', tests[i][0], result, tests[i][1]);
     }
 }
 
