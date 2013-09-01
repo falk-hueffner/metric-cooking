@@ -120,7 +120,7 @@ function prefixGroups (regexp, prefix) {
 
 var units = {
     'cup':        [/(cups?|C)\b/,   'ml', 236.5882365  ],
-    'fahrenheit': [/(°\s+?|degrees )F(ahrenheit)?/,   '°C', undefined    ],
+    'fahrenheit': [/(°\s*?|degrees )F(ahrenheit)?/,   '°C', undefined    ],
     'inch':       [/inch(es)?\b/,   'mm',  25.6        ],
     'ounce':      [/ounces?\b|oz\b\.?/, 'g',   28.349523125],
     'pint':       [/pints?\b/,       'g',  236.5882365*2],
