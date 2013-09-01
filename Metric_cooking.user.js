@@ -78,7 +78,7 @@ function namedGroupRegExp(regexp, modifiers) {
 }
 
 var units = {
-    'cup': [/\b[Cc]ups?\b/, 'ml', 236.5882365]
+    'cup': [/\bcups?\b/, 'ml', 236.5882365]
 };
 
 var reUnit = '';
