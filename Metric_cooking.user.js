@@ -48,6 +48,7 @@ var ingredients = {
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
     'flour': [/\b(all[- ]purpose |sifted |cake )*flour/, 125/cup_ml], // ~20081~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
+    'long-grain rice': [/\b(long-grain(ed)? |[Bb]asmati )+(brown )?rice(?! vinegar| crispies| flour)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
     'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
     'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
     'mustard': [/\b(Dijon )?mustard/, 249/cup_ml], // ~02046~
@@ -387,7 +388,8 @@ var tests = [
     ['3 cups short-grain brown rice', '3 cups short-grain brown rice [600 g]'],
     ['make certain your freezer is set to 0°F.', 'make certain your freezer is set to 0°F [-18 °C].'],
     ['3/4 cup granulated sugar', '3/4 cup granulated sugar [150 g]'],
-    ['2 Tbs. Dutch-processed cocoa powder', '2 Tbs. Dutch-processed cocoa powder [11 g]']
+    ['2 Tbs. Dutch-processed cocoa powder', '2 Tbs. Dutch-processed cocoa powder [11 g]'],
+    ['1 cup basmati rice', '1 cup basmati rice [190 g]']
 ];
 
 if (test) {
