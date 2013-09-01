@@ -221,7 +221,7 @@ var tests = [
     ['2/3 C smooth peanut butter', '2/3 C smooth peanut butter [175 g]'],
     ['3 tablespoons unsalted butter, melted', '3 tablespoons unsalted butter [21 g], melted'],
     ['1 teaspoon unflavored gelatin', '1 teaspoon [5 ml] unflavored gelatin'],
-    ['from a 1/4-ounce envelope', 'from a 1/4-ounce envelope']
+    ['from a 1/4-ounce envelope', 'from a 1/4-ounce [7 g] envelope']
 ];
 
 if (test) {
