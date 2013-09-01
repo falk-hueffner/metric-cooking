@@ -108,7 +108,7 @@ function namedGroupRegExp(regexp, modifiers) {
 
 var units = {
     'cup':        [/\b(cups?|C)\b/,   'ml', 236.5882365  ],
-    'fahrenheit': [/°F/,              '°C', undefined    ],
+    'fahrenheit': [/(°|degrees )F/,   '°C', undefined    ],
     'inch':       [/\binch\b/,        'mm',  25.6        ],
     'ounce':      [/\b(oz|ounces?)\b/, 'g',   28.349523125],
     'pound':      [/\b(lb|pounds?)\b/, 'g',  453.59237    ],
@@ -254,7 +254,8 @@ var tests = [
     ['½ tsp salt', '½ tsp salt [3 g]'],
     ['1 tbsp vanilla extract', '1 tbsp [15 ml] vanilla extract'],
     ['4 tbsp. Dijon mustard', '4 tbsp. Dijon mustard [62 g]'],
-    ['3/4 pound pasta', '3/4 pound [350 g] pasta']
+    ['3/4 pound pasta', '3/4 pound [350 g] pasta'],
+    ['Preheat oven to 350 degrees F with rack in middle.', 'Preheat oven to 350 degrees F [175 °C] with rack in middle.']
 ];
 
 if (test) {
