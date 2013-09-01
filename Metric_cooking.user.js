@@ -60,7 +60,7 @@ var ingredients = {
     'salt': [/\bsalt/, 292/cup_ml], // ~02047~
     'short-grain rice': [/\b(short-grain(ed)? |Arborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'spinach': [/\bspinach/, 30/cup_ml], // ~11457~ (raw)
-    'sugar': [/\bsugar/, 200/cup_ml], // ~19335~
+    'sugar': [/\b(granulated )?sugar/, 200/cup_ml], // ~19335~
     'tomato paste': [/\btomato paste/, 262/cup_ml], // ~11546~
     'yogurt': [/\b(plain |low-fat )*yogurt/, 245/cup_ml] // ~01116~
 };
@@ -385,7 +385,8 @@ var tests = [
     ['3 cups canned chickpeas, divided', '3 cups canned chickpeas [450 g], divided'],
     ['2 tablespoons tomato paste', '2 tablespoons tomato paste [33 g]'],
     ['3 cups short-grain brown rice', '3 cups short-grain brown rice [600 g]'],
-    ['make certain your freezer is set to 0°F.', 'make certain your freezer is set to 0°F [-18 °C].']
+    ['make certain your freezer is set to 0°F.', 'make certain your freezer is set to 0°F [-18 °C].'],
+    ['3/4 cup granulated sugar', '3/4 cup granulated sugar [150 g]']
 ];
 
 if (test) {
