@@ -47,6 +47,7 @@ var ingredients = {
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
     'flour': [/\b(all[- ]purpose |sifted |cake )*flour/, 125/cup_ml], // ~20081~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
+    'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
     'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
     'mustard': [/\b(Dijon )?mustard/, 249/cup_ml], // ~02046~
     'parmesan': [/\b(finely |freshly |grated |shredded )*([Pp]armesan|[Pp]armigiano [Rr]eggiano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
@@ -373,7 +374,8 @@ var tests = [
     ['2 tablespoons pistachios (toasted)', '2 tablespoons pistachios [15 g] (toasted)'],
     ['2 TBL unsweetened cocoa powder', '2 TBL unsweetened cocoa powder [11 g]'],
     ['1 TSP lemon juice', '1 TSP [5 ml] lemon juice'],
-    ['1/3 cup cornstarch', '1/3 cup cornstarch [43 g]']
+    ['1/3 cup cornstarch', '1/3 cup cornstarch [43 g]'],
+    ['½ cup orange marmalade', '½ cup orange marmalade [160 g]']
 ];
 
 if (test) {
