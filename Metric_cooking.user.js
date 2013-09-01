@@ -175,7 +175,7 @@ function parseIngredient(match) {
             return i;
 }
 
-var reAll = reNumber + '(\\s*|-)' + reUnit + '(\\s+(of\\s+)?' + reIngredient + ')?';
+var reAll = reNumber + '(\\s*|-)' + reUnit + '(\\s+(of(\\s+the)?\\s+)?' + reIngredient + ')?';
 var re = namedGroupRegExp(reAll, 'g');
 
 function convert(amount, unit) {
@@ -277,7 +277,8 @@ var tests = [
     ['1 1/2sticks chilled unsalted butter', '1 1/2sticks chilled unsalted butter [175 g]'],
     ['spacing 2 inches apart', 'spacing 2 inches [5 cm] apart'],
     ['4 tablespoons salted butter', '4 tablespoons salted butter [28 g]'],
-    ['1 1/3 cups ricotta', '1 1/3 cups ricotta [325 g]']
+    ['1 1/3 cups ricotta', '1 1/3 cups ricotta [325 g]'],
+    ['2 tablespoons of the butter', '2 tablespoons of the butter [14 g]']
 ];
 
 if (test) {
