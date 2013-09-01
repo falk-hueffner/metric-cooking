@@ -35,23 +35,23 @@ var tbsp_ml = 14.8;
 var tsp_ml = tbsp_ml/3;
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
-    'baking powder': [/baking powder/, 4.6/tsp_ml], // ~18369~
-    'baking soda': [/(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
-    'brown sugar': [/(light |dark |packed )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
-    'butter': [/((un)?salted |chilled |cold )*butter/, 113/cup_ml], // ~01145~
-    'cocoa': [/(unsweetened )?cocoa( powder)?/, 86/cup_ml], // ~19165~
-    'cottage cheese': [/(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
-    'dulce de leche': [/dulce de leche/, 19/tbsp_ml], // ~01225~
-    'flour': [/(all[- ]purpose |sifted |cake )*flour/, 125/cup_ml], // ~20081~
-    'light corn syrup': [/light corn syrup/, 341/cup_ml], // ~19350~
-    'mustard': [/(Dijon )?mustard/, 249/cup_ml], // ~02046~
-    'parmesan': [/(finely |grated |shredded )*[Pp]armesan(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
-    'peanut butter': [/(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
-    'pine nuts': [/pine nuts/, 135/cup_ml], // ~12147~
-    'powdered sugar': [/(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
-    'ricotta': [/(fresh )?ricotta/, 246/cup_ml], // ~01036~
-    'salt': [/salt/, 292/cup_ml], // ~02047~
-    'sugar': [/sugar/, 200/cup_ml] // ~19335~
+    'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
+    'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
+    'brown sugar': [/(\blight |\bdark |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
+    'butter': [/\b((un)?salted |chilled |cold )*butter/, 113/cup_ml], // ~01145~
+    'cocoa': [/\b(unsweetened )?cocoa( powder)?/, 86/cup_ml], // ~19165~
+    'cottage cheese': [/\b(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
+    'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
+    'flour': [/\b(all[- ]purpose |sifted |cake )*flour/, 125/cup_ml], // ~20081~
+    'light corn syrup': [/\blight corn syrup/, 341/cup_ml], // ~19350~
+    'mustard': [/\b(Dijon )?mustard/, 249/cup_ml], // ~02046~
+    'parmesan': [/\b(finely |grated |shredded )*[Pp]armesan(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
+    'peanut butter': [/\b(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
+    'pine nuts': [/\bpine nuts/, 135/cup_ml], // ~12147~
+    'powdered sugar': [/\b(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
+    'ricotta': [/\b(fresh )?ricotta/, 246/cup_ml], // ~01036~
+    'salt': [/\bsalt/, 292/cup_ml], // ~02047~
+    'sugar': [/\bsugar/, 200/cup_ml] // ~19335~
 };
 var reIngredient = '';
 for (var ingredient in ingredients) {
@@ -59,7 +59,7 @@ for (var ingredient in ingredients) {
         reIngredient += '|';
     else
         reIngredient = '(<ingredient>';
-    reIngredient += '(<' + ingredient + '>\\b' + ingredients[ingredient][0].source + '\\b)';
+    reIngredient += '(<' + ingredient + '>' + ingredients[ingredient][0].source + '\\b)';
 }
 reIngredient += ')';
 
@@ -289,7 +289,8 @@ var tests = [
     ['2 cups low-fat cottage cheese', '2 cups low-fat cottage cheese [450 g]'],
     ['8 3/4 oz. sugar', '8 3/4 oz. sugar [250 g]'],
     ['2 tablespoons cold butter', '2 tablespoons cold butter [14 g]'],
-    ['Heat oil in a 5- to 6-quart heavy pot', 'Heat oil in a 5- to 6-quart [5.75 l] heavy pot']
+    ['Heat oil in a 5- to 6-quart heavy pot', 'Heat oil in a 5- to 6-quart [5.75 l] heavy pot'],
+    ['1 3/4 cups (packed) brown sugar', '1 3/4 cups (packed) brown sugar [375 g]']
 ];
 
 if (test) {
