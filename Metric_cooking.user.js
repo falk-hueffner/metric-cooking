@@ -205,12 +205,15 @@ var tests = [
 ];
 
 if (test) {
+    var failed = 0;
     for (var i in tests) {
         var result = re.replace(tests[i][0], replaceUnits);
-        if (result != tests[i][1])
+        if (result != tests[i][1]) {
             console.log('test failed: "%s" -> "%s" (not "%s")', tests[i][0], result, tests[i][1]);
+            failed++;
+        }
     }
-    console.log('done testing');
+    console.log('%d of %d tests passed', tests.length - failed, tests.length);
 }
 
 var textNodes = document.evaluate('//body//text()', document, null,
