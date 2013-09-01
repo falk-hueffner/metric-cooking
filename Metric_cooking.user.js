@@ -107,7 +107,7 @@ var units = {
     'quart':      [/\bquarts\b/,      'ml', 946.352946   ],
     'stick':      [/\bstick\b/,       'g', 4*28.349523125],
     'tablespoon': [/\b(tb|Tbsp)\b/,   'ml',  14.8        ],
-    'teaspoon':   [/\btsp\b/,         'ml',  14.8/3      ]
+    'teaspoon':   [/\b(t|tsp)\b/,     'ml',  14.8/3      ]
 };
 
 var reUnit = '';
@@ -213,7 +213,8 @@ var tests = [
     ['2 cups dark brown sugar', '2 cups dark brown sugar [450 g]'],
     ['1/4 cup pine nuts', '1/4 cup pine nuts [34 g]'],
     ['1 lb semi-sweet chocolate chips', '1 lb [450 g] semi-sweet chocolate chips'],
-    ['1/2 C butter', '1/2 C butter [55 g]']
+    ['1/2 C butter', '1/2 C butter [55 g]'],
+    ['1 t vanilla, almond, coconut, or orange extract', '1 t [5 ml] vanilla, almond, coconut, or orange extract']
 ];
 
 if (test) {
