@@ -37,7 +37,7 @@ var tsp_ml = tbsp_ml/3;
 var ingredients = {
     'baking powder': [/baking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
-    'brown sugar': [/(dark )?brown sugar/, 220/cup_ml], // ~19334~ (packed)
+    'brown sugar': [/(light |dark |packed )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
     'butter': [/(unsalted )?butter/, 113/cup_ml], // ~01145~
     'cocoa': [/(unsweetened )?cocoa( powder)?/, 86/cup_ml], // ~19165~
     'dulce de leche': [/dulce de leche/, 19/tbsp_ml], // ~01225~
@@ -261,7 +261,9 @@ var tests = [
     ['1 3/4 cups sugar', '1 3/4 cups sugar [350 g]'],
     ['2 cups sifted cake flour', '2 cups sifted cake flour [250 g]'],
     ['10 Tbs unsalted butter, at room temperature' ,'10 Tbs unsalted butter [70 g], at room temperature'],
-    ['if using unsalted, add 1/2 tsp of salt', 'if using unsalted, add 1/2 tsp of salt [3 g]']
+    ['if using unsalted, add 1/2 tsp of salt', 'if using unsalted, add 1/2 tsp of salt [3 g]'],
+    ['1/2 cup packed light brown sugar', '1/2 cup packed light brown sugar [110 g]'],
+    ['1/2 cup packed dark brown sugar', '1/2 cup packed dark brown sugar [110 g]']
 ];
 
 if (test) {
