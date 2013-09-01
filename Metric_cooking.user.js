@@ -39,6 +39,7 @@ var ingredients = {
     'butter': [/(unsalted )?butter/, 113/cup_ml], // ~01145~
     'cocoa': [/(unsweetened )?cocoa( powder)?/, 86/cup_ml], // ~19165~
     'flour': [/flour/, 125/cup_ml], // ~20081~
+    'peanut butter': [/(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'pine nuts': [/pine nuts/, 135/cup_ml], // ~12147~
     'powdered sugar': [/(powdered|confectioners['’]) sugar/, 120/cup_ml] // ~19336~ (unsifted)
 };
@@ -216,7 +217,8 @@ var tests = [
     ['1/2 C butter', '1/2 C butter [55 g]'],
     ['1 t vanilla, almond, coconut, or orange extract', '1 t [5 ml] vanilla, almond, coconut, or orange extract'],
     ['about 6 T unpopped', 'about 6 T [90 ml] unpopped'],
-    ['2 T cocoa powder', '2 T cocoa powder [11 g]']
+    ['2 T cocoa powder', '2 T cocoa powder [11 g]'],
+    ['2/3 C smooth peanut butter', '2/3 C smooth peanut butter [175 g]']
 ];
 
 if (test) {
