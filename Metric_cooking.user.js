@@ -30,6 +30,19 @@ var maxError     = 0.03;
 var numUnitSpace = '\u202F';    // thin space
 var test         = true;
 
+var ingredients = {
+    'flour': [/flour/, 0.58]
+};
+var reIngredient = '';
+for (var ingredient in ingredients) {
+    if (reIngredient)
+        reIngredient += '|';
+    else
+        reIngredient = '(<ingredient>';
+    reIngredient += '(<' + ingredient + '>\\b' + ingredients[ingredient][0].source + '\\b)';
+}
+reIngredient += ')';
+
 function round(x){
     var fs = [100000, 50000, 10000, 5000, 1000, 500, 100, 50, 10, 5, 1];
     var newx;
@@ -123,7 +136,13 @@ function parseUnit(match) {
     return undefined;
 }
 
-var reAll = reNumber + '(\\s+|-)' + reUnit;
+function parseIngredient(match) {
+    for (var i in ingredients)
+        if (match.group(i))
+            return i;
+}
+
+var reAll = reNumber + '(\\s+|-)' + reUnit + '(\\s+' + reIngredient + ')?';
 var re = namedGroupRegExp(reAll, 'g');
 
 function convert(amount, unit) {
@@ -150,6 +169,14 @@ function replaceUnits(match) {
     var newAmount = converted.amount;
     var newUnit = converted.unit;
 
+    if (match.group('ingredient')) {
+        var ingredient = parseIngredient(match);
+        if (newUnit == 'ml') {
+            newAmount = newAmount * ingredients[ingredient][1];
+            newUnit = 'g';
+        }
+    }
+
     newAmount = round(newAmount);
     var scaled = scale(newAmount, newUnit);
     newAmount = scaled.amount;
@@ -171,7 +198,8 @@ var tests = [
     ['1 stick, plus 1 tb, unsalted butter', '1 stick [110 g], plus 1 tb [15 ml], unsalted butter'],
     ['8 ounces spaghetti (or other) pasta', '8 ounces [230 g] spaghetti (or other) pasta'],
     ['2 Tbsp olive oil', '2 Tbsp [30 ml] olive oil'],
-    ['at least 4 quarts of water', 'at least 4 quarts [3.8 l] of water']
+    ['at least 4 quarts of water', 'at least 4 quarts [3.8 l] of water'],
+    ['2 cups flour', '2 cups flour [270 g]']
 ];
 
 if (test) {
