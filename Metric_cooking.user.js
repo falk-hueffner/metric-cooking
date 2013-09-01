@@ -45,6 +45,7 @@ var ingredients = {
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
     'flour': [/\b(all[- ]purpose |sifted |cake )*flour/, 125/cup_ml], // ~20081~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
+    'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
     'mustard': [/\b(Dijon )?mustard/, 249/cup_ml], // ~02046~
     'parmesan': [/\b(finely |freshly |grated |shredded )*[Pp]armesan(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'peanut butter': [/\b(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
@@ -356,7 +357,8 @@ var tests = [
     ['scrubbed and cut into 1/2-inch to 3/4-inch cubes', 'scrubbed and cut into 1/2-inch to 3/4-inch [1.3–1.9 cm] cubes'],
     ['1/4 cup corn syrup', '1/4 cup corn syrup [85 g]'],
     ['1 pint cherry tomatoes', '1 pint [475 g] cherry tomatoes'],
-    ['Preheat oven to 450° F.', 'Preheat oven to 450° F [230 °C].']
+    ['Preheat oven to 450° F.', 'Preheat oven to 450° F [230 °C].'],
+    ['1 cup mayonnaise', '1 cup mayonnaise [225 g]']
 ];
 
 if (test) {
