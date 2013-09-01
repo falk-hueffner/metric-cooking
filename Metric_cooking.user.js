@@ -35,6 +35,7 @@ var tbsp_ml = 14.8;
 var tsp_ml = tbsp_ml/3;
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
+    'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
     'brown sugar': [/(\blight |\bdark |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
@@ -363,7 +364,8 @@ var tests = [
     // ['28 1/3-inch-thick diagonal bread slices', '28 1/3-inch [9 mm]-thick diagonal bread slices']
     ['1/2 cup low-fat yogurt (preferably Greek)', '1/2 cup low-fat yogurt [125 g] (preferably Greek)'],
     ['6 Tablespoons rice vinegar', '6 Tablespoons [90 ml] rice vinegar'],
-    ['1/4 cup parmigiano reggiano (grated)', '1/4 cup parmigiano reggiano [25 g] (grated)']
+    ['1/4 cup parmigiano reggiano (grated)', '1/4 cup parmigiano reggiano [25 g] (grated)'],
+    ['1 cup asparagus (cleaned)', '1 cup asparagus [130 g] (cleaned)']
 ];
 
 if (test) {
