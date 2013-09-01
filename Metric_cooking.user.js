@@ -36,6 +36,7 @@ var tsp_ml = 14.8/3;
 var ingredients = {
     'baking soda': [/baking soda/, 4.6/tsp_ml], // ~18372~
     'brown sugar': [/(dark )?brown sugar/, 220/cup_ml], // ~19334~ (packed)
+    'butter': [/(unsalted )?butter/, 113/cup_ml], // ~01145~
     'cocoa': [/(unsweetened )?cocoa/, 86/cup_ml], // ~19165~
     'flour': [/flour/, 125/cup_ml], // ~20081~
     'pine nuts': [/pine nuts/, 135/cup_ml], // ~12147~
@@ -212,7 +213,7 @@ var tests = [
     ['2 cups dark brown sugar', '2 cups dark brown sugar [450 g]'],
     ['1/4 cup pine nuts', '1/4 cup pine nuts [34 g]'],
     ['1 lb semi-sweet chocolate chips', '1 lb [450 g] semi-sweet chocolate chips'],
-    ['1/2 C butter', '1/2 C [120 ml] butter']
+    ['1/2 C butter', '1/2 C butter [55 g]']
 ];
 
 if (test) {
