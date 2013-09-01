@@ -58,7 +58,7 @@ var ingredients = {
     'powdered sugar': [/\b(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
     'ricotta': [/\b(fresh )?ricotta/, 246/cup_ml], // ~01036~
     'salt': [/\bsalt/, 292/cup_ml], // ~02047~
-    'short-grain rice': [/\b(short-grain |Arborio )+rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
+    'short-grain rice': [/\b(short-grain(ed)? |Arborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'spinach': [/\bspinach/, 30/cup_ml], // ~11457~ (raw)
     'sugar': [/\bsugar/, 200/cup_ml], // ~19335~
     'tomato paste': [/\btomato paste/, 262/cup_ml], // ~11546~
@@ -381,7 +381,8 @@ var tests = [
     ['½ cup orange marmalade', '½ cup orange marmalade [160 g]'],
     ['1 lb. lentils – regular or De Puy variety', '1 lb. [450 g] lentils – regular or De Puy variety'],
     ['3 cups canned chickpeas, divided', '3 cups canned chickpeas [450 g], divided'],
-    ['2 tablespoons tomato paste', '2 tablespoons tomato paste [33 g]']
+    ['2 tablespoons tomato paste', '2 tablespoons tomato paste [33 g]'],
+    ['3 cups short-grain brown rice', '3 cups short-grain brown rice [600 g]']
 ];
 
 if (test) {
