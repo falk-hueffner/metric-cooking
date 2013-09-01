@@ -49,6 +49,7 @@ var ingredients = {
     'peanut butter': [/\b(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'pine nuts': [/\bpine nuts/, 135/cup_ml], // ~12147~
     'powdered sugar': [/\b(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
+    'short-grain rice': [/\b(short-grain |Arborio )*rice/, 200/cup_ml], // ~20052~
     'ricotta': [/\b(fresh )?ricotta/, 246/cup_ml], // ~01036~
     'salt': [/\bsalt/, 292/cup_ml], // ~02047~
     'sugar': [/\bsugar/, 200/cup_ml], // ~19335~
@@ -292,7 +293,8 @@ var tests = [
     ['2 tablespoons cold butter', '2 tablespoons cold butter [14 g]'],
     ['Heat oil in a 5- to 6-quart heavy pot', 'Heat oil in a 5- to 6-quart [5.75 l] heavy pot'],
     ['1 3/4 cups (packed) brown sugar', '1 3/4 cups (packed) brown sugar [375 g]'],
-    ['1 cup plain yogurt', '1 cup plain yogurt [250 g]']
+    ['1 cup plain yogurt', '1 cup plain yogurt [250 g]'],
+    ['1 1/2 cups Arborio rice', '1 1/2 cups Arborio rice [300 g]']
 ];
 
 if (test) {
