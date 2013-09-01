@@ -34,12 +34,12 @@ var cup_ml = 236.5882365;
 var tsp_ml = 14.8/3;
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
-    'flour':       [/flour/, 125/cup_ml],              // ~20081~
+    'baking soda': [/baking soda/, 4.6/tsp_ml], // ~18372~
     'brown sugar': [/(dark )?brown sugar/, 220/cup_ml], // ~19334~ (packed)
-    'cocoa':       [/(unsweetened )?cocoa/, 86/cup_ml], // ~19165~
-    'baking soda': [/baking soda/, 4.6/tsp_ml],         // ~18372~
-    'powdered sugar': [/(powdered|confectioners['’]) sugar/, 120/cup_ml], // ~19336~ (unsifted)
-    'pine nuts': [/pine nuts/, 135/cup_ml] // ~12147~
+    'cocoa': [/(unsweetened )?cocoa/, 86/cup_ml], // ~19165~
+    'flour': [/flour/, 125/cup_ml], // ~20081~
+    'pine nuts': [/pine nuts/, 135/cup_ml], // ~12147~
+    'powdered sugar': [/(powdered|confectioners['’]) sugar/, 120/cup_ml] // ~19336~ (unsifted)
 };
 var reIngredient = '';
 for (var ingredient in ingredients) {
