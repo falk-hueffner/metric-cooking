@@ -99,9 +99,6 @@ var re = namedGroupRegExp(reAll, 'g');
 function convert(amount, unit) {
     var newUnit = units[unit][1];
     var newAmount = amount * units[unit][2];
-
-    if (unit == 'fahrenheit')
-	newAmount = (amount - 32) * (5/9);
     return {amount: newAmount, unit: newUnit};
 }
 
