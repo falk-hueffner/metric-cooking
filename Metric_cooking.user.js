@@ -44,7 +44,7 @@ for (var ingredient in ingredients) {
 reIngredient += ')';
 
 function round(x){
-    var fs = [100000, 50000, 10000, 5000, 1000, 500, 100, 50, 10, 5, 1];
+    var fs = [100000, 50000, 25000, 10000, 5000, 2500, 1000, 500, 250, 100, 50, 25, 10, 5, 1];
     var newx;
     for (var f in fs) {
         newx = Math.round(x / fs[f]) * fs[f];
@@ -189,17 +189,17 @@ function replaceUnits(match) {
 
 var tests = [
     ['1 cup Guinness', '1 cup [240 ml] Guinness'],
-    ['3/4 cup unsweetened cocoa', '3/4 cup [180 ml] unsweetened cocoa'],
+    ['3/4 cup unsweetened cocoa', '3/4 cup [175 ml] unsweetened cocoa'],
     ['1 1/4 cups confectioners’ sugar', '1 1/4 cups [300 ml] confectioners’ sugar'],
     ['1 tb vanilla extract', '1 tb [15 ml] vanilla extract'],
     ['chopped into 1-inch chunks', 'chopped into 1-inch [2.5 cm] chunks'],
     ['2 1/2 tsp baking soda', '2 1/2 tsp [12 ml] baking soda'],
-    ['8 oz cream cheese', '8 oz [230 g] cream cheese'],
+    ['8 oz cream cheese', '8 oz [225 g] cream cheese'],
     ['1 stick, plus 1 tb, unsalted butter', '1 stick [110 g], plus 1 tb [15 ml], unsalted butter'],
-    ['8 ounces spaghetti (or other) pasta', '8 ounces [230 g] spaghetti (or other) pasta'],
+    ['8 ounces spaghetti (or other) pasta', '8 ounces [225 g] spaghetti (or other) pasta'],
     ['2 Tbsp olive oil', '2 Tbsp [30 ml] olive oil'],
-    ['at least 4 quarts of water', 'at least 4 quarts [3.8 l] of water'],
-    ['2 cups flour', '2 cups flour [270 g]']
+    ['at least 4 quarts of water', 'at least 4 quarts [3.75 l] of water'],
+    ['2 cups flour', '2 cups flour [275 g]']
 ];
 
 if (test) {
