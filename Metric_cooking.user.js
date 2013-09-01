@@ -103,7 +103,7 @@ function namedGroupRegExp(regexp, modifiers) {
 var units = {
     'cup':        [/\b(cups?|C)\b/,   'ml', 236.5882365  ],
     'inch':       [/\binch\b/,        'mm',  25.6        ],
-    'ounce':      [/\b(oz|ounces)\b/, 'g',   28.349523125],
+    'ounce':      [/\b(oz|ounces?)\b/, 'g',   28.349523125],
     'pound':      [/\blb\b/,          'g',  453.59237    ],
     'quart':      [/\bquarts\b/,      'ml', 946.352946   ],
     'stick':      [/\bstick\b/,       'g', 4*28.349523125],
@@ -220,7 +220,8 @@ var tests = [
     ['2 T cocoa powder', '2 T cocoa powder [11 g]'],
     ['2/3 C smooth peanut butter', '2/3 C smooth peanut butter [175 g]'],
     ['3 tablespoons unsalted butter, melted', '3 tablespoons unsalted butter [21 g], melted'],
-    ['1 teaspoon unflavored gelatin', '1 teaspoon [5 ml] unflavored gelatin']
+    ['1 teaspoon unflavored gelatin', '1 teaspoon [5 ml] unflavored gelatin'],
+    ['from a 1/4-ounce envelope', 'from a 1/4-ounce envelope']
 ];
 
 if (test) {
