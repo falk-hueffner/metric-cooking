@@ -34,10 +34,10 @@ function round(x){
     var fs = [100000, 50000, 10000, 5000, 1000, 500, 100, 50, 10, 5, 1];
     var newx;
     for (var f in fs) {
-	newx = Math.round(x / fs[f]) * fs[f];
-	var error = Math.abs(x - newx);
-	if (error / x < maxError)
-	    return newx;
+        newx = Math.round(x / fs[f]) * fs[f];
+        var error = Math.abs(x - newx);
+        if (error / x < maxError)
+            return newx;
     }
     return newx;
 }
@@ -117,7 +117,7 @@ function parseNumber(match) {
 
 function parseUnit(match) {
     for (var u in units)
-	if (match.group(u))
+        if (match.group(u))
             return u;
     return undefined;
 }
@@ -133,8 +133,8 @@ function convert(amount, unit) {
 
 function scale(amount, unit) {
     if (unit == 'mm' && amount >= 10) {
-	unit = 'cm';
-	amount /= 10;
+        unit = 'cm';
+        amount /= 10;
     }
     return {amount: amount, unit: unit};
 }
