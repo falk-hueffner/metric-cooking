@@ -35,6 +35,7 @@ var tbsp_ml = 14.8;
 var tsp_ml = tbsp_ml/3;
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
+    'crumbled blue cheese': [/\bcrumbled blue cheese/, 135/cup_ml], // ~01004~
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
@@ -393,7 +394,8 @@ var tests = [
     ['1 cup basmati rice', '1 cup basmati rice [190 g]'],
     ['1 1/2 cups unbleached all-purpose flour', '1 1/2 cups unbleached all-purpose flour [190 g]'],
     ['3/4 cup plus 2 tablespoons packed light-brown sugar', '3/4 cup [175 ml] plus 2 tablespoons packed light-brown sugar [28 g]'],
-    ['1 cup blackberries', '1 cup blackberries [140 g]']
+    ['1 cup blackberries', '1 cup blackberries [140 g]'],
+    ['Dump in 1/2 cup crumbled blue cheese', 'Dump in 1/2 cup crumbled blue cheese [68 g]']
 ];
 
 if (test) {
