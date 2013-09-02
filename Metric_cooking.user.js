@@ -58,7 +58,7 @@ var ingredients = {
     'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
     'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
     'mustard': [/\b(Dijon )?mustard/, 249/cup_ml], // ~02046~
-    'parmesan': [/\b(finely |freshly |grated |shredded )*([Pp]armesan|[Pp]armigiano [Rr]eggiano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
+    'parmesan': [/\b(finely |freshly |grated |shredded )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'peanut butter': [/\b(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'pecans': [/\bpecans/, 99/cup_ml], // ~12142~ (halves)
     'pine nuts': [/\bpine nuts/, 135/cup_ml], // ~12147~
@@ -416,7 +416,8 @@ var tests = [
     ['1 cup long-grain white rice', '1 cup long-grain white rice [190 g]'],
     ['Add 1/3 cup finely chopped shallots to the saucepan.', 'Add 1/3 cup finely chopped shallots [53 g] to the saucepan.'],
     ['1/4 cup minced fresh Italian parsley', '1/4 cup minced fresh Italian parsley [15 g]'],
-    ['1 1/4 cups aged white cheddar', '1 1/4 cups aged white cheddar [140 g]']
+    ['1 1/4 cups aged white cheddar', '1 1/4 cups aged white cheddar [140 g]'],
+    ['2/3 cup freshly grated Parmigiano-Reggiano', '2/3 cup freshly grated Parmigiano-Reggiano [65 g]']
 ];
 
 if (test) {
