@@ -63,6 +63,7 @@ var ingredients = {
     'ricotta': [/\b(fresh )?ricotta/, 246/cup_ml], // ~01036~
     'salt': [/\bsalt/, 292/cup_ml], // ~02047~
     'short-grain rice': [/\b(short[- ]grain(ed)? |Arborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
+    'shredded mozzarella': [/\bshredded mozzarella( cheese)?/, 112/cup_ml], // ~01026~
     'spinach': [/\bspinach/, 30/cup_ml], // ~11457~ (raw)
     'sugar': [/\b(granulated )?sugar/, 200/cup_ml], // ~19335~
     'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
@@ -402,7 +403,8 @@ var tests = [
     ['1/4 cup firmly packed light brown sugar', '1/4 cup firmly packed light brown sugar [55 g]'],
     ['1/2 cup sun-dried tomatoes', '1/2 cup sun-dried tomatoes [27 g]'],
     ['2 cups long grain rice', '2 cups long grain rice [375 g]'],
-    ['3/4 cup pecans, toasted', '3/4 cup pecans [75 g], toasted']
+    ['3/4 cup pecans, toasted', '3/4 cup pecans [75 g], toasted'],
+    ['1/3 cup shredded mozzarella cheese', '1/3 cup shredded mozzarella cheese [37 g]']
 ];
 
 if (test) {
