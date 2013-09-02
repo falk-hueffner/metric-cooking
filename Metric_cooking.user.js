@@ -73,6 +73,7 @@ var ingredients = {
     'spinach': [/\bspinach/, 30/cup_ml], // ~11457~ (raw)
     'sugar': [/\b(granulated )?sugar/, 200/cup_ml], // ~19335~
     'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
+    'swiss cheese': [/\b(grated |shredded )*Swiss cheese/, 108/cup_ml], // ~01040~
     'tomato paste': [/\btomato paste/, 262/cup_ml], // ~11546~
     'yogurt': [/\b(plain |low-fat )*yogurt/, 245/cup_ml] // ~01116~
 };
@@ -420,7 +421,8 @@ var tests = [
     ['1 1/4 cups aged white cheddar', '1 1/4 cups aged white cheddar [140 g]'],
     ['2/3 cup freshly grated Parmigiano-Reggiano', '2/3 cup freshly grated Parmigiano-Reggiano [65 g]'],
     ['2 tablespoons minced fresh flat-leaf parsley leaves', '2 tablespoons minced fresh flat-leaf parsley [8 g] leaves'],
-    ['1 Tablespoon cream cheese, at room temperature', '1 Tablespoon cream cheese [15 g], at room temperature']
+    ['1 Tablespoon cream cheese, at room temperature', '1 Tablespoon cream cheese [15 g], at room temperature'],
+    ['3/4 cup grated Swiss cheese', '3/4 cup grated Swiss cheese [80 g]']
 ];
 
 if (test) {
