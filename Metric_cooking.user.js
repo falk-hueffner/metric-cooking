@@ -431,7 +431,8 @@ var tests = [
     ['1 cup brown rice', '1 cup brown rice [190 g]'],
     ['- 3 Tbsp pinenuts', '- 3 Tbsp pinenuts [25 g]'],
     ['combine 2 tablespoons softened butter', 'combine 2 tablespoons softened butter [14 g]'],
-    ['2/3 cup feta cheese', '2/3 cup feta cheese [100 g]']
+    ['2/3 cup feta cheese', '2/3 cup feta cheese [100 g]'],
+    ['1 3- to 4-ounce wedge blue cheese', '1 3- to 4-ounce [85–110 g] wedge blue cheese']
 ];
 
 if (test) {
