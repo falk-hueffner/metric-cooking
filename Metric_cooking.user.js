@@ -43,7 +43,7 @@ var ingredients = {
     'brown sugar': [/(\blight[ -]|\bdark |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
     'butter': [/\b((un)?salted |chilled |cold )*butter/, 113/cup_ml], // ~01145~
     'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
-    'cocoa': [/\b(unsweetened |Dutch-processed )*cocoa( powder)?/, 86/cup_ml], // ~19165~
+    'cocoa': [/\b(unsweetened |Dutch[- ]process(ed)? )*cocoa( powder)?/, 86/cup_ml], // ~19165~
     'cornstarch': [/\bcornstarch/, 128/cup_ml], // ~20027~
     'cottage cheese': [/\b(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
     'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
@@ -395,7 +395,8 @@ var tests = [
     ['1 1/2 cups unbleached all-purpose flour', '1 1/2 cups unbleached all-purpose flour [190 g]'],
     ['3/4 cup plus 2 tablespoons packed light-brown sugar', '3/4 cup [175 ml] plus 2 tablespoons packed light-brown sugar [28 g]'],
     ['1 cup blackberries', '1 cup blackberries [140 g]'],
-    ['Dump in 1/2 cup crumbled blue cheese', 'Dump in 1/2 cup crumbled blue cheese [68 g]']
+    ['Dump in 1/2 cup crumbled blue cheese', 'Dump in 1/2 cup crumbled blue cheese [68 g]'],
+    ['3/4 cup unsweetened Dutch process cocoa powder', '3/4 cup unsweetened Dutch process cocoa powder [65 g]']
 ];
 
 if (test) {
