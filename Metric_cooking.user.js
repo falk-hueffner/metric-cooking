@@ -35,6 +35,7 @@ var tbsp_ml = 14.8;
 var tsp_ml = tbsp_ml/3;
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
+    'feta': [/\b(crumbled )?feta( cheese)?/, 150/cup_ml], // ~01019~
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
@@ -429,7 +430,8 @@ var tests = [
     ['1 1/2 cups icing sugar', '1 1/2 cups icing sugar [175 g]'],
     ['1 cup brown rice', '1 cup brown rice [190 g]'],
     ['- 3 Tbsp pinenuts', '- 3 Tbsp pinenuts [25 g]'],
-    ['combine 2 tablespoons softened butter', 'combine 2 tablespoons softened butter [14 g]']
+    ['combine 2 tablespoons softened butter', 'combine 2 tablespoons softened butter [14 g]'],
+    ['2/3 cup feta cheese', '2/3 cup feta cheese [100 g]']
 ];
 
 if (test) {
