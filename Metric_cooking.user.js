@@ -165,7 +165,7 @@ reUnit += ')';
 
 var reReal      = /(<real>\d+(\.\d+)?)/.source;
 var reFracChar  = /(<fracChar>[¼½¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/.source;
-var reFraction  = '(<fraction>(<fracWhole>\\d+\\s+)?(((<fracNum>\\d+)/(<fracDen>\\d+))|' + reFracChar +'))';
+var reFraction  = '(<fraction>(<fracWhole>\\d+(\\s+|-))?(((<fracNum>\\d+)/(<fracDen>\\d+))|' + reFracChar +'))';
 var reNumber = '(<number>' + reReal + '|' + reFraction + ')';
 
 function parseNumber(match, prefix) {
@@ -423,7 +423,8 @@ var tests = [
     ['2 tablespoons minced fresh flat-leaf parsley leaves', '2 tablespoons minced fresh flat-leaf parsley [8 g] leaves'],
     ['1 Tablespoon cream cheese, at room temperature', '1 Tablespoon cream cheese [15 g], at room temperature'],
     ['3/4 cup grated Swiss cheese', '3/4 cup grated Swiss cheese [80 g]'],
-    ['2 cups ricotta cheese', '2 cups ricotta cheese [500 g]']
+    ['2 cups ricotta cheese', '2 cups ricotta cheese [500 g]'],
+    ['1-1/2 to 2 cups freshly grated Romano cheese', '1-1/2 to 2 cups freshly grated Romano cheese [150–200 g]']
 ];
 
 if (test) {
