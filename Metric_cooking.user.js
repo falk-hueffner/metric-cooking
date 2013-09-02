@@ -63,7 +63,7 @@ var ingredients = {
     'powdered sugar': [/\b(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
     'raisins': [/\braisins/, 165/cup_ml], // ~09298~ (packed)
     'ricotta': [/\b(fresh )?ricotta/, 246/cup_ml], // ~01036~
-    'salt': [/\bsalt/, 292/cup_ml], // ~02047~
+    'salt': [/\b(table )?salt/, 292/cup_ml], // ~02047~
     'short-grain rice': [/\b(short[- ]grain(ed)? |Arborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'shredded mozzarella': [/\bshredded mozzarella( cheese)?/, 112/cup_ml], // ~01026~
     'spinach': [/\bspinach/, 30/cup_ml], // ~11457~ (raw)
@@ -408,7 +408,8 @@ var tests = [
     ['3/4 cup pecans, toasted', '3/4 cup pecans [75 g], toasted'],
     ['1/3 cup shredded mozzarella cheese', '1/3 cup shredded mozzarella cheese [37 g]'],
     ['1/4 cup of honey', '1/4 cup of honey [85 g]'],
-    ['1/2 cup raisins', '1/2 cup raisins [83 g]']
+    ['1/2 cup raisins', '1/2 cup raisins [83 g]'],
+    ['2 teaspoons kosher salt or 1 teaspoon table salt', '2 teaspoons [10 ml] kosher salt or 1 teaspoon table salt [6 g]']
 ];
 
 if (test) {
