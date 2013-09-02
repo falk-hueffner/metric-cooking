@@ -40,7 +40,7 @@ var ingredients = {
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
     'blackberries': [/\bblackberries/, 144/cup_ml], // ~09042~
     'brown sugar': [/(\blight[ -]|\bdark |firmly |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
-    'butter': [/\b((un)?salted |chilled |cold )*butter/, 113/cup_ml], // ~01145~
+    'butter': [/\b((un)?salted |chilled |cold |softened )*butter/, 113/cup_ml], // ~01145~
     'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
     'cheddar': [/(shredded |aged |white )*cheddar/, 113/cup_ml], // ~01009~
     'chopped parsley': [/(chopped |minced |fresh |Italian |flat-leaf )*parsley/, 60/cup_ml], // ~11297~
@@ -428,7 +428,8 @@ var tests = [
     ['Begin the assembly by preheating the oven to 375ºF', 'Begin the assembly by preheating the oven to 375ºF [190 °C]'],
     ['1 1/2 cups icing sugar', '1 1/2 cups icing sugar [175 g]'],
     ['1 cup brown rice', '1 cup brown rice [190 g]'],
-    ['- 3 Tbsp pinenuts', '- 3 Tbsp pinenuts [25 g]']
+    ['- 3 Tbsp pinenuts', '- 3 Tbsp pinenuts [25 g]'],
+    ['combine 2 tablespoons softened butter', 'combine 2 tablespoons softened butter [14 g]']
 ];
 
 if (test) {
