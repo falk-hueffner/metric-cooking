@@ -64,7 +64,7 @@ var ingredients = {
     'pecans': [/\bpecans/, 99/cup_ml], // ~12142~ (halves)
     'pine nuts': [/\bpine nuts/, 135/cup_ml], // ~12147~
     'pistachio': [/\bpistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
-    'powdered sugar': [/\b(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
+    'powdered sugar': [/\b(powdered|confectioners['’]?|icing) sugar/, 120/cup_ml], // ~19336~ (unsifted)
     'raisins': [/\braisins/, 165/cup_ml], // ~09298~ (packed)
     'ricotta': [/\b(fresh )?ricotta( cheese)?/, 246/cup_ml], // ~01036~
     'salt': [/\b(table )?salt/, 292/cup_ml], // ~02047~
@@ -425,7 +425,8 @@ var tests = [
     ['3/4 cup grated Swiss cheese', '3/4 cup grated Swiss cheese [80 g]'],
     ['2 cups ricotta cheese', '2 cups ricotta cheese [500 g]'],
     ['1-1/2 to 2 cups freshly grated Romano cheese', '1-1/2 to 2 cups freshly grated Romano cheese [150–200 g]'],
-    ['Begin the assembly by preheating the oven to 375ºF', 'Begin the assembly by preheating the oven to 375ºF [190 °C]']
+    ['Begin the assembly by preheating the oven to 375ºF', 'Begin the assembly by preheating the oven to 375ºF [190 °C]'],
+    ['1 1/2 cups icing sugar', '1 1/2 cups icing sugar [175 g]']
 ];
 
 if (test) {
