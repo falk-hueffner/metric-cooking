@@ -51,7 +51,7 @@ var ingredients = {
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
     'flour': [/\b(all[- ]purpose |sifted |cake |unbleached )*flour/, 125/cup_ml], // ~20081~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
-    'long-grain rice': [/\b(long-grain(ed)? |[Bb]asmati )+(brown )?rice(?! vinegar| crispies| flour)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
+    'long-grain rice': [/\b(long[- ]grain(ed)? |[Bb]asmati )+(brown )?rice(?! vinegar| crispies| flour)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
     'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
     'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
     'mustard': [/\b(Dijon )?mustard/, 249/cup_ml], // ~02046~
@@ -62,7 +62,7 @@ var ingredients = {
     'powdered sugar': [/\b(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
     'ricotta': [/\b(fresh )?ricotta/, 246/cup_ml], // ~01036~
     'salt': [/\bsalt/, 292/cup_ml], // ~02047~
-    'short-grain rice': [/\b(short-grain(ed)? |Arborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
+    'short-grain rice': [/\b(short[- ]grain(ed)? |Arborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'spinach': [/\bspinach/, 30/cup_ml], // ~11457~ (raw)
     'sugar': [/\b(granulated )?sugar/, 200/cup_ml], // ~19335~
     'tomato paste': [/\btomato paste/, 262/cup_ml], // ~11546~
@@ -399,7 +399,9 @@ var tests = [
     ['Dump in 1/2 cup crumbled blue cheese', 'Dump in 1/2 cup crumbled blue cheese [68 g]'],
     ['3/4 cup unsweetened Dutch process cocoa powder', '3/4 cup unsweetened Dutch process cocoa powder [65 g]'],
     ['1/4 cup firmly packed light brown sugar', '1/4 cup firmly packed light brown sugar [55 g]'],
-    ['1/2 cup sun-dried tomatoes', '1/2 cup sun-dried tomatoes [27 g]']
+    ['1/2 cup sun-dried tomatoes', '1/2 cup sun-dried tomatoes [27 g]'],
+    ['2 cups long grain rice', '2 cups long grain rice [375 g]']
+     
 ];
 
 if (test) {
