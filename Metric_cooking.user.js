@@ -62,7 +62,7 @@ var ingredients = {
     'parmesan': [/\b(finely |freshly |grated |shredded )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano|[Rr]omano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'peanut butter': [/\b(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'pecans': [/\bpecans/, 99/cup_ml], // ~12142~ (halves)
-    'pine nuts': [/\bpine nuts/, 135/cup_ml], // ~12147~
+    'pine nuts': [/\bpine ?nuts/, 135/cup_ml], // ~12147~
     'pistachio': [/\bpistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
     'powdered sugar': [/\b(powdered|confectioners['’]?|icing) sugar/, 120/cup_ml], // ~19336~ (unsifted)
     'raisins': [/\braisins/, 165/cup_ml], // ~09298~ (packed)
@@ -427,7 +427,8 @@ var tests = [
     ['1-1/2 to 2 cups freshly grated Romano cheese', '1-1/2 to 2 cups freshly grated Romano cheese [150–200 g]'],
     ['Begin the assembly by preheating the oven to 375ºF', 'Begin the assembly by preheating the oven to 375ºF [190 °C]'],
     ['1 1/2 cups icing sugar', '1 1/2 cups icing sugar [175 g]'],
-    ['1 cup brown rice', '1 cup brown rice [190 g]']
+    ['1 cup brown rice', '1 cup brown rice [190 g]'],
+    ['- 3 Tbsp pinenuts', '- 3 Tbsp pinenuts [25 g]']
 ];
 
 if (test) {
