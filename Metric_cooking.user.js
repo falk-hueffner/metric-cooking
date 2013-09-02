@@ -48,6 +48,7 @@ var ingredients = {
     'cocoa': [/\b(unsweetened |Dutch[- ]process(ed)? )*cocoa( powder)?/, 86/cup_ml], // ~19165~
     'cornstarch': [/\bcornstarch/, 128/cup_ml], // ~20027~
     'cottage cheese': [/\b(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
+    'cream cheese': [/cream cheese/, 232/cup_ml], // ~01017~
     'crumbled blue cheese': [/\bcrumbled blue cheese/, 135/cup_ml], // ~01004~
     'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
@@ -308,7 +309,7 @@ var tests = [
     ['1 tb vanilla extract', '1 tb [15 ml] vanilla extract'],
     ['chopped into 1-inch chunks', 'chopped into 1-inch [2.5 cm] chunks'],
     ['2 1/2 tsp baking soda', '2 1/2 tsp baking soda [12 g]'],
-    ['8 oz cream cheese', '8 oz [225 g] cream cheese'],
+    ['8 oz cream cheese', '8 oz cream cheese [225 g]'],
     ['1 stick, plus 1 tb, unsalted butter', '1 stick [110 g], plus 1 tb [15 ml], unsalted butter'],
     ['8 ounces spaghetti (or other) pasta', '8 ounces [225 g] spaghetti (or other) pasta'],
     ['2 Tbsp olive oil', '2 Tbsp [30 ml] olive oil'],
@@ -418,7 +419,8 @@ var tests = [
     ['1/4 cup minced fresh Italian parsley', '1/4 cup minced fresh Italian parsley [15 g]'],
     ['1 1/4 cups aged white cheddar', '1 1/4 cups aged white cheddar [140 g]'],
     ['2/3 cup freshly grated Parmigiano-Reggiano', '2/3 cup freshly grated Parmigiano-Reggiano [65 g]'],
-    ['2 tablespoons minced fresh flat-leaf parsley leaves', '2 tablespoons minced fresh flat-leaf parsley [8 g] leaves']
+    ['2 tablespoons minced fresh flat-leaf parsley leaves', '2 tablespoons minced fresh flat-leaf parsley [8 g] leaves'],
+    ['1 Tablespoon cream cheese, at room temperature', '1 Tablespoon cream cheese [15 g], at room temperature']
 ];
 
 if (test) {
