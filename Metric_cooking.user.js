@@ -35,7 +35,6 @@ var tbsp_ml = 14.8;
 var tsp_ml = tbsp_ml/3;
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
-    'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
@@ -57,6 +56,7 @@ var ingredients = {
     'mustard': [/\b(Dijon )?mustard/, 249/cup_ml], // ~02046~
     'parmesan': [/\b(finely |freshly |grated |shredded )*([Pp]armesan|[Pp]armigiano [Rr]eggiano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'peanut butter': [/\b(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
+    'pecans': [/\bpecans/, 99/cup_ml], // ~12142~ (halves)
     'pine nuts': [/\bpine nuts/, 135/cup_ml], // ~12147~
     'pistachio': [/\bpistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
     'powdered sugar': [/\b(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
@@ -65,6 +65,7 @@ var ingredients = {
     'short-grain rice': [/\b(short[- ]grain(ed)? |Arborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'spinach': [/\bspinach/, 30/cup_ml], // ~11457~ (raw)
     'sugar': [/\b(granulated )?sugar/, 200/cup_ml], // ~19335~
+    'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
     'tomato paste': [/\btomato paste/, 262/cup_ml], // ~11546~
     'yogurt': [/\b(plain |low-fat )*yogurt/, 245/cup_ml] // ~01116~
 };
@@ -400,8 +401,8 @@ var tests = [
     ['3/4 cup unsweetened Dutch process cocoa powder', '3/4 cup unsweetened Dutch process cocoa powder [65 g]'],
     ['1/4 cup firmly packed light brown sugar', '1/4 cup firmly packed light brown sugar [55 g]'],
     ['1/2 cup sun-dried tomatoes', '1/2 cup sun-dried tomatoes [27 g]'],
-    ['2 cups long grain rice', '2 cups long grain rice [375 g]']
-     
+    ['2 cups long grain rice', '2 cups long grain rice [375 g]'],
+    ['3/4 cup pecans, toasted', '3/4 cup pecans [75 g], toasted']
 ];
 
 if (test) {
