@@ -66,7 +66,7 @@ var ingredients = {
     'pistachio': [/\bpistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
     'powdered sugar': [/\b(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
     'raisins': [/\braisins/, 165/cup_ml], // ~09298~ (packed)
-    'ricotta': [/\b(fresh )?ricotta/, 246/cup_ml], // ~01036~
+    'ricotta': [/\b(fresh )?ricotta( cheese)?/, 246/cup_ml], // ~01036~
     'salt': [/\b(table )?salt/, 292/cup_ml], // ~02047~
     'short-grain rice': [/\b(short[- ]grain(ed)? |Arborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'shredded mozzarella': [/\bshredded mozzarella( cheese)?/, 112/cup_ml], // ~01026~
@@ -422,7 +422,8 @@ var tests = [
     ['2/3 cup freshly grated Parmigiano-Reggiano', '2/3 cup freshly grated Parmigiano-Reggiano [65 g]'],
     ['2 tablespoons minced fresh flat-leaf parsley leaves', '2 tablespoons minced fresh flat-leaf parsley [8 g] leaves'],
     ['1 Tablespoon cream cheese, at room temperature', '1 Tablespoon cream cheese [15 g], at room temperature'],
-    ['3/4 cup grated Swiss cheese', '3/4 cup grated Swiss cheese [80 g]']
+    ['3/4 cup grated Swiss cheese', '3/4 cup grated Swiss cheese [80 g]'],
+    ['2 cups ricotta cheese', '2 cups ricotta cheese [500 g]']
 ];
 
 if (test) {
