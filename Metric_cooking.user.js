@@ -59,7 +59,7 @@ var ingredients = {
     'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
     'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
     'mustard': [/\b(Dijon )?mustard/, 249/cup_ml], // ~02046~
-    'parmesan': [/\b(finely |freshly |grated |shredded )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
+    'parmesan': [/\b(finely |freshly |grated |shredded )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano|[Rr]omano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'peanut butter': [/\b(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'pecans': [/\bpecans/, 99/cup_ml], // ~12142~ (halves)
     'pine nuts': [/\bpine nuts/, 135/cup_ml], // ~12147~
