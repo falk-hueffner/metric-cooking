@@ -40,7 +40,7 @@ var ingredients = {
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
     'blackberries': [/\bblackberries/, 144/cup_ml], // ~09042~
-    'brown sugar': [/(\blight[ -]|\bdark |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
+    'brown sugar': [/(\blight[ -]|\bdark |firmly |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
     'butter': [/\b((un)?salted |chilled |cold )*butter/, 113/cup_ml], // ~01145~
     'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
     'cocoa': [/\b(unsweetened |Dutch[- ]process(ed)? )*cocoa( powder)?/, 86/cup_ml], // ~19165~
@@ -396,7 +396,8 @@ var tests = [
     ['3/4 cup plus 2 tablespoons packed light-brown sugar', '3/4 cup [175 ml] plus 2 tablespoons packed light-brown sugar [28 g]'],
     ['1 cup blackberries', '1 cup blackberries [140 g]'],
     ['Dump in 1/2 cup crumbled blue cheese', 'Dump in 1/2 cup crumbled blue cheese [68 g]'],
-    ['3/4 cup unsweetened Dutch process cocoa powder', '3/4 cup unsweetened Dutch process cocoa powder [65 g]']
+    ['3/4 cup unsweetened Dutch process cocoa powder', '3/4 cup unsweetened Dutch process cocoa powder [65 g]'],
+    ['1/4 cup firmly packed light brown sugar', '1/4 cup firmly packed light brown sugar [55 g]']
 ];
 
 if (test) {
