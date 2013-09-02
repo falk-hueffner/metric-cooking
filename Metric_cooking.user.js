@@ -42,6 +42,7 @@ var ingredients = {
     'brown sugar': [/(\blight[ -]|\bdark |firmly |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
     'butter': [/\b((un)?salted |chilled |cold )*butter/, 113/cup_ml], // ~01145~
     'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
+    'chopped shallots': [/(finely |chopped )*shallots/, 10.0/tbsp_ml], // ~11677~
     'cocoa': [/\b(unsweetened |Dutch[- ]process(ed)? )*cocoa( powder)?/, 86/cup_ml], // ~19165~
     'cornstarch': [/\bcornstarch/, 128/cup_ml], // ~20027~
     'cottage cheese': [/\b(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
@@ -410,7 +411,8 @@ var tests = [
     ['1/4 cup of honey', '1/4 cup of honey [85 g]'],
     ['1/2 cup raisins', '1/2 cup raisins [83 g]'],
     ['2 teaspoons kosher salt or 1 teaspoon table salt', '2 teaspoons [10 ml] kosher salt or 1 teaspoon table salt [6 g]'],
-    ['1 cup long-grain white rice', '1 cup long-grain white rice [190 g]']
+    ['1 cup long-grain white rice', '1 cup long-grain white rice [190 g]'],
+    ['Add 1/3 cup finely chopped shallots to the saucepan.', 'Add 1/3 cup finely chopped shallots [53 g] to the saucepan.']
 ];
 
 if (test) {
