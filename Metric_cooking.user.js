@@ -49,6 +49,7 @@ var ingredients = {
     'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
     'flour': [/\b(all[- ]purpose |sifted |cake |unbleached )*flour/, 125/cup_ml], // ~20081~
+    'honey': [/\bhoney/, 339/cup_ml], // ~19296~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
     'long-grain rice': [/\b(long[- ]grain(ed)? |[Bb]asmati )+(brown )?rice(?! vinegar| crispies| flour)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
     'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
@@ -60,6 +61,7 @@ var ingredients = {
     'pine nuts': [/\bpine nuts/, 135/cup_ml], // ~12147~
     'pistachio': [/\bpistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
     'powdered sugar': [/\b(powdered|confectioners['’]?) sugar/, 120/cup_ml], // ~19336~ (unsifted)
+    'raisins': [/\braisins/, 165/cup_ml], // ~09298~ (packed)
     'ricotta': [/\b(fresh )?ricotta/, 246/cup_ml], // ~01036~
     'salt': [/\bsalt/, 292/cup_ml], // ~02047~
     'short-grain rice': [/\b(short[- ]grain(ed)? |Arborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
@@ -404,7 +406,9 @@ var tests = [
     ['1/2 cup sun-dried tomatoes', '1/2 cup sun-dried tomatoes [27 g]'],
     ['2 cups long grain rice', '2 cups long grain rice [375 g]'],
     ['3/4 cup pecans, toasted', '3/4 cup pecans [75 g], toasted'],
-    ['1/3 cup shredded mozzarella cheese', '1/3 cup shredded mozzarella cheese [37 g]']
+    ['1/3 cup shredded mozzarella cheese', '1/3 cup shredded mozzarella cheese [37 g]'],
+    ['1/4 cup of honey', '1/4 cup of honey [85 g]'],
+    ['1/2 cup raisins', '1/2 cup raisins [83 g]']
 ];
 
 if (test) {
