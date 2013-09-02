@@ -51,7 +51,7 @@ var ingredients = {
     'flour': [/\b(all[- ]purpose |sifted |cake |unbleached )*flour/, 125/cup_ml], // ~20081~
     'honey': [/\bhoney/, 339/cup_ml], // ~19296~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
-    'long-grain rice': [/\b(long[- ]grain(ed)? |[Bb]asmati )+(brown )?rice(?! vinegar| crispies| flour)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
+    'long-grain rice': [/\b(long[- ]grain(ed)? |[Bb]asmati )+(brown |white )*rice(?! vinegar| crispies| flour)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
     'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
     'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
     'mustard': [/\b(Dijon )?mustard/, 249/cup_ml], // ~02046~
@@ -409,7 +409,8 @@ var tests = [
     ['1/3 cup shredded mozzarella cheese', '1/3 cup shredded mozzarella cheese [37 g]'],
     ['1/4 cup of honey', '1/4 cup of honey [85 g]'],
     ['1/2 cup raisins', '1/2 cup raisins [83 g]'],
-    ['2 teaspoons kosher salt or 1 teaspoon table salt', '2 teaspoons [10 ml] kosher salt or 1 teaspoon table salt [6 g]']
+    ['2 teaspoons kosher salt or 1 teaspoon table salt', '2 teaspoons [10 ml] kosher salt or 1 teaspoon table salt [6 g]'],
+    ['1 cup long-grain white rice', '1 cup long-grain white rice [190 g]']
 ];
 
 if (test) {
