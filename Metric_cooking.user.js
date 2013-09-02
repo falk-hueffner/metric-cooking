@@ -35,7 +35,7 @@ var tbsp_ml = 14.8;
 var tsp_ml = tbsp_ml/3;
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
-    'crumbled blue cheese': [/\bcrumbled blue cheese/, 135/cup_ml], // ~01004~
+    'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
@@ -46,6 +46,7 @@ var ingredients = {
     'cocoa': [/\b(unsweetened |Dutch[- ]process(ed)? )*cocoa( powder)?/, 86/cup_ml], // ~19165~
     'cornstarch': [/\bcornstarch/, 128/cup_ml], // ~20027~
     'cottage cheese': [/\b(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
+    'crumbled blue cheese': [/\bcrumbled blue cheese/, 135/cup_ml], // ~01004~
     'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
     'flour': [/\b(all[- ]purpose |sifted |cake |unbleached )*flour/, 125/cup_ml], // ~20081~
@@ -397,7 +398,8 @@ var tests = [
     ['1 cup blackberries', '1 cup blackberries [140 g]'],
     ['Dump in 1/2 cup crumbled blue cheese', 'Dump in 1/2 cup crumbled blue cheese [68 g]'],
     ['3/4 cup unsweetened Dutch process cocoa powder', '3/4 cup unsweetened Dutch process cocoa powder [65 g]'],
-    ['1/4 cup firmly packed light brown sugar', '1/4 cup firmly packed light brown sugar [55 g]']
+    ['1/4 cup firmly packed light brown sugar', '1/4 cup firmly packed light brown sugar [55 g]'],
+    ['1/2 cup sun-dried tomatoes', '1/2 cup sun-dried tomatoes [27 g]']
 ];
 
 if (test) {
