@@ -142,7 +142,7 @@ function prefixGroups (regexp, prefix) {
 
 var units = {
     'cup':        [/(cups?)\b/   ,   'ml', 236.5882365  ],
-    'fahrenheit': [/(°\s*?|degrees )F(ahrenheit)?/,   '°C', undefined    ],
+    'fahrenheit': [/([°º]\s*?|degrees )F(ahrenheit)?/,   '°C', undefined    ],
     'inch':       [/inch(es)?\b/,   'mm',  25.6        ],
     'ounce':      [/ounces?\b|oz\b\.?/, 'g',   28.349523125],
     'pint':       [/pints?\b/,       'g',  236.5882365*2],
@@ -424,7 +424,8 @@ var tests = [
     ['1 Tablespoon cream cheese, at room temperature', '1 Tablespoon cream cheese [15 g], at room temperature'],
     ['3/4 cup grated Swiss cheese', '3/4 cup grated Swiss cheese [80 g]'],
     ['2 cups ricotta cheese', '2 cups ricotta cheese [500 g]'],
-    ['1-1/2 to 2 cups freshly grated Romano cheese', '1-1/2 to 2 cups freshly grated Romano cheese [150–200 g]']
+    ['1-1/2 to 2 cups freshly grated Romano cheese', '1-1/2 to 2 cups freshly grated Romano cheese [150–200 g]'],
+    ['Begin the assembly by preheating the oven to 375ºF', 'Begin the assembly by preheating the oven to 375ºF [190 °C]']
 ];
 
 if (test) {
