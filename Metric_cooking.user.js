@@ -49,6 +49,7 @@ var ingredients = {
     'cocoa': [/\b(unsweetened |Dutch[- ]process(ed)? )*cocoa( powder)?/, 86/cup_ml], // ~19165~
     'cornstarch': [/\bcornstarch/, 128/cup_ml], // ~20027~
     'cottage cheese': [/\b(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
+    'cranberries': [/\b(fresh |of |or |thawed |frozen )*cranberries/, 100/cup_ml], // ~09078~
     'cream cheese': [/cream cheese/, 232/cup_ml], // ~01017~
     'crumbled blue cheese': [/\bcrumbled blue cheese/, 135/cup_ml], // ~01004~
     'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
@@ -451,7 +452,7 @@ var tests = [
     ['1 1/2 cups raw almonds', '1 1/2 cups raw almonds [220 g]'],
     ['1/2 cup of low-fat feta cheese', '1/2 cup of low-fat feta cheese [75 g]'],
     ['1/4 cup natural peanut butter',  '1/4 cup natural peanut butter [65 g]'],
-    ['1 1/2 cups to 2 cups fresh or frozen cranberries','1 1/2 cups to 2 cups [350–475 ml] fresh or frozen cranberries'],
+    ['1 1/2 cups to 2 cups fresh or frozen cranberries','1 1/2 cups to 2 cups fresh or frozen cranberries [150–200 g]'],
     ['1/2 cup white sugar', '1/2 cup white sugar [100 g]'],
     ['1/2 cup pecan halves',  '1/2 cup pecan halves [50 g]']
 ];
