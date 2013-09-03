@@ -35,7 +35,6 @@ var tbsp_ml = 14.8;
 var tsp_ml = tbsp_ml/3;
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
-    'feta': [/\b(crumbled )?feta( cheese)?/, 150/cup_ml], // ~01019~
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
@@ -53,6 +52,7 @@ var ingredients = {
     'crumbled blue cheese': [/\bcrumbled blue cheese/, 135/cup_ml], // ~01004~
     'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
+    'feta': [/\b(crumbled )?feta( cheese)?/, 150/cup_ml], // ~01019~
     'flour': [/\b(all[- ]purpose |sifted |cake |unbleached )*flour/, 125/cup_ml], // ~20081~
     'honey': [/\bhoney/, 339/cup_ml], // ~19296~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
