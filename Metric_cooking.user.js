@@ -55,6 +55,7 @@ var ingredients = {
     'feta': [/\b(crumbled )?feta( cheese)?/, 150/cup_ml], // ~01019~
     'flour': [/\b(all[- ]purpose |sifted |cake |unbleached )*flour/, 125/cup_ml], // ~20081~
     'honey': [/\bhoney/, 339/cup_ml], // ~19296~
+    'lentils': [/\blentils/, 192/cup_ml], // ~16069~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
     'long-grain rice': [/\b(long[- ]grain(ed)? |[Bb]asmati |[Jj]asmine )?(brown |white )*rice(?! vinegar| crispies| flour)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
     'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
@@ -397,7 +398,7 @@ var tests = [
     ['1 TSP lemon juice', '1 TSP [5 ml] lemon juice'],
     ['1/3 cup cornstarch', '1/3 cup cornstarch [43 g]'],
     ['½ cup orange marmalade', '½ cup orange marmalade [160 g]'],
-    ['1 lb. lentils – regular or De Puy variety', '1 lb. [450 g] lentils – regular or De Puy variety'],
+    ['1 lb. lentils – regular or De Puy variety', '1 lb. lentils [450 g] – regular or De Puy variety'],
     ['3 cups canned chickpeas, divided', '3 cups canned chickpeas [450 g], divided'],
     ['2 tablespoons tomato paste', '2 tablespoons tomato paste [33 g]'],
     ['3 cups short-grain brown rice', '3 cups short-grain brown rice [600 g]'],
@@ -440,7 +441,8 @@ var tests = [
     ['1.5 cups arborio rice', '1.5 cups arborio rice [300 g]'],
     ['1/2 – 1 lb linguine', '1/2 – 1 lb [225–450 g] linguine'],
     ['½ stick cinnamon', '½ stick cinnamon'],
-    ['1 1/4 cups jasmine rice', '1 1/4 cups jasmine rice [225 g]']
+    ['1 1/4 cups jasmine rice', '1 1/4 cups jasmine rice [225 g]'],
+    ['1 cup lentils', '1 cup lentils [190 g]']
 ];
 
 if (test) {
