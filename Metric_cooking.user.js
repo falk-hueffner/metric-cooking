@@ -70,7 +70,7 @@ var ingredients = {
     'raisins': [/\braisins/, 165/cup_ml], // ~09298~ (packed)
     'ricotta': [/\b(fresh )?ricotta( cheese)?/, 246/cup_ml], // ~01036~
     'salt': [/\b(table )?salt/, 292/cup_ml], // ~02047~
-    'short-grain rice': [/\b(short[- ]grain(ed)? |Arborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
+    'short-grain rice': [/\b(short[- ]grain(ed)? |[Aa]rborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'shredded mozzarella': [/\bshredded mozzarella( cheese)?/, 112/cup_ml], // ~01026~
     'spinach': [/\bspinach/, 30/cup_ml], // ~11457~ (raw)
     'sugar': [/\b(granulated )?sugar/, 200/cup_ml], // ~19335~
@@ -436,7 +436,8 @@ var tests = [
     ['2/3 cup feta cheese', '2/3 cup feta cheese [100 g]'],
     ['1 3- to 4-ounce wedge blue cheese', '1 3- to 4-ounce [85–110 g] wedge blue cheese'],
     ['¾ cup wild rice', '¾ cup wild rice [120 g]'],
-    ['1 cup onions, chopped', '1 cup onions, chopped [160 g]']
+    ['1 cup onions, chopped', '1 cup onions, chopped [160 g]'],
+    ['1.5 cups arborio rice', '1.5 cups arborio rice [300 g]']
 ];
 
 if (test) {
