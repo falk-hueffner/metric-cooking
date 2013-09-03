@@ -214,7 +214,7 @@ function parseIngredient(match) {
 var reFrom = '(<from>'
         + prefixGroups(reNumber, 'from') + '-?'
         + prefixGroups(reUnit,   'from') + '?'
-        + '\\s*(-|to|or)\\s*)';
+        + '\\s*(-|–|to|or)\\s*)';
 
 var reAll =
         reFrom + '?'
@@ -437,7 +437,8 @@ var tests = [
     ['1 3- to 4-ounce wedge blue cheese', '1 3- to 4-ounce [85–110 g] wedge blue cheese'],
     ['¾ cup wild rice', '¾ cup wild rice [120 g]'],
     ['1 cup onions, chopped', '1 cup onions, chopped [160 g]'],
-    ['1.5 cups arborio rice', '1.5 cups arborio rice [300 g]']
+    ['1.5 cups arborio rice', '1.5 cups arborio rice [300 g]'],
+    ['1/2 – 1 lb linguine', '1/2 – 1 lb [225–450 g] linguine']
 ];
 
 if (test) {
