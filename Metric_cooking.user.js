@@ -35,6 +35,7 @@ var tbsp_ml = 14.8;
 var tsp_ml = tbsp_ml/3;
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
+    'onions, chopped': [/\b(chopped onions)|(onions, chopped)/, 160/cup_ml], // ~11282~
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
@@ -434,7 +435,8 @@ var tests = [
     ['combine 2 tablespoons softened butter', 'combine 2 tablespoons softened butter [14 g]'],
     ['2/3 cup feta cheese', '2/3 cup feta cheese [100 g]'],
     ['1 3- to 4-ounce wedge blue cheese', '1 3- to 4-ounce [85–110 g] wedge blue cheese'],
-    ['¾ cup wild rice', '¾ cup wild rice [120 g]']
+    ['¾ cup wild rice', '¾ cup wild rice [120 g]'],
+    ['1 cup onions, chopped', '1 cup onions, chopped [160 g]']
 ];
 
 if (test) {
