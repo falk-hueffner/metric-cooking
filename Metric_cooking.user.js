@@ -202,9 +202,10 @@ function parseNumber(match, prefix) {
     return amount;
 }
 
-function parseUnit(match) {
+function parseUnit(match, prefix) {
+    prefix = prefix || '';
     for (var u in units)
-        if (match.group(u))
+        if (match.group(prefix + u))
             return u;
     return undefined;
 }
@@ -221,10 +222,10 @@ var reFrom = '(<from>'
         + '\\s*(-|–|to|or)\\s*)';
 
 var reAll =
-        reFrom + '?'
+        reFrom + '?(<main>'
         + reNumber + '(\\s*|-)'
         + reUnit + '(\\s+(of(\\s+the)?\\s+)?'
-        + reIngredient + ')?';
+        + reIngredient + ')?)';
 var re = namedGroupRegExp(reAll, 'g');
 
 function convert(amount, unit) {
@@ -260,7 +261,8 @@ function replaceUnits(match) {
 
     var fromAmount;
     if (match.group('from')) {
-        converted = convert(parseNumber(match, 'from:'), unit);
+        var fromUnit = match.group('from:unit') ? parseUnit(match, 'from:') : unit;
+        converted = convert(parseNumber(match, 'from:'), fromUnit);
         if (converted.unit == newUnit) {
             fromAmount = converted.amount;
             if (fromAmount >= newAmount) { // "1-1/2"
@@ -268,7 +270,8 @@ function replaceUnits(match) {
             fromAmount = undefined;
             }
         } else {
-            // TODO: convert seperately
+            return re.replace(match.group('from'), replaceUnits)
+                +  re.replace(match.group('main'), replaceUnits);
         }
     }
 
@@ -454,7 +457,8 @@ var tests = [
     ['1/4 cup natural peanut butter',  '1/4 cup natural peanut butter [65 g]'],
     ['1 1/2 cups to 2 cups fresh or frozen cranberries','1 1/2 cups to 2 cups fresh or frozen cranberries [150–200 g]'],
     ['1/2 cup white sugar', '1/2 cup white sugar [100 g]'],
-    ['1/2 cup pecan halves',  '1/2 cup pecan halves [50 g]']
+    ['1/2 cup pecan halves',  '1/2 cup pecan halves [50 g]'],
+    ['6 tablespoons or 3 ounces cold unsalted butter', '6 tablespoons [90 ml] or 3 ounces cold unsalted butter [85 g]']
 ];
 
 if (test) {
