@@ -39,7 +39,7 @@ var ingredients = {
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
     'blackberries': [/\bblackberries/, 144/cup_ml], // ~09042~
-    'brown sugar': [/(\blight[ -]|\bdark |firmly |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
+    'brown sugar': [/(\blight[ -]|\bdark |golden |firmly |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
     'butter': [/\b((un)?salted |chilled |cold |softened )*butter/, 113/cup_ml], // ~01145~
     'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
     'cheddar': [/(shredded |aged |white )*cheddar/, 113/cup_ml], // ~01009~
@@ -442,7 +442,8 @@ var tests = [
     ['1/2 – 1 lb linguine', '1/2 – 1 lb [225–450 g] linguine'],
     ['½ stick cinnamon', '½ stick cinnamon'],
     ['1 1/4 cups jasmine rice', '1 1/4 cups jasmine rice [225 g]'],
-    ['1 cup lentils', '1 cup lentils [190 g]']
+    ['1 cup lentils', '1 cup lentils [190 g]'],
+    ['1 cup (packed) golden brown sugar', '1 cup (packed) golden brown sugar [225 g]']
 ];
 
 if (test) {
