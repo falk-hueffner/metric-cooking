@@ -151,7 +151,7 @@ var units = {
     'pint':       [/pints?\b/,       'g',  236.5882365*2],
     'pound':      [/pounds?\b|lbs?\b\.?/, 'g',  453.59237    ],
     'quart':      [/quarts?\b/,      'ml', 946.352946   ],
-    'stick':      [/sticks?\b/,      'g', 4*28.349523125],
+    'stick':      [/sticks?\b(?!\s+cinnamon)/,      'g', 4*28.349523125],
     'tablespoon': [/[Tt]ablespoons?\b|(T|tb|[Tt]bsp?|TBL)\b\.?/, 'ml',  14.8        ],
     'teaspoon':   [/[Tt]easpoons?\b|(t|tsp|TSP)\b\.?/,       'ml',  14.8/3      ]
 };
@@ -438,7 +438,8 @@ var tests = [
     ['¾ cup wild rice', '¾ cup wild rice [120 g]'],
     ['1 cup onions, chopped', '1 cup onions, chopped [160 g]'],
     ['1.5 cups arborio rice', '1.5 cups arborio rice [300 g]'],
-    ['1/2 – 1 lb linguine', '1/2 – 1 lb [225–450 g] linguine']
+    ['1/2 – 1 lb linguine', '1/2 – 1 lb [225–450 g] linguine'],
+    ['½ stick cinnamon', '½ stick cinnamon']
 ];
 
 if (test) {
