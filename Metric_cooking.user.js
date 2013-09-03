@@ -76,6 +76,7 @@ var ingredients = {
     'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
     'swiss cheese': [/\b(grated |shredded )*Swiss cheese/, 108/cup_ml], // ~01040~
     'tomato paste': [/\btomato paste/, 262/cup_ml], // ~11546~
+    'wild rice': [/\bwild rice/, 160/cup_ml], // ~20088~
     'yogurt': [/\b(plain |low-fat )*yogurt/, 245/cup_ml] // ~01116~
 };
 var reIngredient = '';
@@ -432,7 +433,8 @@ var tests = [
     ['- 3 Tbsp pinenuts', '- 3 Tbsp pinenuts [25 g]'],
     ['combine 2 tablespoons softened butter', 'combine 2 tablespoons softened butter [14 g]'],
     ['2/3 cup feta cheese', '2/3 cup feta cheese [100 g]'],
-    ['1 3- to 4-ounce wedge blue cheese', '1 3- to 4-ounce [85–110 g] wedge blue cheese']
+    ['1 3- to 4-ounce wedge blue cheese', '1 3- to 4-ounce [85–110 g] wedge blue cheese'],
+    ['¾ cup wild rice', '¾ cup wild rice [120 g]']
 ];
 
 if (test) {
