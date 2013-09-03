@@ -35,6 +35,7 @@ var tbsp_ml = 14.8;
 var tsp_ml = tbsp_ml/3;
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
+    'almonds': [/\b(blanched |raw )*almonds/, 144/cup_ml], // average of ~12061~ (143) and ~12062~ (145)
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
@@ -446,7 +447,8 @@ var tests = [
     ['1 cup lentils', '1 cup lentils [190 g]'],
     ['1 cup (packed) golden brown sugar', '1 cup (packed) golden brown sugar [225 g]'],
     ['1½ pounds sweet potatoes (1lb 11oz)', '1½ pounds [700 g] sweet potatoes (1lb [450 g] 11oz [310 g])'],
-    ['¼ cup pure maple syrup','¼ cup pure maple syrup [80 g]']
+    ['¼ cup pure maple syrup','¼ cup pure maple syrup [80 g]'],
+    ['1 1/2 cups raw almonds', '1 1/2 cups raw almonds [220 g]']
 ];
 
 if (test) {
