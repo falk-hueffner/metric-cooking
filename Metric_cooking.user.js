@@ -65,7 +65,7 @@ var ingredients = {
     'mustard': [/\b(Dijon )?mustard/, 249/cup_ml], // ~02046~
     'onions, chopped': [/\b(chopped onions)|(onions, chopped)/, 160/cup_ml], // ~11282~
     'parmesan': [/\b(finely |freshly |grated |shredded )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano|[Rr]omano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
-    'peanut butter': [/\b(smooth )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
+    'peanut butter': [/\b(smooth |natural )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'pecans': [/\bpecans/, 99/cup_ml], // ~12142~ (halves)
     'pine nuts': [/\bpine ?nuts/, 135/cup_ml], // ~12147~
     'pistachio': [/\bpistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
@@ -449,7 +449,8 @@ var tests = [
     ['1½ pounds sweet potatoes (1lb 11oz)', '1½ pounds [700 g] sweet potatoes (1lb [450 g] 11oz [310 g])'],
     ['¼ cup pure maple syrup','¼ cup pure maple syrup [80 g]'],
     ['1 1/2 cups raw almonds', '1 1/2 cups raw almonds [220 g]'],
-    ['1/2 cup of low-fat feta cheese', '1/2 cup of low-fat feta cheese [75 g]']
+    ['1/2 cup of low-fat feta cheese', '1/2 cup of low-fat feta cheese [75 g]'],
+    ['1/4 cup natural peanut butter',  '1/4 cup natural peanut butter [65 g]']
 ];
 
 if (test) {
