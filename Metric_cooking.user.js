@@ -66,7 +66,7 @@ var ingredients = {
     'onions, chopped': [/\b(chopped onions)|(onions, chopped)/, 160/cup_ml], // ~11282~
     'parmesan': [/\b(finely |freshly |grated |shredded )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano|[Rr]omano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'peanut butter': [/\b(smooth |natural )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
-    'pecans': [/\bpecans/, 99/cup_ml], // ~12142~ (halves)
+    'pecans': [/\bpecans?( halves)?/, 99/cup_ml], // ~12142~ (halves)
     'pine nuts': [/\bpine ?nuts/, 135/cup_ml], // ~12147~
     'pistachio': [/\bpistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
     'powdered sugar': [/\b(powdered|confectioners['’]?|icing) sugar/, 120/cup_ml], // ~19336~ (unsifted)
@@ -452,7 +452,8 @@ var tests = [
     ['1/2 cup of low-fat feta cheese', '1/2 cup of low-fat feta cheese [75 g]'],
     ['1/4 cup natural peanut butter',  '1/4 cup natural peanut butter [65 g]'],
     ['1 1/2 cups to 2 cups fresh or frozen cranberries','1 1/2 cups to 2 cups [350–475 ml] fresh or frozen cranberries'],
-    ['1/2 cup white sugar', '1/2 cup white sugar [100 g]']
+    ['1/2 cup white sugar', '1/2 cup white sugar [100 g]'],
+    ['1/2 cup pecan halves',  '1/2 cup pecan halves [50 g]']
 ];
 
 if (test) {
