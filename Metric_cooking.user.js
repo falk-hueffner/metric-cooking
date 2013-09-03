@@ -169,7 +169,7 @@ reUnit += ')';
 
 var reReal      = /(<real>\d+(\.\d+)?)/.source;
 var reFracChar  = /(<fracChar>[¼½¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/.source;
-var reFraction  = '(<fraction>(<fracWhole>\\d+(\\s+|-))?(((<fracNum>\\d+)/(<fracDen>\\d+))|' + reFracChar +'))';
+var reFraction  = '(<fraction>(<fracWhole>\\d+(\\s*|-))?(((<fracNum>\\d+)/(<fracDen>\\d+))|' + reFracChar +'))';
 var reNumber = '(<number>' + reReal + '|' + reFraction + ')';
 
 function parseNumber(match, prefix) {
@@ -443,7 +443,8 @@ var tests = [
     ['½ stick cinnamon', '½ stick cinnamon'],
     ['1 1/4 cups jasmine rice', '1 1/4 cups jasmine rice [225 g]'],
     ['1 cup lentils', '1 cup lentils [190 g]'],
-    ['1 cup (packed) golden brown sugar', '1 cup (packed) golden brown sugar [225 g]']
+    ['1 cup (packed) golden brown sugar', '1 cup (packed) golden brown sugar [225 g]'],
+    ['1½ pounds sweet potatoes (1lb 11oz)', '1½ pounds [700 g] sweet potatoes (1lb [450 g] 11oz [310 g])']
 ];
 
 if (test) {
