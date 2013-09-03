@@ -53,7 +53,7 @@ var ingredients = {
     'crumbled blue cheese': [/\bcrumbled blue cheese/, 135/cup_ml], // ~01004~
     'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
-    'feta': [/\b(crumbled )?feta( cheese)?/, 150/cup_ml], // ~01019~
+    'feta': [/\b(crumbled |low[ -]fat )*feta( cheese)?/, 150/cup_ml], // ~01019~
     'flour': [/\b(all[- ]purpose |sifted |cake |unbleached )*flour/, 125/cup_ml], // ~20081~
     'honey': [/\bhoney/, 339/cup_ml], // ~19296~
     'lentils': [/\blentils/, 192/cup_ml], // ~16069~
@@ -448,7 +448,8 @@ var tests = [
     ['1 cup (packed) golden brown sugar', '1 cup (packed) golden brown sugar [225 g]'],
     ['1½ pounds sweet potatoes (1lb 11oz)', '1½ pounds [700 g] sweet potatoes (1lb [450 g] 11oz [310 g])'],
     ['¼ cup pure maple syrup','¼ cup pure maple syrup [80 g]'],
-    ['1 1/2 cups raw almonds', '1 1/2 cups raw almonds [220 g]']
+    ['1 1/2 cups raw almonds', '1 1/2 cups raw almonds [220 g]'],
+    ['1/2 cup of low-fat feta cheese', '1/2 cup of low-fat feta cheese [75 g]']
 ];
 
 if (test) {
