@@ -57,7 +57,7 @@ var ingredients = {
     'flour': [/\b(all[- ]purpose |sifted |cake |unbleached )*flour/, 125/cup_ml], // ~20081~
     'honey': [/\bhoney/, 339/cup_ml], // ~19296~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
-    'long-grain rice': [/\b(long[- ]grain(ed)? |[Bb]asmati )?(brown |white )*rice(?! vinegar| crispies| flour)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
+    'long-grain rice': [/\b(long[- ]grain(ed)? |[Bb]asmati |[Jj]asmine )?(brown |white )*rice(?! vinegar| crispies| flour)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
     'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
     'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
     'mustard': [/\b(Dijon )?mustard/, 249/cup_ml], // ~02046~
@@ -439,7 +439,8 @@ var tests = [
     ['1 cup onions, chopped', '1 cup onions, chopped [160 g]'],
     ['1.5 cups arborio rice', '1.5 cups arborio rice [300 g]'],
     ['1/2 – 1 lb linguine', '1/2 – 1 lb [225–450 g] linguine'],
-    ['½ stick cinnamon', '½ stick cinnamon']
+    ['½ stick cinnamon', '½ stick cinnamon'],
+    ['1 1/4 cups jasmine rice', '1 1/4 cups jasmine rice [225 g]']
 ];
 
 if (test) {
