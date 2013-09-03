@@ -215,7 +215,7 @@ function parseIngredient(match) {
 }
 
 var reFrom = '(<from>'
-        + prefixGroups(reNumber, 'from') + '-?'
+        + prefixGroups(reNumber, 'from') + '-?\\s*'
         + prefixGroups(reUnit,   'from') + '?'
         + '\\s*(-|–|to|or)\\s*)';
 
@@ -450,7 +450,8 @@ var tests = [
     ['¼ cup pure maple syrup','¼ cup pure maple syrup [80 g]'],
     ['1 1/2 cups raw almonds', '1 1/2 cups raw almonds [220 g]'],
     ['1/2 cup of low-fat feta cheese', '1/2 cup of low-fat feta cheese [75 g]'],
-    ['1/4 cup natural peanut butter',  '1/4 cup natural peanut butter [65 g]']
+    ['1/4 cup natural peanut butter',  '1/4 cup natural peanut butter [65 g]'],
+    ['1 1/2 cups to 2 cups fresh or frozen cranberries','1 1/2 cups to 2 cups [350–475 ml] fresh or frozen cranberries']
 ];
 
 if (test) {
