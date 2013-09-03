@@ -76,7 +76,7 @@ var ingredients = {
     'short-grain rice': [/\b(short[- ]grain(ed)? |[Aa]rborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'shredded mozzarella': [/\bshredded mozzarella( cheese)?/, 112/cup_ml], // ~01026~
     'spinach': [/\bspinach/, 30/cup_ml], // ~11457~ (raw)
-    'sugar': [/\b(granulated )?sugar/, 200/cup_ml], // ~19335~
+    'sugar': [/\b(granulated |white )?sugar/, 200/cup_ml], // ~19335~
     'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
     'swiss cheese': [/\b(grated |shredded )*Swiss cheese/, 108/cup_ml], // ~01040~
     'tomato paste': [/\btomato paste/, 262/cup_ml], // ~11546~
@@ -451,7 +451,8 @@ var tests = [
     ['1 1/2 cups raw almonds', '1 1/2 cups raw almonds [220 g]'],
     ['1/2 cup of low-fat feta cheese', '1/2 cup of low-fat feta cheese [75 g]'],
     ['1/4 cup natural peanut butter',  '1/4 cup natural peanut butter [65 g]'],
-    ['1 1/2 cups to 2 cups fresh or frozen cranberries','1 1/2 cups to 2 cups [350–475 ml] fresh or frozen cranberries']
+    ['1 1/2 cups to 2 cups fresh or frozen cranberries','1 1/2 cups to 2 cups [350–475 ml] fresh or frozen cranberries'],
+    ['1/2 cup white sugar', '1/2 cup white sugar [100 g]']
 ];
 
 if (test) {
