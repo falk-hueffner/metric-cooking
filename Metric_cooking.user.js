@@ -30,9 +30,11 @@ var maxError     = 0.03;
 var numUnitSpace = '\u202F';    // thin space
 var test         = true;
 
-var cup_ml = 236.5882365;
-var tbsp_ml = 14.8;
-var tsp_ml = tbsp_ml/3;
+var cup_ml  = 236.5882365;
+var tbsp_ml = 14.78676478125;
+var tsp_ml  = tbsp_ml/3;
+var pound_g = 453.59237;
+
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
     'almonds': [/\b(blanched |raw )*almonds/, 144/cup_ml], // average of ~12061~ (143) and ~12062~ (145)
@@ -148,16 +150,16 @@ function prefixGroups (regexp, prefix) {
 }
 
 var units = {
-    'cup':        [/(cups?)\b/   ,   'ml', 236.5882365  ],
-    'fahrenheit': [/([°º]\s*?|degrees )F(ahrenheit)?/,   '°C', undefined    ],
-    'inch':       [/inch(es)?\b/,   'mm',  25.6        ],
-    'ounce':      [/ounces?\b|oz\b\.?/, 'g',   28.349523125],
-    'pint':       [/pints?\b/,       'g',  236.5882365*2],
-    'pound':      [/pounds?\b|lbs?\b\.?/, 'g',  453.59237    ],
-    'quart':      [/quarts?\b/,      'ml', 946.352946   ],
-    'stick':      [/sticks?\b(?!\s+cinnamon)/,      'g', 4*28.349523125],
-    'tablespoon': [/[Tt]ablespoons?\b|(T|tb|[Tt]bsp?|TBL)\b\.?/, 'ml',  14.8        ],
-    'teaspoon':   [/[Tt]easpoons?\b|(t|tsp|TSP)\b\.?/,       'ml',  14.8/3      ]
+    'cup':        [/(cups?)\b/,                                  'ml', cup_ml      ],
+    'fahrenheit': [/([°º]\s*?|degrees )F(ahrenheit)?/,           '°C', undefined   ],
+    'inch':       [/inch(es)?\b/,                                'mm', 25.6        ],
+    'ounce':      [/ounces?\b|oz\b\.?/,                          'g' , pound_g / 16],
+    'pint':       [/pints?\b/,                                   'g' , 2 * cup_ml  ],
+    'pound':      [/pounds?\b|lbs?\b\.?/,                        'g' , pound_g     ],
+    'quart':      [/quarts?\b/,                                  'ml', 4 * cup_ml  ],
+    'stick':      [/sticks?\b(?!\s+cinnamon)/,                   'g' , pound_g / 4 ],
+    'tablespoon': [/[Tt]ablespoons?\b|(T|tb|[Tt]bsp?|TBL)\b\.?/, 'ml', tbsp_ml     ],
+    'teaspoon':   [/[Tt]easpoons?\b|(t|tsp|TSP)\b\.?/,           'ml', tbsp_ml / 3 ]
 };
 
 var reUnit = '';
@@ -319,7 +321,7 @@ var tests = [
     ['1 1/4 cups confectioners’ sugar', '1 1/4 cups confectioners’ sugar [150 g]'],
     ['1 tb vanilla extract', '1 tb [15 ml] vanilla extract'],
     ['chopped into 1-inch chunks', 'chopped into 1-inch [2.5 cm] chunks'],
-    ['2 1/2 tsp baking soda', '2 1/2 tsp baking soda [12 g]'],
+    ['2 1/2 tsp baking soda', '2 1/2 tsp baking soda [11 g]'],
     ['8 oz cream cheese', '8 oz cream cheese [225 g]'],
     ['1 stick, plus 1 tb, unsalted butter', '1 stick [110 g], plus 1 tb [15 ml], unsalted butter'],
     ['8 ounces spaghetti (or other) pasta', '8 ounces [225 g] spaghetti (or other) pasta'],
