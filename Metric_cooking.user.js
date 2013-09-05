@@ -66,7 +66,7 @@ var ingredients = {
     'maple syrup': [/\b(pure )?maple syrup/, 80/60], // ~19911~
     'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
     'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
-    'mustard': [/\b(Dijon )?mustard/, 249/cup_ml], // ~02046~
+    'mustard': [/\b(Dijon |grainy )*mustard/, 249/cup_ml], // ~02046~
     'onions, chopped': [/\b(chopped onions)|(onions, chopped)/, 160/cup_ml], // ~11282~
     'parmesan': [/\b(finely |freshly |grated |shredded )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano|[Rr]omano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'peanut butter': [/\b(smooth |natural |creamy |chunky )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
@@ -74,7 +74,7 @@ var ingredients = {
     'pine nuts': [/\bpine ?nuts/, 135/cup_ml], // ~12147~
     'pistachio': [/\bpistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
     'powdered sugar': [/\b(powdered|confectioners['’]?|icing) sugar/, 120/cup_ml], // ~19336~ (unsifted)
-    'raisins': [/\braisins/, 165/cup_ml], // ~09298~ (packed)
+    'raisins': [/\b(golden )?raisins/, 165/cup_ml], // ~09298~ (packed)
     'ricotta': [/\b(fresh )?ricotta( cheese)?/, 246/cup_ml], // ~01036~
     'salt': [/\b(table )?salt/, 292/cup_ml], // ~02047~
     'short-grain rice': [/\b(short[- ]grain(ed)? |[Aa]rborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
