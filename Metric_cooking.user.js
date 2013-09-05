@@ -77,7 +77,7 @@ var ingredients = {
     'ricotta': [/\b(fresh )?ricotta( cheese)?/, 246/cup_ml], // ~01036~
     'salt': [/\b(table )?salt/, 292/cup_ml], // ~02047~
     'short-grain rice': [/\b(short[- ]grain(ed)? |[Aa]rborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
-    'shredded mozzarella': [/\bshredded mozzarella( cheese)?/, 112/cup_ml], // ~01026~
+    'shredded mozzarella': [/\b(shredded |part-skim )*mozzarella( cheese)?/, 112/cup_ml], // ~01026~
     'spinach': [/\bspinach/, 30/cup_ml], // ~11457~ (raw)
     'sugar': [/\b(granulated |white )?sugar/, 200/cup_ml], // ~19335~
     'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
@@ -461,7 +461,8 @@ var tests = [
     ['1/2 cup white sugar', '1/2 cup white sugar [100 g]'],
     ['1/2 cup pecan halves',  '1/2 cup pecan halves [50 g]'],
     ['6 tablespoons or 3 ounces cold unsalted butter', '6 tablespoons [90 ml] or 3 ounces cold unsalted butter [85 g]'],
-    ['½ cup creamy peanut butter', '½ cup creamy peanut butter [130 g]']
+    ['½ cup creamy peanut butter', '½ cup creamy peanut butter [130 g]'],
+    ['3 tablespoons shredded part-skim mozzarella cheese', '3 tablespoons shredded part-skim mozzarella cheese [21 g]']
 ];
 
 if (test) {
