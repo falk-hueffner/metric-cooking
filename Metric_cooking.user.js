@@ -42,7 +42,7 @@ var ingredients = {
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
     'blackberries': [/\bblackberries/, 144/cup_ml], // ~09042~
-    'brown sugar': [/(\blight[ -]|\bdark |golden |firmly |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
+    'brown sugar': [/(\blight[ -]|\bdark[- ]|golden |firmly |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
     'butter': [/\b((un)?salted |chilled |cold |softened )*butter/, 113/cup_ml], // ~01145~
     'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
     'cheddar': [/(shredded |aged |white )*cheddar/, 113/cup_ml], // ~01009~
@@ -79,7 +79,7 @@ var ingredients = {
     'short-grain rice': [/\b(short[- ]grain(ed)? |[Aa]rborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'shredded mozzarella': [/\b(shredded |part-skim )*mozzarella( cheese)?/, 112/cup_ml], // ~01026~
     'spinach': [/\bspinach/, 30/cup_ml], // ~11457~ (raw)
-    'sugar': [/\b(granulated |white )?sugar/, 200/cup_ml], // ~19335~
+    'sugar': [/\b(granulated |white )*sugar/, 200/cup_ml], // ~19335~
     'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
     'swiss cheese': [/\b(grated |shredded )*Swiss cheese/, 108/cup_ml], // ~01040~
     'tomato paste': [/\btomato paste/, 262/cup_ml], // ~11546~
