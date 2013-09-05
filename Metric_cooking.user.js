@@ -57,7 +57,8 @@ var ingredients = {
     'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
     'feta': [/\b(crumbled |low[ -]fat )*feta( cheese)?/, 150/cup_ml], // ~01019~
-    'flour': [/\b(all[- ]purpose |sifted |cake |unbleached )*flour/, 125/cup_ml], // ~20081~
+    'flour': [/\b(all[- ]purpose |sifted |unbleached )*flour/, 125/cup_ml], // ~20081~
+    'cake flour': [/\b(sifted |unbleached )*(cake|pastry) flour/, 114/cup_ml], // the internet
     'honey': [/\bhoney/, 339/cup_ml], // ~19296~
     'lentils': [/\blentils/, 192/cup_ml], // ~16069~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
@@ -351,7 +352,7 @@ var tests = [
     ['Preheat oven to 350 degrees F with rack in middle.', 'Preheat oven to 350 degrees F [175 °C] with rack in middle.'],
     ['2 cups all-purpose flour', '2 cups all-purpose flour [250 g]'],
     ['1 3/4 cups sugar', '1 3/4 cups sugar [350 g]'],
-    ['2 cups sifted cake flour', '2 cups sifted cake flour [250 g]'],
+    ['2 cups sifted cake flour', '2 cups sifted cake flour [225 g]'],
     ['10 Tbs unsalted butter, at room temperature' ,'10 Tbs unsalted butter [70 g], at room temperature'],
     ['if using unsalted, add 1/2 tbsp of salt', 'if using unsalted, add 1/2 tbsp of salt [9 g]'],
     ['1/2 cup packed light brown sugar', '1/2 cup packed light brown sugar [110 g]'],
@@ -461,7 +462,8 @@ var tests = [
     ['6 tablespoons or 3 ounces cold unsalted butter', '6 tablespoons [90 ml] or 3 ounces cold unsalted butter [85 g]'],
     ['½ cup creamy peanut butter', '½ cup creamy peanut butter [130 g]'],
     ['3 tablespoons shredded part-skim mozzarella cheese', '3 tablespoons shredded part-skim mozzarella cheese [21 g]'],
-    ['1 cup (2 sticks or 8 ounces) butter', '1 cup [240 ml] (2 sticks [225 g] or 8 ounces [225 g]) butter']
+    ['1 cup (2 sticks or 8 ounces) butter', '1 cup [240 ml] (2 sticks [225 g] or 8 ounces [225 g]) butter'],
+    ['3 cups unbleached pastry flour', '3 cups unbleached pastry flour [350 g]']
 ];
 
 if (test) {
