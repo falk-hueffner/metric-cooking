@@ -265,15 +265,13 @@ function replaceUnits(match) {
     if (match.group('from')) {
         var fromUnit = match.group('from:unit') ? parseUnit(match, 'from:') : unit;
         converted = convert(parseNumber(match, 'from:'), fromUnit);
-        if (converted.unit == newUnit) {
-            fromAmount = converted.amount;
-            if (fromAmount >= newAmount) { // "1-1/2"
-                newAmount += fromAmount;
-            fromAmount = undefined;
-            }
-        } else {
+        if (match.group('from:unit') && match.group('from:unit') != match.group('unit'))
             return re.replace(match.group('from'), replaceUnits)
                 +  re.replace(match.group('main'), replaceUnits);
+        fromAmount = converted.amount;
+        if (fromAmount >= newAmount) { // "1-1/2"
+            newAmount += fromAmount;
+            fromAmount = undefined;
         }
     }
 
@@ -462,7 +460,8 @@ var tests = [
     ['1/2 cup pecan halves',  '1/2 cup pecan halves [50 g]'],
     ['6 tablespoons or 3 ounces cold unsalted butter', '6 tablespoons [90 ml] or 3 ounces cold unsalted butter [85 g]'],
     ['½ cup creamy peanut butter', '½ cup creamy peanut butter [130 g]'],
-    ['3 tablespoons shredded part-skim mozzarella cheese', '3 tablespoons shredded part-skim mozzarella cheese [21 g]']
+    ['3 tablespoons shredded part-skim mozzarella cheese', '3 tablespoons shredded part-skim mozzarella cheese [21 g]'],
+    ['1 cup (2 sticks or 8 ounces) butter', '1 cup [240 ml] (2 sticks [225 g] or 8 ounces [225 g]) butter']
 ];
 
 if (test) {
