@@ -44,6 +44,7 @@ var ingredients = {
     'blackberries': [/\bblackberries/, 144/cup_ml], // ~09042~
     'brown sugar': [/(\blight[ -]|\bdark[- ]|golden |firmly |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
     'butter': [/\b((un)?salted |chilled |cold |softened )*butter/, 113/cup_ml], // ~01145~
+    'cake flour': [/\b(sifted |unbleached )*(cake|pastry) flour/, 114/cup_ml], // the internet
     'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
     'cheddar': [/(shredded |aged |white )*cheddar/, 113/cup_ml], // ~01009~
     'chopped parsley': [/(chopped |minced |fresh |Italian |flat-leaf )*parsley/, 60/cup_ml], // ~11297~
@@ -58,7 +59,6 @@ var ingredients = {
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
     'feta': [/\b(crumbled |low[ -]fat )*feta( cheese)?/, 150/cup_ml], // ~01019~
     'flour': [/\b(all[- ]purpose |sifted |unbleached )*flour/, 125/cup_ml], // ~20081~
-    'cake flour': [/\b(sifted |unbleached )*(cake|pastry) flour/, 114/cup_ml], // the internet
     'honey': [/\bhoney/, 339/cup_ml], // ~19296~
     'lentils': [/\blentils/, 192/cup_ml], // ~16069~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
@@ -79,6 +79,7 @@ var ingredients = {
     'salt': [/\b(table )?salt/, 292/cup_ml], // ~02047~
     'short-grain rice': [/\b(short[- ]grain(ed)? |[Aa]rborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'shredded mozzarella': [/\b(shredded |part-skim )*mozzarella( cheese)?/, 112/cup_ml], // ~01026~
+    'sliced almonds': [/\bsliced almonds/, 92/cup_ml], // ~12061~
     'spinach': [/\bspinach/, 30/cup_ml], // ~11457~ (raw)
     'sugar': [/\b(granulated |white )*sugar/, 200/cup_ml], // ~19335~
     'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
@@ -463,7 +464,8 @@ var tests = [
     ['½ cup creamy peanut butter', '½ cup creamy peanut butter [130 g]'],
     ['3 tablespoons shredded part-skim mozzarella cheese', '3 tablespoons shredded part-skim mozzarella cheese [21 g]'],
     ['1 cup (2 sticks or 8 ounces) butter', '1 cup [240 ml] (2 sticks [225 g] or 8 ounces [225 g]) butter'],
-    ['3 cups unbleached pastry flour', '3 cups unbleached pastry flour [350 g]']
+    ['3 cups unbleached pastry flour', '3 cups unbleached pastry flour [350 g]'],
+    ['1/2 cup sliced almonds, toasted', '1/2 cup sliced almonds [45 g], toasted']
 ];
 
 if (test) {
