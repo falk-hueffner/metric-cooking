@@ -206,7 +206,7 @@ reNumWord += ')';
 
 var reReal      = /(<real>\d+(\.\d+)?)/.source;
 var reFracChar  = /(<fracChar>[¼½¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/.source;
-var reFraction  = '(<fraction>(<fracWhole>\\d+(\\s*|-))?(((<fracNum>\\d+)/(<fracDen>\\d+))|' + reFracChar +'))';
+var reFraction  = '(<fraction>(<fracWhole>\\d+(\\s*|-))?(((<fracNum>\\d+)/(<fracDen>\\d+)(\\s*of\\s*a\\s*)?)|' + reFracChar +'))';
 var reNumber = '(<number>' + reNumWord + '|' + reReal + '|' + reFraction + ')';
 
 function parseNumber(match, prefix) {
@@ -510,7 +510,8 @@ var tests = [
     ['Caramelize a nine-inch round or tube pan', 'Caramelize a nine-inch [22.5 cm] round or tube pan'],
     ['add a tablespoon of heavy cream and stir', 'add a tablespoon [15 ml] of heavy cream and stir'],
     ['a little less than a cup', 'a little less than a cup [240 ml]'],
-    ['Divide the mixture among ten 3-ounce pop molds', 'Divide the mixture among ten 3-ounce [85 g] pop molds']
+    ['Divide the mixture among ten 3-ounce pop molds', 'Divide the mixture among ten 3-ounce [85 g] pop molds'],
+    ['I used about 1/4 to 1/3 of a cup and', 'I used about 1/4 to 1/3 of a cup [60–80 ml] and']
 ];
 
 if (test) {
