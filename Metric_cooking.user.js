@@ -70,6 +70,7 @@ var ingredients = {
     'onions, chopped': [/\b(chopped onions)|(onions, chopped)/, 160/cup_ml], // ~11282~
     'parmesan': [/\b(finely |freshly |grated |shredded )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano|[Rr]omano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'peanut butter': [/\b(smooth |natural |creamy |chunky )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
+    'peanuts': [/\bpeanuts/, 146/cup_ml], // ~16087~
     'pecans': [/\bpecans?( halves)?/, 99/cup_ml], // ~12142~ (halves)
     'pine nuts': [/\bpine ?nuts/, 135/cup_ml], // ~12147~
     'pistachio': [/\bpistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
@@ -512,7 +513,8 @@ var tests = [
     ['a little less than a cup', 'a little less than a cup [240 ml]'],
     ['Divide the mixture among ten 3-ounce pop molds', 'Divide the mixture among ten 3-ounce [85 g] pop molds'],
     ['I used about 1/4 to 1/3 of a cup and', 'I used about 1/4 to 1/3 of a cup [60–80 ml] and'],
-    ['at about 350-380 degrees (F).', 'at about 350-380 degrees (F) [175–190 °C].']
+    ['at about 350-380 degrees (F).', 'at about 350-380 degrees (F) [175–190 °C].'],
+    ['1 cup of peanuts (or any kind of nuts)', '1 cup of peanuts [150 g] (or any kind of nuts)']
 ];
 
 if (test) {
