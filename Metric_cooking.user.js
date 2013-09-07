@@ -150,6 +150,8 @@ function prefixGroups (regexp, prefix) {
     return regexp.replace(/\(<([^>]+)>/g, '(<' + prefix + ':$1' + '>');
 }
 
+var logReplacement = false;
+
 var units = {
     'cup':        [/(cups?)\b/,                                  'ml', cup_ml      ],
     'fahrenheit': [/([°º]\s*?|degrees )F(ahrenheit)?/,           '°C', undefined   ],
@@ -173,16 +175,55 @@ for (var unit in units) {
 }
 reUnit += ')';
 
+var numWords = {
+    'quarter'      : [/(one[- ])?quarter/,     1/4],
+    'threequarter' : [/(three[- ])quarters?/,  3/4],
+    'third'        : [/(one[- ])?third/,       1/3],
+    'twothirds'    : [/(two[- ])thirds?/,      2/3],
+    'half'         : [/(one[- ])?half/,        1/2],
+    'one'          : [/a|an|one(?![- ](half|third|quarter))/, 1],
+    'two'          : [/two/,                     2],
+    'three'        : [/three/,                   3],
+    'four'         : [/four/,                    4],
+    'five'         : [/five/,                    5],
+    'six'          : [/six/,                     6],
+    'seven'        : [/seven/,                   7],
+    'eight'        : [/eight/,                   8],
+    'nine'         : [/nine/,                    9],
+    'ten'          : [/ten/,                    10],
+    'eleven'       : [/eleven/,                 11],
+    'twelve'       : [/twelve|dozen/,           12]
+};
+var reNumWord   = '';
+for (var numWord in numWords) {
+    if (reNumWord)
+        reNumWord += '|';
+    else
+        reNumWord   = '(<numWord>';
+    reNumWord += '(<' + numWord + '>\\b(' + numWords[numWord][0].source + ')\\b)';
+}
+reNumWord += ')';
+
 var reReal      = /(<real>\d+(\.\d+)?)/.source;
 var reFracChar  = /(<fracChar>[¼½¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/.source;
 var reFraction  = '(<fraction>(<fracWhole>\\d+(\\s*|-))?(((<fracNum>\\d+)/(<fracDen>\\d+))|' + reFracChar +'))';
-var reNumber = '(<number>' + reReal + '|' + reFraction + ')';
+var reNumber = '(<number>' + reNumWord + '|' + reReal + '|' + reFraction + ')';
 
 function parseNumber(match, prefix) {
     prefix = prefix || '';
     var real = match.group(prefix + 'real');
     if (real)
         return parseFloat(real);
+
+    var numWord = match.group(prefix + 'numWord');
+    if (numWord) {
+        for (var w in numWords)
+            if (match.group(prefix + w)) {
+                logReplacement = true;
+                return numWords[w][1];
+            }
+        return undefined;
+    }
 
     var amount = 0;
     var fracWhole = match.group(prefix + 'fracWhole');
@@ -463,7 +504,13 @@ var tests = [
     ['½ cup creamy peanut butter', '½ cup creamy peanut butter [130 g]'],
     ['3 tablespoons shredded part-skim mozzarella cheese', '3 tablespoons shredded part-skim mozzarella cheese [21 g]'],
     ['1 cup (2 sticks or 8 ounces) butter', '1 cup [240 ml] (2 sticks [225 g] or 8 ounces [225 g]) butter'],
-    ['3 cups unbleached pastry flour', '3 cups unbleached pastry flour [350 g]']
+    ['3 cups unbleached pastry flour', '3 cups unbleached pastry flour [350 g]'],
+    ['About one cup', 'About one cup [240 ml]'],
+    ['Heat the olive oil in a four-quart pot', 'Heat the olive oil in a four-quart [3.75 l] pot'],
+    ['Caramelize a nine-inch round or tube pan', 'Caramelize a nine-inch [22.5 cm] round or tube pan'],
+    ['add a tablespoon of heavy cream and stir', 'add a tablespoon [15 ml] of heavy cream and stir'],
+    ['a little less than a cup', 'a little less than a cup [240 ml]'],
+    ['Divide the mixture among ten 3-ounce pop molds', 'Divide the mixture among ten 3-ounce [85 g] pop molds']
 ];
 
 if (test) {
@@ -478,12 +525,21 @@ if (test) {
     console.log('%d of %d tests passed', tests.length - failed, tests.length);
 }
 
+logReplacement = false;
+
 var textNodes = document.evaluate('//body//text()', document, null,
                                   XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
 
 for (var i = 0; i < textNodes.snapshotLength; i++) {
     var node = textNodes.snapshotItem(i);
     var text = node.data;
-    var newText = re.replace(text, replaceUnits);
+    var newText = re.replace(text, function (match) {
+        var replacement = replaceUnits(match);
+        if (logReplacement) {
+            console.log('\'' + match[0] + '\' -> \'' + replacement + '\'');
+            logReplacement = false;
+        }
+        return replacement;
+    });
     node.data = newText;
 }
