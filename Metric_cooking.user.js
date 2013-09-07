@@ -50,7 +50,7 @@ var ingredients = {
     'chopped parsley': [/(chopped |minced |fresh |Italian |flat-leaf )*parsley/, 60/cup_ml], // ~11297~
     'chopped shallots': [/(finely |chopped )*shallots/, 10.0/tbsp_ml], // ~11677~
     'cocoa': [/\b(unsweetened |Dutch[- ]process(ed)? )*cocoa( powder)?/, 86/cup_ml], // ~19165~
-    'cornstarch': [/\bcornstarch/, 128/cup_ml], // ~20027~
+    'cornstarch': [/\b(cornstarch|starch\s+powder)/, 128/cup_ml], // ~20027~
     'cottage cheese': [/\b(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
     'cranberries': [/\b(fresh |of |or |thawed |frozen )*cranberries/, 100/cup_ml], // ~09078~
     'cream cheese': [/cream cheese/, 232/cup_ml], // ~01017~
