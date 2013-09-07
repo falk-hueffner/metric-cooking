@@ -45,7 +45,7 @@ var ingredients = {
     'brown sugar': [/(\blight[ -]|\bdark[- ]|golden |firmly |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
     'butter': [/\b((un)?salted |chilled |cold |softened )*butter/, 227/cup_ml], // ~01145~
     'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
-    'cheddar': [/(shredded |aged |white )*cheddar/, 113/cup_ml], // ~01009~
+    'cheddar': [/(coarsely |grated |shredded |aged |white )*cheddar/, 113/cup_ml], // ~01009~
     'chopped parsley': [/(chopped |minced |fresh |Italian |flat-leaf )*parsley/, 60/cup_ml], // ~11297~
     'chopped shallots': [/(finely |chopped )*shallots/, 10.0/tbsp_ml], // ~11677~
     'cocoa': [/\b(unsweetened |Dutch[- ]process(ed)? )*cocoa( powder)?/, 86/cup_ml], // ~19165~
