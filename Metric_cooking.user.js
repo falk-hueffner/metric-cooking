@@ -44,6 +44,7 @@ var ingredients = {
     'blackberries': [/\bblackberries/, 144/cup_ml], // ~09042~
     'brown sugar': [/(\blight[ -]|\bdark[- ]|golden |firmly |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
     'butter': [/\b((un)?salted |chilled |cold |softened )*butter/, 227/cup_ml], // ~01145~
+    'cake flour': [/\b(sifted |unbleached )*(cake|pastry) flour/, 114/cup_ml], // the internet
     'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
     'cheddar': [/(coarsely |grated |shredded |aged |white )*cheddar/, 113/cup_ml], // ~01009~
     'chopped parsley': [/(chopped |minced |fresh |Italian |flat-leaf )*parsley/, 60/cup_ml], // ~11297~
@@ -58,7 +59,6 @@ var ingredients = {
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
     'feta': [/\b(crumbled |low[ -]fat )*feta( cheese)?/, 150/cup_ml], // ~01019~
     'flour': [/\b(all[- ]purpose |sifted |unbleached )*flour/, 125/cup_ml], // ~20081~
-    'cake flour': [/\b(sifted |unbleached )*(cake|pastry) flour/, 114/cup_ml], // the internet
     'honey': [/\bhoney/, 339/cup_ml], // ~19296~
     'lentils': [/\blentils/, 192/cup_ml], // ~16069~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
