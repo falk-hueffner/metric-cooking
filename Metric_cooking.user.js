@@ -43,7 +43,7 @@ var ingredients = {
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
     'blackberries': [/\bblackberries/, 144/cup_ml], // ~09042~
     'brown sugar': [/(\blight[ -]|\bdark[- ]|golden |firmly |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
-    'butter': [/\b((un)?salted |chilled |cold |softened )*butter/, 113/cup_ml], // ~01145~
+    'butter': [/\b((un)?salted |chilled |cold |softened )*butter/, 227/cup_ml], // ~01145~
     'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
     'cheddar': [/(shredded |aged |white )*cheddar/, 113/cup_ml], // ~01009~
     'chopped parsley': [/(chopped |minced |fresh |Italian |flat-leaf )*parsley/, 60/cup_ml], // ~11297~
@@ -336,7 +336,7 @@ var tests = [
     ['about 6 T unpopped', 'about 6 T [90 ml] unpopped'],
     ['2 T cocoa powder', '2 T cocoa powder [11 g]'],
     ['2/3 cup smooth peanut butter', '2/3 cup smooth peanut butter [175 g]'],
-    ['3 tablespoons unsalted butter, melted', '3 tablespoons unsalted butter [21 g], melted'],
+    ['3 tablespoons unsalted butter, melted', '3 tablespoons unsalted butter [43 g], melted'],
     ['1 teaspoon unflavored gelatin', '1 teaspoon [5 ml] unflavored gelatin'],
     ['from a 1/4-ounce envelope', 'from a 1/4-ounce [7 g] envelope'],
     ['3/8 tablespoon salt', '3/8 tablespoon salt [7 g]'],
@@ -353,7 +353,7 @@ var tests = [
     ['2 cups all-purpose flour', '2 cups all-purpose flour [250 g]'],
     ['1 3/4 cups sugar', '1 3/4 cups sugar [350 g]'],
     ['2 cups sifted cake flour', '2 cups sifted cake flour [225 g]'],
-    ['10 Tbs unsalted butter, at room temperature' ,'10 Tbs unsalted butter [70 g], at room temperature'],
+    ['10 Tbs unsalted butter, at room temperature' ,'10 Tbs unsalted butter [140 g], at room temperature'],
     ['if using unsalted, add 1/2 tbsp of salt', 'if using unsalted, add 1/2 tbsp of salt [9 g]'],
     ['1/2 cup packed light brown sugar', '1/2 cup packed light brown sugar [110 g]'],
     ['1/2 cup packed dark brown sugar', '1/2 cup packed dark brown sugar [110 g]'],
@@ -364,15 +364,15 @@ var tests = [
     ['2 tablespoons finely grated parmesan', '2 tablespoons finely grated parmesan [13 g]'],
     ['1 1/2sticks chilled unsalted butter', '1 1/2sticks chilled unsalted butter [175 g]'],
     ['spacing 2 inches apart', 'spacing 2 inches [5 cm] apart'],
-    ['4 tablespoons salted butter', '4 tablespoons salted butter [28 g]'],
+    ['4 tablespoons salted butter', '4 tablespoons salted butter [57 g]'],
     ['1 1/3 cups ricotta', '1 1/3 cups ricotta [325 g]'],
-    ['2 tablespoons of the butter', '2 tablespoons of the butter [14 g]'],
+    ['2 tablespoons of the butter', '2 tablespoons of the butter [28 g]'],
     ['1/4 cup shredded Parmesan cheese', '1/4 cup shredded Parmesan cheese [25 g]'],
     ['1/2 pound fresh ricotta', '1/2 pound fresh ricotta [225 g]'],
     ['64 ounces chicken broth', '64 ounces [1.8 kg] chicken broth'],
     ['2 cups low-fat cottage cheese', '2 cups low-fat cottage cheese [450 g]'],
     ['8 3/4 oz. sugar', '8 3/4 oz. sugar [250 g]'],
-    ['2 tablespoons cold butter', '2 tablespoons cold butter [14 g]'],
+    ['2 tablespoons cold butter', '2 tablespoons cold butter [28 g]'],
     ['Heat oil in a 5- to 6-quart heavy pot', 'Heat oil in a 5- to 6-quart [4.75–5.75 l] heavy pot'],
     ['1 3/4 cups (packed) brown sugar', '1 3/4 cups (packed) brown sugar [375 g]'],
     ['1 cup plain yogurt', '1 cup plain yogurt [250 g]'],
@@ -440,7 +440,7 @@ var tests = [
     ['1 1/2 cups icing sugar', '1 1/2 cups icing sugar [175 g]'],
     ['1 cup brown rice', '1 cup brown rice [190 g]'],
     ['- 3 Tbsp pinenuts', '- 3 Tbsp pinenuts [25 g]'],
-    ['combine 2 tablespoons softened butter', 'combine 2 tablespoons softened butter [14 g]'],
+    ['combine 2 tablespoons softened butter', 'combine 2 tablespoons softened butter [28 g]'],
     ['2/3 cup feta cheese', '2/3 cup feta cheese [100 g]'],
     ['1 3- to 4-ounce wedge blue cheese', '1 3- to 4-ounce [85–110 g] wedge blue cheese'],
     ['¾ cup wild rice', '¾ cup wild rice [120 g]'],
