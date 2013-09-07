@@ -115,7 +115,7 @@ function round(x) {
 function namedGroupRegExp(regexp, modifiers) {
     var groupNumber = {};
     var i = 1;
-    var re = new RegExp(regexp.replace(/\((?![?])(<([^>]+)>)?/g,
+    var re = new RegExp(regexp.replace(/\((?![?\]])(<([^>]+)>)?/g,
                                        function (_, _, name) {
                                            groupNumber[name] = i++;
                                            return '(';
@@ -154,7 +154,7 @@ var logReplacement = false;
 
 var units = {
     'cup':        [/(cups?)\b/,                                  'ml', cup_ml      ],
-    'fahrenheit': [/([°º]\s*?|degrees )F(ahrenheit)?/,           '°C', undefined   ],
+    'fahrenheit': [/([°º]\s*|degrees\s+)(F\b|[(]F[)]|Fahrenheit\b)/,'°C', undefined   ],
     'inch':       [/inch(es)?\b/,                                'mm', 25.6        ],
     'ounce':      [/ounces?\b|oz\b\.?/,                          'g' , pound_g / 16],
     'pint':       [/pints?\b/,                                   'g' , 2 * cup_ml  ],
@@ -511,7 +511,8 @@ var tests = [
     ['add a tablespoon of heavy cream and stir', 'add a tablespoon [15 ml] of heavy cream and stir'],
     ['a little less than a cup', 'a little less than a cup [240 ml]'],
     ['Divide the mixture among ten 3-ounce pop molds', 'Divide the mixture among ten 3-ounce [85 g] pop molds'],
-    ['I used about 1/4 to 1/3 of a cup and', 'I used about 1/4 to 1/3 of a cup [60–80 ml] and']
+    ['I used about 1/4 to 1/3 of a cup and', 'I used about 1/4 to 1/3 of a cup [60–80 ml] and'],
+    ['at about 350-380 degrees (F).', 'at about 350-380 degrees (F) [175–190 °C].']
 ];
 
 if (test) {
