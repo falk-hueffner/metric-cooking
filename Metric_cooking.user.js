@@ -263,8 +263,12 @@ function parseIngredient(match) {
 
 var reFrom = '(<from>'
         + prefixGroups(reNumber, 'from') + '-?\\s*'
-        + prefixGroups(reUnit,   'from') + '?'
-        + '\\s*(-|–|to|or)\\s*)';
+        + '(('
+        + prefixGroups(reUnit, 'from')
+        + '\\s*((<range1>-|–|to|or)|(<plus1>plus|\\+|and|\\s+))\\s*)'
+        + '|'
+        + '(\\s*((<range2>-|–|to|or)|(<plus2>plus|\\+|and))\\s*)'
+        + '))';
 
 var reAll =
         reFrom + '?(<main>'
@@ -308,13 +312,22 @@ function replaceUnits(match) {
     if (match.group('from')) {
         var fromUnit = match.group('from:unit') ? parseUnit(match, 'from:') : unit;
         converted = convert(parseNumber(match, 'from:'), fromUnit);
-        if (match.group('from:unit') && match.group('from:unit') != match.group('unit'))
-            return re.replace(match.group('from'), replaceUnits)
-                +  re.replace(match.group('main'), replaceUnits);
-        fromAmount = converted.amount;
-        if (fromAmount >= newAmount) { // "1-1/2"
-            newAmount += fromAmount;
-            fromAmount = undefined;
+        if (match.group('range1') || match.group('range2')) {
+            if (match.group('from:unit') && match.group('from:unit') != match.group('unit')) {
+                return re.replace(match.group('from'), replaceUnits)
+                    +  re.replace(match.group('main'), replaceUnits);
+            } else {
+                fromAmount = converted.amount;
+                if (fromAmount >= newAmount) { // "1-1/2"
+                    newAmount += fromAmount;
+                    fromAmount = undefined;
+                }
+            }
+        } else {
+            if (match.group('from:numWord')) // 'from a 1/4-ounce envelope'
+                ;
+            else
+                newAmount += converted.amount;
         }
     }
 
@@ -456,7 +469,7 @@ var tests = [
     ['2 Tbs. Dutch-processed cocoa powder', '2 Tbs. Dutch-processed cocoa powder [11 g]'],
     ['1 cup basmati rice', '1 cup basmati rice [190 g]'],
     ['1 1/2 cups unbleached all-purpose flour', '1 1/2 cups unbleached all-purpose flour [190 g]'],
-    ['3/4 cup plus 2 tablespoons packed light-brown sugar', '3/4 cup [175 ml] plus 2 tablespoons packed light-brown sugar [28 g]'],
+    ['3/4 cup plus 2 tablespoons packed light-brown sugar', '3/4 cup plus 2 tablespoons packed light-brown sugar [190 g]'],
     ['1 cup blackberries', '1 cup blackberries [140 g]'],
     ['Dump in 1/2 cup crumbled blue cheese', 'Dump in 1/2 cup crumbled blue cheese [68 g]'],
     ['3/4 cup unsweetened Dutch process cocoa powder', '3/4 cup unsweetened Dutch process cocoa powder [65 g]'],
@@ -493,7 +506,7 @@ var tests = [
     ['1 1/4 cups jasmine rice', '1 1/4 cups jasmine rice [225 g]'],
     ['1 cup lentils', '1 cup lentils [190 g]'],
     ['1 cup (packed) golden brown sugar', '1 cup (packed) golden brown sugar [225 g]'],
-    ['1½ pounds sweet potatoes (1lb 11oz)', '1½ pounds [700 g] sweet potatoes (1lb [450 g] 11oz [310 g])'],
+    ['1½ pounds sweet potatoes (1lb 11oz)', '1½ pounds [700 g] sweet potatoes (1lb 11oz [750 g])'],
     ['¼ cup pure maple syrup','¼ cup pure maple syrup [80 g]'],
     ['1 1/2 cups raw almonds', '1 1/2 cups raw almonds [220 g]'],
     ['1/2 cup of low-fat feta cheese', '1/2 cup of low-fat feta cheese [75 g]'],
@@ -514,7 +527,13 @@ var tests = [
     ['Divide the mixture among ten 3-ounce pop molds', 'Divide the mixture among ten 3-ounce [85 g] pop molds'],
     ['I used about 1/4 to 1/3 of a cup and', 'I used about 1/4 to 1/3 of a cup [60–80 ml] and'],
     ['at about 350-380 degrees (F).', 'at about 350-380 degrees (F) [175–190 °C].'],
-    ['1 cup of peanuts (or any kind of nuts)', '1 cup of peanuts [150 g] (or any kind of nuts)']
+    ['1 cup of peanuts (or any kind of nuts)', '1 cup of peanuts [150 g] (or any kind of nuts)'],
+    ['¾ cup plus 2 Tbs sugar', '¾ cup plus 2 Tbs sugar [175 g]'],
+    ['1/3 cup plus 2 tablespoons packed dark brown sugar', '1/3 cup plus 2 tablespoons packed dark brown sugar [100 g]'],
+    ['1 cup + 1 tablespoon all purpose flour', '1 cup + 1 tablespoon all purpose flour [130 g]'],
+    ['1 lb 2 oz penne rigate', '1 lb 2 oz [500 g] penne rigate'],
+    ['1 cup of rice needs 1 and 1/4 cups of water', '1 cup of rice [190 g] needs 1 and 1/4 cups [300 ml] of water'],
+    ['1 and 1/2 cups of milk, you know, roughly', '1 and 1/2 cups [350 ml] of milk, you know, roughly']
 ];
 
 if (test) {
