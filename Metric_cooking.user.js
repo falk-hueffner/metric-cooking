@@ -47,7 +47,7 @@ var ingredients = {
     'cake flour': [/\b(sifted |unbleached )*(cake|pastry) flour/, 114/cup_ml], // the internet
     'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
     'cheddar': [/(coarsely |grated |shredded |aged |white )*cheddar/, 113/cup_ml], // ~01009~
-    'chopped parsley': [/(chopped |minced |fresh |Italian |flat-leaf )*parsley/, 60/cup_ml], // ~11297~
+    'chopped parsley': [/(chopped |minced |fresh |Italian |flat-leaf )*parsley( leaves)?/, 60/cup_ml], // ~11297~
     'chopped shallots': [/(finely |chopped )*shallots/, 10.0/tbsp_ml], // ~11677~
     'cocoa': [/\b(unsweetened |Dutch[- ]process(ed)? )*cocoa( powder)?/, 86/cup_ml], // ~19165~
     'cornstarch': [/\b(cornstarch|starch\s+powder)/, 128/cup_ml], // ~20027~
@@ -488,7 +488,7 @@ var tests = [
     ['1/4 cup minced fresh Italian parsley', '1/4 cup minced fresh Italian parsley [15 g]'],
     ['1 1/4 cups aged white cheddar', '1 1/4 cups aged white cheddar [140 g]'],
     ['2/3 cup freshly grated Parmigiano-Reggiano', '2/3 cup freshly grated Parmigiano-Reggiano [65 g]'],
-    ['2 tablespoons minced fresh flat-leaf parsley leaves', '2 tablespoons minced fresh flat-leaf parsley [8 g] leaves'],
+    ['2 tablespoons minced fresh flat-leaf parsley leaves', '2 tablespoons minced fresh flat-leaf parsley leaves [8 g]'],
     ['1 Tablespoon cream cheese, at room temperature', '1 Tablespoon cream cheese [15 g], at room temperature'],
     ['3/4 cup grated Swiss cheese', '3/4 cup grated Swiss cheese [80 g]'],
     ['2 cups ricotta cheese', '2 cups ricotta cheese [500 g]'],
