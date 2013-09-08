@@ -80,6 +80,7 @@ var ingredients = {
     'salt': [/\b(table )?salt/, 292/cup_ml], // ~02047~
     'short-grain rice': [/\b(short[- ]grain(ed)? |[Aa]rborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'shredded mozzarella': [/\b(shredded |part-skim )*mozzarella( cheese)?/, 112/cup_ml], // ~01026~
+    'sliced almonds': [/\bsliced almonds/, 92/cup_ml], // ~12061~
     'spinach': [/\bspinach/, 30/cup_ml], // ~11457~ (raw)
     'sugar': [/\b(granulated |white )*sugar/, 200/cup_ml], // ~19335~
     'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
@@ -539,7 +540,8 @@ var tests = [
     ['for half a pound for the 2 of us', 'for half a pound [225 g] for the 2 of us'],
     ['1 tablespoon plus 1 ½ teaspoons baking powder', '1 tablespoon plus 1 ½ teaspoons baking powder [21 g]'],
     ['Eight 8-inch flour tortillas', 'Eight 8-inch flour [20 cm] tortillas'],
-    ['or a quarter of an ounce, which will cost about $40', 'or a quarter of an ounce [7 g], which will cost about $40']
+    ['or a quarter of an ounce, which will cost about $40', 'or a quarter of an ounce [7 g], which will cost about $40'],
+    ['1/2 cup sliced almonds, toasted', '1/2 cup sliced almonds [45 g], toasted']
 ];
 
 if (test) {
