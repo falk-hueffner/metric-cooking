@@ -452,8 +452,6 @@ var tests = [
     ['1 pint cherry tomatoes', '1 pint [475 g] cherry tomatoes'],
     ['Preheat oven to 450° F.', 'Preheat oven to 450° F [230 °C].'],
     ['1 cup mayonnaise', '1 cup mayonnaise [225 g]'],
-    // TODO: fix
-    // ['28 1/3-inch-thick diagonal bread slices', '28 1/3-inch [9 mm]-thick diagonal bread slices']
     ['1/2 cup low-fat yogurt (preferably Greek)', '1/2 cup low-fat yogurt [125 g] (preferably Greek)'],
     ['6 Tablespoons rice vinegar', '6 Tablespoons [90 ml] rice vinegar'],
     ['1/4 cup parmigiano reggiano (grated)', '1/4 cup parmigiano reggiano [25 g] (grated)'],
@@ -542,7 +540,14 @@ var tests = [
     ['1 tablespoon plus 1 ½ teaspoons baking powder', '1 tablespoon plus 1 ½ teaspoons baking powder [21 g]'],
     ['Eight 8-inch flour tortillas', 'Eight 8-inch flour [20 cm] tortillas'],
     ['or a quarter of an ounce, which will cost about $40', 'or a quarter of an ounce [7 g], which will cost about $40'],
-    ['1/2 cup sliced almonds, toasted', '1/2 cup sliced almonds [45 g], toasted']
+    ['1/2 cup sliced almonds, toasted', '1/2 cup sliced almonds [45 g], toasted'],
+    ['Add a 1/2 cup of cinnamon', 'Add a 1/2 cup [120 ml] of cinnamon'],
+    ['Divide the mixture among ten 3-ounce pop molds', 'Divide the mixture among ten 3-ounce [85 g] pop molds'],
+    ['A few tablespoons of Torani flavoring syrups', 'A few tablespoons of Torani flavoring syrups'],
+    ['1 2.5 lb boneless eye-round roast, tied', '1 2.5 lb [1.1 kg] boneless eye-round roast, tied'],
+    ['One 1/8-inch thick slice presunto', 'One 1/8-inch [3 mm] thick slice presunto'],
+    ['makes 1 9-inch pie crust', 'makes 1 9-inch [22.5 cm] pie crust'],
+    ['1 28-ounce can San Marzano tomatoes', '1 28-ounce [800 g] can San Marzano tomatoes'],
 ];
 
 if (test) {
