@@ -60,6 +60,7 @@ var ingredients = {
     'feta': [/\b(crumbled |low[ -]fat )*feta( cheese)?/, 150/cup_ml], // ~01019~
     'flour': [/\b(all[- ]purpose |sifted |unbleached )*flour/, 125/cup_ml], // ~20081~
     'honey': [/\bhoney/, 339/cup_ml], // ~19296~
+    'kosher salt': [/kosher salt/, 0.57], // Wolfram Alpha
     'lentils': [/\blentils/, 192/cup_ml], // ~16069~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
     'long-grain rice': [/\b(long[- ]grain(ed)? |[Bb]asmati |[Jj]asmine )?(brown |white )*rice(?! vinegar| crispies| flour)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
@@ -483,7 +484,7 @@ var tests = [
     ['1/3 cup shredded mozzarella cheese', '1/3 cup shredded mozzarella cheese [37 g]'],
     ['1/4 cup of honey', '1/4 cup of honey [85 g]'],
     ['1/2 cup raisins', '1/2 cup raisins [83 g]'],
-    ['2 teaspoons kosher salt or 1 teaspoon table salt', '2 teaspoons [10 ml] kosher salt or 1 teaspoon table salt [6 g]'],
+    ['2 teaspoons kosher salt or 1 teaspoon table salt', '2 teaspoons kosher salt [6 g] or 1 teaspoon table salt [6 g]'],
     ['1 cup long-grain white rice', '1 cup long-grain white rice [190 g]'],
     ['Add 1/3 cup finely chopped shallots to the saucepan.', 'Add 1/3 cup finely chopped shallots [53 g] to the saucepan.'],
     ['1/4 cup minced fresh Italian parsley', '1/4 cup minced fresh Italian parsley [15 g]'],
