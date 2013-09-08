@@ -326,8 +326,10 @@ function replaceUnits(match) {
         } else {
             if (match.group('from:numWord')) // 'from a 1/4-ounce envelope'
                 ;
-            else
+            else {
                 newAmount += converted.amount;
+                logReplacement = true;
+            }
         }
     }
 
