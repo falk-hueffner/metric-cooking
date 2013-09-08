@@ -177,11 +177,11 @@ for (var unit in units) {
 reUnit += ')';
 
 var numWords = {
-    'quarter'      : [/(one[- ])?quarter/,     1/4],
-    'threequarter' : [/(three[- ])quarters?/,  3/4],
-    'third'        : [/(one[- ])?third/,       1/3],
-    'twothirds'    : [/(two[- ])thirds?/,      2/3],
-    'half'         : [/(one[- ])?half|half\s+a/, 1/2],
+    'quarter'      : [/(one[- ])?quarter( of an?)?/,    1/4],
+    'threequarter' : [/(three[- ])quarters?( of an?)?/, 3/4],
+    'third'        : [/(one[- ])?third( of an?)?/,      1/3],
+    'twothirds'    : [/(two[- ])thirds?( of an?)?/,     2/3],
+    'half'         : [/(one[- ])?half|half an?/,     1/2],
     'one'          : [/a|an|one(?![- ](half|third|quarter))/, 1],
     'two'          : [/two/,                     2],
     'three'        : [/three/,                   3],
@@ -536,7 +536,10 @@ var tests = [
     ['1 lb 2 oz penne rigate', '1 lb 2 oz [500 g] penne rigate'],
     ['1 cup of rice needs 1 and 1/4 cups of water', '1 cup of rice [190 g] needs 1 and 1/4 cups [300 ml] of water'],
     ['1 and 1/2 cups of milk, you know, roughly', '1 and 1/2 cups [350 ml] of milk, you know, roughly'],
-    ['for half a pound for the 2 of us', 'for half a pound [225 g] for the 2 of us']
+    ['for half a pound for the 2 of us', 'for half a pound [225 g] for the 2 of us'],
+    ['1 tablespoon plus 1 ½ teaspoons baking powder', '1 tablespoon plus 1 ½ teaspoons baking powder [21 g]'],
+    ['Eight 8-inch flour tortillas', 'Eight 8-inch flour [20 cm] tortillas'],
+    ['or a quarter of an ounce, which will cost about $40', 'or a quarter of an ounce [7 g], which will cost about $40']
 ];
 
 if (test) {
