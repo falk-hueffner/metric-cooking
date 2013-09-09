@@ -26,6 +26,7 @@
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.  */
 
 
+var dangerous    = true;
 var maxError     = 0.03;
 var numUnitSpace = '\u202F';    // thin space
 var test         = true;
@@ -155,10 +156,17 @@ function prefixGroups (regexp, prefix) {
 
 var logReplacement = false;
 
+var fahrenheit = dangerous
+        ? /(([°º˚]\s*|degrees?\b)(F\b|[(]F[)]|Fahrenheit\b)?)|F(ahrenheit)?\b/
+        :  /([°º˚]\s*|degrees?\s+)(F\b|[(]F[)]|Fahrenheit\b)/;
+var inches = dangerous
+        ? /(inch(es)?\b|[”″"])/
+        : /inch(es)?\b/;
+
 var units = {
     'cup':        [/(cups?)\b/,                                  'ml', cup_ml      ],
-    'fahrenheit': [/([°º]\s*|degrees\s+)(F\b|[(]F[)]|Fahrenheit\b)/,'°C', undefined   ],
-    'inch':       [/inch(es)?\b/,                                'mm', 25.6        ],
+    'fahrenheit': [fahrenheit,                                   '°C', undefined   ],
+    'inch':       [inches,                                       'mm', 25.6        ],
     'ounce':      [/ounces?\b|oz\b\.?/,                          'g' , pound_g / 16],
     'pint':       [/pints?\b/,                                   'g' , 2 * cup_ml  ],
     'pound':      [/pounds?\b|lbs?\b\.?/,                        'g' , pound_g     ],
