@@ -272,11 +272,17 @@ var reFrom = '(<from>'
         + '(\\s*((<range2>-|–|to|or)|(<plus2>plus|\\+|and))\\s*)'
         + '))';
 
+var reBy = '(<by>'
+        + prefixGroups(reNumber, 'by1') + '[”"″]?-?\\s*(×|x|by)-?\\s*'
+        + prefixGroups(reNumber, 'by2') + '[”"″]?-?\\s*((×|x|by)-?\\s*'
+        + prefixGroups(reNumber, 'by3') + ')?([”"″]|[ -]inch(es)?))';
+
 var reAll =
-        reFrom + '?(<main>'
+        reBy + '|('
+        + reFrom + '?(<main>'
         + reNumber + '(\\s*|-)'
         + reUnit + '(\\s+(of(\\s+the)?\\s+)?'
-        + reIngredient + ')?)';
+        + reIngredient + ')?))';
 var re = namedGroupRegExp(reAll, 'g');
 
 function convert(amount, unit) {
@@ -305,6 +311,18 @@ function scale(amount, unit) {
 
 function replaceUnits(match) {
     var newText = match[0];
+
+    if (match.group('by')) {
+        var by1 = round(convert(parseNumber(match, 'by1:'), 'inch').amount) / 10;
+        var by2 = round(convert(parseNumber(match, 'by2:'), 'inch').amount) / 10;
+        var by3 = round(convert(parseNumber(match, 'by3:'), 'inch').amount) / 10;
+
+        newText += ' [' + by1 + '×' + by2;
+        if (by3)
+            newText += '×' + by3;
+        return newText + numUnitSpace + 'cm]';
+    }
+
     var unit = parseUnit(match);
     var converted = convert(parseNumber(match), unit);
     var newAmount = converted.amount;
@@ -548,6 +566,20 @@ var tests = [
     ['One 1/8-inch thick slice presunto', 'One 1/8-inch [3 mm] thick slice presunto'],
     ['makes 1 9-inch pie crust', 'makes 1 9-inch [22.5 cm] pie crust'],
     ['1 28-ounce can San Marzano tomatoes', '1 28-ounce [800 g] can San Marzano tomatoes'],
+    ['to fit mine in a 9×13-inch baking pan', 'to fit mine in a 9×13-inch [22.5×32.5 cm] baking pan'],
+    ['roll out the dough into a 20-by-12-inch rectangle', 'roll out the dough into a 20-by-12-inch [50×30 cm] rectangle'],
+    ['Butter a 13- by 9- by 2-inch baking pan', 'Butter a 13- by 9- by 2-inch [32.5×22.5×5 cm] baking pan'],
+    ['Gently knead dough into a 10-by-8-inch rectangle', 'Gently knead dough into a 10-by-8-inch [25×20 cm] rectangle'],
+    ['Butter two 9×2 inch round cake pans', 'Butter two 9×2 inch [22.5×5 cm] round cake pans'],
+    ['Butter a 9x5 inch loaf pan', 'Butter a 9x5 inch [22.5×12.5 cm] loaf pan'],
+    ['ramekins or a 9”-by-13” baking dish', 'ramekins or a 9”-by-13” [22.5×32.5 cm] baking dish'],
+    ['Line a 13" x 18" x 1" baking sheet', 'Line a 13" x 18" x 1" [32.5×45×2.5 cm] baking sheet'],
+    ['Grease a 9-x-5-x-3-inch loaf pan', 'Grease a 9-x-5-x-3-inch [22.5×12.5×7.5 cm] loaf pan'],
+    ['in a parchment-lined 15x10x1-inch pan', 'in a parchment-lined 15x10x1-inch [37.5×25×2.5 cm] pan'],
+    ['Lightly butter a 9-by-5-by-3-inch loaf pan', 'Lightly butter a 9-by-5-by-3-inch [22.5×12.5×7.5 cm] loaf pan'],
+    ['5 strips, each about 12 by 4 inches', '5 strips, each about 12 by 4 inches [30×10 cm]'],
+    ['mixture evenly in a 9x13" baking dish', 'mixture evenly in a 9x13" [22.5×32.5 cm] baking dish'],
+    ['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]']
 ];
 
 if (test) {
