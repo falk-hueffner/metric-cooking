@@ -58,7 +58,7 @@ var ingredients = {
     'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
     'feta': [/\b(crumbled |low[ -]fat )*feta( cheese)?/, 150/cup_ml], // ~01019~
-    'flour': [/\b(all[- ]purpose |sifted |unbleached )*flour/, 125/cup_ml], // ~20081~
+    'flour': [/\b(all[- ]purpose |sifted |unbleached |white )*flour/, 125/cup_ml], // ~20081~
     'honey': [/\bhoney/, 339/cup_ml], // ~19296~
     'kosher salt': [/kosher salt/, 0.57], // Wolfram Alpha
     'lentils': [/\blentils/, 192/cup_ml], // ~16069~
