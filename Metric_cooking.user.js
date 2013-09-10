@@ -158,7 +158,7 @@ function prefixGroups (regexp, prefix) {
 var logReplacement = false;
 
 var fahrenheit = dangerous
-        ? /(([°º˚]\s*|degrees?\b)(?! ?C\b)(F\b|[(]F[)]|Fahrenheit\b)?)|F(ahrenheit)?\b/
+        ? /(([°º˚]\s*|degrees?\s+)(?! ?C\b)(F\b|[(]F[)]|Fahrenheit\b)?)|F(ahrenheit)?\b/
         :  /([°º˚]\s*|degrees?\s+)(F\b|[(]F[)]|Fahrenheit\b)/;
 var inches = dangerous
         ? /(inch(es)?\b|[”″"](?!\w))/
