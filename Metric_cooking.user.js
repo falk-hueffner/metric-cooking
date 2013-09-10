@@ -189,23 +189,23 @@ for (var unit in units) {
 reUnit += ')';
 
 var numWords = {
-    'quarter'      : [/(one[- ])?quarter( of an?)?/,    1/4],
-    'threequarter' : [/(three[- ])quarters?( of an?)?/, 3/4],
-    'third'        : [/(one[- ])?third( of an?)?/,      1/3],
-    'twothirds'    : [/(two[- ])thirds?( of an?)?/,     2/3],
-    'half'         : [/(one[- ])?half|half an?/,     1/2],
-    'one'          : [/a|an|one(?![- ](half|third|quarter))/, 1],
-    'two'          : [/two/,                     2],
-    'three'        : [/three/,                   3],
-    'four'         : [/four/,                    4],
-    'five'         : [/five/,                    5],
-    'six'          : [/six/,                     6],
-    'seven'        : [/seven/,                   7],
-    'eight'        : [/eight/,                   8],
-    'nine'         : [/nine/,                    9],
-    'ten'          : [/ten/,                    10],
-    'eleven'       : [/eleven/,                 11],
-    'twelve'       : [/twelve|dozen/,           12]
+    'quarter'      : [/([Oo]ne[- ])?[Qq]uarter( of an?)?/,     1/4],
+    'threequarter' : [/([Tt]hree[- ])[Qq]quarters?( of an?)?/, 3/4],
+    'third'        : [/([Oo]ne[- ])?[Tt]hird( of an?)?/,       1/3],
+    'twothirds'    : [/([Tt]wo[- ])[Tt]hirds?( of an?)?/,      2/3],
+    'half'         : [/([Oo]ne[- ])?[Hh]alf|[Hh]alf an?/,      1/2],
+    'one'          : [/[Aa]|[Aa]n|[Oo]ne(?![- ]([Hh]alf|[Tt]hird|[Qq]uarter))/, 1],
+    'two'          : [/[Tt]wo/,              2],
+    'three'        : [/[Tt]hree/,            3],
+    'four'         : [/[Ff]our/,             4],
+    'five'         : [/[Ff]ive/,             5],
+    'six'          : [/[Ss]ix/,              6],
+    'seven'        : [/[Ss]even/,            7],
+    'eight'        : [/[Ee]ight/,            8],
+    'nine'         : [/[Nn]ine/,             9],
+    'ten'          : [/[Tt]en/,             10],
+    'eleven'       : [/[Ee]leven/,          11],
+    'twelve'       : [/[Tt]welve|[Dd]ozen/, 12]
 };
 var reNumWord   = '';
 for (var numWord in numWords) {
@@ -590,7 +590,8 @@ var tests = [
     ['5 strips, each about 12 by 4 inches', '5 strips, each about 12 by 4 inches [30×10 cm]'],
     ['mixture evenly in a 9x13" baking dish', 'mixture evenly in a 9x13" [22.5×32.5 cm] baking dish'],
     ['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]'],
-    ['mandoline set to 1/16th of an inch.', 'mandoline set to 1/16th of an inch [2 mm].']
+    ['mandoline set to 1/16th of an inch.', 'mandoline set to 1/16th of an inch [2 mm].'],
+    ['Five tablespoons of flour', 'Five tablespoons of flour [40 g]']
 ];
 
 if (test) {
