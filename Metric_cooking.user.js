@@ -167,6 +167,7 @@ var inches = dangerous
 var units = {
     'cup':        [/(cups?)\b/,                                  'ml', cup_ml      ],
     'fahrenheit': [fahrenheit,                                   '°C', undefined   ],
+    'fl oz':      [/fl\.? oz\.?/,                                'ml', 2 * tbsp_ml ],
     'inch':       [inches,                                       'mm', 25.6        ],
     'ounce':      [/ounces?\b|oz\b\.?/,                          'g' , pound_g / 16],
     'pint':       [/pints?\b/,                                   'g' , 2 * cup_ml  ],
