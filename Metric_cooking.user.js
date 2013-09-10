@@ -69,7 +69,7 @@ var ingredients = {
     'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
     'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
     'mustard': [/\b(Dijon |grainy )*mustard/, 249/cup_ml], // ~02046~
-    'onions, chopped': [/\b(chopped onions)|(onions, chopped)/, 160/cup_ml], // ~11282~
+    'onions, chopped': [/\b(chopped onions?)|(onions?, chopped)/, 160/cup_ml], // ~11282~
     'parmesan': [/\b(finely |freshly |grated |shredded )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano|[Rr]omano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'peanut butter': [/\b(smooth |natural |creamy |chunky )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'peanuts': [/\bpeanuts/, 146/cup_ml], // ~16087~
@@ -77,13 +77,14 @@ var ingredients = {
     'pine nuts': [/\bpine ?nuts/, 135/cup_ml], // ~12147~
     'pistachio': [/\bpistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
     'powdered sugar': [/\b(powdered|confectioners['’]?|icing) sugar/, 120/cup_ml], // ~19336~ (unsifted)
+    'quinoa': [/\b(dry |pre-washed |or |rinsed |whole[- ]grain |organic )*quinoa/, 170/cup_ml], // ~20035~
     'raisins': [/\b(golden )?raisins/, 165/cup_ml], // ~09298~ (packed)
     'ricotta': [/\b(fresh )?ricotta( cheese)?/, 246/cup_ml], // ~01036~
     'salt': [/\b(table )?salt/, 292/cup_ml], // ~02047~
     'short-grain rice': [/\b(short[- ]grain(ed)? |[Aa]rborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'shredded mozzarella': [/\b(shredded |part-skim )*mozzarella( cheese)?/, 112/cup_ml], // ~01026~
     'sliced almonds': [/\bsliced almonds/, 92/cup_ml], // ~12061~
-    'spinach': [/\bspinach/, 30/cup_ml], // ~11457~ (raw)
+    'spinach': [/\b(fresh )?spinach/, 30/cup_ml], // ~11457~ (raw)
     'sugar': [/\b(granulated |white )*sugar/, 200/cup_ml], // ~19335~
     'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
     'swiss cheese': [/\b(grated |shredded )*Swiss cheese/, 108/cup_ml], // ~01040~
