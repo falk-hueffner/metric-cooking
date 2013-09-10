@@ -161,7 +161,7 @@ var fahrenheit = dangerous
         ? /(([°º˚]\s*|degrees?\b)(?! ?C\b)(F\b|[(]F[)]|Fahrenheit\b)?)|F(ahrenheit)?\b/
         :  /([°º˚]\s*|degrees?\s+)(F\b|[(]F[)]|Fahrenheit\b)/;
 var inches = dangerous
-        ? /(inch(es)?\b|[”″"])/
+        ? /(inch(es)?\b|[”″"](?!\w))/
         : /inch(es)?\b/;
 
 var units = {
