@@ -219,7 +219,7 @@ reNumWord += ')';
 
 var reReal      = /(<real>\d+(\.\d+)?)/.source;
 var reFracChar  = /(<fracChar>[¼½¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/.source;
-var reFraction  = '(<fraction>(<fracWhole>\\d+(\\s*|-))?(((<fracNum>\\d+)/(<fracDen>\\d+)(\\s*of\\s*a\\s*)?)|' + reFracChar +'))';
+var reFraction  = '(<fraction>(<fracWhole>\\d+(\\s*|-))?(((<fracNum>\\d+)/(<fracDen>\\d+)((th)? of an?)?)|' + reFracChar +'))';
 var reNumber = '(<number>' + reNumWord + '|' + reReal + '|' + reFraction + ')';
 
 function parseNumber(match, prefix) {
@@ -589,7 +589,8 @@ var tests = [
     ['Lightly butter a 9-by-5-by-3-inch loaf pan', 'Lightly butter a 9-by-5-by-3-inch [22.5×12.5×7.5 cm] loaf pan'],
     ['5 strips, each about 12 by 4 inches', '5 strips, each about 12 by 4 inches [30×10 cm]'],
     ['mixture evenly in a 9x13" baking dish', 'mixture evenly in a 9x13" [22.5×32.5 cm] baking dish'],
-    ['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]']
+    ['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]'],
+    ['mandoline set to 1/16th of an inch.', 'mandoline set to 1/16th of an inch [2 mm].']
 ];
 
 if (test) {
