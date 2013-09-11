@@ -38,6 +38,7 @@ var pound_g = 453.59237;
 
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
+    'chocolate chips': [/(semi-sweet |dark |milk |semi- |or |bittersweet )*chocolate chips/, 0.71], // Wolfram Alpha
     'almonds': [/\b(blanched |raw )*almonds/, 144/cup_ml], // average of ~12061~ (143) and ~12062~ (145)
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
@@ -420,7 +421,7 @@ var tests = [
     ['2 cups flour', '2 cups flour [250 g]'],
     ['2 cups dark brown sugar', '2 cups dark brown sugar [450 g]'],
     ['1/4 cup pine nuts', '1/4 cup pine nuts [34 g]'],
-    ['1 lb semi-sweet chocolate chips', '1 lb [450 g] semi-sweet chocolate chips'],
+    ['1 lb semi-sweet chocolate chips', '1 lb semi-sweet chocolate chips [450 g]'],
     // false positives with C meaning °C
     // ['1/2 C butter', '1/2 C butter [55 g]'],
     ['1 t vanilla, almond, coconut, or orange extract', '1 t [5 ml] vanilla, almond, coconut, or orange extract'],
@@ -596,7 +597,8 @@ var tests = [
     ['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]'],
     ['mandoline set to 1/16th of an inch.', 'mandoline set to 1/16th of an inch [2 mm].'],
     ['Five tablespoons of flour', 'Five tablespoons of flour [40 g]'],
-    ['1 1⁄2    cups finely grated Parmesan', '1 1⁄2    cups finely grated Parmesan [150 g]']
+    ['1 1⁄2    cups finely grated Parmesan', '1 1⁄2    cups finely grated Parmesan [150 g]'],
+    ['½ cup dark chocolate chips', '½ cup dark chocolate chips [85 g]']
 ];
 
 if (test) {
