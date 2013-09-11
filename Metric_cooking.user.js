@@ -172,7 +172,7 @@ var units = {
     'ounce':      [/ounces?\b|oz\b\.?/,                          'g' , pound_g / 16],
     'pint':       [/pints?\b/,                                   'g' , 2 * cup_ml  ],
     'pound':      [/pounds?\b|lbs?\b\.?/,                        'g' , pound_g     ],
-    'quart':      [/quarts?\b/,                                  'ml', 4 * cup_ml  ],
+    'quart':      [/quarts?\b|qt\b\.?/,                          'ml', 4 * cup_ml  ],
     'stick':      [/sticks?\b(?!\s+cinnamon)/,                   'g' , pound_g / 4 ],
     'tablespoon': [/[Tt]ablespoons?\b|(T|tb|[Tt]bsp?|TBL)\b\.?/, 'ml', tbsp_ml     ],
     'teaspoon':   [/[Tt]easpoons?\b|(t|tsp|TSP)\b\.?/,           'ml', tbsp_ml / 3 ]
