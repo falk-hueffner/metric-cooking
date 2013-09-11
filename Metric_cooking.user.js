@@ -322,6 +322,10 @@ function scale(amount, unit) {
 function replaceUnits(match) {
     var newText = match[0];
 
+    // avoid false positives with e.g. 'a t-shirt'
+    if (match.group('numWord') && match.group('unit').match(/^["tT]$/))
+        return newText;
+
     if (match.group('by')) {
         var by1 = round(convert(parseNumber(match, 'by1:'), 'inch').amount) / 10;
         var by2 = round(convert(parseNumber(match, 'by2:'), 'inch').amount) / 10;
