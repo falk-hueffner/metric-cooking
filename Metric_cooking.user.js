@@ -275,6 +275,7 @@ function parseIngredient(match) {
 }
 
 var reFrom = '(<from>'
+        + '(<between>between\\s+)?'
         + prefixGroups(reNumber, 'from') + '-?\\s*'
         + '(('
         + prefixGroups(reUnit, 'from')
@@ -350,7 +351,7 @@ function replaceUnits(match) {
         if (converted.unit != newUnit)
             return re.replace(match.group('from'), replaceUnits)
                 +  re.replace(match.group('main'), replaceUnits);
-        if (match.group('range1') || match.group('range2')) {
+        if (match.group('between') || match.group('range1') || match.group('range2')) {
             fromAmount = converted.amount;
             if (fromAmount >= 1 && newAmount < 1) { // "1-1/2"
                 newAmount += fromAmount;
@@ -600,7 +601,8 @@ var tests = [
     ['Five tablespoons of flour', 'Five tablespoons of flour [40 g]'],
     ['1 1⁄2    cups finely grated Parmesan', '1 1⁄2    cups finely grated Parmesan [150 g]'],
     ['½ cup dark chocolate chips', '½ cup dark chocolate chips [85 g]'],
-    ['about 1 pound 2-inch florets', 'about 1 pound [450 g] 2-inch [5 cm] florets']
+    ['about 1 pound 2-inch florets', 'about 1 pound [450 g] 2-inch [5 cm] florets'],
+    ['between 1/8 and 1/4-inch', 'between 1/8 and 1/4-inch [3–6 mm]']
 ];
 
 if (test) {
