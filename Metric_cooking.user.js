@@ -596,7 +596,8 @@ var tests = [
     ['1 1⁄2    cups finely grated Parmesan', '1 1⁄2    cups finely grated Parmesan [150 g]'],
     ['½ cup dark chocolate chips', '½ cup dark chocolate chips [85 g]'],
     ['about 1 pound 2-inch florets', 'about 1 pound [450 g] 2-inch [5 cm] florets'],
-    ['between 1/8 and 1/4-inch', 'between 1/8 and 1/4-inch [3–6 mm]']
+    ['between 1/8 and 1/4-inch', 'between 1/8 and 1/4-inch [3–6 mm]'],
+    ['between 12 ounces and a pound—that\'s big', 'between 12 ounces and a pound [350–450 g]—that\'s big']
 ];
 
 if (test) {
