@@ -232,10 +232,8 @@ function parseNumber(match, prefix) {
     var numWord = match.group(prefix + 'numWord');
     if (numWord) {
         for (var w in numWords)
-            if (match.group(prefix + w)) {
-                logReplacement = true;
+            if (match.group(prefix + w))
                 return numWords[w][1];
-            }
         return undefined;
     }
 
@@ -358,12 +356,8 @@ function replaceUnits(match) {
                 fromAmount = undefined;
             }
         } else {
-            if (match.group('from:numWord')) // 'from a 1/4-ounce envelope'
-                ;
-            else {
+            if (!match.group('from:numWord')) // 'from a 1/4-ounce envelope'
                 newAmount += converted.amount;
-                logReplacement = true;
-            }
         }
     }
 
