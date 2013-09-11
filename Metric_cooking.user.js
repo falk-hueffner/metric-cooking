@@ -347,16 +347,14 @@ function replaceUnits(match) {
     if (match.group('from')) {
         var fromUnit = match.group('from:unit') ? parseUnit(match, 'from:') : unit;
         converted = convert(parseNumber(match, 'from:'), fromUnit);
+        if (converted.unit != newUnit)
+            return re.replace(match.group('from'), replaceUnits)
+                +  re.replace(match.group('main'), replaceUnits);
         if (match.group('range1') || match.group('range2')) {
-            if (match.group('from:unit') && match.group('from:unit') != match.group('unit')) {
-                return re.replace(match.group('from'), replaceUnits)
-                    +  re.replace(match.group('main'), replaceUnits);
-            } else {
-                fromAmount = converted.amount;
-                if (fromAmount >= newAmount) { // "1-1/2"
-                    newAmount += fromAmount;
-                    fromAmount = undefined;
-                }
+            fromAmount = converted.amount;
+            if (fromAmount >= 1 && newAmount < 1) { // "1-1/2"
+                newAmount += fromAmount;
+                fromAmount = undefined;
             }
         } else {
             if (match.group('from:numWord')) // 'from a 1/4-ounce envelope'
@@ -397,6 +395,9 @@ function replaceUnits(match) {
         newAmount = scaled.amount;
         newUnit   = scaled.unit;
     }
+
+    if (fromAmount == newAmount)
+        fromAmount = undefined;
 
     newText += ' [';
     if (fromAmount)
@@ -552,7 +553,7 @@ var tests = [
     ['6 tablespoons or 3 ounces cold unsalted butter', '6 tablespoons [90 ml] or 3 ounces cold unsalted butter [85 g]'],
     ['½ cup creamy peanut butter', '½ cup creamy peanut butter [130 g]'],
     ['3 tablespoons shredded part-skim mozzarella cheese', '3 tablespoons shredded part-skim mozzarella cheese [21 g]'],
-    ['1 cup (2 sticks or 8 ounces) butter', '1 cup [240 ml] (2 sticks [225 g] or 8 ounces [225 g]) butter'],
+    ['1 cup (2 sticks or 8 ounces) butter', '1 cup [240 ml] (2 sticks or 8 ounces [225 g]) butter'],
     ['3 cups unbleached pastry flour', '3 cups unbleached pastry flour [350 g]'],
     ['About one cup', 'About one cup [240 ml]'],
     ['Heat the olive oil in a four-quart pot', 'Heat the olive oil in a four-quart [3.75 l] pot'],
@@ -598,7 +599,8 @@ var tests = [
     ['mandoline set to 1/16th of an inch.', 'mandoline set to 1/16th of an inch [2 mm].'],
     ['Five tablespoons of flour', 'Five tablespoons of flour [40 g]'],
     ['1 1⁄2    cups finely grated Parmesan', '1 1⁄2    cups finely grated Parmesan [150 g]'],
-    ['½ cup dark chocolate chips', '½ cup dark chocolate chips [85 g]']
+    ['½ cup dark chocolate chips', '½ cup dark chocolate chips [85 g]'],
+    ['about 1 pound 2-inch florets', 'about 1 pound [450 g] 2-inch [5 cm] florets']
 ];
 
 if (test) {
