@@ -58,7 +58,7 @@ var ingredients = {
     'crumbled blue cheese': [/\bcrumbled blue cheese/, 135/cup_ml], // ~01004~
     'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
-    'feta': [/\b(crumbled |low[ -]fat )*feta( cheese)?/, 150/cup_ml], // ~01019~
+    'feta': [/\b(crumbled |low[ -]fat )*[Ff]eta( cheese)?/, 150/cup_ml], // ~01019~
     'flour': [/\b(all[- ]purpose |sifted |unbleached |white )*flour/, 125/cup_ml], // ~20081~
     'honey': [/\bhoney/, 339/cup_ml], // ~19296~
     'kosher salt': [/kosher salt/, 0.57], // Wolfram Alpha
@@ -70,7 +70,7 @@ var ingredients = {
     'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
     'mustard': [/\b([Dd]ijon |grainy )*mustard/, 249/cup_ml], // ~02046~
     'onions, chopped': [/\b(chopped onions?)|(onions?, chopped)/, 160/cup_ml], // ~11282~
-    'parmesan': [/\b(finely |freshly |grated |shredded )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano|[Rr]omano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
+    'parmesan': [/\b(finely |freshly |grated |shredded |fresh )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano|[Rr]omano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'peanut butter': [/\b(smooth |natural |creamy |chunky )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'peanuts': [/\bpeanuts/, 146/cup_ml], // ~16087~
     'pecans': [/\bpecans?( halves)?/, 99/cup_ml], // ~12142~ (halves)
@@ -88,7 +88,7 @@ var ingredients = {
     'sugar': [/\b(granulated |white )*sugar/, 200/cup_ml], // ~19335~
     'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
     'swiss cheese': [/\b(grated |shredded )*Swiss cheese/, 108/cup_ml], // ~01040~
-    'tomato paste': [/\btomato paste/, 262/cup_ml], // ~11546~
+    'tomato paste': [/\b(double-concentrated )?tomato paste/, 262/cup_ml], // ~11546~
     'wild rice': [/\bwild rice/, 160/cup_ml], // ~20088~
     'yogurt': [/\b(plain |low-fat )*yogurt/, 245/cup_ml] // ~01116~
 };
