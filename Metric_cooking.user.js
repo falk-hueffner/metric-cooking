@@ -159,8 +159,8 @@ function prefixGroups (regexp, prefix) {
 var logReplacement = false;
 
 var fahrenheit = dangerous
-        ? /(([°º˚]\s*|degrees?\s+)(?! ?C\b)(F\b|[(]F[)]|Fahrenheit\b)?)|F(ahrenheit)?\b/
-        :  /([°º˚]\s*|degrees?\s+)(F\b|[(]F[)]|Fahrenheit\b)/;
+        ? /(([°º˚]|degrees?\b)\s*(?! ?C\b)(F\b|[(]F[)]|Fahrenheit\b)?)|F(ahrenheit)?\b/
+        :  /([°º˚]|degrees?\b)\s*(F\b|[(]F[)]|Fahrenheit\b)/;
 var inches = dangerous
         ? /(inch(es)?\b|[”″"](?!\w))/
         : /inch(es)?\b/;
@@ -284,8 +284,10 @@ var reFrom = '(<from>'
 
 var reBy = '(<by>'
         + prefixGroups(reNumber, 'by1') + '[”"″]?-?\\s*(×|x|by)-?\\s*'
-        + prefixGroups(reNumber, 'by2') + '[”"″]?-?\\s*((×|x|by)-?\\s*'
-        + prefixGroups(reNumber, 'by3') + ')?([”"″]|[ -]inch(es)?))';
+        + prefixGroups(reNumber, 'by2') + '[”"″]?-?(\\s*(×|x|by)-?\\s*'
+        + prefixGroups(reNumber, 'by3') + ')?([”"″]|[ -]?inch(es)?)'
+        + (dangerous ? "?" : "")
+        + ')';
 
 var reAll =
         reBy + '|('
