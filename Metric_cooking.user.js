@@ -353,7 +353,7 @@ function replaceUnits(match) {
                 +  re.replace(match.group('main'), replaceUnits);
         if (match.group('between') || match.group('range1') || match.group('range2')) {
             fromAmount = converted.amount;
-            if (fromAmount >= 1 && newAmount < 1) { // "1-1/2"
+            if (parseNumber(match, 'from:') >= 1 && parseNumber(match) < 1) { // "1-1/2"
                 newAmount += fromAmount;
                 fromAmount = undefined;
             }
