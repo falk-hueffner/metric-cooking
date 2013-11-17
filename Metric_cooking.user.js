@@ -353,7 +353,8 @@ function replaceUnits(match) {
                 +  re.replace(match.group('main'), replaceUnits);
         if (match.group('between') || match.group('range1') || match.group('range2')) {
             fromAmount = converted.amount;
-            if (parseNumber(match, 'from:') >= 1 && parseNumber(match) < 1) { // "1-1/2"
+            //if (parseNumber(match, 'from:') >= 1 && parseNumber(match) < 1) { // "1-1/2"
+            if (fromAmount >= 1 && newAmount < 1) { // "1-1/2"
                 newAmount += fromAmount;
                 fromAmount = undefined;
             }
@@ -599,7 +600,8 @@ var tests = [
     ['½ cup dark chocolate chips', '½ cup dark chocolate chips [85 g]'],
     ['about 1 pound 2-inch florets', 'about 1 pound [450 g] 2-inch [5 cm] florets'],
     ['between 1/8 and 1/4-inch', 'between 1/8 and 1/4-inch [3–6 mm]'],
-    ['between 12 ounces and a pound—that\'s big', 'between 12 ounces and a pound [350–450 g]—that\'s big']
+    ['between 12 ounces and a pound—that\'s big', 'between 12 ounces and a pound [350–450 g]—that\'s big'],
+    ['1-¼ cup sugar, Divided', '1-¼ cup [300 ml] sugar, Divided']
 ];
 
 if (test) {
