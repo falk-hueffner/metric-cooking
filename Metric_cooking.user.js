@@ -353,8 +353,7 @@ function replaceUnits(match) {
                 +  re.replace(match.group('main'), replaceUnits);
         if (match.group('between') || match.group('range1') || match.group('range2')) {
             fromAmount = converted.amount;
-            //if (parseNumber(match, 'from:') >= 1 && parseNumber(match) < 1) { // "1-1/2"
-            if (fromAmount >= 1 && newAmount < 1) { // "1-1/2"
+            if (parseNumber(match, 'from:') >= 1 && parseNumber(match) < 1) { // "1-1/2"
                 newAmount += fromAmount;
                 fromAmount = undefined;
             }
@@ -593,7 +592,6 @@ var tests = [
     ['Lightly butter a 9-by-5-by-3-inch loaf pan', 'Lightly butter a 9-by-5-by-3-inch [22.5×12.5×7.5 cm] loaf pan'],
     ['5 strips, each about 12 by 4 inches', '5 strips, each about 12 by 4 inches [30×10 cm]'],
     ['mixture evenly in a 9x13" baking dish', 'mixture evenly in a 9x13" [22.5×32.5 cm] baking dish'],
-    ['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]'],
     ['mandoline set to 1/16th of an inch.', 'mandoline set to 1/16th of an inch [2 mm].'],
     ['Five tablespoons of flour', 'Five tablespoons of flour [40 g]'],
     ['1 1⁄2    cups finely grated Parmesan', '1 1⁄2    cups finely grated Parmesan [150 g]'],
@@ -601,7 +599,9 @@ var tests = [
     ['about 1 pound 2-inch florets', 'about 1 pound [450 g] 2-inch [5 cm] florets'],
     ['between 1/8 and 1/4-inch', 'between 1/8 and 1/4-inch [3–6 mm]'],
     ['between 12 ounces and a pound—that\'s big', 'between 12 ounces and a pound [350–450 g]—that\'s big'],
-    ['1-¼ cup sugar, Divided', '1-¼ cup [300 ml] sugar, Divided']
+    ['1-¼ cup sugar, Divided', '1-¼ cup sugar [250 g], Divided'],
+// failing
+    ['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]'],
 ];
 
 if (test) {
