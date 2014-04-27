@@ -9,7 +9,7 @@
 // @grant       none
 // ==/UserScript==
 
-/* Copyright (C) 2013  Falk Hüffner
+/* Copyright (C) 2013, 2014  Falk Hüffner
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -38,7 +38,6 @@ var pound_g = 453.59237;
 
 // source: USDA National Nutrient Database for Standard Reference, Release 26
 var ingredients = {
-    'chocolate chips': [/(semi-sweet |dark |milk |semi- |or |bittersweet )*chocolate chips/, 0.71], // Wolfram Alpha
     'almonds': [/\b(blanched |raw )*almonds/, 144/cup_ml], // average of ~12061~ (143) and ~12062~ (145)
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
@@ -49,6 +48,7 @@ var ingredients = {
     'cake flour': [/\b(sifted |unbleached )*(cake|pastry) flour/, 114/cup_ml], // the internet
     'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
     'cheddar': [/(coarsely |grated |shredded |aged |white |sharp )*[Cc]heddar/, 113/cup_ml], // ~01009~
+    'chocolate chips': [/(semi-sweet |dark |milk |semi- |or |bittersweet )*chocolate chips/, 0.71], // Wolfram Alpha
     'chopped parsley': [/(chopped |minced |fresh |Italian |flat-leaf )*parsley( leaves)?/, 60/cup_ml], // ~11297~
     'chopped shallots': [/(finely |chopped )*shallots/, 10.0/tbsp_ml], // ~11677~
     'cocoa': [/\b(unsweetened |Dutch[- ]process(ed)? )*cocoa( powder)?/, 86/cup_ml], // ~19165~
