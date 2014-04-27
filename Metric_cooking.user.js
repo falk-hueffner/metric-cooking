@@ -607,7 +607,7 @@ var tests = [
     ['1/4 cup superfine sugar', '1/4 cup superfine sugar [48 g]'],
     ['1 cup creme fraiche', '1 cup creme fraiche [225 g]'],
     ['1 cup Mexican crema (or creme fraiche)', '1 cup Mexican crema [225 g] (or creme fraiche)'],
-    ['Pre-heat your oven to 350*F.', 'Pre-heat your oven to 350*F [[190 °C].']
+    ['Pre-heat your oven to 350*F.', 'Pre-heat your oven to 350*F [175 °C].']
 // failing
     //['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]']
 ];
