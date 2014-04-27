@@ -41,7 +41,9 @@ var pound_per_ft3 = 0.0160184634; // in g/ml
 // USDA National Nutrient Database for Standard Reference, Release 26
 // FAO/INFOODS Density Database Version 2.0 (2012)
 var ingredients = {
-    'almonds': [/\b(blanched |raw )*almonds/, 144/cup_ml], // average of ~12061~ (143) and ~12062~ (145)
+    'dried apricots': [/\bdried apricots/, 130/cup_ml], // ~09032~
+    'almonds': [/\b(blanched |raw |peeled )*almonds/, 144/cup_ml], // average of ~12061~ (143) and ~12062~ (145)
+    'arugula': [/\barugula( leaves)?/, 10.0/(0.5*cup_ml)], // ~11959~
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
@@ -51,32 +53,44 @@ var ingredients = {
     'cake flour': [/\b(sifted |unbleached )*(cake|pastry) flour/, 114/cup_ml], // the internet
     'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
     'cheddar': [/(coarsely |grated |shredded |aged |white |sharp )*[Cc]heddar/, 113/cup_ml], // ~01009~
+    'cherries': [/\b([Pp]itted |frozen |whole |fresh |Bing )*[Cc]herries/, 154.5/cup_ml], // ~09063~ & ~09070~ / ~09068~ & ~09076~
+    'cherry tomatoes': [/(halved |cherry |grape |or |assorted )*(cherry|grape) tomatoes/, 149/cup_ml], // ~11529~
     'chocolate chips': [/(semi-sweet |dark |milk |semi- |or |bittersweet )*chocolate chips/, 0.71], // Wolfram Alpha
     'chopped parsley': [/(chopped |minced |fresh |Italian |flat-leaf )*parsley( leaves)?/, 60/cup_ml], // ~11297~
     'chopped shallots': [/(finely |chopped )*shallots/, 10.0/tbsp_ml], // ~11677~
     'cocoa nibs': [/cocoa nibs/, 35*pound_per_ft3], // http://www.sawyerhanson.com/uploads/Brabender%20Ingredient%20bulk%20density%20table.pdf
-    'cocoa': [/\b(unsweetened |Dutch[- ]process(ed)? )*cocoa( powder)?(?! nibs)/, 86/cup_ml], // ~19165~
-    'cornstarch': [/\b(cornstarch|starch\s+powder)/, 128/cup_ml], // ~20027~
+    'cocoa': [/\b(unsweetened |Dutch[- ]process(ed)? |natural )*cocoa( powder)?(?! nibs)/, 86/cup_ml], // ~19165~
+    'cornmeal': [/\b(yellow )?(cornmeal|polenta)/, 157/cup_ml], // ~20022~
+    'cornstarch': [/\b(corn ?starch|starch\s+powder|cornflour)/, 128/cup_ml], // ~20027~
     'cottage cheese': [/\b(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
     'cranberries': [/\b(fresh |of |or |thawed |frozen )*cranberries/, 100/cup_ml], // ~09078~
     'cream cheese': [/cream cheese/, 232/cup_ml], // ~01017~
+    'cream': [/\b(heavy |whipping |or |double )*cream/, 238.5/cup_ml], // ~01053~ & ~01052~
     'creme fraiche': [/(cr[eè]me fra[iî]che|(Mexican )?crema)/, 0.978], // FAO, 38%
     'crumbled blue cheese': [/\bcrumbled blue cheese/, 135/cup_ml], // ~01004~
     'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
+    'dried cherries': [/\b(pitted )?dried cherries/, 40/(0.25*cup_ml)], // ~09044~
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
+    'farro': [/\bfarro/, 0.82], // Wolfram Alpha
     'feta': [/\b(crumbled |low[ -]fat )*[Ff]eta( cheese)?/, 150/cup_ml], // ~01019~
     'flour': [/\b(all[- ]purpose |sifted |unbleached |white )*flour/, 125/cup_ml], // ~20081~
+    'hazelnuts': [/\bhazelnuts/, 135/cup_ml], // ~12120~ (whole)
     'honey': [/\bhoney/, 339/cup_ml], // ~19296~
+    'israeli couscous': [/\b(\(?Israeli\)? |pearl(ed)? |or )*(\(?Israeli\)? |pearl(ed)? )+cous ?cous/, 50/(cup_ml/3)], // http://www.fatsecret.com/calories-nutrition/osem/israeli-couscous
     'kosher salt': [/kosher salt/, 0.57], // Wolfram Alpha
-    'lentils': [/\blentils/, 192/cup_ml], // ~16069~
+    'lentils': [/\b(brown |or |green )*lentils/, 192/cup_ml], // ~16069~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
-    'long-grain rice': [/\b(long[- ]grain(ed)? |[Bb]asmati |[Jj]asmine )?(brown |white )*rice(?! vinegar| crispies| flour| wine)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
+    'long-grain rice': [/\b(long[- ]grain(ed)? |[Bb]asmati |[Jj]asmine |brown |white |uncooked )*rice(?! vinegar| crispies| flour| wine)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
     'maple syrup': [/\b(pure )?maple syrup/, 80/60], // ~19911~
     'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
     'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
+    'mint': [/\bmint( leaves)?/, 3.2/(2*tbsp_ml)], // ~02064~
     'mustard': [/\b([Dd]ijon |grainy |yellow )*mustard/, 249/cup_ml], // ~02046~
+    'nutella': [/\bNutella/, 1.2], // Wolfram Alpha
     'onions, chopped': [/\b(chopped onions?)|(onions?, chopped)/, 160/cup_ml], // ~11282~
+    'orzo': [/\b(whole[- ]wheat )?orzo/, 225/cup_ml], // estimate from various sources
     'parmesan': [/\b(finely |freshly |grated |shredded |fresh )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano|[Rr]omano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
+    'pastry flour': [/\b(whole |wheat )*pastry flour/, 0.51], // Wolfram Alpha
     'peanut butter': [/\b(smooth |natural |creamy |chunky )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'peanuts': [/\bpeanuts/, 146/cup_ml], // ~16087~
     'pecans': [/\bpecans?( halves)?/, 99/cup_ml], // ~12142~ (halves)
@@ -89,7 +103,8 @@ var ingredients = {
     'salt': [/\b(table )?salt/, 292/cup_ml], // ~02047~
     'short-grain rice': [/\b(short[- ]grain(ed)? |[Aa]rborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'shredded mozzarella': [/\b(shredded |part-skim )*mozzarella( cheese)?/, 112/cup_ml], // ~01026~
-    'sliced almonds': [/\bsliced almonds/, 92/cup_ml], // ~12061~
+    'sliced almonds': [/\bsliced (and toasted )?almonds/, 92/cup_ml], // ~12061~
+    'sour cream': [/\bsour cream/, 230/cup_ml], // ~01056~
     'spinach': [/\b(fresh )?spinach/, 30/cup_ml], // ~11457~ (raw)
     'sugar': [/\b(granulated |white )*sugar/, 200/cup_ml], // ~19335~
     'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
@@ -97,7 +112,7 @@ var ingredients = {
     'swiss cheese': [/\b(grated |shredded )*Swiss cheese/, 108/cup_ml], // ~01040~
     'tomato paste': [/\b(double-concentrated )?tomato paste/, 262/cup_ml], // ~11546~
     'wild rice': [/\bwild rice/, 160/cup_ml], // ~20088~
-    'yogurt': [/\b(plain |low-fat )*yogurt/, 245/cup_ml] // ~01116~
+    'yogurt': [/\b(plain |low-fat |vanilla |\d% |Greek )*yogurt/, 245/cup_ml] // ~01116~
 };
 var reIngredient = '';
 for (var ingredient in ingredients) {
@@ -181,7 +196,7 @@ var units = {
     'pound':      [/pounds?\b|lbs?\b\.?/,                        'g' , pound_g     ],
     'quart':      [/quarts?\b|qt\b\.?/,                          'ml', 4 * cup_ml  ],
     'stick':      [/sticks?\b(?!\s+cinnamon)/,                   'g' , pound_g / 4 ],
-    'tablespoon': [/[Tt]ablespoons?\b|(T|tb|[Tt]bsp?|TBL)\b\.?/, 'ml', tbsp_ml     ],
+    'tablespoon': [/[Tt]ablespoons?\b|(T|tb|[Tt]bsp?|TBL|TBSP)\b\.?/, 'ml', tbsp_ml     ],
     'teaspoon':   [/[Tt]easpoons?\b|(t|tsp|TSP)\b\.?/,           'ml', tbsp_ml / 3 ]
 };
 
@@ -486,7 +501,7 @@ var tests = [
     ['torn into 1/4- to 1/2-inch pieces', 'torn into 1/4- to 1/2-inch [6–13 mm] pieces'],
     ['scrubbed and cut into 1/2-inch to 3/4-inch cubes', 'scrubbed and cut into 1/2-inch to 3/4-inch [1.3–1.9 cm] cubes'],
     ['1/4 cup corn syrup', '1/4 cup corn syrup [85 g]'],
-    ['1 pint cherry tomatoes', '1 pint [475 g] cherry tomatoes'],
+    ['1 pint cherry tomatoes', '1 pint cherry tomatoes [475 g]'],
     ['Preheat oven to 450° F.', 'Preheat oven to 450° F [230 °C].'],
     ['1 cup mayonnaise', '1 cup mayonnaise [225 g]'],
     ['1/2 cup low-fat yogurt (preferably Greek)', '1/2 cup low-fat yogurt [125 g] (preferably Greek)'],
@@ -561,7 +576,7 @@ var tests = [
     ['About one cup', 'About one cup [240 ml]'],
     ['Heat the olive oil in a four-quart pot', 'Heat the olive oil in a four-quart [3.75 l] pot'],
     ['Caramelize a nine-inch round or tube pan', 'Caramelize a nine-inch [22.5 cm] round or tube pan'],
-    ['add a tablespoon of heavy cream and stir', 'add a tablespoon [15 ml] of heavy cream and stir'],
+    ['add a tablespoon of heavy cream and stir', 'add a tablespoon of heavy cream [15 g] and stir'],
     ['a little less than a cup', 'a little less than a cup [240 ml]'],
     ['Divide the mixture among ten 3-ounce pop molds', 'Divide the mixture among ten 3-ounce [85 g] pop molds'],
     ['I used about 1/4 to 1/3 of a cup and', 'I used about 1/4 to 1/3 of a cup [60–80 ml] and'],
@@ -611,10 +626,35 @@ var tests = [
     ['1 cup Mexican crema (or creme fraiche)', '1 cup Mexican crema [225 g] (or creme fraiche)'],
     ['Pre-heat your oven to 350*F.', 'Pre-heat your oven to 350*F [175 °C].'],
     ['⅓ cup cocoa nibs', '⅓ cup cocoa nibs [45 g]'],
-    ['5 tbsp golden caster sugar', '5 tbsp golden caster sugar [60 g]']
+    ['5 tbsp golden caster sugar', '5 tbsp golden caster sugar [60 g]'],
+    ['1/2 cup peeled almonds', '1/2 cup peeled almonds [70 g]'],
+    ['1 3/4 cups uncooked brown rice', '1 3/4 cups uncooked brown rice [325 g]'],
+    ['1 cup brown or green lentils, washed and picked over', '1 cup brown or green lentils [190 g], washed and picked over'],
+    ['3/4 cup sliced and toasted almonds', '3/4 cup sliced and toasted almonds [70 g]'],
+    ['1 cup vanilla yogurt (full fat)', '1 cup vanilla yogurt [250 g] (full fat)'],
+    ['4-5 TBSP lemon juice', '4-5 TBSP [60–75 ml] lemon juice'],
+    ['1/4 cup yellow cornmeal', '1/4 cup yellow cornmeal [40 g]'],
+    ['1 cup cherry tomatoes, sliced in half', '1 cup cherry tomatoes [150 g], sliced in half'],
+    ['1 cup farro', '1 cup farro [190 g]'],
+    ['2 cups arugula leaves', '2 cups arugula leaves [40 g]'],
+    ['1 cup mint leaves', '1 cup mint leaves [25 g]'],
+    ['3/4 cup halved cherry or grape tomatoes', '3/4 cup halved cherry or grape tomatoes [110 g]'],
+    ['1 cup pearled (Israeli) cous cous', '1 cup pearled (Israeli) cous cous [150 g]'],
+    ['1 1/2 cup Israeli or pearl couscous', '1 1/2 cup Israeli or pearl couscous [225 g]'],
+    ['1 1/2 cups orzo', '1 1/2 cups orzo [340 g]'],
+    ['1 cup Nutella', '1 cup Nutella [280 g]'],
+    ['1 cup pitted dried cherries', '1 cup pitted dried cherries [160 g]'],
+    ['1 cup sour cream, at room temperature', '1 cup sour cream [225 g], at room temperature'],
+    ['2 1/2 cups heavy or whipping cream, chilled', '2 1/2 cups heavy or whipping cream [600 g], chilled'],
+    ['1 cup whole wheat pastry flour', '1 cup whole wheat pastry flour [120 g]'],
+    ['1 cup dried apricots', '1 cup dried apricots [130 g]'],
+    ['', ''],
+    ['', ''],
 // failing
-    //['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]']
-    //['1 x 375g pack of pre-rolled puff pastry', '1 x 375g pack of pre-rolled puff pastry']
+    //['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]'],
+    //['1 x 375g pack of pre-rolled puff pastry', '1 x 375g pack of pre-rolled puff pastry'],
+    //['Grease two 8½ by 4½-inch loaf pans', 'Grease two 8½ by 4½-inch loaf pans'],
+    //['1 pint heavy cream]'
 ];
 
 if (test) {
