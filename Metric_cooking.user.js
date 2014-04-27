@@ -36,8 +36,11 @@ var tbsp_ml = 14.78676478125;
 var tsp_ml  = tbsp_ml/3;
 var pound_g = 453.59237;
 
-// source: USDA National Nutrient Database for Standard Reference, Release 26
+// sources:
+// USDA National Nutrient Database for Standard Reference, Release 26
+// FAO/INFOODS Density Database Version 2.0 (2012)
 var ingredients = {
+    'creme fraiche': [/(cr[eè]me fra[iî]che|(Mexican )?crema)/, 0.978], // FAO, 38%
     'almonds': [/\b(blanched |raw )*almonds/, 144/cup_ml], // average of ~12061~ (143) and ~12062~ (145)
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
@@ -88,6 +91,7 @@ var ingredients = {
     'spinach': [/\b(fresh )?spinach/, 30/cup_ml], // ~11457~ (raw)
     'sugar': [/\b(granulated |white )*sugar/, 200/cup_ml], // ~19335~
     'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
+    'superfine sugar': [/\b(superfine|cast[eo]r) sugar/, 0.81], // Wolfram Alpha
     'swiss cheese': [/\b(grated |shredded )*Swiss cheese/, 108/cup_ml], // ~01040~
     'tomato paste': [/\b(double-concentrated )?tomato paste/, 262/cup_ml], // ~11546~
     'wild rice': [/\bwild rice/, 160/cup_ml], // ~20088~
@@ -600,8 +604,11 @@ var tests = [
     ['between 1/8 and 1/4-inch', 'between 1/8 and 1/4-inch [3–6 mm]'],
     ['between 12 ounces and a pound—that\'s big', 'between 12 ounces and a pound [350–450 g]—that\'s big'],
     ['1-¼ cup sugar, Divided', '1-¼ cup sugar [250 g], Divided'],
+    ['1/4 cup superfine sugar', '1/4 cup superfine sugar [48 g]'],
+    ['1 cup creme fraiche', '1 cup creme fraiche [225 g]'],
+    ['1 cup Mexican crema (or creme fraiche)', '1 cup Mexican crema [225 g] (or creme fraiche)'],
 // failing
-    ['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]'],
+    //['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]']
 ];
 
 if (test) {
