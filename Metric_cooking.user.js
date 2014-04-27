@@ -93,7 +93,7 @@ var ingredients = {
     'spinach': [/\b(fresh )?spinach/, 30/cup_ml], // ~11457~ (raw)
     'sugar': [/\b(granulated |white )*sugar/, 200/cup_ml], // ~19335~
     'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
-    'superfine sugar': [/\b(superfine|cast[eo]r) sugar/, 0.81], // Wolfram Alpha
+    'superfine sugar': [/\b(golden )?(superfine|cast[eo]r) sugar/, 0.81], // Wolfram Alpha
     'swiss cheese': [/\b(grated |shredded )*Swiss cheese/, 108/cup_ml], // ~01040~
     'tomato paste': [/\b(double-concentrated )?tomato paste/, 262/cup_ml], // ~11546~
     'wild rice': [/\bwild rice/, 160/cup_ml], // ~20088~
@@ -610,9 +610,11 @@ var tests = [
     ['1 cup creme fraiche', '1 cup creme fraiche [225 g]'],
     ['1 cup Mexican crema (or creme fraiche)', '1 cup Mexican crema [225 g] (or creme fraiche)'],
     ['Pre-heat your oven to 350*F.', 'Pre-heat your oven to 350*F [175 °C].'],
-    ['⅓ cup cocoa nibs', '⅓ cup cocoa nibs [45 g]']
+    ['⅓ cup cocoa nibs', '⅓ cup cocoa nibs [45 g]'],
+    ['5 tbsp golden caster sugar', '5 tbsp golden caster sugar [60 g]']
 // failing
     //['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]']
+    //['1 x 375g pack of pre-rolled puff pastry', '1 x 375g pack of pre-rolled puff pastry']
 ];
 
 if (test) {
