@@ -35,12 +35,12 @@ var cup_ml  = 236.5882365;
 var tbsp_ml = 14.78676478125;
 var tsp_ml  = tbsp_ml/3;
 var pound_g = 453.59237;
+var pound_per_ft3 = 0.0160184634; // in g/ml
 
 // sources:
 // USDA National Nutrient Database for Standard Reference, Release 26
 // FAO/INFOODS Density Database Version 2.0 (2012)
 var ingredients = {
-    'creme fraiche': [/(cr[eè]me fra[iî]che|(Mexican )?crema)/, 0.978], // FAO, 38%
     'almonds': [/\b(blanched |raw )*almonds/, 144/cup_ml], // average of ~12061~ (143) and ~12062~ (145)
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
@@ -54,11 +54,13 @@ var ingredients = {
     'chocolate chips': [/(semi-sweet |dark |milk |semi- |or |bittersweet )*chocolate chips/, 0.71], // Wolfram Alpha
     'chopped parsley': [/(chopped |minced |fresh |Italian |flat-leaf )*parsley( leaves)?/, 60/cup_ml], // ~11297~
     'chopped shallots': [/(finely |chopped )*shallots/, 10.0/tbsp_ml], // ~11677~
-    'cocoa': [/\b(unsweetened |Dutch[- ]process(ed)? )*cocoa( powder)?/, 86/cup_ml], // ~19165~
+    'cocoa nibs': [/cocoa nibs/, 35*pound_per_ft3], // http://www.sawyerhanson.com/uploads/Brabender%20Ingredient%20bulk%20density%20table.pdf
+    'cocoa': [/\b(unsweetened |Dutch[- ]process(ed)? )*cocoa( powder)?(?! nibs)/, 86/cup_ml], // ~19165~
     'cornstarch': [/\b(cornstarch|starch\s+powder)/, 128/cup_ml], // ~20027~
     'cottage cheese': [/\b(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
     'cranberries': [/\b(fresh |of |or |thawed |frozen )*cranberries/, 100/cup_ml], // ~09078~
     'cream cheese': [/cream cheese/, 232/cup_ml], // ~01017~
+    'creme fraiche': [/(cr[eè]me fra[iî]che|(Mexican )?crema)/, 0.978], // FAO, 38%
     'crumbled blue cheese': [/\bcrumbled blue cheese/, 135/cup_ml], // ~01004~
     'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
@@ -607,7 +609,8 @@ var tests = [
     ['1/4 cup superfine sugar', '1/4 cup superfine sugar [48 g]'],
     ['1 cup creme fraiche', '1 cup creme fraiche [225 g]'],
     ['1 cup Mexican crema (or creme fraiche)', '1 cup Mexican crema [225 g] (or creme fraiche)'],
-    ['Pre-heat your oven to 350*F.', 'Pre-heat your oven to 350*F [175 °C].']
+    ['Pre-heat your oven to 350*F.', 'Pre-heat your oven to 350*F [175 °C].'],
+    ['⅓ cup cocoa nibs', '⅓ cup cocoa nibs [45 g]']
 // failing
     //['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]']
 ];
