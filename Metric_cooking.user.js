@@ -94,7 +94,7 @@ var ingredients = {
     'nutella': [/\bNutella/, 1.2], // Wolfram Alpha
     'onions, chopped': [/\b(chopped onions?)|(onions?, chopped)/, 160/cup_ml], // ~11282~
     'orzo': [/\b(whole[- ]wheat )?orzo/, 225/cup_ml], // estimate from various sources
-    'parmesan': [/\b(finely |freshly |grated |shredded |fresh )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano|[Rr]omano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
+    'parmesan': [/\b(finely |freshly |grated |shredded |fresh )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano|(Pecorino )?[Rr]omano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'pastry flour': [/\b(whole |wheat )*pastry flour/, 0.51], // Wolfram Alpha
     'peanut butter': [/\b(smooth |natural |creamy |chunky )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'peanuts': [/\bpeanuts/, 146/cup_ml], // ~16087~
@@ -677,6 +677,7 @@ var tests = [
     ['1 cup Bomba or Calasparra rice', '1 cup Bomba or Calasparra rice [200 g]'],
     ['1 ½ cups full-fat plain yogurt', '1 ½ cups full-fat plain yogurt [375 g]'],
     ['1/4 cup toasted pecans', '1/4 cup toasted pecans [25 g]'],
+    ['1/4 cup grated Pecorino Romano cheese', '1/4 cup grated Pecorino Romano cheese [25 g]'],
     ['', ''],
     ['', '']
 // failing
