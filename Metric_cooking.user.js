@@ -5,6 +5,8 @@
 // @include     http://*
 // @include     https://*
 // @include     file://*
+// @exclude     http://*google.tld/*
+// @exclude     https://*google.tld/*
 // @version     1
 // @grant       none
 // ==/UserScript==
