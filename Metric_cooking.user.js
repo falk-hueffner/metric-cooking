@@ -117,7 +117,7 @@ var ingredients = {
     'swiss cheese': [/\b(grated |shredded )*Swiss cheese/, 108/cup_ml], // ~01040~
     'tomato paste': [/\b(double-concentrated )?tomato paste/, 262/cup_ml], // ~11546~
     'wild rice': [/\bwild rice/, 160/cup_ml], // ~20088~
-    'yogurt': [/\b(plain |low-fat |vanilla |\d% |Greek )*yogurt/, 245/cup_ml] // ~01116~
+    'yogurt': [/\b(plain |low-fat |vanilla |\d% |Greek |full-fat )*yogurt/, 245/cup_ml] // ~01116~
 };
 
 // wares labeled in dry pints
@@ -675,6 +675,7 @@ var tests = [
     ['1 cup whole wheat pastry flour', '1 cup whole wheat pastry flour [120 g]'],
     ['1 cup dried apricots', '1 cup dried apricots [130 g]'],
     ['1 cup Bomba or Calasparra rice', '1 cup Bomba or Calasparra rice [200 g]'],
+    ['1 ½ cups full-fat plain yogurt', '1 ½ cups full-fat plain yogurt [375 g]'],
     ['', ''],
     ['', '']
 // failing
