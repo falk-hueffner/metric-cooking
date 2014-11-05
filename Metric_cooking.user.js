@@ -527,7 +527,7 @@ var tests = [
     ['torn into 1/4- to 1/2-inch pieces', 'torn into 1/4- to 1/2-inch [6–13 mm] pieces'],
     ['scrubbed and cut into 1/2-inch to 3/4-inch cubes', 'scrubbed and cut into 1/2-inch to 3/4-inch [1.3–1.9 cm] cubes'],
     ['1/4 cup corn syrup', '1/4 cup corn syrup [85 g]'],
-    ['1 pint cherry tomatoes', '1 pint cherry tomatoes [475 g]'],
+    ['1 pint cherry tomatoes', '1 pint cherry tomatoes [350 g]'],
     ['Preheat oven to 450° F.', 'Preheat oven to 450° F [230 °C].'],
     ['1 cup mayonnaise', '1 cup mayonnaise [225 g]'],
     ['1/2 cup low-fat yogurt (preferably Greek)', '1/2 cup low-fat yogurt [125 g] (preferably Greek)'],
