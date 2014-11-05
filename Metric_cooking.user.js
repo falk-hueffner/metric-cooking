@@ -98,7 +98,7 @@ var ingredients = {
     'pastry flour': [/\b(whole |wheat )*pastry flour/, 0.51], // Wolfram Alpha
     'peanut butter': [/\b(smooth |natural |creamy |chunky )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
     'peanuts': [/\bpeanuts/, 146/cup_ml], // ~16087~
-    'pecans': [/\bpecans?( halves)?/, 99/cup_ml], // ~12142~ (halves)
+    'pecans': [/\b(toasted )?pecans?( halves)?/, 99/cup_ml], // ~12142~ (halves)
     'pine nuts': [/\bpine ?nuts/, 135/cup_ml], // ~12147~
     'pistachio': [/\bpistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
     'powdered sugar': [/\b(powdered|confectioners['’]?|icing) sugar/, 120/cup_ml], // ~19336~ (unsifted)
@@ -676,6 +676,7 @@ var tests = [
     ['1 cup dried apricots', '1 cup dried apricots [130 g]'],
     ['1 cup Bomba or Calasparra rice', '1 cup Bomba or Calasparra rice [200 g]'],
     ['1 ½ cups full-fat plain yogurt', '1 ½ cups full-fat plain yogurt [375 g]'],
+    ['1/4 cup toasted pecans', '1/4 cup toasted pecans [25 g]'],
     ['', ''],
     ['', '']
 // failing
