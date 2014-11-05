@@ -145,7 +145,7 @@ function namedGroupRegExp(regexp, modifiers) {
     var groupNumber = {};
     var i = 1;
     var re = new RegExp(regexp.replace(/\((?![?\]])(<([^>]+)>)?/g,
-                                       function (_, _, name) {
+                                       function (_, __, name) {
                                            groupNumber[name] = i++;
                                            return '(';
                                        }),
@@ -651,7 +651,7 @@ var tests = [
     ['1 cup whole wheat pastry flour', '1 cup whole wheat pastry flour [120 g]'],
     ['1 cup dried apricots', '1 cup dried apricots [130 g]'],
     ['', ''],
-    ['', ''],
+    ['', '']
 // failing
     //['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]'],
     //['1 x 375g pack of pre-rolled puff pastry', '1 x 375g pack of pre-rolled puff pastry'],
