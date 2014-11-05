@@ -43,6 +43,7 @@ var pound_per_ft3 = 0.0160184634; // in g/ml
 // USDA National Nutrient Database for Standard Reference, Release 26
 // FAO/INFOODS Density Database Version 2.0 (2012)
 var ingredients = {
+    'walnuts': [/\bwalnuts/, 100/cup_ml], // ~12155~
     'shredded coconut': [/\b(unsweetened )?shredded coconut/, 93/cup_ml], // ~12179~
     'blueberries': [/\bblueberries/, 148/cup_ml], // ~09050~
     'strawberries': [/\b(fresh |medium-sized )*strawberries/, 144/cup_ml], // ~09316~
@@ -680,6 +681,7 @@ var tests = [
     ['1/4 cup toasted pecans', '1/4 cup toasted pecans [25 g]'],
     ['1/4 cup grated Pecorino Romano cheese', '1/4 cup grated Pecorino Romano cheese [25 g]'],
     ['3/4 cup unsweetened shredded coconut', '3/4 cup unsweetened shredded coconut [70 g]'],
+    ['1 cup walnuts', '1 cup walnuts [100 g]'],
     ['', ''],
     ['', '']
 // failing
