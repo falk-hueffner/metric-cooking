@@ -43,6 +43,9 @@ var pound_per_ft3 = 0.0160184634; // in g/ml
 // USDA National Nutrient Database for Standard Reference, Release 26
 // FAO/INFOODS Density Database Version 2.0 (2012)
 var ingredients = {
+    'blueberries': [/\bblueberries/, 148/cup_ml], // ~09050~
+    'strawberries': [/\b(fresh |medium-sized )*strawberries/, 144/cup_ml], // ~09316~
+    'raspberries': [/\b(fresh )*raspberries/, 0.66], // ~09302~ says 123g/cup, that seems too low. Use Wolfram Alpha
     'dried apricots': [/\bdried apricots/, 130/cup_ml], // ~09032~
     'almonds': [/\b(blanched |raw |peeled )*almonds/, 144/cup_ml], // average of ~12061~ (143) and ~12062~ (145)
     'arugula': [/\barugula( leaves)?/, 10.0/(0.5*cup_ml)], // ~11959~
@@ -116,6 +119,18 @@ var ingredients = {
     'wild rice': [/\bwild rice/, 160/cup_ml], // ~20088~
     'yogurt': [/\b(plain |low-fat |vanilla |\d% |Greek )*yogurt/, 245/cup_ml] // ~01116~
 };
+
+// wares labeled in dry pints
+var dry_ingredients = [
+    'blackberries',
+    'blueberries',
+    'cherries',
+    'cherry tomatoes',
+    'cranberries',
+    'raspberries',
+    'strawberries'
+];
+
 var reIngredient = '';
 for (var ingredient in ingredients) {
     if (reIngredient)
@@ -194,7 +209,8 @@ var units = {
     'fl oz':      [/fl\.? oz\.?/,                                'ml', 2 * tbsp_ml ],
     'inch':       [inches,                                       'mm', 25.6        ],
     'ounce':      [/ounces?\b|oz\b\.?/,                          'g' , pound_g / 16],
-    'pint':       [/pints?\b/,                                   'g' , 2 * cup_ml  ],
+    'pint':       [/pints?\b/,                                   'ml', 2 * cup_ml  ], // US liquid pint
+    'dry pint':   [/dry pints?\b/,                               'ml', 550.6104713575 ], // US dry pint (berries etc.)
     'pound':      [/pounds?\b|lbs?\b\.?/,                        'g' , pound_g     ],
     'quart':      [/quarts?\b|qt\b\.?/,                          'ml', 4 * cup_ml  ],
     'stick':      [/sticks?\b(?!\s+cinnamon)/,                   'g' , pound_g / 4 ],
@@ -363,6 +379,14 @@ function replaceUnits(match) {
     }
 
     var unit = parseUnit(match);
+    if (unit == 'pint') {
+        for (var i in dry_ingredients) {
+            if (match.group(dry_ingredients[i])) {
+                unit = 'dry pint';
+                break;
+            }
+        }
+    }
     var converted = convert(parseNumber(match), unit);
     var newAmount = converted.amount;
     var newUnit = converted.unit;
