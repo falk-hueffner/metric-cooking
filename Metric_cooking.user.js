@@ -106,7 +106,7 @@ var ingredients = {
     'raisins': [/\b(golden )?raisins/, 165/cup_ml], // ~09298~ (packed)
     'ricotta': [/\b(fresh )?ricotta( cheese)?/, 246/cup_ml], // ~01036~
     'salt': [/\b(table )?salt/, 292/cup_ml], // ~02047~
-    'short-grain rice': [/\b(short[- ]grain(ed)? |[Aa]rborio )+(brown )?rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
+    'short-grain rice': [/\b(short[- ]grain(ed)? |[Aa]rborio |[Bb]omba |[Cc]alasparra )+(brown |[Bb]omba |or |[Cc]alasparra )*rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'shredded mozzarella': [/\b(shredded |part-skim )*mozzarella( cheese)?/, 112/cup_ml], // ~01026~
     'sliced almonds': [/\bsliced (and toasted )?almonds/, 92/cup_ml], // ~12061~
     'sour cream': [/\bsour cream/, 230/cup_ml], // ~01056~
@@ -674,6 +674,7 @@ var tests = [
     ['2 1/2 cups heavy or whipping cream, chilled', '2 1/2 cups heavy or whipping cream [600 g], chilled'],
     ['1 cup whole wheat pastry flour', '1 cup whole wheat pastry flour [120 g]'],
     ['1 cup dried apricots', '1 cup dried apricots [130 g]'],
+    ['1 cup Bomba or Calasparra rice', '1 cup Bomba or Calasparra rice [200 g]'],
     ['', ''],
     ['', '']
 // failing
