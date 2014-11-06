@@ -43,18 +43,13 @@ var pound_per_ft3 = 0.0160184634; // in g/ml
 // USDA National Nutrient Database for Standard Reference, Release 26
 // FAO/INFOODS Density Database Version 2.0 (2012)
 var ingredients = {
-    'walnuts': [/\bwalnuts/, 100/cup_ml], // ~12155~
-    'shredded coconut': [/\b(unsweetened )?shredded coconut/, 93/cup_ml], // ~12179~
-    'blueberries': [/\bblueberries/, 148/cup_ml], // ~09050~
-    'strawberries': [/\b(fresh |medium-sized )*strawberries/, 144/cup_ml], // ~09316~
-    'raspberries': [/\b(fresh )*raspberries/, 0.66], // ~09302~ says 123g/cup, that seems too low. Use Wolfram Alpha
-    'dried apricots': [/\bdried apricots/, 130/cup_ml], // ~09032~
     'almonds': [/\b(blanched |raw |peeled )*almonds/, 144/cup_ml], // average of ~12061~ (143) and ~12062~ (145)
     'arugula': [/\barugula( leaves)?/, 10.0/(0.5*cup_ml)], // ~11959~
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
     'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
     'blackberries': [/\bblackberries/, 144/cup_ml], // ~09042~
+    'blueberries': [/\bblueberries/, 148/cup_ml], // ~09050~
     'brown sugar': [/(\blight[ -]|\bdark[- ]|golden |firmly |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
     'butter': [/\b((un)?salted |chilled |cold |softened )*butter/, 227/cup_ml], // ~01145~
     'cake flour': [/\b(sifted |unbleached )*(cake|pastry) flour/, 114/cup_ml], // the internet
@@ -76,6 +71,7 @@ var ingredients = {
     'creme fraiche': [/(cr[eè]me fra[iî]che|(Mexican )?crema)/, 0.978], // FAO, 38%
     'crumbled blue cheese': [/\bcrumbled blue cheese/, 135/cup_ml], // ~01004~
     'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
+    'dried apricots': [/\bdried apricots/, 130/cup_ml], // ~09032~
     'dried cherries': [/\b(pitted )?dried cherries/, 40/(0.25*cup_ml)], // ~09044~
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
     'farro': [/\bfarro/, 0.82], // Wolfram Alpha
@@ -106,18 +102,22 @@ var ingredients = {
     'powdered sugar': [/\b(powdered|confectioners['’]?|icing) sugar/, 120/cup_ml], // ~19336~ (unsifted)
     'quinoa': [/\b(dry |pre-washed |or |rinsed |whole[- ]grain |organic )*quinoa/, 170/cup_ml], // ~20035~
     'raisins': [/\b(golden )?raisins/, 165/cup_ml], // ~09298~ (packed)
+    'raspberries': [/\b(fresh )*raspberries/, 0.66], // ~09302~ says 123g/cup, that seems too low. Use Wolfram Alpha
     'ricotta': [/\b(fresh )?ricotta( cheese)?/, 246/cup_ml], // ~01036~
     'salt': [/\b(table )?salt/, 292/cup_ml], // ~02047~
     'short-grain rice': [/\b(short[- ]grain(ed)? |[Aa]rborio |[Bb]omba |[Cc]alasparra )+(brown |[Bb]omba |or |[Cc]alasparra )*rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
+    'shredded coconut': [/\b(unsweetened )?shredded coconut/, 93/cup_ml], // ~12179~
     'shredded mozzarella': [/\b(shredded |part-skim )*mozzarella( cheese)?/, 112/cup_ml], // ~01026~
     'sliced almonds': [/\bsliced (and toasted )?almonds/, 92/cup_ml], // ~12061~
     'sour cream': [/\bsour cream/, 230/cup_ml], // ~01056~
     'spinach': [/\b(fresh )?spinach/, 30/cup_ml], // ~11457~ (raw)
+    'strawberries': [/\b(fresh |medium-sized )*strawberries/, 144/cup_ml], // ~09316~
     'sugar': [/\b(granulated |white )*sugar/, 200/cup_ml], // ~19335~
     'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
     'superfine sugar': [/\b(golden )?(superfine|cast[eo]r) sugar/, 0.81], // Wolfram Alpha
     'swiss cheese': [/\b(grated |shredded )*Swiss cheese/, 108/cup_ml], // ~01040~
     'tomato paste': [/\b(double-concentrated )?tomato paste/, 262/cup_ml], // ~11546~
+    'walnuts': [/\bwalnuts/, 100/cup_ml], // ~12155~
     'wild rice': [/\bwild rice/, 160/cup_ml], // ~20088~
     'yogurt': [/\b(plain |low-fat |vanilla |\d% |Greek |full-fat )*yogurt/, 245/cup_ml] // ~01116~
 };
