@@ -79,8 +79,8 @@ var ingredients = {
     'feta': [/\b(crumbled |low[ -]fat )*[Ff]eta( cheese)?/, 150/cup_ml], // ~01019~
     'flour': [/\b(all[- ]purpose |sifted |unbleached |white )*flour/, 125/cup_ml], // ~20081~
     'hazelnuts': [/\bhazelnuts/, 135/cup_ml], // ~12120~ (whole)
-    'honey': [/\bhoney/, 339/cup_ml], // ~19296~
-    'israeli couscous': [/\b(\(?Israeli\)? |pearl(ed)? |or )*(\(?Israeli\)? |pearl(ed)? )+cous ?cous/, 50/(cup_ml/3)], // http://www.fatsecret.com/calories-nutrition/osem/israeli-couscous
+    'honey': [/\b(mild-tasting )?honey/, 339/cup_ml], // ~19296~
+    'israeli couscous': [/\b(\(?Israeli\)? |\(?pearl(ed)?\)? |or )*(\(?Israeli\)? |\(?pearl(ed)?\)? )+cous ?cous/, 50/(cup_ml/3)], // http://www.fatsecret.com/calories-nutrition/osem/israeli-couscous
     'kosher salt': [/kosher salt/, 0.57], // Wolfram Alpha
     'lentils': [/\b(brown |or |green )*lentils/, 192/cup_ml], // ~16069~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
@@ -100,7 +100,7 @@ var ingredients = {
     'pecans': [/\b(toasted )?pecans?( halves)?/, 99/cup_ml], // ~12142~ (halves)
     'pine nuts': [/\bpine ?nuts/, 135/cup_ml], // ~12147~
     'pistachio': [/\b(shelled )?pistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
-    'powdered sugar': [/\b(powdered|confectioners['’]?|icing) sugar/, 120/cup_ml], // ~19336~ (unsifted)
+    'powdered sugar': [/\b(powdered|confectioner['’]?s['’]?|icing) sugar/, 120/cup_ml], // ~19336~ (unsifted)
     'quinoa': [/\b(dry |pre-washed |or |rinsed |whole[- ]grain |organic )*quinoa/, 170/cup_ml], // ~20035~
     'raisins': [/\b(golden )?raisins/, 165/cup_ml], // ~09298~ (packed)
     'raspberries': [/\b(fresh )*raspberries/, 0.66], // ~09302~ says 123g/cup, that seems too low. Use Wolfram Alpha
