@@ -65,6 +65,7 @@ var ingredients = {
     'cornmeal': [/\b(yellow )?(cornmeal|polenta)/, 157/cup_ml], // ~20022~
     'cornstarch': [/\b(corn ?starch|starch\s+powder|cornflour)/, 128/cup_ml], // ~20027~
     'cottage cheese': [/\b(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
+    'couscous': [/\b(instant |whole wheat |plain |dry )?cous ?cous/, 173/cup_ml], // ~20028~
     'cranberries': [/\b(fresh |of |or |thawed |frozen )*cranberries/, 100/cup_ml], // ~09078~
     'cream cheese': [/cream cheese/, 232/cup_ml], // ~01017~
     'cream': [/\b(heavy |whipping |or |double )*cream/, 238.5/cup_ml], // ~01053~ & ~01052~
@@ -683,6 +684,7 @@ var tests = [
     ['3/4 cup unsweetened shredded coconut', '3/4 cup unsweetened shredded coconut [70 g]'],
     ['1 cup walnuts', '1 cup walnuts [100 g]'],
     ['1 cup shelled pistachios, roasted and salted', '1 cup shelled pistachios [125 g], roasted and salted'],
+    ['1 1/2 cups dry couscous', '1 1/2 cups dry couscous [260 g]'],
     ['', ''],
     ['', '']
 // failing
