@@ -84,7 +84,7 @@ var ingredients = {
     'kosher salt': [/kosher salt/, 0.57], // Wolfram Alpha
     'lentils': [/\b(brown |or |green )*lentils/, 192/cup_ml], // ~16069~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
-    'long-grain rice': [/\b(long[- ]grain(ed)? |[Bb]asmati |[Jj]asmine |brown |white |uncooked )*rice(?! vinegar| crispies| flour| wine)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
+    'long-grain rice': [/\b(long[- ]grain(ed)? |[Bb]asmati |[Jj]asmine |brown |white |uncooked |warm,? |cooked )*rice(?! vinegar| crispies| flour| wine)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
     'maple syrup': [/\b(pure )?maple syrup/, 80/60], // ~19911~
     'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
     'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
@@ -685,6 +685,7 @@ var tests = [
     ['1 cup walnuts', '1 cup walnuts [100 g]'],
     ['1 cup shelled pistachios, roasted and salted', '1 cup shelled pistachios [125 g], roasted and salted'],
     ['1 1/2 cups dry couscous', '1 1/2 cups dry couscous [260 g]'],
+    ['1 cup warm, cooked brown rice, lightly salted', '1 cup warm, cooked brown rice [190 g], lightly salted'],
     ['', ''],
     ['', '']
 // failing
