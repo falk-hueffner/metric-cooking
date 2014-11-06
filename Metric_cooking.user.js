@@ -102,7 +102,7 @@ var ingredients = {
     'peanuts': [/\bpeanuts/, 146/cup_ml], // ~16087~
     'pecans': [/\b(toasted )?pecans?( halves)?/, 99/cup_ml], // ~12142~ (halves)
     'pine nuts': [/\bpine ?nuts/, 135/cup_ml], // ~12147~
-    'pistachio': [/\bpistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
+    'pistachio': [/\b(shelled )?pistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
     'powdered sugar': [/\b(powdered|confectioners['’]?|icing) sugar/, 120/cup_ml], // ~19336~ (unsifted)
     'quinoa': [/\b(dry |pre-washed |or |rinsed |whole[- ]grain |organic )*quinoa/, 170/cup_ml], // ~20035~
     'raisins': [/\b(golden )?raisins/, 165/cup_ml], // ~09298~ (packed)
@@ -682,6 +682,7 @@ var tests = [
     ['1/4 cup grated Pecorino Romano cheese', '1/4 cup grated Pecorino Romano cheese [25 g]'],
     ['3/4 cup unsweetened shredded coconut', '3/4 cup unsweetened shredded coconut [70 g]'],
     ['1 cup walnuts', '1 cup walnuts [100 g]'],
+    ['1 cup shelled pistachios, roasted and salted', '1 cup shelled pistachios [125 g], roasted and salted'],
     ['', ''],
     ['', '']
 // failing
