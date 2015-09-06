@@ -101,6 +101,7 @@ var ingredients = {
     'pine nuts': [/\bpine ?nuts/, 135/cup_ml], // ~12147~
     'pistachio': [/\b(shelled )?pistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
     'powdered sugar': [/\b(powdered|confectioner['’]?s['’]?|icing) sugar/, 120/cup_ml], // ~19336~ (unsifted)
+    'quark': [/\bquark/, 1.035], // http://dx.doi.org/10.1002/food.19720160506 (Speisequark 1.05, Sahnequark 1.02)
     'quinoa': [/\b(dry |pre-washed |or |rinsed |whole[- ]grain |organic )*quinoa/, 170/cup_ml], // ~20035~
     'raisins': [/\b(golden )?raisins/, 165/cup_ml], // ~09298~ (packed)
     'raspberries': [/\b(fresh )*raspberries/, 0.66], // ~09302~ says 123g/cup, that seems too low. Use Wolfram Alpha
