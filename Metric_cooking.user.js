@@ -726,3 +726,23 @@ for (var i = 0; i < textNodes.snapshotLength; i++) {
     });
     node.data = newText;
 }
+
+// food52.com has HTML like this:
+// <li class="has-quantity" itemprop="ingredients">
+//   <span class="quantity">1</span>
+//   <span class="item-name">cup basmati rice, rinsed and drained</span>
+if (location.hostname.match('food52')) {
+    var quantities = document.querySelectorAll('.has-quantity');
+    for (i in quantities) {
+	node = quantities[i];
+	console.log(node);
+	var number = node.children[0].innerHTML;
+	console.log(number);
+	var unitText = node.children[1].innerHTML;
+	var text = number + ' ' + unitText;
+	var newText = re.replace(text, replaceUnits);
+	if (logReplacement && newText != text)
+	    console.log('\'' + text + '\' -> \'' + newText + '\'');
+	node.children[1].innerHTML = newText.substr(number.length);
+    }
+}
