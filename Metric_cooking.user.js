@@ -51,7 +51,7 @@ var ingredients = {
     'blackberries': [/\bblackberries/, 144/cup_ml], // ~09042~
     'blueberries': [/\bblueberries/, 148/cup_ml], // ~09050~
     'brown sugar': [/(\blight[ -]|\bdark[- ]|golden |firmly |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
-    'butter': [/\b((un)?salted |chilled |cold |softened )*butter/, 227/cup_ml], // ~01145~
+    'butter': [/\b((un)?salted,? |chilled,? |cold,? |softened,? )*butter/, 227/cup_ml], // ~01145~
     'cake flour': [/\b(sifted |unbleached )*(cake|pastry) flour/, 114/cup_ml], // the internet
     'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
     'cheddar': [/(coarsely |grated |shredded |aged |white |sharp )*[Cc]heddar/, 113/cup_ml], // ~01009~
@@ -77,7 +77,7 @@ var ingredients = {
     'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
     'farro': [/\bfarro/, 0.82], // Wolfram Alpha
     'feta': [/\b(crumbled |low[ -]fat )*[Ff]eta( cheese)?/, 150/cup_ml], // ~01019~
-    'flour': [/\b(all[- ]purpose |sifted |unbleached |white )*flour/, 125/cup_ml], // ~20081~
+    'flour': [/\b(all[- ]purpose |sifted |unbleached |white |self[- ]raising )*flour/, 125/cup_ml], // ~20081~
     'hazelnuts': [/\bhazelnuts/, 135/cup_ml], // ~12120~ (whole)
     'honey': [/\b(mild-tasting )?honey/, 339/cup_ml], // ~19296~
     'israeli couscous': [/\b(\(?Israeli\)? |\(?pearl(ed)?\)? |or )*(\(?Israeli\)? |\(?pearl(ed)?\)? )+cous ?cous/, 50/(cup_ml/3)], // http://www.fatsecret.com/calories-nutrition/osem/israeli-couscous
@@ -89,14 +89,14 @@ var ingredients = {
     'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
     'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
     'mint': [/\bmint( leaves)?/, 3.2/(2*tbsp_ml)], // ~02064~
-    'mustard': [/\b([Dd]ijon |grainy |yellow )*mustard/, 249/cup_ml], // ~02046~
+    'mustard': [/\b([Dd]ijon |grainy |yellow )*mustard(?! seed)/, 249/cup_ml], // ~02046~
     'nutella': [/\bNutella/, 1.2], // Wolfram Alpha
     'onions, chopped': [/\b(chopped onions?)|(onions?, chopped)/, 160/cup_ml], // ~11282~
     'orzo': [/\b(whole[- ]wheat )?orzo/, 225/cup_ml], // estimate from various sources
     'parmesan': [/\b(finely |freshly |grated |shredded |fresh )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano|(Pecorino )?[Rr]omano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'pastry flour': [/\b(whole |wheat )*pastry flour/, 0.51], // Wolfram Alpha
     'peanut butter': [/\b(smooth |natural |creamy |chunky )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
-    'peanuts': [/\bpeanuts/, 146/cup_ml], // ~16087~
+    'peanuts': [/\b(roasted| salted )*peanuts/, 145/cup_ml], // average of ~16087~, ~16089~
     'pecans': [/\b(toasted )?pecans?( halves)?/, 99/cup_ml], // ~12142~ (halves)
     'pine nuts': [/\bpine ?nuts/, 135/cup_ml], // ~12147~
     'pistachio': [/\b(shelled )?pistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
@@ -107,11 +107,12 @@ var ingredients = {
     'raspberries': [/\b(fresh )*raspberries/, 0.66], // ~09302~ says 123g/cup, that seems too low. Use Wolfram Alpha
     'ricotta': [/\b(fresh )?ricotta( cheese)?/, 246/cup_ml], // ~01036~
     'salt': [/\b(table )?salt/, 292/cup_ml], // ~02047~
+    'sesame': [/\bsesame( seeds)?(?! oil)/, 144/cup_ml], // ~12023~
     'short-grain rice': [/\b(short[- ]grain(ed)? |[Aa]rborio |[Bb]omba |[Cc]alasparra )+(brown |[Bb]omba |or |[Cc]alasparra )*rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
     'shredded coconut': [/\b(unsweetened )?shredded coconut/, 93/cup_ml], // ~12179~
     'shredded mozzarella': [/\b(shredded |part-skim )*mozzarella( cheese)?/, 112/cup_ml], // ~01026~
     'sliced almonds': [/\bsliced (and toasted )?almonds/, 92/cup_ml], // ~12061~
-    'sour cream': [/\bsour cream/, 230/cup_ml], // ~01056~
+    'sour cream': [/\b(low-fat )?sour cream/, 230/cup_ml], // ~01056~, ~01178~
     'spinach': [/\b(fresh )?spinach/, 30/cup_ml], // ~11457~ (raw)
     'strawberries': [/\b(fresh |medium-sized )*strawberries/, 144/cup_ml], // ~09316~
     'sugar': [/\b(granulated |white )*sugar/, 200/cup_ml], // ~19335~
@@ -121,7 +122,7 @@ var ingredients = {
     'tomato paste': [/\b(double-concentrated )?tomato paste/, 262/cup_ml], // ~11546~
     'walnuts': [/\bwalnuts/, 100/cup_ml], // ~12155~
     'wild rice': [/\bwild rice/, 160/cup_ml], // ~20088~
-    'yogurt': [/\b(plain |low-fat |vanilla |\d% |Greek |full-fat )*yogurt/, 245/cup_ml] // ~01116~
+    'yogurt': [/\b(plain |low-fat |vanilla |\d% |Greek |full-fat |whole milk )*yogurt/, 245/cup_ml] // ~01116~
 };
 
 // wares labeled in dry pints
@@ -687,6 +688,16 @@ var tests = [
     ['1 cup shelled pistachios, roasted and salted', '1 cup shelled pistachios [125 g], roasted and salted'],
     ['1 1/2 cups dry couscous', '1 1/2 cups dry couscous [260 g]'],
     ['1 cup warm, cooked brown rice, lightly salted', '1 cup warm, cooked brown rice [190 g], lightly salted'],
+    ['2 cups self raising flour', '2 cups self raising flour [250 g]'],
+    ['either 1 1/2 cups quark, or', 'either 1 1/2 cups quark [375 g], or'],
+    ['2 teaspoons mustard seed', '2 teaspoons [10 ml] mustard seed'],
+    ['1/2 cup roasted salted peanuts, roughly chopped', '1/2 cup roasted salted peanuts [73 g], roughly chopped'],
+    ['about 1 1/2 cups of whole milk yogurt in the end', 'about 1 1/2 cups of whole milk yogurt [375 g] in the end'],
+    ['2 tablespoons sesame seeds', '2 tablespoons sesame seeds [18 g]'],
+    ['2 tablespoons toasted sesame oil', '2 tablespoons [30 ml] toasted sesame oil'],
+    ['1/3 cup of cold, unsalted butter', '1/3 cup of cold, unsalted butter [75 g]'],
+    ['', ''],
+    ['', ''],
     ['', ''],
     ['', '']
 // failing
