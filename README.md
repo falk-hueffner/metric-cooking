@@ -26,8 +26,25 @@ extension](https://addons.mozilla.org/en-us/firefox/addon/greasemonkey/).
 * For Chrome, you need the [Tampermonkey
 extension](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo).
 
-Then, click on [this link to the Metric cooking
-script](https://github.com/falk-hueffner/metric-cooking/raw/master/Metric_cooking.user.js).
+Then, follow this [link to the Metric cooking
+script](https://github.com/falk-hueffner/metric-cooking/raw/master/Metric_cooking.user.js)
+and choose "Install".
 
 The script produces often adds bogus annotations and can slow down the
 browser, so it is recommended to turn it on only if you need it.
+
+Updating
+--------
+
+To update to the latest version, you just need to select the [link to
+the Metric cooking
+script](https://github.com/falk-hueffner/metric-cooking/raw/master/Metric_cooking.user.js)
+again and choose "Install" or "Reinstall".
+
+Issues
+------
+
+If a recipe page is not annotated properly, please [open a new
+issue](https://github.com/falk-hueffner/metric-cooking/issues/new) and
+provide the address of the web page (you'll need a github account). I
+will then try to fix it.
