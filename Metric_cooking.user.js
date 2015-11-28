@@ -147,16 +147,22 @@ for (var ingredient in ingredients) {
 }
 reIngredient += ')';
 
-function round(x) {
+function round(x, isTemperature) {
     var sign = x < 0 ? -1 : 1;
     x = Math.abs(x);
     var fs = [100000, 50000, 25000, 10000, 5000, 2500, 1000, 500, 250, 100, 50, 25, 10, 5, 1];
     var newx;
     for (var f in fs) {
         newx = Math.round(x / fs[f]) * fs[f];
-        var error = Math.abs(x - newx);
-        if (error / x < maxError)
-            return sign * newx;
+	var error = Math.abs(x - newx);
+	if (isTemperature) {
+	    var maxAbsError = x < 100 ? 1 : (x < 160 ? 1.5 : 2.5);
+            if (error < maxAbsError)
+		return sign * newx;
+	} else {
+            if (error / x < maxError)
+		return sign * newx;
+	}
     }
     return sign * newx;
 }
@@ -203,8 +209,8 @@ function prefixGroups (regexp, prefix) {
 var logReplacement = false;
 
 var fahrenheit = dangerous
-        ? /(([°º˚*]|degrees?\b)\s*(?! ?C\b)(F\b|[(]F[)]|Fahrenheit\b)?)|F(ahrenheit)?\b/
-        :  /([°º˚]|degrees?\b)\s*(F\b|[(]F[)]|Fahrenheit\b)/;
+        ? /(([°º˚*]|degrees?(?! [Cc]elsius)\b)\s*(?! ?C\b)(F\b|[(]F[)]|Fahrenheit\b)?)|F(ahrenheit)?\b/
+        :  /([°º˚]|degrees?(?! [Cc]elsius)\b)\s*(F\b|[(]F[)]|Fahrenheit\b)/;
 var inches = dangerous
         ? /(inch(es)?\b|[”″"](?!\w))/
         : /inch(es)?\b/;
@@ -429,7 +435,7 @@ function replaceUnits(match) {
     if ((newUnit == 'ml' || newUnit == 'g') && newAmount < 4)
         return newText;
 
-    newAmount = round(newAmount);
+    newAmount = round(newAmount, newUnit == '°C');
 
     if (fromAmount) {
         fromAmount = round(fromAmount);
@@ -485,7 +491,7 @@ var tests = [
     ['3/8 tablespoon salt', '3/8 tablespoon salt [7 g]'],
     ['1 cup dulce de leche', '1 cup dulce de leche [300 g]'],
     ['2 teaspoons light corn syrup', '2 teaspoons light corn syrup [14 g]'],
-    ['preheat oven to 325°F.', 'preheat oven to 325°F [160 °C].'],
+    ['preheat oven to 325°F.', 'preheat oven to 325°F [165 °C].'],
     ['1 tsp bicarbonate of soda', '1 tsp bicarbonate of soda [5 g]'],
     ['2 tsp baking powder', '2 tsp baking powder [9 g]'],
     ['½ tbsp salt', '½ tbsp salt [9 g]'],
@@ -612,8 +618,8 @@ var tests = [
     ['a little less than a cup', 'a little less than a cup [240 ml]'],
     ['Divide the mixture among ten 3-ounce pop molds', 'Divide the mixture among ten 3-ounce [85 g] pop molds'],
     ['I used about 1/4 to 1/3 of a cup and', 'I used about 1/4 to 1/3 of a cup [60–80 ml] and'],
-    ['at about 350-380 degrees (F).', 'at about 350-380 degrees (F) [175–190 °C].'],
-    ['1 cup of peanuts (or any kind of nuts)', '1 cup of peanuts [150 g] (or any kind of nuts)'],
+    ['at about 350-380 degrees (F).', 'at about 350-380 degrees (F) [175–195 °C].'],
+    ['1 cup of peanuts (or any kind of nuts)', '1 cup of peanuts [145 g] (or any kind of nuts)'],
     ['¾ cup plus 2 Tbs sugar', '¾ cup plus 2 Tbs sugar [175 g]'],
     ['1/3 cup plus 2 tablespoons packed dark brown sugar', '1/3 cup plus 2 tablespoons packed dark brown sugar [100 g]'],
     ['1 cup + 1 tablespoon all purpose flour', '1 cup + 1 tablespoon all purpose flour [130 g]'],
