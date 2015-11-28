@@ -27,6 +27,7 @@
    with this program; if not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.  */
 
+var start_time = +new Date();
 
 var dangerous    = true;
 var maxError     = 0.03;
@@ -707,6 +708,10 @@ var tests = [
     //['1 pint heavy cream]'
 ];
 
+var end_time = +new Date();
+console.log('Metric cooking regexps: %dms', end_time - start_time);
+start_time = +new Date();  // log end timestamp
+
 if (test) {
     var failed = 0;
     for (var i in tests) {
@@ -718,6 +723,10 @@ if (test) {
     }
     console.log('%d of %d tests passed', tests.length - failed, tests.length);
 }
+
+end_time = +new Date();
+console.log('Metric cooking tests: %dms', end_time - start_time);
+start_time = +new Date();  // log end timestamp
 
 logReplacement = false;
 
@@ -757,3 +766,7 @@ if (location.hostname.match('food52')) {
 	node.children[1].innerHTML = newText.substr(number.length);
     }
 }
+
+end_time = +new Date();
+console.log('Metric cooking body: %dms', end_time - start_time);
+start_time = +new Date();  // log end timestamp
