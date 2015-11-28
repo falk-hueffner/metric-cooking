@@ -32,7 +32,7 @@ var start_time = +new Date();
 var dangerous    = true;
 var maxError     = 0.03;
 var numUnitSpace = '\u202F';    // thin space
-var test         = true;
+var test         = false;
 
 var cup_ml  = 236.5882365;
 var tbsp_ml = 14.78676478125;
