@@ -85,7 +85,7 @@ var ingredients = {
     'kosher salt': [/kosher salt/, 0.57], // Wolfram Alpha
     'lentils': [/\b(brown |or |green )*lentils/, 192/cup_ml], // ~16069~
     'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
-    'long-grain rice': [/\b(long[- ]grain(ed)? |[Bb]asmati |[Jj]asmine |brown |white |uncooked |warm,? |cooked )*rice(?! vinegar| crispies| flour| wine)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
+    'long-grain rice': [/\b(long[- ]grain(ed)? |[Bb]asmati |[Jj]asmine |brown |white |uncooked |warm,? |cooked |cold )*rice(?! vinegar| crispies| flour| wine)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
     'maple syrup': [/\b(pure )?maple syrup/, 80/60], // ~19911~
     'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
     'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
@@ -117,12 +117,14 @@ var ingredients = {
     'spinach': [/\b(fresh )?spinach/, 30/cup_ml], // ~11457~ (raw)
     'strawberries': [/\b(fresh |medium-sized )*strawberries/, 144/cup_ml], // ~09316~
     'sugar': [/\b(granulated |white )*sugar/, 200/cup_ml], // ~19335~
-    'sun-dried tomatoes': [/\bsun-dried tomatoes/, 54/cup_ml], // ~11955~
+    'sun-dried tomatoes': [/\bsun[- ]dried tomatoes/, 54/cup_ml], // ~11955~
     'superfine sugar': [/\b(golden )?(superfine|cast[eo]r) sugar/, 0.81], // Wolfram Alpha
     'swiss cheese': [/\b(grated |shredded )*Swiss cheese/, 108/cup_ml], // ~01040~
     'tomato paste': [/\b(double-concentrated )?tomato paste/, 262/cup_ml], // ~11546~
     'walnuts': [/\bwalnuts/, 100/cup_ml], // ~12155~
     'wild rice': [/\bwild rice/, 160/cup_ml], // ~20088~
+    'oats, steel-cut': [/\bsteel[- ]cut oats/, 0.68], // Wolfram Alpha
+    'matzo meal': [/\bmatzo meal/, 0.5], // Wolfram Alpha
     'yogurt': [/\b(plain |low-fat |vanilla |\d% |Greek |full-fat |whole milk )*yogurt/, 245/cup_ml] // ~01116~
 };
 
@@ -703,6 +705,11 @@ var tests = [
     ['2 tablespoons sesame seeds', '2 tablespoons sesame seeds [18 g]'],
     ['2 tablespoons toasted sesame oil', '2 tablespoons [30 ml] toasted sesame oil'],
     ['1/3 cup of cold, unsalted butter', '1/3 cup of cold, unsalted butter [75 g]'],
+    ['1 cup steel cut oats', '1 cup steel cut oats [160 g]'],
+    ['2 tablespoons matzo meal', '2 tablespoons matzo meal [15 g]'],
+    ['¼ cup sun dried tomatoes, chopped', '¼ cup sun dried tomatoes [14 g], chopped'],
+    ['2 cups cold cooked rice, preferably jasmine', '2 cups cold cooked rice [375 g], preferably jasmine'],
+    ['', ''],
     ['', ''],
     ['', ''],
     ['', ''],
