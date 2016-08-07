@@ -1,5 +1,11 @@
 all: metric-cooking.xpi
 
+clean:
+	rm -f metric-cooking.xpi
+
+test:
+	@./test.js
+
 ICONS = \
 	icons/measuring-cup-pressed-19.png  \
 	icons/measuring-cup-pressed-38.png  \
