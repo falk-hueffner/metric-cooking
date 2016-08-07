@@ -1,10 +1,12 @@
 "use strict";
 
-module.exports = {
-    addMetricUnits: function(text) {
-        return re.replace(text, replaceUnits);
-    }
-};
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+	addMetricUnits: function(text) {
+            return re.replace(text, replaceUnits);
+	}
+    };
+}
 
 var dangerous    = true; // whether to do replacements with frequent false positives
 var maxError     = 0.03; // maximum relative error after rounding
@@ -519,7 +521,7 @@ function walkBody() {
 
 var end_time = +new Date();
 if (logTimings)
-  console.log('Metric cooking setup: %dms', end_time - start_time);
+    console.log('Metric cooking setup: %dms', end_time - start_time);
 start_time = +new Date();
 
 if (typeof document !== 'undefined') {
@@ -528,4 +530,4 @@ if (typeof document !== 'undefined') {
 
 end_time = +new Date();
 if (logTimings)
-  console.log('Metric cooking body: %dms', end_time - start_time);
+    console.log('Metric cooking body: %dms', end_time - start_time);
