@@ -1,9 +1,12 @@
 metric-cooking
 ==============
 
-Browser script that annotates US cooking units with their metric
-equivalent, while also trying to convert from volumes to weights.
-Examples, where the part in [] would be added by this script:
+Do you have no idea what "a stick of butter" is, or how to measure "a
+cup plus two tablespoons"? This add-on provides a button that when
+pressed, annotates US cooking units with their metric equivalent,
+while also trying to convert from volumes to weights, such that you
+can simply use your kitchen scale. Examples, where the part in []
+would be added by this add-on:
 
 * I used about 1/4 to 1/3 of a cup [60–80 ml]
 * 3/4 cup plus 2 tablespoons packed light-brown sugar [190 g]
