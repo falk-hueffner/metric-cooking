@@ -1,32 +1,3 @@
-// ==UserScript==
-// @name        Metric cooking
-// @namespace   https://github.com/falk-hueffner
-// @description Annotates US cooking units with their metric equivalent.
-// @include     http://*
-// @include     https://*
-// @include     file://*
-// @exclude     http://*google.tld/*
-// @exclude     https://*google.tld/*
-// @version     1
-// @grant       none
-// ==/UserScript==
-
-/* Copyright (C) 2013, 2014  Falk Hüffner
-
-   This program is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2 of the License, or
-   (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License along
-   with this program; if not, write to the Free Software Foundation, Inc.,
-   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.  */
-
 var start_time = +new Date();
 
 var dangerous    = true;
@@ -70,7 +41,7 @@ var ingredients = {
     'cranberries': [/\b(fresh |of |or |thawed |frozen )*cranberries/, 100/cup_ml], // ~09078~
     'cream cheese': [/cream cheese/, 232/cup_ml], // ~01017~
     'cream': [/\b(heavy |whipping |or |double )*cream/, 238.5/cup_ml], // ~01053~ & ~01052~
-    'creme fraiche': [/(cr[eè]me fra[iî]che|(Mexican )?crema)/, 0.978], // FAO, 38%
+    'creme fraiche': [/(cr[eè]me fra[iî]che)|((Mexican )?crema)/, 0.978], // FAO, 38%
     'crumbled blue cheese': [/\bcrumbled blue cheese/, 135/cup_ml], // ~01004~
     'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
     'dried apricots': [/\bdried apricots/, 130/cup_ml], // ~09032~
@@ -182,9 +153,11 @@ function namedGroupRegExp(regexp, modifiers) {
 
     re.exec = function (string) {
         var match = RegExp.prototype.exec.call(this, string);
-        match.group = function (name) {
-            return match[groupNumber[name]];
-        };
+	if (match) {
+            match.group = function (name) {
+		return match[groupNumber[name]];
+            };
+	}
         return match;
     };
 
@@ -723,7 +696,7 @@ var tests = [
 
 var end_time = +new Date();
 console.log('Metric cooking regexps: %dms', end_time - start_time);
-start_time = +new Date();  // log end timestamp
+start_time = +new Date();
 
 if (test) {
     var failed = 0;
@@ -739,47 +712,87 @@ if (test) {
 
 end_time = +new Date();
 console.log('Metric cooking tests: %dms', end_time - start_time);
-start_time = +new Date();  // log end timestamp
+start_time = +new Date();
 
 logReplacement = false;
-
-var textNodes = document.evaluate('//body//text()', document, null,
-                                  XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
-
-for (var i = 0; i < textNodes.snapshotLength; i++) {
-    var node = textNodes.snapshotItem(i);
-    var text = node.data;
-    var newText = re.replace(text, function (match) {
-        var replacement = replaceUnits(match);
-        if (logReplacement) {
-            console.log('\'' + match[0] + '\' -> \'' + replacement + '\'');
-            logReplacement = false;
-        }
-        return replacement;
-    });
-    node.data = newText;
-}
 
 // food52.com has HTML like this:
 // <li class="has-quantity" itemprop="ingredients">
 //   <span class="quantity">1</span>
 //   <span class="item-name">cup basmati rice, rinsed and drained</span>
-if (location.hostname.match('food52')) {
-    var quantities = document.querySelectorAll('.has-quantity');
-    for (i in quantities) {
-	node = quantities[i];
-	console.log(node);
-	var number = node.children[0].innerHTML;
-	console.log(number);
-	var unitText = node.children[1].innerHTML;
-	var text = number + ' ' + unitText;
-	var newText = re.replace(text, replaceUnits);
-	if (logReplacement && newText != text)
-	    console.log('\'' + text + '\' -> \'' + newText + '\'');
-	node.children[1].innerHTML = newText.substr(number.length);
+// if (location.hostname.match('food52')) {
+//     var quantities = document.querySelectorAll('.has-quantity');
+//     for (i in quantities) {
+// 	node = quantities[i];
+// 	console.log(node);
+// 	var number = node.children[0].innerHTML;
+// 	console.log(number);
+// 	var unitText = node.children[1].innerHTML;
+// 	var text = number + ' ' + unitText;
+// 	var newText = re.replace(text, replaceUnits);
+// 	if (logReplacement && newText != text)
+// 	    console.log('\'' + text + '\' -> \'' + newText + '\'');
+// 	node.children[1].innerHTML = newText.substr(number.length);
+//     }
+// }
+
+function walk(node)
+{
+    // Source: http://is.gd/mwZp7E
+         
+    var child, next;
+    switch ( node.nodeType )
+    {
+        case 1:  // Element
+        case 9:  // Document
+        case 11: // Document fragment
+        child = node.firstChild;
+        while ( child )
+        {
+            next = child.nextSibling;
+            walk(child);
+            child = next;
+        }
+        break;
+        
+        case 3: // Text node
+        handleNode(node);
+        break;
     }
 }
+         
+function handleNode(textNode) {
+    let text = textNode.nodeValue;
+	 
+    if (text) {
+        var modified = re.replace(text, function (match) {
+            var replacement = replaceUnits(match);
+            if (logReplacement) {
+                console.log('\'' + match[0] + '\' -> \'' + replacement + '\'');
+                logReplacement = false;
+            }
+            return replacement;
+        });
+	if (modified != text) {
+	    textNode.nodeValue = modified;
+	}
+    }
+}
+         
+function handleText(text) {
+    let v = text;
+    
+    v = v.replace(/\bthe\b/g, "foobar");
+    
+    return v;
+}
+
+function walkBody() {
+    console.log("walkBody");
+    walk(document.body);
+}
+
+walkBody();
 
 end_time = +new Date();
 console.log('Metric cooking body: %dms', end_time - start_time);
-start_time = +new Date();  // log end timestamp
