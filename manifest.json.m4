@@ -2,7 +2,7 @@
     "description": "Annotates US cooking units with their metric equivalent (e.g. 1 3/4 cups sugar [350 g])",
     "manifest_version": 2,
     "name": "Metric Cooking",
-    "version": "1.1",
+    "version": "1.2",
     "homepage_url": "https://github.com/falk-hueffner/metric-cooking",
     "icons": {
         "19": "icons/measuring-cup-pressed-19.png",
