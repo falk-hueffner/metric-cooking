@@ -515,7 +515,6 @@ function handleText(text) {
 }
 
 function walkBody() {
-    console.log("walkBody");
     walk(document.body);
 }
 
