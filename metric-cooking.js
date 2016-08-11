@@ -11,11 +11,6 @@ if (typeof module !== 'undefined' && module.exports) {
 var dangerous    = true; // whether to do replacements with frequent false positives
 var maxError     = 0.03; // maximum relative error after rounding
 
-var logTimings = false;
-var logReplacement = false;
-
-var start_time = +new Date();
-
 var cup_ml  = 236.5882365;
 var tbsp_ml = 14.78676478125;
 var tsp_ml  = tbsp_ml/3;
@@ -448,45 +443,19 @@ function replaceUnits(match) {
     return newText;
 }
 
-// food52.com has HTML like this:
-// <li class="has-quantity" itemprop="ingredients">
-//   <span class="quantity">1</span>
-//   <span class="item-name">cup basmati rice, rinsed and drained</span>
-// if (location.hostname.match('food52')) {
-//     var quantities = document.querySelectorAll('.has-quantity');
-//     for (i in quantities) {
-// 	node = quantities[i];
-// 	console.log(node);
-// 	var number = node.children[0].innerHTML;
-// 	console.log(number);
-// 	var unitText = node.children[1].innerHTML;
-// 	var text = number + ' ' + unitText;
-// 	var newText = re.replace(text, replaceUnits);
-// 	if (logReplacement && newText != text)
-// 	    console.log('\'' + text + '\' -> \'' + newText + '\'');
-// 	node.children[1].innerHTML = newText.substr(number.length);
-//     }
-// }
-
 function walk(node)
 {
-    // Source: http://is.gd/mwZp7E
-    var child, next;
     switch (node.nodeType) {
-        case 1:  // Element
-        case 9:  // Document
-        case 11: // Document fragment
-        child = node.firstChild;
-        while (child) {
-            next = child.nextSibling;
-            walk(child);
-            child = next;
-        }
-        break;
+        case Node.ELEMENT_NODE:
+        case Node.DOCUMENT_NODE:
+        case Node.DOCUMENT_FRAGMENT_NODE:
+             for (var child = node.firstChild; child; child = child.nextSibling)
+                 walk(child);
+             break;
         
-        case 3: // Text node
-        handleNode(node);
-        break;
+        case Node.TEXT_NODE:
+            handleNode(node);
+            break;
     }
 }
          
@@ -494,39 +463,16 @@ function handleNode(textNode) {
     let text = textNode.nodeValue;
 	 
     if (text) {
-        var modified = re.replace(text, function (match) {
-            var replacement = replaceUnits(match);
-            if (logReplacement) {
-                console.log('\'' + match[0] + '\' -> \'' + replacement + '\'');
-                logReplacement = false;
-            }
-            return replacement;
-        });
-	if (modified != text) {
+        var modified = re.replace(text, replaceUnits);
+	if (modified != text)
 	    textNode.nodeValue = modified;
-	}
     }
 }
          
-function handleText(text) {
-    let v = text;
-    v = v.replace(/\bthe\b/g, "foobar");
-    return v;
-}
-
 function walkBody() {
     walk(document.body);
 }
 
-var end_time = +new Date();
-if (logTimings)
-    console.log('Metric cooking setup: %dms', end_time - start_time);
-start_time = +new Date();
-
 if (typeof document !== 'undefined') {
     walkBody();
 }
-
-end_time = +new Date();
-if (logTimings)
-    console.log('Metric cooking body: %dms', end_time - start_time);
