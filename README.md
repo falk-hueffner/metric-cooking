@@ -2,7 +2,7 @@ metric-cooking
 ==============
 
 Do you have no idea what "a stick of butter" is, or how to measure "a
-cup plus two tablespoons"? This add-on provides a button that when
+cup plus two tablespoons"? This browser add-on provides a button that when
 pressed, annotates US cooking units with their metric equivalent,
 while also trying to convert from volumes to weights, such that you
 can simply use your kitchen scale. Examples, where the part in []
@@ -24,25 +24,8 @@ would be added by this add-on:
 Installation
 ------------
 
-* For Firefox, you need the [Greasemonkey
-extension](https://addons.mozilla.org/en-us/firefox/addon/greasemonkey/).
-* For Chrome, you need the [Tampermonkey
-extension](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo).
-
-Then, follow this [link to the Metric cooking
-script](https://github.com/falk-hueffner/metric-cooking/raw/master/Metric_cooking.user.js)
-and choose "Install".
-
-The script produces often adds bogus annotations and can slow down the
-browser, so it is recommended to turn it on only if you need it.
-
-Updating
---------
-
-To update to the latest version, you just need to select the [link to
-the Metric cooking
-script](https://github.com/falk-hueffner/metric-cooking/raw/master/Metric_cooking.user.js)
-again and choose "Install" or "Reinstall".
+* [Metric Cooking for Firefox](https://addons.mozilla.org/en-US/firefox/addon/metric-cooking/)
+* [Metric Cooking for Chrome](https://chrome.google.com/webstore/detail/metric-cooking/ofokbkejapnkgolaccooepjmgpbidedg)
 
 Issues
 ------
