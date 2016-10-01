@@ -253,14 +253,18 @@ var tests = [
     ['1/3 cup mild honey, to taste', '1/3 cup mild honey [110 g], to taste'],
     ['1/2 cup tahini roasted garlic dressing', '1/2 cup tahini [120 g] roasted garlic dressing'],
     ['2 Tbsp whole grain Dijon mustard', '2 Tbsp whole grain Dijon mustard [31 g]'],
+    ['1/2 cup, plus 1 tablespoon cornstarch', '1/2 cup, plus 1 tablespoon cornstarch [70 g]'],
+    ['1 1/2 cups granulated cane sugar', '1 1/2 cups granulated cane sugar [300 g]'],
+    ['a cup plus 2 tablespoons', 'a cup plus 2 tablespoons [270 ml]'],
+    ['the edge of the pie plate by 1/2 an inch', 'the edge of the pie plate by 1/2 an inch [1.3 cm]'],
+    ['1/2 cup half and half*', '1/2 cup [120 ml] half and half*'],
+    ['1 pint heavy cream', '1 pint heavy cream [475 g]'],
     ['', ''],
 // failing
-    //['a cup plus 2 tablespoons', ''],
-    //['1/2 cup half and half*', '1/2 cup [120 ml] half and half*'],
     //['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]'],
     //['1 x 375g pack of pre-rolled puff pastry', '1 x 375g pack of pre-rolled puff pastry'],
     //['Grease two 8½ by 4½-inch loaf pans', 'Grease two 8½ by 4½-inch loaf pans'],
-    //['1 pint heavy cream', ''],
+    //['Transfer the pudding to a 9-inch-by-13-inch glass baking dish', ''],
     ['', '']
 ];
 

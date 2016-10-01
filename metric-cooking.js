@@ -96,7 +96,7 @@ var ingredients = {
     'sour cream': [/\b(low-fat )?sour cream/, 230/cup_ml], // ~01056~, ~01178~
     'spinach': [/\b(fresh )?spinach/, 30/cup_ml], // ~11457~ (raw)
     'strawberries': [/\b(fresh |medium-sized )*strawberries/, 144/cup_ml], // ~09316~
-    'sugar': [/\b(granulated |white )*sugar/, 200/cup_ml], // ~19335~
+    'sugar': [/\b(granulated |white |cane )*sugar/, 200/cup_ml], // ~19335~
     'sun-dried tomatoes': [/\bsun[- ]dried tomatoes/, 54/cup_ml], // ~11955~
     'superfine sugar': [/\b(golden )?(superfine|cast[eo]r) sugar/, 0.81], // Wolfram Alpha
     'swiss cheese': [/\b(grated |shredded )*Swiss cheese/, 108/cup_ml], // ~01040~
@@ -226,7 +226,7 @@ var numWords = {
     'threequarter' : [/([Tt]hree[- ])[Qq]quarters?( of an?)?/, 3/4],
     'third'        : [/([Oo]ne[- ])?[Tt]hird( of an?)?/,       1/3],
     'twothirds'    : [/([Tt]wo[- ])[Tt]hirds?( of an?)?/,      2/3],
-    'half'         : [/([Oo]ne[- ])?[Hh]alf|[Hh]alf an?/,      1/2],
+    'half'         : [/([Oo]ne[- ])?([Hh]alf|1\/2)( an?)?/,    1/2],
     'one'          : [/[Aa]|[Aa]n|[Oo]ne(?![- ]([Hh]alf|[Tt]hird|[Qq]uarter))/, 1],
     'two'          : [/[Tt]wo/,              2],
     'three'        : [/[Tt]hree/,            3],
@@ -309,7 +309,7 @@ var reFrom = '(<from>'
         + prefixGroups(reNumber, 'from') + '-?\\s*'
         + '(('
         + prefixGroups(reUnit, 'from')
-        + '\\s*((<range1>-|–|to|or)|(<plus1>plus|\\+|and|\\s+))\\s*)'
+        + '\\s*((<range1>-|–|to|or)|(<plus1>(, )?plus|\\+|and|\\s+))\\s*)'
         + '|'
         + '(\\s*((<range2>-|–|to|or)|(<plus2>plus|\\+|and))\\s*)'
         + '))';
@@ -398,8 +398,7 @@ function replaceUnits(match) {
                 fromAmount = undefined;
             }
         } else {
-            if (!match.group('from:numWord')) // 'from a 1/4-ounce envelope'
-                newAmount += converted.amount;
+            newAmount += converted.amount;
         }
     }
 
@@ -414,6 +413,9 @@ function replaceUnits(match) {
     }
 
     if ((newUnit == 'ml' || newUnit == 'g') && newAmount < 4)
+        return newText;
+
+    if (newUnit == '°C' && match.group('from:numWord'))
         return newText;
 
     newAmount = round(newAmount, newUnit == '°C');
