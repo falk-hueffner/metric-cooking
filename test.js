@@ -1,4 +1,4 @@
-#! /usr/bin/js
+#! /usr/bin/node
 
 "use strict";
 
@@ -248,7 +248,15 @@ var tests = [
     ['2 tablespoons matzo meal', '2 tablespoons matzo meal [15 g]'],
     ['¼ cup sun dried tomatoes, chopped', '¼ cup sun dried tomatoes [14 g], chopped'],
     ['2 cups cold cooked rice, preferably jasmine', '2 cups cold cooked rice [375 g], preferably jasmine'],
+    ['3/4 cup plus 2 tablespoons', '3/4 cup plus 2 tablespoons [210 ml]'],
+    ['1 cup full fat greek yogurt', '1 cup full fat greek yogurt [250 g]'],
+    ['1/3 cup mild honey, to taste', '1/3 cup mild honey [110 g], to taste'],
+    ['1/2 cup tahini roasted garlic dressing', '1/2 cup tahini [120 g] roasted garlic dressing'],
+    ['2 Tbsp whole grain Dijon mustard', '2 Tbsp whole grain Dijon mustard [31 g]'],
+    ['', ''],
 // failing
+    //['a cup plus 2 tablespoons', ''],
+    //['1/2 cup half and half*', '1/2 cup [120 ml] half and half*'],
     //['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]'],
     //['1 x 375g pack of pre-rolled puff pastry', '1 x 375g pack of pre-rolled puff pastry'],
     //['Grease two 8½ by 4½-inch loaf pans', 'Grease two 8½ by 4½-inch loaf pans'],

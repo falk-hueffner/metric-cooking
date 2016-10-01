@@ -58,7 +58,7 @@ var ingredients = {
     'feta': [/\b(crumbled |low[ -]fat )*[Ff]eta( cheese)?/, 150/cup_ml], // ~01019~
     'flour': [/\b(all[- ]purpose |sifted |unbleached |white |self[- ]raising )*flour/, 125/cup_ml], // ~20081~
     'hazelnuts': [/\bhazelnuts/, 135/cup_ml], // ~12120~ (whole)
-    'honey': [/\b(mild-tasting )?honey/, 339/cup_ml], // ~19296~
+    'honey': [/\b(mild(-tasting)? )?honey/, 339/cup_ml], // ~19296~
     'israeli couscous': [/\b(\(?Israeli\)? |\(?pearl(ed)?\)? |or )*(\(?Israeli\)? |\(?pearl(ed)?\)? )+cous ?cous/, 50/(cup_ml/3)], // http://www.fatsecret.com/calories-nutrition/osem/israeli-couscous
     'kosher salt': [/kosher salt/, 0.57], // Wolfram Alpha
     'lentils': [/\b(brown |or |green )*lentils/, 192/cup_ml], // ~16069~
@@ -66,10 +66,12 @@ var ingredients = {
     'long-grain rice': [/\b(long[- ]grain(ed)? |[Bb]asmati |[Jj]asmine |brown |white |uncooked |warm,? |cooked |cold )*rice(?! vinegar| crispies| flour| wine)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
     'maple syrup': [/\b(pure )?maple syrup/, 80/60], // ~19911~
     'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
+    'matzo meal': [/\bmatzo meal/, 0.5], // Wolfram Alpha
     'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
     'mint': [/\bmint( leaves)?/, 3.2/(2*tbsp_ml)], // ~02064~
-    'mustard': [/\b([Dd]ijon |grainy |yellow )*mustard(?! seed)/, 249/cup_ml], // ~02046~
+    'mustard': [/\b([Dd]ijon |grainy |whole grain |yellow )*mustard(?! seed)/, 249/cup_ml], // ~02046~
     'nutella': [/\bNutella/, 1.2], // Wolfram Alpha
+    'oats, steel-cut': [/\bsteel[- ]cut oats/, 0.68], // Wolfram Alpha
     'onions, chopped': [/\b(chopped onions?)|(onions?, chopped)/, 160/cup_ml], // ~11282~
     'orzo': [/\b(whole[- ]wheat )?orzo/, 225/cup_ml], // estimate from various sources
     'parmesan': [/\b(finely |freshly |grated |shredded |fresh )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano|(Pecorino )?[Rr]omano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
@@ -98,12 +100,11 @@ var ingredients = {
     'sun-dried tomatoes': [/\bsun[- ]dried tomatoes/, 54/cup_ml], // ~11955~
     'superfine sugar': [/\b(golden )?(superfine|cast[eo]r) sugar/, 0.81], // Wolfram Alpha
     'swiss cheese': [/\b(grated |shredded )*Swiss cheese/, 108/cup_ml], // ~01040~
+    'tahini': [/\btahini/, 15/tbsp_ml], // ~12166~
     'tomato paste': [/\b(double-concentrated )?tomato paste/, 262/cup_ml], // ~11546~
     'walnuts': [/\bwalnuts/, 100/cup_ml], // ~12155~
     'wild rice': [/\bwild rice/, 160/cup_ml], // ~20088~
-    'oats, steel-cut': [/\bsteel[- ]cut oats/, 0.68], // Wolfram Alpha
-    'matzo meal': [/\bmatzo meal/, 0.5], // Wolfram Alpha
-    'yogurt': [/\b(plain |low-fat |vanilla |\d% |Greek |full-fat |whole milk )*yogurt/, 245/cup_ml] // ~01116~
+    'yogurt': [/\b(plain |low-fat |vanilla |\d% |[Gg]reek |full[- ]fat |whole milk )*yogurt/, 245/cup_ml] // ~01116~
 };
 
 // wares labeled in dry pints
