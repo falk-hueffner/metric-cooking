@@ -444,14 +444,32 @@ function replaceUnits(match) {
     return newText;
 }
 
+var food52 = typeof document !== 'undefined' && location.hostname.match('food52.com');
+
 function walk(node)
 {
     switch (node.nodeType) {
         case Node.ELEMENT_NODE:
         case Node.DOCUMENT_NODE:
         case Node.DOCUMENT_FRAGMENT_NODE:
-             for (var child = node.firstChild; child; child = child.nextSibling)
-                 walk(child);
+             if (food52 && node.getAttribute('itemprop') == 'ingredients') {
+                 var quantityNode, itemNameNode;
+                 for (var child = node.firstChild; child; child = child.nextSibling) {
+                     if (child.className == 'recipe-list-quantity')
+                         quantityNode = child;
+                     else if (child.className == 'recipe-list-item-name')
+                         itemNameNode = child;
+                 }
+                 if (quantityNode && itemNameNode) {
+                     let text = quantityNode.innerText + ' ' + itemNameNode.innerText;
+                     var modified = re.replace(text, replaceUnits);
+                     if (modified != text)
+                         itemNameNode.innerText = modified.substring(quantityNode.innerText.length + 1);
+                 }
+             } else {
+                 for (var child = node.firstChild; child; child = child.nextSibling)
+                     walk(child);
+             }
              break;
         
         case Node.TEXT_NODE:
