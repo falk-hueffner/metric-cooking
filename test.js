@@ -259,12 +259,13 @@ var tests = [
     ['the edge of the pie plate by 1/2 an inch', 'the edge of the pie plate by 1/2 an inch [1.3 cm]'],
     ['1/2 cup half and half*', '1/2 cup [120 ml] half and half*'],
     ['1 pint heavy cream', '1 pint heavy cream [475 g]'],
+    ['to a 9-inch-by-13-inch glass baking dish', 'to a 9-inch-by-13-inch [22.5×32.5 cm] glass baking dish'],
+    ['Grease two 8½ by 4½-inch loaf pans', 'Grease two 8½ by 4½-inch [22×11.5 cm] loaf pans'],
+    ['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]'],
     ['', ''],
 // failing
-    //['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]'],
-    //['1 x 375g pack of pre-rolled puff pastry', '1 x 375g pack of pre-rolled puff pastry'],
-    //['Grease two 8½ by 4½-inch loaf pans', 'Grease two 8½ by 4½-inch loaf pans'],
-    //['Transfer the pudding to a 9-inch-by-13-inch glass baking dish', ''],
+// false positives
+//    ['1 x 375g pack of pre-rolled puff pastry', '1 x 375g pack of pre-rolled puff pastry'],
     ['', '']
 ];
 

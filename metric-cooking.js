@@ -253,7 +253,7 @@ reNumWord += ')';
 var reReal      = /(<real>\d+(\.\d+)?)/.source;
 var reFracChar  = /(<fracChar>[¼½¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/.source;
 var reFraction  = '(<fraction>(<fracWhole>\\d+(\\s*|-))?(((<fracNum>\\d+)[/⁄∕](<fracDen>\\d+)((th)? of an?)?)|' + reFracChar +'))';
-var reNumber = '(<number>' + reNumWord + '|' + reReal + '|' + reFraction + ')';
+var reNumber = '(<number>' + reNumWord + '|' + reFraction + '|' + reReal + ')';
 
 function parseNumber(match, prefix) {
     prefix = prefix || '';
@@ -315,8 +315,8 @@ var reFrom = '(<from>'
         + '))';
 
 var reBy = '(<by>'
-        + prefixGroups(reNumber, 'by1') + '[”"″]?-?\\s*(×|x|by)-?\\s*'
-        + prefixGroups(reNumber, 'by2') + '[”"″]?-?(\\s*(×|x|by)-?\\s*'
+        + prefixGroups(reNumber, 'by1') + '[”"″]?(-inch)?-?\\s*(×|x|[- ]?by[- ]?)-?\\s*'
+        + prefixGroups(reNumber, 'by2') + '[”"″]?(-inch)?-?(\\s*(×|x|[- ]?by[- ]?)-?\\s*'
         + prefixGroups(reNumber, 'by3') + ')?([”"″]|[ -]?inch(es)?)'
         + (dangerous ? "?" : "")
         + ')';
