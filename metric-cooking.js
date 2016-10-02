@@ -252,7 +252,7 @@ reNumWord += ')';
 
 var reReal      = /(<real>\d+(\.\d+)?)/.source;
 var reFracChar  = /(<fracChar>[¼½¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/.source;
-var reFraction  = '(<fraction>(<fracWhole>\\d+(\\s*|-))?(((<fracNum>\\d+)[/⁄∕](<fracDen>\\d+)((th)? of an?)?)|' + reFracChar +'))';
+var reFraction  = '(<fraction>(<fracWhole>\\d+(\\s*|-))?(((<fracNum>\\d+)[/⁄∕](<fracDen>\\d+)(( ?ths?)?( of an?)?)?)|' + reFracChar +'))';
 var reNumber = '(<number>' + reNumWord + '|' + reFraction + '|' + reReal + ')';
 
 function parseNumber(match, prefix) {

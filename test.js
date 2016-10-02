@@ -265,6 +265,7 @@ var tests = [
     ['10 three-fluid-ounce popsicle molds', '10 three-fluid-ounce [90 ml] popsicle molds'],
     ['⅓ cup light sour cream', '⅓ cup light sour cream [75 g]'],
     ['⅓ cup nonfat greek vanilla yogurt', '⅓ cup nonfat greek vanilla yogurt [80 g]'],
+    ['about 9/10ths cup', 'about 9/10ths cup [210 ml]'],
     ['', ''],
     ['', ''],
     ['', ''],
