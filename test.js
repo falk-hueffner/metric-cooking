@@ -262,10 +262,16 @@ var tests = [
     ['to a 9-inch-by-13-inch glass baking dish', 'to a 9-inch-by-13-inch [22.5×32.5 cm] glass baking dish'],
     ['Grease two 8½ by 4½-inch loaf pans', 'Grease two 8½ by 4½-inch [22×11.5 cm] loaf pans'],
     ['32 bars, each about 2-1/4 x 1-1/2 inches', '32 bars, each about 2-1/4 x 1-1/2 inches [5.8×3.8 cm]'],
+    ['10 three-fluid-ounce popsicle molds', '10 three-fluid-ounce [90 ml] popsicle molds'],
+    ['⅓ cup light sour cream', '⅓ cup light sour cream [75 g]'],
+    ['⅓ cup nonfat greek vanilla yogurt', '⅓ cup nonfat greek vanilla yogurt [80 g]'],
+    ['', ''],
+    ['', ''],
     ['', ''],
 // failing
 // false positives
-//    ['1 x 375g pack of pre-rolled puff pastry', '1 x 375g pack of pre-rolled puff pastry'],
+//  ['1 x 375g pack of pre-rolled puff pastry', '1 x 375g pack of pre-rolled puff pastry'],
+//  ['Dip popsicles one by one', 'Dip popsicles one by one'],
     ['', '']
 ];
 

@@ -93,7 +93,7 @@ var ingredients = {
     'shredded coconut': [/\b(unsweetened )?shredded coconut/, 93/cup_ml], // ~12179~
     'shredded mozzarella': [/\b(shredded |part-skim )*mozzarella( cheese)?/, 112/cup_ml], // ~01026~
     'sliced almonds': [/\bsliced (and toasted )?almonds/, 92/cup_ml], // ~12061~
-    'sour cream': [/\b(low-fat )?sour cream/, 230/cup_ml], // ~01056~, ~01178~
+    'sour cream': [/\b(low-fat |light )?sour cream/, 230/cup_ml], // ~01056~, ~01178~
     'spinach': [/\b(fresh )?spinach/, 30/cup_ml], // ~11457~ (raw)
     'strawberries': [/\b(fresh |medium-sized )*strawberries/, 144/cup_ml], // ~09316~
     'sugar': [/\b(granulated |white |cane )*sugar/, 200/cup_ml], // ~19335~
@@ -104,7 +104,7 @@ var ingredients = {
     'tomato paste': [/\b(double-concentrated )?tomato paste/, 262/cup_ml], // ~11546~
     'walnuts': [/\bwalnuts/, 100/cup_ml], // ~12155~
     'wild rice': [/\bwild rice/, 160/cup_ml], // ~20088~
-    'yogurt': [/\b(plain |low-fat |vanilla |\d% |[Gg]reek |full[- ]fat |whole milk )*yogurt/, 245/cup_ml] // ~01116~
+    'yogurt': [/\b(plain |vanilla |\d% |[Gg]reek |(non|low|full)[- ]?fat |whole milk )*yogurt/, 245/cup_ml] // ~01116~
 };
 
 // wares labeled in dry pints
@@ -199,7 +199,7 @@ var inches = dangerous
 var units = {
     'cup':        [/(cups?)\b/,                                  'ml', cup_ml      ],
     'fahrenheit': [fahrenheit,                                   '°C', undefined   ],
-    'fl oz':      [/fl\.? oz\.?/,                                'ml', 2 * tbsp_ml ],
+    'fl oz':      [/(fl\.? oz\.?)|(fluid[- ]ounces?)/,           'ml', 2 * tbsp_ml ],
     'inch':       [inches,                                       'mm', 25.6        ],
     'ounce':      [/ounces?\b|oz\b\.?/,                          'g' , pound_g / 16],
     'pint':       [/pints?\b/,                                   'ml', 2 * cup_ml  ], // US liquid pint
