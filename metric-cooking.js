@@ -476,18 +476,22 @@ function walk(node)
              break;
         
         case Node.TEXT_NODE:
+            // Skip textarea nodes due to the potential for accidental submission
+            // of substituted text
+            if (node.parentNode && node.parentNode.nodeName === 'TEXTAREA')
+                return;
             handleNode(node);
             break;
     }
 }
          
 function handleNode(textNode) {
-    let text = textNode.nodeValue;
+    let text = textNode.textContent;
 	 
     if (text) {
         var modified = re.replace(text, replaceUnits);
 	if (modified != text)
-	    textNode.nodeValue = modified;
+	    textNode.textContent = modified;
     }
 }
          
