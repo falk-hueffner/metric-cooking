@@ -103,7 +103,7 @@ var ingredients = {
     'tahini': [/\btahini/, 15/tbsp_ml], // ~12166~
     'tomato paste': [/\b(double-concentrated )?tomato paste/, 262/cup_ml], // ~11546~
     'walnuts': [/\bwalnuts/, 100/cup_ml], // ~12155~
-    'wild rice': [/\bwild rice/, 160/cup_ml], // ~20088~
+    'wild rice': [/\b(cooked )?wild rice/, 160/cup_ml], // ~20088~
     'yogurt': [/\b(plain |vanilla |\d% |[Gg]reek |(non|low|full)[- ]?fat |whole milk )*yogurt/, 245/cup_ml] // ~01116~
 };
 
