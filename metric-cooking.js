@@ -23,6 +23,7 @@ var numUnitSpace = '\u202F';    // thin space
 // FAO/INFOODS Density Database Version 2.0 (2012)
 var ingredients = {
     'almonds': [/\b(blanched |raw |peeled )*almonds/, 144/cup_ml], // average of ~12061~ (143) and ~12062~ (145)
+    'almond flour': [/\balmond flour/, 96/cup_ml], // http://www.kingarthurflour.com/learn/ingredient-weight-chart.html
     'arugula': [/\barugula( leaves)?/, 10.0/(0.5*cup_ml)], // ~11959~
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~

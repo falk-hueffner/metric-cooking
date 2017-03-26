@@ -268,6 +268,7 @@ var tests = [
     ['about 9/10ths cup', 'about 9/10ths cup [210 ml]'],
     ['1 1/2 cups cooked wild rice', '1 1/2 cups cooked wild rice [240 g]'],
     ['1 c sugar', '1 c sugar [200 g]'],
+    ['2 c almond flour', '2 c almond flour [190 g]'],
     ['', ''],
     ['', ''],
 // failing
