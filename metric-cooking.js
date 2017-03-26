@@ -197,7 +197,7 @@ var inches = dangerous
         : /inch(es)?\b/;
 
 var units = {
-    'cup':        [/(cups?)\b/,                                  'ml', cup_ml      ],
+    'cup':        [/([Cc](ups?)?)\b/,                            'ml', cup_ml      ],
     'fahrenheit': [fahrenheit,                                   '°C', undefined   ],
     'fl oz':      [/(fl\.? oz\.?)|(fluid[- ]ounces?)/,           'ml', 2 * tbsp_ml ],
     'inch':       [inches,                                       'mm', 25.6        ],
