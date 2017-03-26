@@ -1,11 +1,11 @@
 "use strict";
 
+function addMetricUnits(text) {
+    return re.replace(text, replaceUnits);
+}
+
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-	addMetricUnits: function(text) {
-            return re.replace(text, replaceUnits);
-	}
-    };
+    module.exports = {addMetricUnits};
 }
 
 var dangerous    = true; // whether to do replacements with frequent false positives
