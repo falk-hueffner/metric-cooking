@@ -269,6 +269,7 @@ var tests = [
     ['1 1/2 cups cooked wild rice', '1 1/2 cups cooked wild rice [240 g]'],
     ['1 c sugar', '1 c sugar [200 g]'],
     ['2 c almond flour', '2 c almond flour [190 g]'],
+    ['Using water that is at about 212 ℉,', 'Using water that is at about 212 ℉ [100 °C],'],
     ['', ''],
     ['', ''],
 // failing

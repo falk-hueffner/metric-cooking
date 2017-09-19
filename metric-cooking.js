@@ -191,8 +191,8 @@ function prefixGroups (regexp, prefix) {
 }
 
 var fahrenheit = dangerous
-        ? /(([°º˚*]|degrees?(?! [Cc]elsius)\b)\s*(?! ?C\b)(F\b|[(]F[)]|Fahrenheit\b)?)|F(ahrenheit)?\b/
-        :  /([°º˚]|degrees?(?! [Cc]elsius)\b)\s*(F\b|[(]F[)]|Fahrenheit\b)/;
+        ? /(([°º˚*℉]|degrees?(?! [Cc]elsius)\b)\s*(?! ?C\b)(F\b|[(]F[)]|Fahrenheit\b)?)|F(ahrenheit)?\b/
+        :  /([°º˚℉]|degrees?(?! [Cc]elsius)\b)\s*(F\b|[(]F[)]|Fahrenheit\b)/;
 var inches = dangerous
         ? /(inch(es)?\b|[”″"](?!\w))/
         : /inch(es)?\b/;
