@@ -22,8 +22,8 @@ var numUnitSpace = '\u202F';    // thin space
 // USDA National Nutrient Database for Standard Reference, Release 26
 // FAO/INFOODS Density Database Version 2.0 (2012)
 var ingredients = {
-    'almonds': [/\b(blanched |raw |peeled )*almonds/, 144/cup_ml], // average of ~12061~ (143) and ~12062~ (145)
     'almond flour': [/\balmond flour/, 96/cup_ml], // http://www.kingarthurflour.com/learn/ingredient-weight-chart.html
+    'almonds': [/\b(blanched |raw |peeled )*almonds/, 144/cup_ml], // average of ~12061~ (143) and ~12062~ (145)
     'arugula': [/\barugula( leaves)?/, 10.0/(0.5*cup_ml)], // ~11959~
     'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
     'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
@@ -70,6 +70,7 @@ var ingredients = {
     'matzo meal': [/\bmatzo meal/, 0.5], // Wolfram Alpha
     'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
     'mint': [/\bmint( leaves)?/, 3.2/(2*tbsp_ml)], // ~02064~
+    'miso': [/\b(white |light |or |yellow |red |brown |mellow )*[Mm]iso( paste)?/, 275/cup_ml], // ~16112~
     'mustard': [/\b([Dd]ijon |grainy |whole grain |yellow )*mustard(?! seed)/, 249/cup_ml], // ~02046~
     'nutella': [/\bNutella/, 1.2], // Wolfram Alpha
     'oats, steel-cut': [/\bsteel[- ]cut oats/, 0.68], // Wolfram Alpha
