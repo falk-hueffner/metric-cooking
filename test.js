@@ -271,7 +271,7 @@ var tests = [
     ['2 c almond flour', '2 c almond flour [190 g]'],
     ['Using water that is at about 212 ℉,', 'Using water that is at about 212 ℉ [100 °C],'],
     ['1/4 cup white or yellow miso paste', '1/4 cup white or yellow miso paste [70 g]'],
-    ['', ''],
+    ['2 ts yeast', '2 ts yeast [6 g]'],
     ['', ''],
 // failing
 // false positives

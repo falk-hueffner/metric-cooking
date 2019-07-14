@@ -107,6 +107,7 @@ var ingredients = {
     'walnuts': [/\bwalnuts/, 100/cup_ml], // ~12155~
     'sunflower seed kernels': [/\b(raw )?sunflower seeds/, 128/cup_ml], // ~12155~
     'wild rice': [/\b(cooked )?wild rice/, 160/cup_ml], // ~20088~
+    'yeast, dry': [/\byeast/, 136/cup_ml],
     'yogurt': [/\b(plain |vanilla |\d% |[Gg]reek |(non|low|full)[- ]?fat |whole milk )*yogurt/, 245/cup_ml] // ~01116~
 };
 
@@ -211,7 +212,7 @@ var units = {
     'quart':      [/quarts?\b|qt\b\.?/,                          'ml', 4 * cup_ml  ],
     'stick':      [/sticks?\b(?!\s+cinnamon)/,                   'g' , pound_g / 4 ],
     'tablespoon': [/[Tt]ablespoons?\b|(T|tb|[Tt]bsp?|TBL|TBSP)\b\.?/, 'ml', tbsp_ml     ],
-    'teaspoon':   [/[Tt]easpoons?\b|(t|tsp|TSP)\b\.?/,           'ml', tbsp_ml / 3 ]
+    'teaspoon':   [/[Tt]easpoons?\b|(t|tsp?|TSP)\b\.?/,           'ml', tbsp_ml / 3 ]
 };
 
 var reUnit = '';
