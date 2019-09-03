@@ -11,10 +11,11 @@ if (typeof module !== 'undefined' && module.exports) {
 var dangerous    = true; // whether to do replacements with frequent false positives
 var maxError     = 0.03; // maximum relative error after rounding
 
-var cup_ml  = 236.5882365;
-var tbsp_ml = 14.78676478125;
-var tsp_ml  = tbsp_ml/3;
-var pound_g = 453.59237;
+var cup_ml    = 236.5882365;
+var tbsp_ml   = 14.78676478125;
+var tsp_ml    = tbsp_ml/3;
+var gallon_ml = 3785.411784;
+var pound_g   = 453.59237;
 var pound_per_ft3 = 0.0160184634; // in g/ml
 var numUnitSpace = '\u202F';    // thin space
 
@@ -210,6 +211,7 @@ var units = {
     'dry pint':   [/dry pints?\b/,                               'ml', 550.6104713575 ], // US dry pint (berries etc.)
     'pound':      [/pounds?\b|lbs?\b\.?/,                        'g' , pound_g     ],
     'quart':      [/quarts?\b|qt\b\.?/,                          'ml', 4 * cup_ml  ],
+    'gallon':     [/gallons?\b/,                                 'ml', gallon_ml   ],
     'stick':      [/sticks?\b(?!\s+cinnamon)/,                   'g' , pound_g / 4 ],
     'tablespoon': [/[Tt]ablespoons?\b|(T|tb|[Tt]bsp?|TBL|TBSP)\b\.?/, 'ml', tbsp_ml     ],
     'teaspoon':   [/[Tt]easpoons?\b|(t|tsp?|TSP)\b\.?/,           'ml', tbsp_ml / 3 ]

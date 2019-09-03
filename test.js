@@ -272,6 +272,7 @@ var tests = [
     ['Using water that is at about 212 ℉,', 'Using water that is at about 212 ℉ [100 °C],'],
     ['1/4 cup white or yellow miso paste', '1/4 cup white or yellow miso paste [70 g]'],
     ['2 ts yeast', '2 ts yeast [6 g]'],
+    ['1 gallon warm water', '1 gallon [3.75 l] warm water'],
     ['', ''],
 // failing
 // false positives
