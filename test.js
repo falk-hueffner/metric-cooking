@@ -273,6 +273,7 @@ var tests = [
     ['1/4 cup white or yellow miso paste', '1/4 cup white or yellow miso paste [70 g]'],
     ['2 ts yeast', '2 ts yeast [6 g]'],
     ['1 gallon warm water', '1 gallon [3.75 l] warm water'],
+    ['the heat exchanged per degree is termed specific heat', 'the heat exchanged per degree is termed specific heat'],
     ['', ''],
 // failing
 // false positives

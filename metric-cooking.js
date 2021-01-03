@@ -421,7 +421,7 @@ function replaceUnits(match) {
     if ((newUnit == 'ml' || newUnit == 'g') && newAmount < 4)
         return newText;
 
-    if (newUnit == '°C' && match.group('from:numWord'))
+    if (newUnit == '°C' && match.group('numWord'))
         return newText;
 
     newAmount = round(newAmount, newUnit == '°C');
