@@ -8,21 +8,21 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = { addMetricUnits };
 }
 
-var dangerous = true; // whether to do replacements with frequent false positives
-var maxError = 0.03; // maximum relative error after rounding
+const dangerous = true; // whether to do replacements with frequent false positives
+const maxError = 0.03; // maximum relative error after rounding
 
-var cup_ml = 236.5882365;
-var tbsp_ml = 14.78676478125;
-var tsp_ml = tbsp_ml / 3;
-var gallon_ml = 3785.411784;
-var pound_g = 453.59237;
-var pound_per_ft3 = 0.0160184634; // in g/ml
-var numUnitSpace = '\u202F';    // thin space
+const cup_ml = 236.5882365;
+const tbsp_ml = 14.78676478125;
+const tsp_ml = tbsp_ml / 3;
+const gallon_ml = 3785.411784;
+const pound_g = 453.59237;
+const pound_per_ft3 = 0.0160184634; // in g/ml
+const numUnitSpace = '\u202F';    // thin space
 
 // sources:
 // USDA National Nutrient Database for Standard Reference, Release 26
 // FAO/INFOODS Density Database Version 2.0 (2012)
-var ingredients = {
+const ingredients = {
     'almond flour': [/\balmond flour/, 96 / cup_ml], // http://www.kingarthurflour.com/learn/ingredient-weight-chart.html
     'almonds': [/\b(blanched |raw |peeled )*almonds/, 144 / cup_ml], // average of ~12061~ (143) and ~12062~ (145)
     'arugula': [/\barugula( leaves)?/, 10.0 / (0.5 * cup_ml)], // ~11959~
@@ -113,7 +113,7 @@ var ingredients = {
 };
 
 // wares labeled in dry pints
-var dry_ingredients = [
+const dry_ingredients = [
     'blackberries',
     'blueberries',
     'cherries',
@@ -123,8 +123,8 @@ var dry_ingredients = [
     'strawberries'
 ];
 
-var reIngredient = '';
-for (var ingredient in ingredients) {
+let reIngredient = '';
+for (const ingredient in ingredients) {
     if (reIngredient)
         reIngredient += '|';
     else
@@ -134,15 +134,15 @@ for (var ingredient in ingredients) {
 reIngredient += ')';
 
 function round(x, isTemperature) {
-    var sign = x < 0 ? -1 : 1;
+    const sign = x < 0 ? -1 : 1;
     x = Math.abs(x);
-    var fs = [100000, 50000, 25000, 10000, 5000, 2500, 1000, 500, 250, 100, 50, 25, 10, 5, 1];
-    var newx;
-    for (var f in fs) {
+    const fs = [100000, 50000, 25000, 10000, 5000, 2500, 1000, 500, 250, 100, 50, 25, 10, 5, 1];
+    let newx;
+    for (const f in fs) {
         newx = Math.round(x / fs[f]) * fs[f];
-        var error = Math.abs(x - newx);
+        const error = Math.abs(x - newx);
         if (isTemperature) {
-            var maxAbsError = x < 100 ? 1 : (x < 160 ? 1.5 : 2.5);
+            const maxAbsError = x < 100 ? 1 : (x < 160 ? 1.5 : 2.5);
             if (error < maxAbsError)
                 return sign * newx;
         } else {
@@ -155,9 +155,9 @@ function round(x, isTemperature) {
 
 // Python-like named groups: (<name>...)
 function namedGroupRegExp(regexp, modifiers) {
-    var groupNumber = {};
-    var i = 1;
-    var re = new RegExp(regexp.replace(/\((?![?\]])(<([^>]+)>)?/g,
+    const groupNumber = {};
+    let i = 1;
+    const re = new RegExp(regexp.replace(/\((?![?\]])(<([^>]+)>)?/g,
         function (_, __, name) {
             groupNumber[name] = i++;
             return '(';
@@ -165,7 +165,7 @@ function namedGroupRegExp(regexp, modifiers) {
         modifiers);
 
     re.exec = function (string) {
-        var match = RegExp.prototype.exec.call(this, string);
+        const match = RegExp.prototype.exec.call(this, string);
         if (match) {
             match.group = function (name) {
                 return match[groupNumber[name]];
@@ -177,7 +177,7 @@ function namedGroupRegExp(regexp, modifiers) {
     re.replace = function (string, replace) {
         if (typeof replace == 'function') {
             return string.replace(this, function () {
-                var args = arguments;
+                const args = arguments;
                 arguments.group = function (name) {
                     return args[groupNumber[name]];
                 };
@@ -194,14 +194,14 @@ function prefixGroups(regexp, prefix) {
     return regexp.replace(/\(<([^>]+)>/g, '(<' + prefix + ':$1' + '>');
 }
 
-var fahrenheit = dangerous
+const fahrenheit = dangerous
     ? /(([°º˚*℉]|degrees?(?! [Cc]elsius)\b)\s*(?! ?C\b)(F\b|[(]F[)]|Fahrenheit\b)?)|F(ahrenheit)?\b/
     : /([°º˚℉]|degrees?(?! [Cc]elsius)\b)\s*(F\b|[(]F[)]|Fahrenheit\b)/;
-var inches = dangerous
+const inches = dangerous
     ? /(inch(es)?\b|[”″"](?!\w))/
     : /inch(es)?\b/;
 
-var units = {
+const units = {
     'cup': [/([Cc](ups?)?)\b/, 'ml', cup_ml],
     'fahrenheit': [fahrenheit, '°C', undefined],
     'fl oz': [/(fl\.? oz\.?)|(fluid[- ]ounces?)/, 'ml', 2 * tbsp_ml],
@@ -217,8 +217,8 @@ var units = {
     'teaspoon': [/[Tt]easpoons?\b|(t|tsp?|TSP)\b\.?/, 'ml', tbsp_ml / 3]
 };
 
-var reUnit = '';
-for (var unit in units) {
+let reUnit = '';
+for (const unit in units) {
     if (reUnit)
         reUnit += '|';
     else
@@ -227,7 +227,7 @@ for (var unit in units) {
 }
 reUnit += ')';
 
-var numWords = {
+const numWords = {
     'quarter': [/([Oo]ne[- ])?[Qq]uarter( of an?)?/, 1 / 4],
     'threequarter': [/([Tt]hree[- ])[Qq]quarters?( of an?)?/, 3 / 4],
     'third': [/([Oo]ne[- ])?[Tt]hird( of an?)?/, 1 / 3],
@@ -246,8 +246,8 @@ var numWords = {
     'eleven': [/[Ee]leven/, 11],
     'twelve': [/[Tt]welve|[Dd]ozen/, 12]
 };
-var reNumWord = '';
-for (var numWord in numWords) {
+let reNumWord = '';
+for (const numWord in numWords) {
     if (reNumWord)
         reNumWord += '|';
     else
@@ -256,30 +256,30 @@ for (var numWord in numWords) {
 }
 reNumWord += ')';
 
-var reReal = /(<real>\d+(\.\d+)?)/.source;
-var reFracChar = /(<fracChar>[¼½¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/.source;
-var reFraction = '(<fraction>(<fracWhole>\\d+(\\s*|-))?(((<fracNum>\\d+)[/⁄∕](<fracDen>\\d+)(( ?ths?)?( of an?)?)?)|' + reFracChar + '))';
-var reNumber = '(<number>' + reNumWord + '|' + reFraction + '|' + reReal + ')';
+const reReal = /(<real>\d+(\.\d+)?)/.source;
+const reFracChar = /(<fracChar>[¼½¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/.source;
+const reFraction = '(<fraction>(<fracWhole>\\d+(\\s*|-))?(((<fracNum>\\d+)[/⁄∕](<fracDen>\\d+)(( ?ths?)?( of an?)?)?)|' + reFracChar + '))';
+const reNumber = '(<number>' + reNumWord + '|' + reFraction + '|' + reReal + ')';
 
 function parseNumber(match, prefix) {
     prefix = prefix || '';
-    var real = match.group(prefix + 'real');
+    const real = match.group(prefix + 'real');
     if (real)
         return parseFloat(real);
 
-    var numWord = match.group(prefix + 'numWord');
+    const numWord = match.group(prefix + 'numWord');
     if (numWord) {
-        for (var w in numWords)
+        for (const w in numWords)
             if (match.group(prefix + w))
                 return numWords[w][1];
         return undefined;
     }
 
-    var amount = 0;
-    var fracWhole = match.group(prefix + 'fracWhole');
+    let amount = 0;
+    const fracWhole = match.group(prefix + 'fracWhole');
     if (fracWhole)
         amount += parseInt(fracWhole);
-    var fracChar = match.group(prefix + 'fracChar');
+    const fracChar = match.group(prefix + 'fracChar');
     if (fracChar) {
         amount += {
             '½': 1 / 2,
@@ -290,8 +290,8 @@ function parseNumber(match, prefix) {
             '⅛': 1 / 8, '⅜': 3 / 8, '⅝': 5 / 8, '⅞': 7 / 8
         }[fracChar];
     } else {
-        var fracNum = match.group(prefix + 'fracNum');
-        var fracDen = match.group(prefix + 'fracDen');
+        const fracNum = match.group(prefix + 'fracNum');
+        const fracDen = match.group(prefix + 'fracDen');
         amount += parseInt(fracNum) / parseInt(fracDen);
     }
     return amount;
@@ -299,19 +299,19 @@ function parseNumber(match, prefix) {
 
 function parseUnit(match, prefix) {
     prefix = prefix || '';
-    for (var u in units)
+    for (const u in units)
         if (match.group(prefix + u))
             return u;
     return undefined;
 }
 
 function parseIngredient(match) {
-    for (var i in ingredients)
+    for (const i in ingredients)
         if (match.group(i))
             return i;
 }
 
-var reFrom = '(<from>'
+const reFrom = '(<from>'
     + '(<between>between\\s+)?'
     + prefixGroups(reNumber, 'from') + '-?\\s*'
     + '(('
@@ -321,24 +321,24 @@ var reFrom = '(<from>'
     + '(\\s*((<range2>-|–|to|or)|(<plus2>plus|\\+|and))\\s*)'
     + '))';
 
-var reBy = '(<by>'
+const reBy = '(<by>'
     + prefixGroups(reNumber, 'by1') + '[”"″]?(-inch)?-?\\s*(×|x|[- ]?by[- ]?)-?\\s*'
     + prefixGroups(reNumber, 'by2') + '[”"″]?(-inch)?-?(\\s*(×|x|[- ]?by[- ]?)-?\\s*'
     + prefixGroups(reNumber, 'by3') + ')?([”"″]|[ -]?inch(es)?)'
     + (dangerous ? "?" : "")
     + ')';
 
-var reAll =
+const reAll =
     reBy + '|('
     + reFrom + '?(<main>'
     + reNumber + '(\\s*|-)'
     + reUnit + '(\\s+(of(\\s+the)?\\s+)?'
     + reIngredient + ')?))';
-var re = namedGroupRegExp(reAll, 'g');
+const re = namedGroupRegExp(reAll, 'g');
 
 function convert(amount, unit) {
-    var newUnit = units[unit][1];
-    var newAmount;
+    const newUnit = units[unit][1];
+    let newAmount;
     if (unit == 'fahrenheit')
         newAmount = (amount - 32) * (5 / 9);
     else
@@ -361,16 +361,16 @@ function scale(amount, unit) {
 }
 
 function replaceUnits(match) {
-    var newText = match[0];
+    let newText = match[0];
 
     // avoid false positives with e.g. 'a t-shirt'
     if (match.group('numWord') && match.group('unit').match(/^["tT]$/))
         return newText;
 
     if (match.group('by')) {
-        var by1 = round(convert(parseNumber(match, 'by1:'), 'inch').amount) / 10;
-        var by2 = round(convert(parseNumber(match, 'by2:'), 'inch').amount) / 10;
-        var by3 = round(convert(parseNumber(match, 'by3:'), 'inch').amount) / 10;
+        const by1 = round(convert(parseNumber(match, 'by1:'), 'inch').amount) / 10;
+        const by2 = round(convert(parseNumber(match, 'by2:'), 'inch').amount) / 10;
+        const by3 = round(convert(parseNumber(match, 'by3:'), 'inch').amount) / 10;
 
         newText += ' [' + by1 + '×' + by2;
         if (by3)
@@ -378,22 +378,22 @@ function replaceUnits(match) {
         return newText + numUnitSpace + 'cm]';
     }
 
-    var unit = parseUnit(match);
+    let unit = parseUnit(match);
     if (unit == 'pint') {
-        for (var i in dry_ingredients) {
+        for (const i in dry_ingredients) {
             if (match.group(dry_ingredients[i])) {
                 unit = 'dry pint';
                 break;
             }
         }
     }
-    var converted = convert(parseNumber(match), unit);
-    var newAmount = converted.amount;
-    var newUnit = converted.unit;
+    let converted = convert(parseNumber(match), unit);
+    let newAmount = converted.amount;
+    let newUnit = converted.unit;
 
-    var fromAmount;
+    let fromAmount;
     if (match.group('from')) {
-        var fromUnit = match.group('from:unit') ? parseUnit(match, 'from:') : unit;
+        const fromUnit = match.group('from:unit') ? parseUnit(match, 'from:') : unit;
         converted = convert(parseNumber(match, 'from:'), fromUnit);
         if (converted.unit != newUnit)
             return re.replace(match.group('from'), replaceUnits)
@@ -410,7 +410,7 @@ function replaceUnits(match) {
     }
 
     if (match.group('ingredient')) {
-        var ingredient = parseIngredient(match);
+        const ingredient = parseIngredient(match);
         if (newUnit == 'ml') {
             newAmount = newAmount * ingredients[ingredient][1];
             newUnit = 'g';
@@ -427,9 +427,10 @@ function replaceUnits(match) {
 
     newAmount = round(newAmount, newUnit == '°C');
 
+    let scaled;
     if (fromAmount) {
         fromAmount = round(fromAmount);
-        var scaled = scale(fromAmount, newUnit);
+        scaled = scale(fromAmount, newUnit);
         if (scaled.unit != newUnit) {
             fromAmount = scaled.amount;
             scaled = scale(newAmount, newUnit);
@@ -453,7 +454,7 @@ function replaceUnits(match) {
     return newText;
 }
 
-var food52 = typeof document !== 'undefined' && location.hostname.match('food52.com');
+const food52 = typeof document !== 'undefined' && location.hostname.match('food52.com');
 
 function walk(node) {
     switch (node.nodeType) {
@@ -461,8 +462,8 @@ function walk(node) {
         case Node.DOCUMENT_NODE:
         case Node.DOCUMENT_FRAGMENT_NODE:
             if (food52 && node.getAttribute('itemprop') == 'ingredients') {
-                var quantityNode, itemNameNode;
-                for (var child = node.firstChild; child; child = child.nextSibling) {
+                let quantityNode, itemNameNode;
+                for (let child = node.firstChild; child; child = child.nextSibling) {
                     if (child.className == 'recipe-list-quantity')
                         quantityNode = child;
                     else if (child.className == 'recipe-list-item-name')
@@ -470,12 +471,12 @@ function walk(node) {
                 }
                 if (quantityNode && itemNameNode) {
                     let text = quantityNode.innerText + ' ' + itemNameNode.innerText;
-                    var modified = re.replace(text, replaceUnits);
+                    const modified = re.replace(text, replaceUnits);
                     if (modified != text)
                         itemNameNode.innerText = modified.substring(quantityNode.innerText.length + 1);
                 }
             } else {
-                for (var child = node.firstChild; child; child = child.nextSibling)
+                for (let child = node.firstChild; child; child = child.nextSibling)
                     walk(child);
             }
             break;
@@ -494,7 +495,7 @@ function handleNode(textNode) {
     let text = textNode.textContent;
 
     if (text) {
-        var modified = re.replace(text, replaceUnits);
+        const modified = re.replace(text, replaceUnits);
         if (modified != text)
             textNode.textContent = modified;
     }
