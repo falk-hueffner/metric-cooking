@@ -233,7 +233,7 @@ var numWords = {
     'third'        : [/([Oo]ne[- ])?[Tt]hird( of an?)?/,       1/3],
     'twothirds'    : [/([Tt]wo[- ])[Tt]hirds?( of an?)?/,      2/3],
     'half'         : [/([Oo]ne[- ])?([Hh]alf|1\/2)( an?)?/,    1/2],
-    'one'          : [/[Aa]|[Aa]n|[Oo]ne(?![- ]([Hh]alf|[Tt]hird|[Qq]uarter))/, 1],
+    'one'          : [/[Aa]|[Aa]n|[Oo]ne|per(?![- ]([Hh]alf|[Tt]hird|[Qq]uarter))/, 1],
     'two'          : [/[Tt]wo/,              2],
     'three'        : [/[Tt]hree/,            3],
     'four'         : [/[Ff]our/,             4],
