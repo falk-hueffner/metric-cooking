@@ -5,17 +5,17 @@ function addMetricUnits(text) {
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {addMetricUnits};
+    module.exports = { addMetricUnits };
 }
 
-var dangerous    = true; // whether to do replacements with frequent false positives
-var maxError     = 0.03; // maximum relative error after rounding
+var dangerous = true; // whether to do replacements with frequent false positives
+var maxError = 0.03; // maximum relative error after rounding
 
-var cup_ml    = 236.5882365;
-var tbsp_ml   = 14.78676478125;
-var tsp_ml    = tbsp_ml/3;
+var cup_ml = 236.5882365;
+var tbsp_ml = 14.78676478125;
+var tsp_ml = tbsp_ml / 3;
 var gallon_ml = 3785.411784;
-var pound_g   = 453.59237;
+var pound_g = 453.59237;
 var pound_per_ft3 = 0.0160184634; // in g/ml
 var numUnitSpace = '\u202F';    // thin space
 
@@ -23,93 +23,93 @@ var numUnitSpace = '\u202F';    // thin space
 // USDA National Nutrient Database for Standard Reference, Release 26
 // FAO/INFOODS Density Database Version 2.0 (2012)
 var ingredients = {
-    'almond flour': [/\balmond flour/, 96/cup_ml], // http://www.kingarthurflour.com/learn/ingredient-weight-chart.html
-    'almonds': [/\b(blanched |raw |peeled )*almonds/, 144/cup_ml], // average of ~12061~ (143) and ~12062~ (145)
-    'arugula': [/\barugula( leaves)?/, 10.0/(0.5*cup_ml)], // ~11959~
-    'asparagus': [/\basparagus/, 134/cup_ml], // ~11011~
-    'baking powder': [/\bbaking powder/, 4.6/tsp_ml], // ~18369~
-    'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6/tsp_ml], // ~18372~
-    'blackberries': [/\bblackberries/, 144/cup_ml], // ~09042~
-    'blueberries': [/\bblueberries/, 148/cup_ml], // ~09050~
-    'brown sugar': [/(\blight[ -]|\bdark[- ]|golden |firmly |\(?packed\)? )*brown sugar/, 220/cup_ml], // ~19334~ (packed)
-    'butter': [/\b((un)?salted,? |chilled,? |cold,? |softened,? )*butter/, 227/cup_ml], // ~01145~
-    'cake flour': [/\b(sifted |unbleached )*(cake|pastry) flour/, 114/cup_ml], // the internet
-    'canned chickpeas': [/\bcanned chickpeas/, 152/cup_ml], // ~16359~
-    'cheddar': [/(coarsely |grated |shredded |aged |white |sharp )*[Cc]heddar/, 113/cup_ml], // ~01009~
-    'cherries': [/\b([Pp]itted |frozen |whole |fresh |Bing )*[Cc]herries/, 154.5/cup_ml], // ~09063~ & ~09070~ / ~09068~ & ~09076~
-    'cherry tomatoes': [/(halved |cherry |grape |or |assorted )*(cherry|grape) tomatoes/, 149/cup_ml], // ~11529~
+    'almond flour': [/\balmond flour/, 96 / cup_ml], // http://www.kingarthurflour.com/learn/ingredient-weight-chart.html
+    'almonds': [/\b(blanched |raw |peeled )*almonds/, 144 / cup_ml], // average of ~12061~ (143) and ~12062~ (145)
+    'arugula': [/\barugula( leaves)?/, 10.0 / (0.5 * cup_ml)], // ~11959~
+    'asparagus': [/\basparagus/, 134 / cup_ml], // ~11011~
+    'baking powder': [/\bbaking powder/, 4.6 / tsp_ml], // ~18369~
+    'baking soda': [/\b(baking|bicarbonate of) soda/, 4.6 / tsp_ml], // ~18372~
+    'blackberries': [/\bblackberries/, 144 / cup_ml], // ~09042~
+    'blueberries': [/\bblueberries/, 148 / cup_ml], // ~09050~
+    'brown sugar': [/(\blight[ -]|\bdark[- ]|golden |firmly |\(?packed\)? )*brown sugar/, 220 / cup_ml], // ~19334~ (packed)
+    'butter': [/\b((un)?salted,? |chilled,? |cold,? |softened,? )*butter/, 227 / cup_ml], // ~01145~
+    'cake flour': [/\b(sifted |unbleached )*(cake|pastry) flour/, 114 / cup_ml], // the internet
+    'canned chickpeas': [/\bcanned chickpeas/, 152 / cup_ml], // ~16359~
+    'cheddar': [/(coarsely |grated |shredded |aged |white |sharp )*[Cc]heddar/, 113 / cup_ml], // ~01009~
+    'cherries': [/\b([Pp]itted |frozen |whole |fresh |Bing )*[Cc]herries/, 154.5 / cup_ml], // ~09063~ & ~09070~ / ~09068~ & ~09076~
+    'cherry tomatoes': [/(halved |cherry |grape |or |assorted )*(cherry|grape) tomatoes/, 149 / cup_ml], // ~11529~
     'chocolate chips': [/(semi-sweet |dark |milk |semi- |or |bittersweet )*chocolate chips/, 0.71], // Wolfram Alpha
-    'chopped parsley': [/(chopped |minced |fresh |Italian |flat-leaf )*parsley( leaves)?/, 60/cup_ml], // ~11297~
-    'chopped shallots': [/(finely |chopped )*shallots/, 10.0/tbsp_ml], // ~11677~
-    'cocoa nibs': [/cocoa nibs/, 35*pound_per_ft3], // http://www.sawyerhanson.com/uploads/Brabender%20Ingredient%20bulk%20density%20table.pdf
-    'cocoa': [/\b(unsweetened |Dutch[- ]process(ed)? |natural )*cocoa( powder)?(?! nibs)/, 86/cup_ml], // ~19165~
-    'cornmeal': [/\b(yellow )?(cornmeal|polenta)/, 157/cup_ml], // ~20022~
-    'cornstarch': [/\b(corn ?starch|starch\s+powder|cornflour)/, 128/cup_ml], // ~20027~
-    'cottage cheese': [/\b(low-fat )?cottage cheese/, 225/cup_ml], // ~01012~ (small curd, not packed)
-    'couscous': [/\b(instant |whole wheat |plain |dry )?cous ?cous/, 173/cup_ml], // ~20028~
-    'cranberries': [/\b(fresh |of |or |thawed |frozen )*cranberries/, 100/cup_ml], // ~09078~
-    'cream cheese': [/cream cheese/, 232/cup_ml], // ~01017~
-    'cream': [/\b(heavy |whipping |or |double )*cream/, 238.5/cup_ml], // ~01053~ & ~01052~
+    'chopped parsley': [/(chopped |minced |fresh |Italian |flat-leaf )*parsley( leaves)?/, 60 / cup_ml], // ~11297~
+    'chopped shallots': [/(finely |chopped )*shallots/, 10.0 / tbsp_ml], // ~11677~
+    'cocoa nibs': [/cocoa nibs/, 35 * pound_per_ft3], // http://www.sawyerhanson.com/uploads/Brabender%20Ingredient%20bulk%20density%20table.pdf
+    'cocoa': [/\b(unsweetened |Dutch[- ]process(ed)? |natural )*cocoa( powder)?(?! nibs)/, 86 / cup_ml], // ~19165~
+    'cornmeal': [/\b(yellow )?(cornmeal|polenta)/, 157 / cup_ml], // ~20022~
+    'cornstarch': [/\b(corn ?starch|starch\s+powder|cornflour)/, 128 / cup_ml], // ~20027~
+    'cottage cheese': [/\b(low-fat )?cottage cheese/, 225 / cup_ml], // ~01012~ (small curd, not packed)
+    'couscous': [/\b(instant |whole wheat |plain |dry )?cous ?cous/, 173 / cup_ml], // ~20028~
+    'cranberries': [/\b(fresh |of |or |thawed |frozen )*cranberries/, 100 / cup_ml], // ~09078~
+    'cream cheese': [/cream cheese/, 232 / cup_ml], // ~01017~
+    'cream': [/\b(heavy |whipping |or |double )*cream/, 238.5 / cup_ml], // ~01053~ & ~01052~
     'creme fraiche': [/(cr[eè]me fra[iî]che)|((Mexican )?crema)/, 0.978], // FAO, 38%
-    'crumbled blue cheese': [/\bcrumbled blue cheese/, 135/cup_ml], // ~01004~
-    'dark corn syrup': [/\bdark corn syrup/, 328/cup_ml], // ~19349~
-    'dried apricots': [/\bdried apricots/, 130/cup_ml], // ~09032~
-    'dried cherries': [/\b(pitted )?dried cherries/, 40/(0.25*cup_ml)], // ~09044~
-    'dulce de leche': [/\bdulce de leche/, 19/tbsp_ml], // ~01225~
+    'crumbled blue cheese': [/\bcrumbled blue cheese/, 135 / cup_ml], // ~01004~
+    'dark corn syrup': [/\bdark corn syrup/, 328 / cup_ml], // ~19349~
+    'dried apricots': [/\bdried apricots/, 130 / cup_ml], // ~09032~
+    'dried cherries': [/\b(pitted )?dried cherries/, 40 / (0.25 * cup_ml)], // ~09044~
+    'dulce de leche': [/\bdulce de leche/, 19 / tbsp_ml], // ~01225~
     'farro': [/\bfarro/, 0.82], // Wolfram Alpha
-    'feta': [/\b(crumbled |low[ -]fat )*[Ff]eta( cheese)?/, 150/cup_ml], // ~01019~
-    'flour': [/\b(all[- ]purpose |sifted |unbleached |white |self[- ]raising )*flour/, 125/cup_ml], // ~20081~
-    'hazelnuts': [/\bhazelnuts/, 135/cup_ml], // ~12120~ (whole)
-    'honey': [/\b(mild(-tasting)? )?honey/, 339/cup_ml], // ~19296~
-    'israeli couscous': [/\b(\(?Israeli\)? |\(?pearl(ed)?\)? |or )*(\(?Israeli\)? |\(?pearl(ed)?\)? )+cous ?cous/, 50/(cup_ml/3)], // http://www.fatsecret.com/calories-nutrition/osem/israeli-couscous
+    'feta': [/\b(crumbled |low[ -]fat )*[Ff]eta( cheese)?/, 150 / cup_ml], // ~01019~
+    'flour': [/\b(all[- ]purpose |sifted |unbleached |white |self[- ]raising )*flour/, 125 / cup_ml], // ~20081~
+    'hazelnuts': [/\bhazelnuts/, 135 / cup_ml], // ~12120~ (whole)
+    'honey': [/\b(mild(-tasting)? )?honey/, 339 / cup_ml], // ~19296~
+    'israeli couscous': [/\b(\(?Israeli\)? |\(?pearl(ed)?\)? |or )*(\(?Israeli\)? |\(?pearl(ed)?\)? )+cous ?cous/, 50 / (cup_ml / 3)], // http://www.fatsecret.com/calories-nutrition/osem/israeli-couscous
     'kosher salt': [/kosher salt/, 0.57], // Wolfram Alpha
-    'lentils': [/\b(brown |or |green )*lentils/, 192/cup_ml], // ~16069~
-    'light corn syrup': [/\b(light )?corn syrup/, 341/cup_ml], // ~19350~
-    'long-grain rice': [/\b(long[- ]grain(ed)? |[Bb]asmati |[Jj]asmine |brown |white |uncooked |warm,? |cooked |cold )*rice(?! vinegar| crispies| flour| wine)/, 185/cup_ml], // ~20444~, ~20036~ (brown)
-    'maple syrup': [/\b(pure )?maple syrup/, 80/60], // ~19911~
-    'marmalade': [/\b(orange )?marmalade/, 320/cup_ml], // ~19303~
+    'lentils': [/\b(brown |or |green )*lentils/, 192 / cup_ml], // ~16069~
+    'light corn syrup': [/\b(light )?corn syrup/, 341 / cup_ml], // ~19350~
+    'long-grain rice': [/\b(long[- ]grain(ed)? |[Bb]asmati |[Jj]asmine |brown |white |uncooked |warm,? |cooked |cold )*rice(?! vinegar| crispies| flour| wine)/, 185 / cup_ml], // ~20444~, ~20036~ (brown)
+    'maple syrup': [/\b(pure )?maple syrup/, 80 / 60], // ~19911~
+    'marmalade': [/\b(orange )?marmalade/, 320 / cup_ml], // ~19303~
     'matzo meal': [/\bmatzo meal/, 0.5], // Wolfram Alpha
-    'mayonnaise': [/\bmayonnaise/, 220/cup_ml], // ~04025~
-    'mint': [/\bmint( leaves)?/, 3.2/(2*tbsp_ml)], // ~02064~
-    'miso': [/\b(white |light |or |yellow |red |brown |mellow )*[Mm]iso( paste)?/, 275/cup_ml], // ~16112~
-    'mustard': [/\b([Dd]ijon |grainy |whole grain |yellow )*mustard(?! seed)/, 249/cup_ml], // ~02046~
+    'mayonnaise': [/\bmayonnaise/, 220 / cup_ml], // ~04025~
+    'mint': [/\bmint( leaves)?/, 3.2 / (2 * tbsp_ml)], // ~02064~
+    'miso': [/\b(white |light |or |yellow |red |brown |mellow )*[Mm]iso( paste)?/, 275 / cup_ml], // ~16112~
+    'mustard': [/\b([Dd]ijon |grainy |whole grain |yellow )*mustard(?! seed)/, 249 / cup_ml], // ~02046~
     'nutella': [/\bNutella/, 1.2], // Wolfram Alpha
     'oats, steel-cut': [/\bsteel[- ]cut oats/, 0.68], // Wolfram Alpha
-    'onions, chopped': [/\b(chopped onions?)|(onions?, chopped)/, 160/cup_ml], // ~11282~
-    'orzo': [/\b(whole[- ]wheat )?orzo/, 225/cup_ml], // estimate from various sources
-    'parmesan': [/\b(finely |freshly |grated |shredded |fresh )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano|(Pecorino )?[Rr]omano)(\s+cheese)?/, 100/cup_ml], // ~01032~ (grated), ~01146~ (shredded)
+    'onions, chopped': [/\b(chopped onions?)|(onions?, chopped)/, 160 / cup_ml], // ~11282~
+    'orzo': [/\b(whole[- ]wheat )?orzo/, 225 / cup_ml], // estimate from various sources
+    'parmesan': [/\b(finely |freshly |grated |shredded |fresh )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano|(Pecorino )?[Rr]omano)(\s+cheese)?/, 100 / cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     'pastry flour': [/\b(whole |wheat )*pastry flour/, 0.51], // Wolfram Alpha
-    'peanut butter': [/\b(smooth |natural |creamy |chunky )?peanut butter/, 258/cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
-    'peanuts': [/\b(roasted| salted )*peanuts/, 145/cup_ml], // average of ~16087~, ~16089~
-    'pecans': [/\b(toasted )?pecans?( halves)?/, 99/cup_ml], // ~12142~ (halves)
-    'pine nuts': [/\bpine ?nuts/, 135/cup_ml], // ~12147~
-    'pistachio': [/\b(shelled )?pistachio(s|\s+nuts)/, 123/cup_ml], // ~12151~ (raw)
-    'powdered sugar': [/\b(powdered|confectioner['’]?s['’]?|icing) sugar/, 120/cup_ml], // ~19336~ (unsifted)
+    'peanut butter': [/\b(smooth |natural |creamy |chunky )?peanut butter/, 258 / cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
+    'peanuts': [/\b(roasted| salted )*peanuts/, 145 / cup_ml], // average of ~16087~, ~16089~
+    'pecans': [/\b(toasted )?pecans?( halves)?/, 99 / cup_ml], // ~12142~ (halves)
+    'pine nuts': [/\bpine ?nuts/, 135 / cup_ml], // ~12147~
+    'pistachio': [/\b(shelled )?pistachio(s|\s+nuts)/, 123 / cup_ml], // ~12151~ (raw)
+    'powdered sugar': [/\b(powdered|confectioner['’]?s['’]?|icing) sugar/, 120 / cup_ml], // ~19336~ (unsifted)
     'quark': [/\bquark/, 1.035], // http://dx.doi.org/10.1002/food.19720160506 (Speisequark 1.05, Sahnequark 1.02)
-    'quinoa': [/\b(dry |pre-washed |or |rinsed |whole[- ]grain |organic )*quinoa/, 170/cup_ml], // ~20035~
-    'raisins': [/\b(golden )?raisins/, 165/cup_ml], // ~09298~ (packed)
+    'quinoa': [/\b(dry |pre-washed |or |rinsed |whole[- ]grain |organic )*quinoa/, 170 / cup_ml], // ~20035~
+    'raisins': [/\b(golden )?raisins/, 165 / cup_ml], // ~09298~ (packed)
     'raspberries': [/\b(fresh )*raspberries/, 0.66], // ~09302~ says 123g/cup, that seems too low. Use Wolfram Alpha
-    'ricotta': [/\b(fresh )?ricotta( cheese)?/, 246/cup_ml], // ~01036~
-    'salt': [/\b(table )?salt/, 292/cup_ml], // ~02047~
-    'sesame': [/\bsesame( seeds)?(?! oil)/, 144/cup_ml], // ~12023~
-    'short-grain rice': [/\b(short[- ]grain(ed)? |[Aa]rborio |[Bb]omba |[Cc]alasparra )+(brown |[Bb]omba |or |[Cc]alasparra )*rice(?! vinegar| crispies| flour)/, 200/cup_ml], // ~20052~
-    'shredded coconut': [/\b(unsweetened )?shredded coconut/, 93/cup_ml], // ~12179~
-    'shredded mozzarella': [/\b(shredded |part-skim )*mozzarella( cheese)?/, 112/cup_ml], // ~01026~
-    'sliced almonds': [/\bsliced (and toasted )?almonds/, 92/cup_ml], // ~12061~
-    'sour cream': [/\b(low-fat |light )?sour cream/, 230/cup_ml], // ~01056~, ~01178~
-    'spinach': [/\b(fresh )?spinach/, 30/cup_ml], // ~11457~ (raw)
-    'strawberries': [/\b(fresh |medium-sized )*strawberries/, 144/cup_ml], // ~09316~
-    'sugar': [/\b(granulated |white |cane )*sugar/, 200/cup_ml], // ~19335~
-    'sun-dried tomatoes': [/\bsun[- ]dried tomatoes/, 54/cup_ml], // ~11955~
+    'ricotta': [/\b(fresh )?ricotta( cheese)?/, 246 / cup_ml], // ~01036~
+    'salt': [/\b(table )?salt/, 292 / cup_ml], // ~02047~
+    'sesame': [/\bsesame( seeds)?(?! oil)/, 144 / cup_ml], // ~12023~
+    'short-grain rice': [/\b(short[- ]grain(ed)? |[Aa]rborio |[Bb]omba |[Cc]alasparra )+(brown |[Bb]omba |or |[Cc]alasparra )*rice(?! vinegar| crispies| flour)/, 200 / cup_ml], // ~20052~
+    'shredded coconut': [/\b(unsweetened )?shredded coconut/, 93 / cup_ml], // ~12179~
+    'shredded mozzarella': [/\b(shredded |part-skim )*mozzarella( cheese)?/, 112 / cup_ml], // ~01026~
+    'sliced almonds': [/\bsliced (and toasted )?almonds/, 92 / cup_ml], // ~12061~
+    'sour cream': [/\b(low-fat |light )?sour cream/, 230 / cup_ml], // ~01056~, ~01178~
+    'spinach': [/\b(fresh )?spinach/, 30 / cup_ml], // ~11457~ (raw)
+    'strawberries': [/\b(fresh |medium-sized )*strawberries/, 144 / cup_ml], // ~09316~
+    'sugar': [/\b(granulated |white |cane )*sugar/, 200 / cup_ml], // ~19335~
+    'sun-dried tomatoes': [/\bsun[- ]dried tomatoes/, 54 / cup_ml], // ~11955~
     'superfine sugar': [/\b(golden )?(superfine|cast[eo]r) sugar/, 0.81], // Wolfram Alpha
-    'swiss cheese': [/\b(grated |shredded )*Swiss cheese/, 108/cup_ml], // ~01040~
-    'tahini': [/\btahini/, 15/tbsp_ml], // ~12166~
-    'tomato paste': [/\b(double-concentrated )?tomato paste/, 262/cup_ml], // ~11546~
-    'walnuts': [/\bwalnuts/, 100/cup_ml], // ~12155~
-    'sunflower seed kernels': [/\b(raw )?sunflower seeds/, 128/cup_ml], // ~12155~
-    'wild rice': [/\b(cooked )?wild rice/, 160/cup_ml], // ~20088~
-    'yeast, dry': [/\byeast/, 136/cup_ml],
-    'yogurt': [/\b(plain |vanilla |\d% |[Gg]reek |(non|low|full)[- ]?fat |whole milk )*yogurt/, 245/cup_ml] // ~01116~
+    'swiss cheese': [/\b(grated |shredded )*Swiss cheese/, 108 / cup_ml], // ~01040~
+    'tahini': [/\btahini/, 15 / tbsp_ml], // ~12166~
+    'tomato paste': [/\b(double-concentrated )?tomato paste/, 262 / cup_ml], // ~11546~
+    'walnuts': [/\bwalnuts/, 100 / cup_ml], // ~12155~
+    'sunflower seed kernels': [/\b(raw )?sunflower seeds/, 128 / cup_ml], // ~12155~
+    'wild rice': [/\b(cooked )?wild rice/, 160 / cup_ml], // ~20088~
+    'yeast, dry': [/\byeast/, 136 / cup_ml],
+    'yogurt': [/\b(plain |vanilla |\d% |[Gg]reek |(non|low|full)[- ]?fat |whole milk )*yogurt/, 245 / cup_ml] // ~01116~
 };
 
 // wares labeled in dry pints
@@ -140,15 +140,15 @@ function round(x, isTemperature) {
     var newx;
     for (var f in fs) {
         newx = Math.round(x / fs[f]) * fs[f];
-	var error = Math.abs(x - newx);
-	if (isTemperature) {
-	    var maxAbsError = x < 100 ? 1 : (x < 160 ? 1.5 : 2.5);
+        var error = Math.abs(x - newx);
+        if (isTemperature) {
+            var maxAbsError = x < 100 ? 1 : (x < 160 ? 1.5 : 2.5);
             if (error < maxAbsError)
-		return sign * newx;
-	} else {
+                return sign * newx;
+        } else {
             if (error / x < maxError)
-		return sign * newx;
-	}
+                return sign * newx;
+        }
     }
     return sign * newx;
 }
@@ -158,19 +158,19 @@ function namedGroupRegExp(regexp, modifiers) {
     var groupNumber = {};
     var i = 1;
     var re = new RegExp(regexp.replace(/\((?![?\]])(<([^>]+)>)?/g,
-                                       function (_, __, name) {
-                                           groupNumber[name] = i++;
-                                           return '(';
-                                       }),
-                        modifiers);
+        function (_, __, name) {
+            groupNumber[name] = i++;
+            return '(';
+        }),
+        modifiers);
 
     re.exec = function (string) {
         var match = RegExp.prototype.exec.call(this, string);
-	if (match) {
+        if (match) {
             match.group = function (name) {
-		return match[groupNumber[name]];
+                return match[groupNumber[name]];
             };
-	}
+        }
         return match;
     };
 
@@ -190,31 +190,31 @@ function namedGroupRegExp(regexp, modifiers) {
     return re;
 }
 
-function prefixGroups (regexp, prefix) {
+function prefixGroups(regexp, prefix) {
     return regexp.replace(/\(<([^>]+)>/g, '(<' + prefix + ':$1' + '>');
 }
 
 var fahrenheit = dangerous
-        ? /(([°º˚*℉]|degrees?(?! [Cc]elsius)\b)\s*(?! ?C\b)(F\b|[(]F[)]|Fahrenheit\b)?)|F(ahrenheit)?\b/
-        :  /([°º˚℉]|degrees?(?! [Cc]elsius)\b)\s*(F\b|[(]F[)]|Fahrenheit\b)/;
+    ? /(([°º˚*℉]|degrees?(?! [Cc]elsius)\b)\s*(?! ?C\b)(F\b|[(]F[)]|Fahrenheit\b)?)|F(ahrenheit)?\b/
+    : /([°º˚℉]|degrees?(?! [Cc]elsius)\b)\s*(F\b|[(]F[)]|Fahrenheit\b)/;
 var inches = dangerous
-        ? /(inch(es)?\b|[”″"](?!\w))/
-        : /inch(es)?\b/;
+    ? /(inch(es)?\b|[”″"](?!\w))/
+    : /inch(es)?\b/;
 
 var units = {
-    'cup':        [/([Cc](ups?)?)\b/,                            'ml', cup_ml      ],
-    'fahrenheit': [fahrenheit,                                   '°C', undefined   ],
-    'fl oz':      [/(fl\.? oz\.?)|(fluid[- ]ounces?)/,           'ml', 2 * tbsp_ml ],
-    'inch':       [inches,                                       'mm', 25.6        ],
-    'ounce':      [/ounces?\b|oz\b\.?/,                          'g' , pound_g / 16],
-    'pint':       [/pints?\b/,                                   'ml', 2 * cup_ml  ], // US liquid pint
-    'dry pint':   [/dry pints?\b/,                               'ml', 550.6104713575 ], // US dry pint (berries etc.)
-    'pound':      [/pounds?\b|lbs?\b\.?/,                        'g' , pound_g     ],
-    'quart':      [/quarts?\b|qt\b\.?/,                          'ml', 4 * cup_ml  ],
-    'gallon':     [/gallons?\b/,                                 'ml', gallon_ml   ],
-    'stick':      [/sticks?\b(?!\s+cinnamon)/,                   'g' , pound_g / 4 ],
-    'tablespoon': [/[Tt]ablespoons?\b|(T|tb|[Tt]bsp?|TBL|TBSP)\b\.?/, 'ml', tbsp_ml     ],
-    'teaspoon':   [/[Tt]easpoons?\b|(t|tsp?|TSP)\b\.?/,           'ml', tbsp_ml / 3 ]
+    'cup': [/([Cc](ups?)?)\b/, 'ml', cup_ml],
+    'fahrenheit': [fahrenheit, '°C', undefined],
+    'fl oz': [/(fl\.? oz\.?)|(fluid[- ]ounces?)/, 'ml', 2 * tbsp_ml],
+    'inch': [inches, 'mm', 25.6],
+    'ounce': [/ounces?\b|oz\b\.?/, 'g', pound_g / 16],
+    'pint': [/pints?\b/, 'ml', 2 * cup_ml], // US liquid pint
+    'dry pint': [/dry pints?\b/, 'ml', 550.6104713575], // US dry pint (berries etc.)
+    'pound': [/pounds?\b|lbs?\b\.?/, 'g', pound_g],
+    'quart': [/quarts?\b|qt\b\.?/, 'ml', 4 * cup_ml],
+    'gallon': [/gallons?\b/, 'ml', gallon_ml],
+    'stick': [/sticks?\b(?!\s+cinnamon)/, 'g', pound_g / 4],
+    'tablespoon': [/[Tt]ablespoons?\b|(T|tb|[Tt]bsp?|TBL|TBSP)\b\.?/, 'ml', tbsp_ml],
+    'teaspoon': [/[Tt]easpoons?\b|(t|tsp?|TSP)\b\.?/, 'ml', tbsp_ml / 3]
 };
 
 var reUnit = '';
@@ -228,37 +228,37 @@ for (var unit in units) {
 reUnit += ')';
 
 var numWords = {
-    'quarter'      : [/([Oo]ne[- ])?[Qq]uarter( of an?)?/,     1/4],
-    'threequarter' : [/([Tt]hree[- ])[Qq]quarters?( of an?)?/, 3/4],
-    'third'        : [/([Oo]ne[- ])?[Tt]hird( of an?)?/,       1/3],
-    'twothirds'    : [/([Tt]wo[- ])[Tt]hirds?( of an?)?/,      2/3],
-    'half'         : [/([Oo]ne[- ])?([Hh]alf|1\/2)( an?)?/,    1/2],
-    'one'          : [/[Aa]|[Aa]n|[Oo]ne|per(?![- ]([Hh]alf|[Tt]hird|[Qq]uarter))/, 1],
-    'two'          : [/[Tt]wo/,              2],
-    'three'        : [/[Tt]hree/,            3],
-    'four'         : [/[Ff]our/,             4],
-    'five'         : [/[Ff]ive/,             5],
-    'six'          : [/[Ss]ix/,              6],
-    'seven'        : [/[Ss]even/,            7],
-    'eight'        : [/[Ee]ight/,            8],
-    'nine'         : [/[Nn]ine/,             9],
-    'ten'          : [/[Tt]en/,             10],
-    'eleven'       : [/[Ee]leven/,          11],
-    'twelve'       : [/[Tt]welve|[Dd]ozen/, 12]
+    'quarter': [/([Oo]ne[- ])?[Qq]uarter( of an?)?/, 1 / 4],
+    'threequarter': [/([Tt]hree[- ])[Qq]quarters?( of an?)?/, 3 / 4],
+    'third': [/([Oo]ne[- ])?[Tt]hird( of an?)?/, 1 / 3],
+    'twothirds': [/([Tt]wo[- ])[Tt]hirds?( of an?)?/, 2 / 3],
+    'half': [/([Oo]ne[- ])?([Hh]alf|1\/2)( an?)?/, 1 / 2],
+    'one': [/[Aa]|[Aa]n|[Oo]ne|per(?![- ]([Hh]alf|[Tt]hird|[Qq]uarter))/, 1],
+    'two': [/[Tt]wo/, 2],
+    'three': [/[Tt]hree/, 3],
+    'four': [/[Ff]our/, 4],
+    'five': [/[Ff]ive/, 5],
+    'six': [/[Ss]ix/, 6],
+    'seven': [/[Ss]even/, 7],
+    'eight': [/[Ee]ight/, 8],
+    'nine': [/[Nn]ine/, 9],
+    'ten': [/[Tt]en/, 10],
+    'eleven': [/[Ee]leven/, 11],
+    'twelve': [/[Tt]welve|[Dd]ozen/, 12]
 };
-var reNumWord   = '';
+var reNumWord = '';
 for (var numWord in numWords) {
     if (reNumWord)
         reNumWord += '|';
     else
-        reNumWord   = '(<numWord>';
+        reNumWord = '(<numWord>';
     reNumWord += '(<' + numWord + '>\\b(' + numWords[numWord][0].source + ')\\b)';
 }
 reNumWord += ')';
 
-var reReal      = /(<real>\d+(\.\d+)?)/.source;
-var reFracChar  = /(<fracChar>[¼½¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/.source;
-var reFraction  = '(<fraction>(<fracWhole>\\d+(\\s*|-))?(((<fracNum>\\d+)[/⁄∕](<fracDen>\\d+)(( ?ths?)?( of an?)?)?)|' + reFracChar +'))';
+var reReal = /(<real>\d+(\.\d+)?)/.source;
+var reFracChar = /(<fracChar>[¼½¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/.source;
+var reFraction = '(<fraction>(<fracWhole>\\d+(\\s*|-))?(((<fracNum>\\d+)[/⁄∕](<fracDen>\\d+)(( ?ths?)?( of an?)?)?)|' + reFracChar + '))';
 var reNumber = '(<number>' + reNumWord + '|' + reFraction + '|' + reReal + ')';
 
 function parseNumber(match, prefix) {
@@ -281,13 +281,14 @@ function parseNumber(match, prefix) {
         amount += parseInt(fracWhole);
     var fracChar = match.group(prefix + 'fracChar');
     if (fracChar) {
-        amount += {'½': 1/2,
-                   '⅓': 1/3, '⅔': 2/3,
-                   '¼': 1/4, '¾': 3/4,
-                   '⅕': 1/5, '⅖': 2/5, '⅗': 3/5, '⅘': 4/5,
-                   '⅙': 1/6, '⅚': 5/6,
-                   '⅛': 1/8, '⅜': 3/8, '⅝': 5/8, '⅞': 7/8
-                  }[fracChar];
+        amount += {
+            '½': 1 / 2,
+            '⅓': 1 / 3, '⅔': 2 / 3,
+            '¼': 1 / 4, '¾': 3 / 4,
+            '⅕': 1 / 5, '⅖': 2 / 5, '⅗': 3 / 5, '⅘': 4 / 5,
+            '⅙': 1 / 6, '⅚': 5 / 6,
+            '⅛': 1 / 8, '⅜': 3 / 8, '⅝': 5 / 8, '⅞': 7 / 8
+        }[fracChar];
     } else {
         var fracNum = match.group(prefix + 'fracNum');
         var fracDen = match.group(prefix + 'fracDen');
@@ -311,38 +312,38 @@ function parseIngredient(match) {
 }
 
 var reFrom = '(<from>'
-        + '(<between>between\\s+)?'
-        + prefixGroups(reNumber, 'from') + '-?\\s*'
-        + '(('
-        + prefixGroups(reUnit, 'from')
-        + '\\s*((<range1>-|–|to|or)|(<plus1>(, )?plus|\\+|and|\\s+))\\s*)'
-        + '|'
-        + '(\\s*((<range2>-|–|to|or)|(<plus2>plus|\\+|and))\\s*)'
-        + '))';
+    + '(<between>between\\s+)?'
+    + prefixGroups(reNumber, 'from') + '-?\\s*'
+    + '(('
+    + prefixGroups(reUnit, 'from')
+    + '\\s*((<range1>-|–|to|or)|(<plus1>(, )?plus|\\+|and|\\s+))\\s*)'
+    + '|'
+    + '(\\s*((<range2>-|–|to|or)|(<plus2>plus|\\+|and))\\s*)'
+    + '))';
 
 var reBy = '(<by>'
-        + prefixGroups(reNumber, 'by1') + '[”"″]?(-inch)?-?\\s*(×|x|[- ]?by[- ]?)-?\\s*'
-        + prefixGroups(reNumber, 'by2') + '[”"″]?(-inch)?-?(\\s*(×|x|[- ]?by[- ]?)-?\\s*'
-        + prefixGroups(reNumber, 'by3') + ')?([”"″]|[ -]?inch(es)?)'
-        + (dangerous ? "?" : "")
-        + ')';
+    + prefixGroups(reNumber, 'by1') + '[”"″]?(-inch)?-?\\s*(×|x|[- ]?by[- ]?)-?\\s*'
+    + prefixGroups(reNumber, 'by2') + '[”"″]?(-inch)?-?(\\s*(×|x|[- ]?by[- ]?)-?\\s*'
+    + prefixGroups(reNumber, 'by3') + ')?([”"″]|[ -]?inch(es)?)'
+    + (dangerous ? "?" : "")
+    + ')';
 
 var reAll =
-        reBy + '|('
-        + reFrom + '?(<main>'
-        + reNumber + '(\\s*|-)'
-        + reUnit + '(\\s+(of(\\s+the)?\\s+)?'
-        + reIngredient + ')?))';
+    reBy + '|('
+    + reFrom + '?(<main>'
+    + reNumber + '(\\s*|-)'
+    + reUnit + '(\\s+(of(\\s+the)?\\s+)?'
+    + reIngredient + ')?))';
 var re = namedGroupRegExp(reAll, 'g');
 
 function convert(amount, unit) {
     var newUnit = units[unit][1];
     var newAmount;
     if (unit == 'fahrenheit')
-        newAmount = (amount - 32) * (5/9);
+        newAmount = (amount - 32) * (5 / 9);
     else
         newAmount = amount * units[unit][2];
-    return {amount: newAmount, unit: newUnit};
+    return { amount: newAmount, unit: newUnit };
 }
 
 function scale(amount, unit) {
@@ -356,7 +357,7 @@ function scale(amount, unit) {
         unit = 'kg';
         amount /= 1000;
     }
-    return {amount: amount, unit: unit};
+    return { amount: amount, unit: unit };
 }
 
 function replaceUnits(match) {
@@ -396,7 +397,7 @@ function replaceUnits(match) {
         converted = convert(parseNumber(match, 'from:'), fromUnit);
         if (converted.unit != newUnit)
             return re.replace(match.group('from'), replaceUnits)
-                +  re.replace(match.group('main'), replaceUnits);
+                + re.replace(match.group('main'), replaceUnits);
         if (match.group('between') || match.group('range1') || match.group('range2')) {
             fromAmount = converted.amount;
             if (parseNumber(match, 'from:') >= 1 && parseNumber(match) < 1) { // "1-1/2"
@@ -433,12 +434,12 @@ function replaceUnits(match) {
             fromAmount = scaled.amount;
             scaled = scale(newAmount, newUnit);
             newAmount = scaled.amount;
-            newUnit   = scaled.unit;
+            newUnit = scaled.unit;
         }
     } else {
         scaled = scale(newAmount, newUnit);
         newAmount = scaled.amount;
-        newUnit   = scaled.unit;
+        newUnit = scaled.unit;
     }
 
     if (fromAmount == newAmount)
@@ -448,38 +449,37 @@ function replaceUnits(match) {
     if (fromAmount)
         newText += fromAmount + '–';
     newText += newAmount + numUnitSpace + newUnit + ']';
-    
+
     return newText;
 }
 
 var food52 = typeof document !== 'undefined' && location.hostname.match('food52.com');
 
-function walk(node)
-{
+function walk(node) {
     switch (node.nodeType) {
         case Node.ELEMENT_NODE:
         case Node.DOCUMENT_NODE:
         case Node.DOCUMENT_FRAGMENT_NODE:
-             if (food52 && node.getAttribute('itemprop') == 'ingredients') {
-                 var quantityNode, itemNameNode;
-                 for (var child = node.firstChild; child; child = child.nextSibling) {
-                     if (child.className == 'recipe-list-quantity')
-                         quantityNode = child;
-                     else if (child.className == 'recipe-list-item-name')
-                         itemNameNode = child;
-                 }
-                 if (quantityNode && itemNameNode) {
-                     let text = quantityNode.innerText + ' ' + itemNameNode.innerText;
-                     var modified = re.replace(text, replaceUnits);
-                     if (modified != text)
-                         itemNameNode.innerText = modified.substring(quantityNode.innerText.length + 1);
-                 }
-             } else {
-                 for (var child = node.firstChild; child; child = child.nextSibling)
-                     walk(child);
-             }
-             break;
-        
+            if (food52 && node.getAttribute('itemprop') == 'ingredients') {
+                var quantityNode, itemNameNode;
+                for (var child = node.firstChild; child; child = child.nextSibling) {
+                    if (child.className == 'recipe-list-quantity')
+                        quantityNode = child;
+                    else if (child.className == 'recipe-list-item-name')
+                        itemNameNode = child;
+                }
+                if (quantityNode && itemNameNode) {
+                    let text = quantityNode.innerText + ' ' + itemNameNode.innerText;
+                    var modified = re.replace(text, replaceUnits);
+                    if (modified != text)
+                        itemNameNode.innerText = modified.substring(quantityNode.innerText.length + 1);
+                }
+            } else {
+                for (var child = node.firstChild; child; child = child.nextSibling)
+                    walk(child);
+            }
+            break;
+
         case Node.TEXT_NODE:
             // Skip textarea nodes due to the potential for accidental submission
             // of substituted text
@@ -489,17 +489,17 @@ function walk(node)
             break;
     }
 }
-         
+
 function handleNode(textNode) {
     let text = textNode.textContent;
-	 
+
     if (text) {
         var modified = re.replace(text, replaceUnits);
-	if (modified != text)
-	    textNode.textContent = modified;
+        if (modified != text)
+            textNode.textContent = modified;
     }
 }
-         
+
 function walkBody() {
     walk(document.body);
 }
