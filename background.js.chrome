@@ -1,0 +1,28 @@
+let convertedTabs = new Set();
+
+chrome.action.onClicked.addListener((tab) => {
+    if (!convertedTabs.has(tab.id)) {
+        chrome.scripting.executeScript({
+            target: { tabId: tab.id },
+            files: ["metric-cooking.js"],
+        });
+        chrome.action.setIcon({
+            path: {
+                19: "icons/measuring-cup-pressed-19.png",
+                38: "icons/measuring-cup-pressed-38.png",
+            },
+            tabId: tab.id,
+        });
+        convertedTabs.add(tab.id);
+    } else {
+        chrome.tabs.reload(tab.id);
+        chrome.action.setIcon({
+            path: {
+                19: "icons/measuring-cup-19.png",
+                38: "icons/measuring-cup-38.png",
+            },
+            tabId: tab.id,
+        });
+        convertedTabs.delete(tab.id);
+    }
+});

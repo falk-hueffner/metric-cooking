@@ -12,18 +12,19 @@ ICONS = \
 	icons/measuring-cup-pressed-48.png  \
 	icons/measuring-cup-pressed-128.png \
 	icons/measuring-cup-19.png	    \
-	icons/measuring-cup-38.png          \
+	icons/measuring-cup-38.png
 
 JS = \
-	background.js     \
-	metric-cooking.js \
+	metric-cooking.js
 
-firefox: $(ICONS) manifest.json.m4 $(JS)
+firefox: $(ICONS) manifest.json.firefox background.js.firefox $(JS)
 	rm -f metric-cooking-firefox.xpi
-	m4 -DFIREFOX < manifest.json.m4 > manifest.json
-	zip -9 metric-cooking-firefox.xpi $(ICONS) manifest.json $(JS)
+	cp manifest.json.firefox manifest.json
+	cp background.js.firefox background.js
+	zip -9 metric-cooking-firefox.xpi $(ICONS) manifest.json background.js $(JS)
 
-chrome: $(ICONS) manifest.json.m4 $(JS)
+chrome: $(ICONS) manifest.json.chrome background.js.chrome $(JS)
 	rm -f metric-cooking-chrome.zip
-	m4 -DCHROME < manifest.json.m4 > manifest.json
-	zip -9 metric-cooking-chrome.zip $(ICONS) manifest.json $(JS)
+	cp manifest.json.chrome manifest.json
+	cp background.js.chrome background.js
+	zip -9 metric-cooking-chrome.zip $(ICONS) manifest.json background.js $(JS)
