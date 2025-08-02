@@ -222,7 +222,7 @@ for (const numWord in numWords) {
 reNumWord += ')';
 
 const reReal = /(?<real>\d+(\.\d+)?)/.source;
-const reFracChar = /(?<fracChar>[¼½¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/.source;
+const reFracChar = /(?<fracChar>[¼½¾⅐⅑⅒⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/.source;
 const reFraction = '(?<fraction>(?<fracWhole>\\d+(\\s*|-))?(((?<fracNum>\\d+)[/⁄∕](?<fracDen>\\d+)(( ?ths?)?( of an?)?)?)|' + reFracChar + '))';
 const reNumber = '(?<number>' + reNumWord + '|' + reFraction + '|' + reReal + ')';
 
