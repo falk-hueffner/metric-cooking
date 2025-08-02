@@ -10,7 +10,7 @@ var rl = readline.createInterface({
   terminal: false
 });
 
-rl.on('line', function(line){
+rl.on('line', (line)=> {
     var result =  mc.addMetricUnits(line);
     console.log(result);
 })
