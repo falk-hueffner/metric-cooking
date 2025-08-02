@@ -1,7 +1,5 @@
 #! /usr/bin/node
 
-"use strict";
-
 const { JSDOM } = require('jsdom');
 
 var mc = require('./metric-cooking');

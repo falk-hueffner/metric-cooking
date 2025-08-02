@@ -1,7 +1,5 @@
 #! /usr/bin/node
 
-"use strict";
-
 var readline = require('node:readline');
 
 var mc = require('./metric-cooking');
