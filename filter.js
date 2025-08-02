@@ -1,16 +1,16 @@
 #! /usr/bin/node
 
-var readline = require('node:readline');
+const readline = require('node:readline');
 
-var mc = require('./metric-cooking');
+const mc = require('./metric-cooking');
 
-var rl = readline.createInterface({
+const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
   terminal: false
 });
 
 rl.on('line', (line)=> {
-    var result =  mc.addMetricUnits(line);
+    const result =  mc.addMetricUnits(line);
     console.log(result);
 })

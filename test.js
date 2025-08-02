@@ -2,9 +2,9 @@
 
 const { JSDOM } = require('jsdom');
 
-var mc = require('./metric-cooking');
+const mc = require('./metric-cooking');
 
-var tests = [
+const tests = [
     ['1 cup Guinness', '1 cup [240 ml] Guinness'],
     ['3/4 cup unsweetened cocoa', '3/4 cup unsweetened cocoa [65 g]'],
     ['1 1/4 cups confectioners’ sugar', '1 1/4 cups confectioners’ sugar [150 g]'],
@@ -277,7 +277,7 @@ var tests = [
     ['<li><span>5 tsp sugar, melted</span></li>', '<li><span>5 tsp sugar [21 g], melted</span></li>'],
 ];
 
-var expectedFailures = [
+const expectedFailures = [
     // Overeager conversion of "x by y"
     // We want to catch things like "a five by eight pan" so we don't insist on a unit. This goes wrong here.
     ['Dip popsicles one by one', 
@@ -313,9 +313,9 @@ function processHTML(inputHTML) {
 }
 
 function runTests() {
-    var failed = 0;
-    for (var i in tests) {
-        var result = processHTML(tests[i][0]);
+    let failed = 0;
+    for (const i in tests) {
+        const result = processHTML(tests[i][0]);
         if (result !== tests[i][1]) {
             console.log('test failed: "%s" -> "%s" (not "%s")', tests[i][0], result, tests[i][1]);
             failed++;
@@ -325,10 +325,10 @@ function runTests() {
 }
 
 function runExpectedFailures() {
-    var unexpectedPass = 0;
-    var changedFailures = 0;
-    for (var i in expectedFailures) {
-        var result = processHTML(expectedFailures[i][0]);
+    let unexpectedPass = 0;
+    let changedFailures = 0;
+    for (const i in expectedFailures) {
+        const result = processHTML(expectedFailures[i][0]);
         if (result === expectedFailures[i][1]) {
             console.log('test passed unexpectedly: "%s" -> "%s" (no longer "%s")', 
                 expectedFailures[i][0], result, expectedFailures[i][2]);
