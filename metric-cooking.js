@@ -321,24 +321,27 @@ function scale(amount, unit) {
     return { amount: amount, unit: unit };
 }
 
-function replaceUnits(match, ...args) {
+// Returns an array of { annotation: string, insertIndex: number } objects
+// indicating annotations to be inserted at specific positions in the match.
+// The regexp is designed to match a single annotation, but in an edge case 
+// we'll recognize we actually need two.
+function getUnitAnnotation(match, ...args) {
     const groups = args[args.length - 1]; // named groups are the last argument
-    let newText = match;
-
 
     // avoid false positives with e.g. 'a t-shirt'
     if (groups['numWord'] && groups['unit'].match(/^["tT]$/))
-        return newText;
+        return [];
 
     if (groups['by']) {
         const by1 = round(convert(parseNumber(groups, 'by1'), 'inch').amount) / 10;
         const by2 = round(convert(parseNumber(groups, 'by2'), 'inch').amount) / 10;
         const by3 = round(convert(parseNumber(groups, 'by3'), 'inch').amount) / 10;
 
-        newText += ' [' + by1 + '×' + by2;
+        let annotation = ' [' + by1 + '×' + by2;
         if (by3)
-            newText += '×' + by3;
-        return newText + numUnitSpace + 'cm]';
+            annotation += '×' + by3;
+        annotation += numUnitSpace + 'cm]';
+        return [{ annotation: annotation, insertIndex: match.length }];
     }
 
     let unit = parseUnit(groups);
@@ -358,9 +361,29 @@ function replaceUnits(match, ...args) {
     if (groups['from']) {
         const fromUnit = groups['fromunit'] ? parseUnit(groups, 'from') : unit;
         converted = convert(parseNumber(groups, 'from'), fromUnit);
-        if (converted.unit != newUnit)
-            return groups['from'].replace(re, replaceUnits)
-                + groups['main'].replace(re, replaceUnits);
+        if (converted.unit != newUnit) {
+            // We had something like "about 1 pound 2-inch florets", which is not to be
+            // converted into a single measurement or range. We still want annotations
+            // for the parts separately. Recursively process each part and collect annotations.
+            const annotations = [];
+            let offset = 0;
+            
+            for (const partName of ['from', 'main']) {
+                groups[partName].replace(re, (submatch, ...subargs) => {
+                    const subAnnotations = getUnitAnnotation(submatch, ...subargs);
+                    subAnnotations.forEach(ann => {
+                        annotations.push({ 
+                            annotation: ann.annotation, 
+                            insertIndex: offset + ann.insertIndex 
+                        });
+                    });
+                    return submatch;
+                });
+                offset += groups[partName].length;
+            }
+            
+            return annotations;
+        }
         if (groups['between'] || groups['range1'] || groups['range2']) {
             fromAmount = converted.amount;
             if (parseNumber(groups, 'from') >= 1 && parseNumber(groups) < 1) { // "1-1/2"
@@ -383,10 +406,10 @@ function replaceUnits(match, ...args) {
     }
 
     if ((newUnit == 'ml' || newUnit == 'g') && newAmount < 4)
-        return newText;
+        return [];
 
     if (newUnit == '°C' && groups['numWord'])
-        return newText;
+        return [];
 
     newAmount = round(newAmount, newUnit == '°C');
 
@@ -409,12 +432,29 @@ function replaceUnits(match, ...args) {
     if (fromAmount == newAmount)
         fromAmount = undefined;
 
-    newText += ' [';
+    let annotation = ' [';
     if (fromAmount)
-        newText += fromAmount + '–';
-    newText += newAmount + numUnitSpace + newUnit + ']';
+        annotation += fromAmount + '–';
+    annotation += newAmount + numUnitSpace + newUnit + ']';
 
-    return newText;
+    return [{ annotation: annotation, insertIndex: match.length }];
+}
+
+function replaceUnits(match, ...args) {
+    const annotations = getUnitAnnotation(match, ...args);
+    if (annotations.length === 0) {
+        return match;
+    }
+
+    const descendingByInsertIndex = (a, b) => b.insertIndex - a.insertIndex;
+    annotations.sort(descendingByInsertIndex);
+
+    let result = match;
+    for (const ann of annotations) {
+        result = result.slice(0, ann.insertIndex) + ann.annotation + result.slice(ann.insertIndex);
+    }
+    
+    return result;
 }
 
 function walk(node) {
