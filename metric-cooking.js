@@ -125,7 +125,7 @@ for (const ingredient in ingredients) {
         reIngredient += '|';
     else
         reIngredient = '(?<ingredient>';
-    reIngredient += '(?<' + ingredient + '>' + ingredients[ingredient][0].source + '\\b)';
+    reIngredient += `(?<${ingredient}>${ingredients[ingredient][0].source}\\b)`;
 }
 reIngredient += ')';
 
@@ -151,7 +151,7 @@ function round(x, isTemperature) {
 
 
 function prefixGroups(regexp, prefix) {
-    return regexp.replace(/\(\?<([^>]+)>/g, '(?<' + prefix + '$1' + '>');
+    return regexp.replace(/\(\?<([^>]+)>/g, `(?<${prefix}$1>`);
 }
 
 const fahrenheit = dangerous
@@ -183,7 +183,7 @@ for (const unit in units) {
         reUnit += '|';
     else
         reUnit = '(?<unit>';
-    reUnit += '(?<' + unit + '>' + units[unit][0].source + ')';
+    reUnit += `(?<${unit}>${units[unit][0].source})`;
 }
 reUnit += ')';
 
@@ -213,22 +213,22 @@ for (const numWord in numWords) {
         reNumWord += '|';
     else
         reNumWord = '(?<numWord>';
-    reNumWord += '(?<' + numWord + '>\\b(' + numWords[numWord][0].source + ')\\b)';
+    reNumWord += `(?<${numWord}>\\b(${numWords[numWord][0].source})\\b)`;
 }
 reNumWord += ')';
 
 const reReal = /(?<real>\d+(\.\d+)?)/.source;
 const reFracChar = /(?<fracChar>[¼½¾⅐⅑⅒⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/.source;
-const reFraction = '(?<fraction>(?<fracWhole>\\d+(\\s*|-))?(((?<fracNum>\\d+)[/⁄∕](?<fracDen>\\d+)(( ?ths?)?( of an?)?)?)|' + reFracChar + '))';
-const reNumber = '(?<number>' + reNumWord + '|' + reFraction + '|' + reReal + ')';
+const reFraction = `(?<fraction>(?<fracWhole>\\d+(\\s*|-))?(((?<fracNum>\\d+)[/⁄∕](?<fracDen>\\d+)(( ?ths?)?( of an?)?)?)|${reFracChar}))`;
+const reNumber = `(?<number>${reNumWord}|${reFraction}|${reReal})`;
 
 function parseNumber(groups, prefix) {
     prefix = prefix || '';
-    const real = groups[prefix + 'real'];
+    const real = groups[`${prefix}real`];
     if (real)
         return parseFloat(real);
 
-    const numWord = groups[prefix + 'numWord'];
+    const numWord = groups[`${prefix}numWord`];
     if (numWord) {
         for (const w in numWords)
             if (groups[prefix + w])
@@ -237,10 +237,10 @@ function parseNumber(groups, prefix) {
     }
 
     let amount = 0;
-    const fracWhole = groups[prefix + 'fracWhole'];
+    const fracWhole = groups[`${prefix}fracWhole`];
     if (fracWhole)
         amount += parseInt(fracWhole);
-    const fracChar = groups[prefix + 'fracChar'];
+    const fracChar = groups[`${prefix}fracChar`];
     if (fracChar) {
         amount += {
             '½': 1 / 2,
@@ -251,8 +251,8 @@ function parseNumber(groups, prefix) {
             '⅛': 1 / 8, '⅜': 3 / 8, '⅝': 5 / 8, '⅞': 7 / 8
         }[fracChar];
     } else {
-        const fracNum = groups[prefix + 'fracNum'];
-        const fracDen = groups[prefix + 'fracDen'];
+        const fracNum = groups[`${prefix}fracNum`];
+        const fracDen = groups[`${prefix}fracDen`];
         amount += parseInt(fracNum) / parseInt(fracDen);
     }
     return amount;
@@ -337,10 +337,10 @@ function getAnnotationsForMatch(match, ...args) {
         const by2 = round(convert(parseNumber(groups, 'by2'), 'inch').amount) / 10;
         const by3 = round(convert(parseNumber(groups, 'by3'), 'inch').amount) / 10;
 
-        let annotation = ' [' + by1 + '×' + by2;
+        let annotation = ` [${by1}×${by2}`;
         if (by3)
-            annotation += '×' + by3;
-        annotation += numUnitSpace + 'cm]';
+            annotation += `×${by3}`;
+        annotation += `${numUnitSpace}cm]`;
         return [{ annotation: annotation, insertIndex: match.length }];
     }
 
@@ -434,8 +434,8 @@ function getAnnotationsForMatch(match, ...args) {
 
     let annotation = ' [';
     if (fromAmount)
-        annotation += fromAmount + '–';
-    annotation += newAmount + numUnitSpace + newUnit + ']';
+        annotation += `${fromAmount}–`;
+    annotation += `${newAmount + numUnitSpace + newUnit}]`;
 
     return [{ annotation: annotation, insertIndex: match.length }];
 }
