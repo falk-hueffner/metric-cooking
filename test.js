@@ -288,10 +288,24 @@ var expectedFailures = [
     ['1 x 375g pack of pre-rolled puff pastry',
      '1 x 375g pack of pre-rolled puff pastry',
      '1 x 375 [2.5×950 cm]g pack of pre-rolled puff pastry'],
-     ['<li><span>5 </span><span>tsp </span><span><a><strong>sugar, melted</strong></a></span></li>',
-      '<li><span>5 </span><span>tsp </span><span><a><strong>sugar [21 g], melted</strong></a></span></li>',
-      '<li><span>5 </span><span>tsp </span><span><a><strong>sugar, melted</strong></a></span></li>'],
-];
+    // Number, unit, and ingedient span several HTML elements, so we don't catch it.
+    // Basic case, successive spans.
+    ['<span>4 </span><span>ounces shiitake mushrooms</span>',
+     '<span>4 </span><span>ounces [110 g] shiitake mushrooms</span>',
+     '<span>4 </span><span>ounces shiitake mushrooms</span>'],
+    // This one has successive <span>s and also a nested one.
+    ['<span>4 </span><span><span>ounces </span><span><p> shiitake mushrooms</p></span></span>',
+     '<span>4 </span><span><span>ounces [110 g] </span><span><p> shiitake mushrooms</p></span></span>',
+     '<span>4 </span><span><span>ounces </span><span><p> shiitake mushrooms</p></span></span>'],
+    // This one has also a <p> inside a <span>.
+    ['<span>1/4 </span><span><span>cup </span><span><p>milk</p></span></span>',
+     '<span>1/4 </span><span><span>cup [60 ml] </span><span><p>milk</p></span></span>',
+     '<span>1/4 </span><span><span>cup </span><span><p>milk</p></span></span>'],
+    // Also an <a>.
+    ['<li><span>5 </span><span>tsp </span><span><a><strong>sugar, melted</strong></a></span></li>',
+     '<li><span>5 </span><span>tsp </span><span><a><strong>sugar [21 g], melted</strong></a></span></li>',
+     '<li><span>5 </span><span>tsp </span><span><a><strong>sugar, melted</strong></a></span></li>'],
+]
 
 function processHTML(inputHTML) {
     const dom = new JSDOM(`<!DOCTYPE html><body>${inputHTML}</body>`);
