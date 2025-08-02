@@ -1,7 +1,7 @@
 "use strict";
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { walk };
+    module.exports = { walk, addMetricUnits };
 }
 
 const dangerous = true; // whether to do replacements with frequent false positives
@@ -322,10 +322,10 @@ function scale(amount, unit) {
 }
 
 // Returns an array of { annotation: string, insertIndex: number } objects
-// indicating annotations to be inserted at specific positions in the match.
+// for a single match. The insertIndex is relative to the match start.
 // The regexp is designed to match a single annotation, but in an edge case 
 // we'll recognize we actually need two.
-function getUnitAnnotation(match, ...args) {
+function getAnnotationsForMatch(match, ...args) {
     const groups = args[args.length - 1]; // named groups are the last argument
 
     // avoid false positives with e.g. 'a t-shirt'
@@ -370,7 +370,7 @@ function getUnitAnnotation(match, ...args) {
             
             for (const partName of ['from', 'main']) {
                 groups[partName].replace(re, (submatch, ...subargs) => {
-                    const subAnnotations = getUnitAnnotation(submatch, ...subargs);
+                    const subAnnotations = getAnnotationsForMatch(submatch, ...subargs);
                     subAnnotations.forEach(ann => {
                         annotations.push({ 
                             annotation: ann.annotation, 
@@ -440,20 +440,42 @@ function getUnitAnnotation(match, ...args) {
     return [{ annotation: annotation, insertIndex: match.length }];
 }
 
-function replaceUnits(match, ...args) {
-    const annotations = getUnitAnnotation(match, ...args);
-    if (annotations.length === 0) {
-        return match;
-    }
-
-    const descendingByInsertIndex = (a, b) => b.insertIndex - a.insertIndex;
-    annotations.sort(descendingByInsertIndex);
-
-    let result = match;
-    for (const ann of annotations) {
-        result = result.slice(0, ann.insertIndex) + ann.annotation + result.slice(ann.insertIndex);
-    }
+function getAllAnnotations(text) {
+    const annotations = [];
     
+    text.replace(re, (match, ...args) => {
+        const matchStart = args[args.length - 3]; // third to last arg is the match position
+        const matchAnnotations = getAnnotationsForMatch(match, ...args);
+        
+        // Convert relative positions to absolute positions
+        for (const ann of matchAnnotations) {
+            annotations.push({
+                annotation: ann.annotation,
+                position: matchStart + ann.insertIndex
+            });
+        }
+        
+        return match;
+    });
+    
+    return annotations;
+}
+
+function addMetricUnits(text) {
+    const annotations = getAllAnnotations(text);
+    
+    if (annotations.length === 0) {
+        return text;
+    }
+
+    const descendingByPosition = (a, b) => b.position - a.position;
+    annotations.sort(descendingByPosition);
+
+    let result = text;
+    for (const ann of annotations) {
+        result = result.slice(0, ann.position) + ann.annotation + result.slice(ann.position);
+    }
+
     return result;
 }
 
@@ -480,7 +502,7 @@ function handleNode(textNode) {
     let text = textNode.textContent;
 
     if (text) {
-        const modified = text.replace(re, replaceUnits);
+        const modified = addMetricUnits(text);
         if (modified != text)
             textNode.textContent = modified;
     }
