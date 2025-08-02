@@ -20,8 +20,7 @@ var tests = [
     ['2 cups dark brown sugar', '2 cups dark brown sugar [450 g]'],
     ['1/4 cup pine nuts', '1/4 cup pine nuts [34 g]'],
     ['1 lb semi-sweet chocolate chips', '1 lb semi-sweet chocolate chips [450 g]'],
-    // false positives with C meaning °C
-    // ['1/2 C butter', '1/2 C butter [55 g]'],
+    ['1/2 C butter', '1/2 C butter [115 g]'],
     ['1 t vanilla, almond, coconut, or orange extract', '1 t [5 ml] vanilla, almond, coconut, or orange extract'],
     ['about 6 T unpopped', 'about 6 T [90 ml] unpopped'],
     ['2 T cocoa powder', '2 T cocoa powder [11 g]'],
@@ -275,12 +274,17 @@ var tests = [
     ['1 gallon warm water', '1 gallon [3.75 l] warm water'],
     ['a ratio of about one cup of wine per pound of cheese worked well', 'a ratio of about one cup [240 ml] of wine per pound [450 g] of cheese worked well'],
     ['the heat exchanged per degree is termed specific heat', 'the heat exchanged per degree is termed specific heat'],
-    ['', ''],
-// failing
-// false positives
-//  ['1 x 375g pack of pre-rolled puff pastry', '1 x 375g pack of pre-rolled puff pastry'],
-//  ['Dip popsicles one by one', 'Dip popsicles one by one'],
-    ['', '']
+];
+
+var expectedFailures = [
+    // Overeager conversion of "x by y"
+    // We want to catch things like "a five by eight pan" so we don't insist on a unit. This goes wrong here.
+    ['Dip popsicles one by one', 
+     'Dip popsicles one by one', 
+     'Dip popsicles one by one [2.5×2.5 cm]'],
+    ['1 x 375g pack of pre-rolled puff pastry',
+     '1 x 375g pack of pre-rolled puff pastry',
+     '1 x 375 [2.5×950 cm]g pack of pre-rolled puff pastry'],
 ];
 
 function runTests() {
@@ -292,7 +296,28 @@ function runTests() {
             failed++;
         }
     }
-    console.log('%d of %d tests passed', tests.length - failed, tests.length);
+    console.log('%d of %d tests failed', failed, tests.length);
+}
+
+function runExpectedFailures() {
+    var unexpectedPass = 0;
+    var changedFailures = 0;
+    for (var i in expectedFailures) {
+        var result = mc.addMetricUnits(expectedFailures[i][0]);
+        if (result == expectedFailures[i][1]) {
+            console.log('test passed unexpectedly: "%s" -> "%s" (no longer "%s")', 
+                expectedFailures[i][0], result, expectedFailures[i][2]);
+            unexpectedPass++;
+        } else if (result != expectedFailures[i][2]) {
+            console.log(
+                'test failure changed: "%s" -> "%s" instead of "%s" (correct would be "%s")', 
+                expectedFailures[i][0], result, expectedFailures[i][2], expectedFailures[i][1]);
+            changedFailures++;
+        }
+    }
+    console.log('%d unexpected passes, %d changed failures out of %d expected failures', 
+        unexpectedPass, changedFailures, expectedFailures.length);
 }
 
 runTests();
+runExpectedFailures();
