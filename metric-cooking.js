@@ -499,7 +499,7 @@ function walk(node) {
 }
 
 function handleNode(textNode) {
-    let text = textNode.textContent;
+    const text = textNode.textContent;
 
     if (text) {
         const modified = addMetricUnits(text);
