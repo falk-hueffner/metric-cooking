@@ -2,7 +2,7 @@
 
 "use strict";
 
-var readline = require('readline');
+var readline = require('node:readline');
 
 var mc = require('./metric-cooking');
 
