@@ -329,10 +329,10 @@ function getAnnotationsForMatch(match, ...args) {
     const groups = args[args.length - 1]; // named groups are the last argument
 
     // avoid false positives with e.g. 'a t-shirt'
-    if (groups['numWord'] && groups['unit'].match(/^["tT]$/))
+    if (groups.numWord && groups.unit.match(/^["tT]$/))
         return [];
 
-    if (groups['by']) {
+    if (groups.by) {
         const by1 = round(convert(parseNumber(groups, 'by1'), 'inch').amount) / 10;
         const by2 = round(convert(parseNumber(groups, 'by2'), 'inch').amount) / 10;
         const by3 = round(convert(parseNumber(groups, 'by3'), 'inch').amount) / 10;
@@ -358,8 +358,8 @@ function getAnnotationsForMatch(match, ...args) {
     let newUnit = converted.unit;
 
     let fromAmount;
-    if (groups['from']) {
-        const fromUnit = groups['fromunit'] ? parseUnit(groups, 'from') : unit;
+    if (groups.from) {
+        const fromUnit = groups.fromunit ? parseUnit(groups, 'from') : unit;
         converted = convert(parseNumber(groups, 'from'), fromUnit);
         if (converted.unit != newUnit) {
             // We had something like "about 1 pound 2-inch florets", which is not to be
@@ -384,7 +384,7 @@ function getAnnotationsForMatch(match, ...args) {
             
             return annotations;
         }
-        if (groups['between'] || groups['range1'] || groups['range2']) {
+        if (groups.between || groups.range1 || groups.range2) {
             fromAmount = converted.amount;
             if (parseNumber(groups, 'from') >= 1 && parseNumber(groups) < 1) { // "1-1/2"
                 newAmount += fromAmount;
@@ -395,7 +395,7 @@ function getAnnotationsForMatch(match, ...args) {
         }
     }
 
-    if (groups['ingredient']) {
+    if (groups.ingredient) {
         const ingredient = parseIngredient(groups);
         if (newUnit == 'ml') {
             newAmount = newAmount * ingredients[ingredient][1];
@@ -408,7 +408,7 @@ function getAnnotationsForMatch(match, ...args) {
     if ((newUnit == 'ml' || newUnit == 'g') && newAmount < 4)
         return [];
 
-    if (newUnit == '°C' && groups['numWord'])
+    if (newUnit == '°C' && groups.numWord)
         return [];
 
     newAmount = round(newAmount, newUnit == '°C');
