@@ -316,7 +316,7 @@ function runTests() {
     var failed = 0;
     for (var i in tests) {
         var result = processHTML(tests[i][0]);
-        if (result != tests[i][1]) {
+        if (result !== tests[i][1]) {
             console.log('test failed: "%s" -> "%s" (not "%s")', tests[i][0], result, tests[i][1]);
             failed++;
         }
@@ -329,11 +329,11 @@ function runExpectedFailures() {
     var changedFailures = 0;
     for (var i in expectedFailures) {
         var result = processHTML(expectedFailures[i][0]);
-        if (result == expectedFailures[i][1]) {
+        if (result === expectedFailures[i][1]) {
             console.log('test passed unexpectedly: "%s" -> "%s" (no longer "%s")', 
                 expectedFailures[i][0], result, expectedFailures[i][2]);
             unexpectedPass++;
-        } else if (result != expectedFailures[i][2]) {
+        } else if (result !== expectedFailures[i][2]) {
             console.log(
                 'test failure changed: "%s" -> "%s" instead of "%s" (correct would be "%s")', 
                 expectedFailures[i][0], result, expectedFailures[i][2], expectedFailures[i][1]);

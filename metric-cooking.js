@@ -300,7 +300,7 @@ const re = new RegExp(reAll, 'g');
 function convert(amount, unit) {
     const newUnit = units[unit][1];
     let newAmount;
-    if (unit == 'fahrenheit')
+    if (unit === 'fahrenheit')
         newAmount = (amount - 32) * (5 / 9);
     else
         newAmount = amount * units[unit][2];
@@ -308,13 +308,13 @@ function convert(amount, unit) {
 }
 
 function scale(amount, unit) {
-    if (unit == 'mm' && amount >= 10) {
+    if (unit === 'mm' && amount >= 10) {
         unit = 'cm';
         amount /= 10;
-    } else if (unit == 'ml' && amount >= 1000) {
+    } else if (unit === 'ml' && amount >= 1000) {
         unit = 'l';
         amount /= 1000;
-    } else if (unit == 'g' && amount >= 1000) {
+    } else if (unit === 'g' && amount >= 1000) {
         unit = 'kg';
         amount /= 1000;
     }
@@ -345,7 +345,7 @@ function getAnnotationsForMatch(match, ...args) {
     }
 
     let unit = parseUnit(groups);
-    if (unit == 'pint') {
+    if (unit === 'pint') {
         for (const i in dry_ingredients) {
             if (groups[dry_ingredients[i]]) {
                 unit = 'dry_pint';
@@ -361,7 +361,7 @@ function getAnnotationsForMatch(match, ...args) {
     if (groups.from) {
         const fromUnit = groups.fromunit ? parseUnit(groups, 'from') : unit;
         converted = convert(parseNumber(groups, 'from'), fromUnit);
-        if (converted.unit != newUnit) {
+        if (converted.unit !== newUnit) {
             // We had something like "about 1 pound 2-inch florets", which is not to be
             // converted into a single measurement or range. We still want annotations
             // for the parts separately. Recursively process each part and collect annotations.
@@ -397,7 +397,7 @@ function getAnnotationsForMatch(match, ...args) {
 
     if (groups.ingredient) {
         const ingredient = parseIngredient(groups);
-        if (newUnit == 'ml') {
+        if (newUnit === 'ml') {
             newAmount = newAmount * ingredients[ingredient][1];
             newUnit = 'g';
             if (fromAmount)
@@ -405,19 +405,19 @@ function getAnnotationsForMatch(match, ...args) {
         }
     }
 
-    if ((newUnit == 'ml' || newUnit == 'g') && newAmount < 4)
+    if ((newUnit === 'ml' || newUnit === 'g') && newAmount < 4)
         return [];
 
-    if (newUnit == '°C' && groups.numWord)
+    if (newUnit === '°C' && groups.numWord)
         return [];
 
-    newAmount = round(newAmount, newUnit == '°C');
+    newAmount = round(newAmount, newUnit === '°C');
 
     let scaled;
     if (fromAmount) {
         fromAmount = round(fromAmount);
         scaled = scale(fromAmount, newUnit);
-        if (scaled.unit != newUnit) {
+        if (scaled.unit !== newUnit) {
             fromAmount = scaled.amount;
             scaled = scale(newAmount, newUnit);
             newAmount = scaled.amount;
@@ -429,7 +429,7 @@ function getAnnotationsForMatch(match, ...args) {
         newUnit = scaled.unit;
     }
 
-    if (fromAmount == newAmount)
+    if (fromAmount === newAmount)
         fromAmount = undefined;
 
     let annotation = ' [';
@@ -503,7 +503,7 @@ function handleNode(textNode) {
 
     if (text) {
         const modified = addMetricUnits(text);
-        if (modified != text)
+        if (modified !== text)
             textNode.textContent = modified;
     }
 }
