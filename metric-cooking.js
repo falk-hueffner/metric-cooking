@@ -118,16 +118,9 @@ const dry_ingredients = [
     'strawberries',
 ];
 
-let reIngredient = '';
-for (const ingredient in ingredients) {
-    if (reIngredient) {
-        reIngredient += '|';
-    } else {
-        reIngredient = '(?<ingredient>';
-    }
-    reIngredient += `(?<${ingredient}>${ingredients[ingredient][0].source}\\b)`;
-}
-reIngredient += ')';
+const reIngredient = `(?<ingredient>${Object.entries(ingredients)
+    .map(([ingredient, [regex]]) => `(?<${ingredient}>${regex.source}\\b)`)
+    .join('|')})`;
 
 function round(x, isTemperature) {
     const sign = x < 0 ? -1 : 1;
@@ -176,16 +169,9 @@ const units = {
     teaspoon: [/[Tt]easpoons?\b|(t|tsp?|TSP)\b\.?/, 'ml', tbsp_ml / 3],
 };
 
-let reUnit = '';
-for (const unit in units) {
-    if (reUnit) {
-        reUnit += '|';
-    } else {
-        reUnit = '(?<unit>';
-    }
-    reUnit += `(?<${unit}>${units[unit][0].source})`;
-}
-reUnit += ')';
+const reUnit = `(?<unit>${Object.entries(units)
+    .map(([unit, [regex]]) => `(?<${unit}>${regex.source})`)
+    .join('|')})`;
 
 const numWords = {
     quarter: [/([Oo]ne[- ])?[Qq]uarter( of an?)?/, 1 / 4],
@@ -207,16 +193,9 @@ const numWords = {
     twelve: [/[Tt]welve|[Dd]ozen/, 12],
 };
 
-let reNumWord = '';
-for (const numWord in numWords) {
-    if (reNumWord) {
-        reNumWord += '|';
-    } else {
-        reNumWord = '(?<numWord>';
-    }
-    reNumWord += `(?<${numWord}>\\b(${numWords[numWord][0].source})\\b)`;
-}
-reNumWord += ')';
+const reNumWord = `(?<numWord>${Object.entries(numWords)
+    .map(([numWord, [regex]]) => `(?<${numWord}>\\b(${regex.source})\\b)`)
+    .join('|')})`;
 
 const reReal = /(?<real>\d+(\.\d+)?)/.source;
 const reFracChar = /(?<fracChar>[¼½¾⅐⅑⅒⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/.source;
