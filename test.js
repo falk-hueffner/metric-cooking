@@ -2,6 +2,8 @@
 
 "use strict";
 
+const { JSDOM } = require('jsdom');
+
 var mc = require('./metric-cooking');
 
 var tests = [
@@ -274,6 +276,7 @@ var tests = [
     ['1 gallon warm water', '1 gallon [3.75 l] warm water'],
     ['a ratio of about one cup of wine per pound of cheese worked well', 'a ratio of about one cup [240 ml] of wine per pound [450 g] of cheese worked well'],
     ['the heat exchanged per degree is termed specific heat', 'the heat exchanged per degree is termed specific heat'],
+    ['<li><span>5 tsp sugar, melted</span></li>', '<li><span>5 tsp sugar [21 g], melted</span></li>'],
 ];
 
 var expectedFailures = [
@@ -285,12 +288,22 @@ var expectedFailures = [
     ['1 x 375g pack of pre-rolled puff pastry',
      '1 x 375g pack of pre-rolled puff pastry',
      '1 x 375 [2.5×950 cm]g pack of pre-rolled puff pastry'],
+     ['<li><span>5 </span><span>tsp </span><span><a><strong>sugar, melted</strong></a></span></li>',
+      '<li><span>5 </span><span>tsp </span><span><a><strong>sugar [21 g], melted</strong></a></span></li>',
+      '<li><span>5 </span><span>tsp </span><span><a><strong>sugar, melted</strong></a></span></li>'],
 ];
+
+function processHTML(inputHTML) {
+    const dom = new JSDOM(`<!DOCTYPE html><body>${inputHTML}</body>`);
+    const document = dom.window.document;
+    mc.walk(document.body);
+    return document.body.innerHTML;
+}
 
 function runTests() {
     var failed = 0;
     for (var i in tests) {
-        var result = mc.addMetricUnits(tests[i][0]);
+        var result = processHTML(tests[i][0]);
         if (result != tests[i][1]) {
             console.log('test failed: "%s" -> "%s" (not "%s")', tests[i][0], result, tests[i][1]);
             failed++;
@@ -303,7 +316,7 @@ function runExpectedFailures() {
     var unexpectedPass = 0;
     var changedFailures = 0;
     for (var i in expectedFailures) {
-        var result = mc.addMetricUnits(expectedFailures[i][0]);
+        var result = processHTML(expectedFailures[i][0]);
         if (result == expectedFailures[i][1]) {
             console.log('test passed unexpectedly: "%s" -> "%s" (no longer "%s")', 
                 expectedFailures[i][0], result, expectedFailures[i][2]);

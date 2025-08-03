@@ -1,11 +1,7 @@
 "use strict";
 
-function addMetricUnits(text) {
-    return text.replace(re, replaceUnits);
-}
-
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { addMetricUnits };
+    module.exports = { walk };
 }
 
 const dangerous = true; // whether to do replacements with frequent false positives
@@ -423,14 +419,14 @@ function replaceUnits(match, ...args) {
 
 function walk(node) {
     switch (node.nodeType) {
-        case Node.ELEMENT_NODE:
-        case Node.DOCUMENT_NODE:
-        case Node.DOCUMENT_FRAGMENT_NODE:
+        case node.ELEMENT_NODE:
+        case node.DOCUMENT_NODE:
+        case node.DOCUMENT_FRAGMENT_NODE:
             for (let child = node.firstChild; child; child = child.nextSibling)
                 walk(child);
             break;
 
-        case Node.TEXT_NODE:
+        case node.TEXT_NODE:
             // Skip textarea nodes due to the potential for accidental submission
             // of substituted text
             if (node.parentNode && node.parentNode.nodeName === 'TEXTAREA')
