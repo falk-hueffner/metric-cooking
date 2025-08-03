@@ -121,10 +121,11 @@ const dry_ingredients = [
 
 let reIngredient = '';
 for (const ingredient in ingredients) {
-    if (reIngredient)
+    if (reIngredient) {
         reIngredient += '|';
-    else
+    } else {
         reIngredient = '(?<ingredient>';
+    }
     reIngredient += `(?<${ingredient}>${ingredients[ingredient][0].source}\\b)`;
 }
 reIngredient += ')';
@@ -139,11 +140,13 @@ function round(x, isTemperature) {
         const error = Math.abs(x - newx);
         if (isTemperature) {
             const maxAbsError = x < 100 ? 1 : (x < 160 ? 1.5 : 2.5);
-            if (error < maxAbsError)
+            if (error < maxAbsError) {
                 return sign * newx;
+            }
         } else {
-            if (error / x < maxError)
+            if (error / x < maxError) {
                 return sign * newx;
+            }
         }
     }
     return sign * newx;
@@ -179,10 +182,11 @@ const units = {
 
 let reUnit = '';
 for (const unit in units) {
-    if (reUnit)
+    if (reUnit) {
         reUnit += '|';
-    else
+    } else {
         reUnit = '(?<unit>';
+    }
     reUnit += `(?<${unit}>${units[unit][0].source})`;
 }
 reUnit += ')';
@@ -209,10 +213,11 @@ const numWords = {
 
 let reNumWord = '';
 for (const numWord in numWords) {
-    if (reNumWord)
+    if (reNumWord) {
         reNumWord += '|';
-    else
+    } else {
         reNumWord = '(?<numWord>';
+    }
     reNumWord += `(?<${numWord}>\\b(${numWords[numWord][0].source})\\b)`;
 }
 reNumWord += ')';
@@ -225,21 +230,25 @@ const reNumber = `(?<number>${reNumWord}|${reFraction}|${reReal})`;
 function parseNumber(groups, prefix) {
     prefix = prefix || '';
     const real = groups[`${prefix}real`];
-    if (real)
+    if (real) {
         return parseFloat(real);
+    }
 
     const numWord = groups[`${prefix}numWord`];
     if (numWord) {
-        for (const w in numWords)
-            if (groups[prefix + w])
+        for (const w in numWords) {
+            if (groups[prefix + w]) {
                 return numWords[w][1];
+            }
+        }
         return undefined;
     }
 
     let amount = 0;
     const fracWhole = groups[`${prefix}fracWhole`];
-    if (fracWhole)
+    if (fracWhole) {
         amount += parseInt(fracWhole);
+    }
     const fracChar = groups[`${prefix}fracChar`];
     if (fracChar) {
         amount += {
@@ -260,16 +269,20 @@ function parseNumber(groups, prefix) {
 
 function parseUnit(groups, prefix) {
     prefix = prefix || '';
-    for (const u in units)
-        if (groups[prefix + u])
+    for (const u in units) {
+        if (groups[prefix + u]) {
             return u;
+        }
+    }
     return undefined;
 }
 
 function parseIngredient(groups) {
-    for (const i in ingredients)
-        if (groups[i])
+    for (const i in ingredients) {
+        if (groups[i]) {
             return i;
+        }
+    }
 }
 
 const reFrom = '(?<from>'
@@ -300,10 +313,11 @@ const re = new RegExp(reAll, 'g');
 function convert(amount, unit) {
     const newUnit = units[unit][1];
     let newAmount;
-    if (unit === 'fahrenheit')
+    if (unit === 'fahrenheit') {
         newAmount = (amount - 32) * (5 / 9);
-    else
+    } else {
         newAmount = amount * units[unit][2];
+    }
     return { amount: newAmount, unit: newUnit };
 }
 
@@ -329,8 +343,9 @@ function getAnnotationsForMatch(match, ...args) {
     const groups = args[args.length - 1]; // named groups are the last argument
 
     // avoid false positives with e.g. 'a t-shirt'
-    if (groups.numWord && groups.unit.match(/^["tT]$/))
+    if (groups.numWord && groups.unit.match(/^["tT]$/)) {
         return [];
+    }
 
     if (groups.by) {
         const by1 = round(convert(parseNumber(groups, 'by1'), 'inch').amount) / 10;
@@ -338,8 +353,9 @@ function getAnnotationsForMatch(match, ...args) {
         const by3 = round(convert(parseNumber(groups, 'by3'), 'inch').amount) / 10;
 
         let annotation = ` [${by1}×${by2}`;
-        if (by3)
+        if (by3) {
             annotation += `×${by3}`;
+        }
         annotation += `${numUnitSpace}cm]`;
         return [{ annotation: annotation, insertIndex: match.length }];
     }
@@ -400,16 +416,19 @@ function getAnnotationsForMatch(match, ...args) {
         if (newUnit === 'ml') {
             newAmount = newAmount * ingredients[ingredient][1];
             newUnit = 'g';
-            if (fromAmount)
+            if (fromAmount) {
                 fromAmount = fromAmount * ingredients[ingredient][1];
+            }
         }
     }
 
-    if ((newUnit === 'ml' || newUnit === 'g') && newAmount < 4)
+    if ((newUnit === 'ml' || newUnit === 'g') && newAmount < 4) {
         return [];
+    }
 
-    if (newUnit === '°C' && groups.numWord)
+    if (newUnit === '°C' && groups.numWord) {
         return [];
+    }
 
     newAmount = round(newAmount, newUnit === '°C');
 
@@ -429,12 +448,14 @@ function getAnnotationsForMatch(match, ...args) {
         newUnit = scaled.unit;
     }
 
-    if (fromAmount === newAmount)
+    if (fromAmount === newAmount) {
         fromAmount = undefined;
+    }
 
     let annotation = ' [';
-    if (fromAmount)
+    if (fromAmount) {
         annotation += `${fromAmount}–`;
+    }
     annotation += `${newAmount + numUnitSpace + newUnit}]`;
 
     return [{ annotation: annotation, insertIndex: match.length }];
