@@ -34,7 +34,12 @@ function updateTab() {
     });
 }
 
-chrome.tabs.onUpdated.addListener(updateTab);
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    if (changeInfo.status === 'loading' && changeInfo.url) {
+	convertedTabs.delete(tabId);
+    }
+    updateTab();
+});
 chrome.tabs.onActivated.addListener(updateTab);
 
 chrome.browserAction.onClicked.addListener(function(tab) {
