@@ -1,7 +1,7 @@
 all: firefox chrome
 
 clean:
-	rm -f metric-cooking.xpi
+	rm -f manifest.json background.js metric-cooking-chrome.zip metric-cooking-firefox.xpi 
 
 test:
 	@./test.js
