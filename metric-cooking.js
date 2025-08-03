@@ -202,39 +202,47 @@ const reFracChar = /(?<fracChar>[¼½¾⅐⅑⅒⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜�
 const reFraction = `(?<fraction>(?<fracWhole>\\d+(\\s*|-))?(((?<fracNum>\\d+)[/⁄∕](?<fracDen>\\d+)(( ?ths?)?( of an?)?)?)|${reFracChar}))`;
 const reNumber = `(?<number>${reNumWord}|${reFraction}|${reReal})`;
 
-function parseNumber(groups, prefix) {
-    prefix = prefix || '';
+// biome-ignore format: keep one line per denominator
+const UNICODE_FRACTIONS = {
+    '½': 1 / 2,
+    '⅓': 1 / 3, '⅔': 2 / 3,
+    '¼': 1 / 4, '¾': 3 / 4,
+    '⅕': 1 / 5, '⅖': 2 / 5, '⅗': 3 / 5, '⅘': 4 / 5,
+    '⅙': 1 / 6, '⅚': 5 / 6,
+    '⅐': 1 / 7,
+    '⅛': 1 / 8, '⅜': 3 / 8, '⅝': 5 / 8, '⅞': 7 / 8,
+    '⅑': 1 / 9,
+    '⅒': 1 / 10
+};
+
+function findMatchingKey(obj, groups, prefix = '') {
+    return Object.keys(obj).find(key => groups[prefix + key]);
+}
+
+function parseNumber(groups, prefix = '') {
+    // Parse decimal numbers
     const real = groups[`${prefix}real`];
     if (real) {
         return parseFloat(real);
     }
 
+    // Parse word numbers
     const numWord = groups[`${prefix}numWord`];
     if (numWord) {
-        for (const w in numWords) {
-            if (groups[prefix + w]) {
-                return numWords[w][1];
-            }
-        }
-        return undefined;
+        const matchingWord = findMatchingKey(numWords, groups, prefix);
+        return matchingWord ? numWords[matchingWord][1] : undefined;
     }
 
+    // Parse fractions
     let amount = 0;
     const fracWhole = groups[`${prefix}fracWhole`];
     if (fracWhole) {
         amount += parseInt(fracWhole);
     }
+
     const fracChar = groups[`${prefix}fracChar`];
     if (fracChar) {
-        // biome-ignore format: keep one denominator per line
-        amount += {
-            '½': 1 / 2,
-            '⅓': 1 / 3, '⅔': 2 / 3,
-            '¼': 1 / 4, '¾': 3 / 4,
-            '⅕': 1 / 5, '⅖': 2 / 5, '⅗': 3 / 5, '⅘': 4 / 5,
-            '⅙': 1 / 6, '⅚': 5 / 6,
-            '⅛': 1 / 8, '⅜': 3 / 8, '⅝': 5 / 8, '⅞': 7 / 8
-        }[fracChar];
+        amount += UNICODE_FRACTIONS[fracChar];
     } else {
         const fracNum = groups[`${prefix}fracNum`];
         const fracDen = groups[`${prefix}fracDen`];
@@ -243,22 +251,12 @@ function parseNumber(groups, prefix) {
     return amount;
 }
 
-function parseUnit(groups, prefix) {
-    prefix = prefix || '';
-    for (const u in units) {
-        if (groups[prefix + u]) {
-            return u;
-        }
-    }
-    return undefined;
+function parseUnit(groups, prefix = '') {
+    return findMatchingKey(units, groups, prefix);
 }
 
 function parseIngredient(groups) {
-    for (const i in ingredients) {
-        if (groups[i]) {
-            return i;
-        }
-    }
+    return findMatchingKey(ingredients, groups);
 }
 
 // biome-ignore format: keep
