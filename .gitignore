@@ -1,8 +1,9 @@
 *~
 \#*
+background.js
 manifest.json
 metric-cooking-chrome.zip
 metric-cooking-firefox.xpi
 node_modules
-package.json
 package-lock.json
+package.json

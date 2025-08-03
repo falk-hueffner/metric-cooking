@@ -479,33 +479,58 @@ function addMetricUnits(text) {
     return result;
 }
 
-function walk(node) {
+const IN_TEXT_TAGS = new Set(['A', 'P', 'SPAN', 'DIV',
+			      'EM', 'STRONG', 'I', 'B',
+			      'SUB', 'SUP',
+			     ]);
+const SKIP_TAGS = new Set(['SCRIPT', 'STYLE', 'TEXTAREA']);
+
+class Context {
+  constructor() {
+    this.text = "";
+    this.element_indices = [];
+  }
+}
+
+function walk(node, context = new Context()) {
     switch (node.nodeType) {
         case node.ELEMENT_NODE:
-        case node.DOCUMENT_NODE:
-        case node.DOCUMENT_FRAGMENT_NODE:
-            for (let child = node.firstChild; child; child = child.nextSibling)
-                walk(child);
+            if (SKIP_TAGS.has(node.tagName)) {
+                return new Context();
+            }
+            for (let child = node.firstChild; child; child = child.nextSibling) {
+                context = walk(child, context);
+            }
+            if (context.text.length !== 0 && !IN_TEXT_TAGS.has(node.tagName)) {
+                const annotations = getAllAnnotations(context.text);
+                if (annotations.length !== 0) {
+                    // If we have more than one annotation in one text node, inserting from the
+                    // back ensures we don't have to update the insertion positions.
+                    const descendingByPosition = (a, b) => b.position - a.position;
+                    annotations.sort(descendingByPosition);
+
+                    for (const ann of annotations) {
+                        const i = context.element_indices.findLastIndex(([p, _]) => p < ann.position);
+                        const [textNodeStart, textNode] = context.element_indices[i];
+                        let text = textNode.textContent;
+                        const pos = ann.position - textNodeStart;
+                        text = text.slice(0, pos) + ann.annotation + text.slice(pos);
+                        textNode.textContent = text;
+                    }
+                }
+                context = new Context();
+            }
             break;
 
         case node.TEXT_NODE:
-            // Skip textarea nodes due to the potential for accidental submission
-            // of substituted text
-            if (node.parentNode && node.parentNode.nodeName === 'TEXTAREA')
-                return;
-            handleNode(node);
+            context.element_indices.push([context.text.length, node]);
+            context.text += node.textContent;
             break;
-    }
-}
 
-function handleNode(textNode) {
-    const text = textNode.textContent;
-
-    if (text) {
-        const modified = addMetricUnits(text);
-        if (modified !== text)
-            textNode.textContent = modified;
+        default:
+	    break;
     }
+    return context;
 }
 
 function walkBody() {

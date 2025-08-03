@@ -275,6 +275,16 @@ const tests = [
     ['a ratio of about one cup of wine per pound of cheese worked well', 'a ratio of about one cup [240 ml] of wine per pound [450 g] of cheese worked well'],
     ['the heat exchanged per degree is termed specific heat', 'the heat exchanged per degree is termed specific heat'],
     ['<li><span>5 tsp sugar, melted</span></li>', '<li><span>5 tsp sugar [21 g], melted</span></li>'],
+    ['<span>4 </span><span>ounces shiitake mushrooms</span>',
+     '<span>4 </span><span>ounces [110 g] shiitake mushrooms</span>'],
+    ['<span>4 </span><span><span>ounces </span><span><p> shiitake mushrooms</p></span></span>',
+     '<span>4 </span><span><span>ounces [110 g] </span><span><p> shiitake mushrooms</p></span></span>'],
+    ['<span>1/4 </span><span><span>cup </span><span><p>milk</p></span></span>',
+     '<span>1/4 </span><span><span>cup [60 ml] </span><span><p>milk</p></span></span>'],
+    ['<li><span>5 </span><span>tsp </span><span><a><strong>sugar, melted</strong></a></span></li>',
+     '<li><span>5 </span><span>tsp </span><span><a><strong>sugar [21 g], melted</strong></a></span></li>'],
+    ['<li><p><span>1</span> <span>tablespoon</span> <span>baking powder</span></p><span> about</span></li>',
+     '<li><p><span>1</span> <span>tablespoon</span> <span>baking powder [14 g]</span></p><span> about</span></li>'],
 ];
 
 const expectedFailures = [
@@ -286,23 +296,6 @@ const expectedFailures = [
     ['1 x 375g pack of pre-rolled puff pastry',
      '1 x 375g pack of pre-rolled puff pastry',
      '1 x 375 [2.5×950 cm]g pack of pre-rolled puff pastry'],
-    // Number, unit, and ingedient span several HTML elements, so we don't catch it.
-    // Basic case, successive spans.
-    ['<span>4 </span><span>ounces shiitake mushrooms</span>',
-     '<span>4 </span><span>ounces [110 g] shiitake mushrooms</span>',
-     '<span>4 </span><span>ounces shiitake mushrooms</span>'],
-    // This one has successive <span>s and also a nested one.
-    ['<span>4 </span><span><span>ounces </span><span><p> shiitake mushrooms</p></span></span>',
-     '<span>4 </span><span><span>ounces [110 g] </span><span><p> shiitake mushrooms</p></span></span>',
-     '<span>4 </span><span><span>ounces </span><span><p> shiitake mushrooms</p></span></span>'],
-    // This one has also a <p> inside a <span>.
-    ['<span>1/4 </span><span><span>cup </span><span><p>milk</p></span></span>',
-     '<span>1/4 </span><span><span>cup [60 ml] </span><span><p>milk</p></span></span>',
-     '<span>1/4 </span><span><span>cup </span><span><p>milk</p></span></span>'],
-    // Also an <a>.
-    ['<li><span>5 </span><span>tsp </span><span><a><strong>sugar, melted</strong></a></span></li>',
-     '<li><span>5 </span><span>tsp </span><span><a><strong>sugar [21 g], melted</strong></a></span></li>',
-     '<li><span>5 </span><span>tsp </span><span><a><strong>sugar, melted</strong></a></span></li>'],
 ]
 
 function processHTML(inputHTML) {
