@@ -127,8 +127,8 @@ function round(x, isTemperature) {
     x = Math.abs(x);
     const fs = [100000, 50000, 25000, 10000, 5000, 2500, 1000, 500, 250, 100, 50, 25, 10, 5, 1];
     let newx;
-    for (const f in fs) {
-        newx = Math.round(x / fs[f]) * fs[f];
+    for (const f of fs) {
+        newx = Math.round(x / f) * f;
         const error = Math.abs(x - newx);
         if (isTemperature) {
             const maxAbsError = x < 100 ? 1 : x < 160 ? 1.5 : 2.5;
