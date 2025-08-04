@@ -27,7 +27,7 @@ const ingredients = {
     blackberries: [/\bblackberries/, 144 / cup_ml], // ~09042~
     blueberries: [/\bblueberries/, 148 / cup_ml], // ~09050~
     brown_sugar: [/(\blight[ -]|\bdark[- ]|golden |firmly |\(?packed\)? )*brown sugar/, 220 / cup_ml], // ~19334~ (packed)
-    butter: [/\b((un)?salted,? |chilled,? |cold,? |softened,? )*butter/, 227 / cup_ml], // ~01145~
+    butter: [/\b((un)?salted,? |chilled,? |cold,? |softened,? |[eE]uropean[- ]style,? |[sS]weet,? )*[bB]utter/, 227 / cup_ml], // ~01145~
     cake_flour: [/\b(sifted |unbleached )*(cake|pastry) flour/, 114 / cup_ml], // the internet
     canned_chickpeas: [/\bcanned chickpeas/, 152 / cup_ml], // ~16359~
     cheddar: [/(coarsely |grated |shredded |aged |white |sharp )*[Cc]heddar/, 113 / cup_ml], // ~01009~

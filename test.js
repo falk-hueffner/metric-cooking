@@ -285,6 +285,8 @@ const tests = [
      '<li><span>5 </span><span>tsp </span><span><a><strong>sugar [21 g], melted</strong></a></span></li>'],
     ['<li><p><span>1</span> <span>tablespoon</span> <span>baking powder</span></p><span> about</span></li>',
      '<li><p><span>1</span> <span>tablespoon</span> <span>baking powder [14 g]</span></p><span> about</span></li>'],
+    ['2 to 4 tablespoons Sweet Butter', '2 to 4 tablespoons Sweet Butter [28–57 g]'],
+    ['1/2 cup plus 3 tablespoons unsalted European-style butter', '1/2 cup plus 3 tablespoons unsalted European-style butter [160 g]'],
 ];
 
 const expectedFailures = [
