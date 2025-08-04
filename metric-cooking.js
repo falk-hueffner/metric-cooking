@@ -259,6 +259,10 @@ function parseIngredient(groups) {
     return findMatchingKey(ingredients, groups);
 }
 
+// This captures two different things:
+// * Range: "1 to 2 cups" or "between 1 and 2 cups".
+// * Sum: "1 and 1/4 cups of water" or "1 stick, plus 1 tb".
+// We'll figure out which one it is when we have the match.
 // biome-ignore format: keep
 const reFrom = '(?<from>'
     + '(?<between>between\\s+)?'
@@ -270,6 +274,7 @@ const reFrom = '(?<from>'
     + '(\\s*((?<range2>-|–|to|or)|(?<plus2>plus|\\+|and))\\s*)'
     + '))';
 
+// Matches dimension patterns like in "9×13 inch pan"
 // biome-ignore format: keep
 const reBy = '(?<by>'
     + prefixGroups(reNumber, 'by1') + '[”"″]?(-inch)?-?\\s*(×|x|[- ]?by[- ]?)-?\\s*'
