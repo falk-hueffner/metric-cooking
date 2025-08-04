@@ -304,16 +304,17 @@ function convert(amount, unit) {
 }
 
 function scale(amount, unit) {
-    if (unit === 'mm' && amount >= 10) {
-        unit = 'cm';
-        amount /= 10;
-    } else if (unit === 'ml' && amount >= 1000) {
-        unit = 'l';
-        amount /= 1000;
-    } else if (unit === 'g' && amount >= 1000) {
-        unit = 'kg';
-        amount /= 1000;
+    const scalingRules = {
+        mm: { threshold: 10, newUnit: 'cm', divisor: 10 },
+        ml: { threshold: 1000, newUnit: 'l', divisor: 1000 },
+        g: { threshold: 1000, newUnit: 'kg', divisor: 1000 },
+    };
+
+    const rule = scalingRules[unit];
+    if (rule && amount >= rule.threshold) {
+        return { amount: amount / rule.divisor, unit: rule.newUnit };
     }
+
     return { amount: amount, unit: unit };
 }
 
