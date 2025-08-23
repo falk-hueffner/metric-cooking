@@ -288,6 +288,7 @@ const tests = [
     ['2 to 4 tablespoons Sweet Butter', '2 to 4 tablespoons Sweet Butter [28–57 g]'],
     ['1/2 cup plus 3 tablespoons unsalted European-style butter', '1/2 cup plus 3 tablespoons unsalted European-style butter [160 g]'],
     ['Preheat the oven to 200C.', 'Preheat the oven to 200C.'],
+    ['3 tsp fennel seeds', '3 tsp fennel seeds [6 g]'],
 ];
 
 const expectedFailures = [

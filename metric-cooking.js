@@ -52,6 +52,7 @@ const ingredients = {
     dried_cherries: [/\b(pitted )?dried cherries/, 40 / (0.25 * cup_ml)], // ~09044~
     dulce_de_leche: [/\bdulce de leche/, 19 / tbsp_ml], // ~01225~
     farro: [/\bfarro/, 0.82], // Wolfram Alpha
+    fennel_seeds: [/\bfennel seeds?/, 5.80 / tbsp_ml], // ~02018~
     feta: [/\b(crumbled |low[ -]fat )*[Ff]eta( cheese)?/, 150 / cup_ml], // ~01019~
     flour: [/\b(all[- ]purpose |sifted |unbleached |white |self[- ]raising )*flour/, 125 / cup_ml], // ~20081~
     hazelnuts: [/\bhazelnuts/, 135 / cup_ml], // ~12120~ (whole)
@@ -75,7 +76,7 @@ const ingredients = {
     parmesan: [/\b(finely |freshly |grated |shredded |fresh )*([Pp]armesan|[Pp]armigiano[ -][Rr]eggiano|(Pecorino )?[Rr]omano)(\s+cheese)?/, 100 / cup_ml], // ~01032~ (grated), ~01146~ (shredded)
     pastry_flour: [/\b(whole |wheat )*pastry flour/, 0.51], // Wolfram Alpha
     peanut_butter: [/\b(smooth |natural |creamy |chunky )?peanut butter/, 258 / cup_ml], // ~16397~ (smooth), ~16398~ (chunky)
-    peanuts: [/\b(roasted| salted )*peanuts/, 145 / cup_ml], // average of ~16087~, ~16089~
+    peanuts: [/\b(roasted,?| salted,? )*peanuts/, 145 / cup_ml], // average of ~16087~, ~16089~
     pecans: [/\b(toasted )?pecans?( halves)?/, 99 / cup_ml], // ~12142~ (halves)
     pine_nuts: [/\bpine ?nuts/, 135 / cup_ml], // ~12147~
     pistachio: [/\b(shelled )?pistachio(s|\s+nuts)/, 123 / cup_ml], // ~12151~ (raw)
@@ -84,7 +85,7 @@ const ingredients = {
     quinoa: [/\b(dry |pre-washed |or |rinsed |whole[- ]grain |organic )*quinoa/, 170 / cup_ml], // ~20035~
     raisins: [/\b(golden )?raisins/, 165 / cup_ml], // ~09298~ (packed)
     raspberries: [/\b(fresh )*raspberries/, 0.66], // ~09302~ says 123g/cup, that seems too low. Use Wolfram Alpha
-    ricotta: [/\b(fresh )?ricotta( cheese)?/, 246 / cup_ml], // ~01036~
+    ricotta: [/\b(fresh |whole[- ]milk )?ricotta( cheese)?/, 246 / cup_ml], // ~01036~
     salt: [/\b(table )?salt/, 292 / cup_ml], // ~02047~
     sesame: [/\bsesame( seeds)?(?! oil)/, 144 / cup_ml], // ~12023~
     short_grain_rice: [/\b(short[- ]grain(ed)? |[Aa]rborio |[Bb]omba |[Cc]alasparra )+(brown |[Bb]omba |or |[Cc]alasparra )*rice(?! vinegar| crispies| flour)/, 200 / cup_ml], // ~20052~
