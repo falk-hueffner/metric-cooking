@@ -287,6 +287,7 @@ const tests = [
      '<li><p><span>1</span> <span>tablespoon</span> <span>baking powder [14 g]</span></p><span> about</span></li>'],
     ['2 to 4 tablespoons Sweet Butter', '2 to 4 tablespoons Sweet Butter [28–57 g]'],
     ['1/2 cup plus 3 tablespoons unsalted European-style butter', '1/2 cup plus 3 tablespoons unsalted European-style butter [160 g]'],
+    ['Preheat the oven to 200C.', 'Preheat the oven to 200C.'],
 ];
 
 const expectedFailures = [

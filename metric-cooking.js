@@ -330,6 +330,11 @@ function getAnnotationsForMatch(match, ...args) {
         return [];
     }
 
+    // avoid false positives with large numbers + 'C' (likely Celsius, not cups)
+    if (groups.unit === 'C' && parseNumber(groups) >= 10) {
+        return [];
+    }
+
     if (groups.by) {
         const by1 = round(convert(parseNumber(groups, 'by1'), 'inch').amount) / 10;
         const by2 = round(convert(parseNumber(groups, 'by2'), 'inch').amount) / 10;
