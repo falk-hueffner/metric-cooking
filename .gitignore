@@ -1,6 +1,8 @@
 *~
 \#*
-metric-cooking.zip
+manifest.json
+metric-cooking-chrome.zip
+metric-cooking-firefox.xpi
 node_modules
 package-lock.json
 package.json

@@ -24,8 +24,8 @@
     ],
 
     "background": {
-        "service_worker": "background.js",
-        "scripts": ["background.js"]
+ifdef(`CHROME', `        "service_worker": "background.js"')dnl
+ifdef(`FIREFOX', `        "scripts": ["background.js"]')dnl
     },
 
     "action": {
